@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import Matches from './views/Matches.vue'
 import Score from './views/Score.vue'
 import Stats from './views/Stats.vue'
@@ -13,11 +12,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/matches',
       name: 'matches',
       component: Matches
     },

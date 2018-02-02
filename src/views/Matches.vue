@@ -77,7 +77,7 @@ export default {
       ]
     }
   },
-  created () {
+  mounted () {
     for (var match in this.matches) {
       if (this.matches[match].status === 'over') {
         this.hasPlayedMatches = true

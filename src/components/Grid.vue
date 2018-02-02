@@ -4,7 +4,6 @@
      <tr>
        <th v-for="key in columns"
          :key="key.id"
-         @click="sortBy(key)"
          :class="{ active: sortKey == key }">
          {{ key | capitalize }}
          <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">

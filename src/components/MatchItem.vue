@@ -1,6 +1,5 @@
 <template>
   <router-link :to="{ name: 'match', params: { id: matchId } }">
-  <!-- <a :href="url"> -->
     <div class="match match--played" v-if="status === 'over'">
       <div>{{ matchDate }}</div>
       <div>{{ team1_name }} — {{ team2_name }}</div>
@@ -27,7 +26,6 @@
         <span>Bet: {{ bet }}</span>
       </div>
     </div>
-  <!-- </a> -->
   </router-link>
 </template>
 

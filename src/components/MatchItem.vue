@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <router-link :to="{ name: 'match', params: { id: matchId } }">
+  <!-- <a :href="url"> -->
     <div class="match match--played" v-if="status === 'over'">
       <div>{{ matchDate }}</div>
       <div>{{ team1_name }} — {{ team2_name }}</div>
@@ -26,7 +27,8 @@
         <span>Bet: {{ bet }}</span>
       </div>
     </div>
-  </div>
+  <!-- </a> -->
+  </router-link>
 </template>
 
 <script>
@@ -54,6 +56,10 @@ export default {
   computed: {
     matchDate: function() {
       return new Date(this.date).toLocaleString()
+    },
+    matchId: function() {
+      var matchId = this.url.split("/")
+      return parseInt(matchId[matchId.length - 1], 10)
     }
   }
 }

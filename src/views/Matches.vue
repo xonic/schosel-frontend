@@ -5,7 +5,7 @@
         <h1>Played</h1>
         <ul>
           <li
-            is="match"
+            is="match-item"
             v-for="playedMatch in playedMatches"
             v-bind="playedMatch">
           </li>
@@ -16,7 +16,7 @@
         <h1>Now Playing</h1>
         <ul>
           <li
-            is="match"
+            is="match-item"
             v-for="liveMatch in liveMatches"
             v-bind="liveMatch">
           </li>
@@ -35,7 +35,7 @@
         </div>
         <ul>
           <li
-            is="match"
+            is="match-item"
             v-for="upcomingMatch in upcomingMatches"
             v-bind="upcomingMatch">
           </li>
@@ -46,7 +46,7 @@
       <h1>Played</h1>
       <ul>
         <li
-          is="match"
+          is="match-item"
           v-for="playedMatch in playedMatches"
           v-bind="playedMatch">
         </li>
@@ -59,7 +59,7 @@
 // @ is an alias to /src
 import Tabs from '@/components/Tabs.vue'
 import Tab from '@/components/Tab.vue'
-import Match from '@/components/Match.vue'
+import MatchItem from '@/components/MatchItem.vue'
 import axios from 'axios'
 
 export default {
@@ -67,7 +67,7 @@ export default {
   components: {
     Tabs,
     Tab,
-    Match
+    MatchItem
   },
   data () {
     return {

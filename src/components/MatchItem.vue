@@ -55,10 +55,6 @@ export default {
     matchDate: function() {
       return new Date(this.date).toLocaleString()
     }
-    // matchId: function() {
-    //   var matchId = this.url.split("/")
-    //   return parseInt(matchId[matchId.length - 1], 10)
-    // }
   }
 }
 </script>

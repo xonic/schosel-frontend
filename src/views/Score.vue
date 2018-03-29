@@ -41,23 +41,42 @@
 <script>
 // @ is an alias to /src
 import Grid from '@/components/Grid.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'score',
+  computed: {
+    ...mapGetters([
+      'allUsers'
+    ]),
+    sortedArray: function() {
+      function compare(a, b) {
+        if (a.name < b.name)
+          return -1;
+        if (a.name > b.name)
+          return 1;
+        return 0;
+      }
+
+      return this.arrays.sort(compare);
+    }
+  },
   components: {
     Grid
   },
   data: function () {
     return {
-      searchQuery: '',
-      gridColumns: ['rank', 'player', 'difference', 'score'],
-      gridData: [
-        { rank: 1, player: 'Chuck Norris', difference: '+28.57', score: '300.00' },
-        { rank: 2, player: 'Bruce Lee (You)', difference: '-', score: '271.43' },
-        { rank: 3, player: 'Jackie Chan', difference: '-21.43', score: '250.00' },
-        { rank: 4, player: 'Jet Li', difference: '-31.43', score: '240.00' }
-      ]
+      gridColumns: ['rank', 'name', 'difference', 'points'],
+      gridData: undefined
     }
+  },
+  mounted () {
+    this.$store.dispatch('LOAD_USERS')
+    this.gridData = this.allUsers
+    this.gridData.forEach(function(el, i){
+      el.rank = i + 1;
+      el.points = el.points.toFixed(2)
+    })
   }
 }
 </script>

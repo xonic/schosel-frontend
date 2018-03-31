@@ -25,20 +25,23 @@
     <div class="match match--upcoming" v-if="status === 'scheduled'">
       <div>{{ matchDate }}</div>
       <div>{{ team1_name }} — {{ team2_name }}</div>
-      <div v-if="odds && odds.length > 0">
+      <div v-if="odds && ownBet">
         <div>{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;{{ odds["2"].toFixed(2) }}</div>
-        <input type="radio" :id="url + '-home'" value="1" v-model="bet">
-        <label :for="url + '-home'">Home&nbsp;{{ odds["1"].toFixed(2) }}</label>
-        <input type="radio" :id="url + '-draw'" value="X" v-model="bet">
-        <label :for="url + '-draw'">Draw&nbsp;{{ odds["X"].toFixed(2) }}</label>
-        <input type="radio" :id="url + '-away'" value="2" v-model="bet">
-        <label :for="url + '-away'">Away&nbsp;{{ odds["2"].toFixed(2) }}</label>
+        <input type="radio" :id="match_id + '-home'" value="1" v-model="ownBet.outcome" @change="postBet()">
+        <label :for="match_id + '-home'">Home&nbsp;{{ odds["1"].toFixed(2) }}</label>
+        <input type="radio" :id="match_id + '-draw'" value="X" v-model="ownBet.outcome" @change="postBet()">
+        <label :for="match_id + '-draw'">Draw&nbsp;{{ odds["X"].toFixed(2) }}</label>
+        <input type="radio" :id="match_id + '-away'" value="2" v-model="ownBet.outcome" @change="postBet()">
+        <label :for="match_id + '-away'">Away&nbsp;{{ odds["2"].toFixed(2) }}</label>
+        <input type="checkbox" :id="match_id + '-supertip'" v-model="ownBet.supertip" @change="postBet()">
+        <label :for="match_id + '-supertip'">Supertip</label>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   data () {
     return {
@@ -63,6 +66,18 @@ export default {
   computed: {
     matchDate: function() {
       return new Date(this.date).toLocaleString()
+    }
+  },
+  methods: {
+    postBet() {
+      // TODO: implement server call
+      // axios.post(`http://jsonplaceholder.typicode.com/posts`, {
+      //   body: this.ownBet
+      // })
+      // .then(response => {})
+      // .catch(e => {
+      //   this.errors.push(e)
+      // })
     }
   }
 }

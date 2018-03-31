@@ -62,7 +62,6 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('LOAD_USERS')
     this.gridData = this.allUsers
 
     this.gridData.forEach(function(el, i){

@@ -9,7 +9,7 @@ export default new Vuex.Store({
     status: {},
     users: [],
     matches: [],
-    bets: {},
+    ownBets: undefined,
     teams: {}
   },
   actions: {
@@ -40,6 +40,13 @@ export default new Vuex.Store({
       }, (err) => {
         console.log(err)
       })
+    },
+    LOAD_OWN_BETS: function ({ commit }) {
+      axios.get('http://localhost:5000/api/v1/bets', {withCredentials: true}).then((response) => {
+        commit('SET_OWN_BETS', { ownBets: response.data })
+      }, (err) => {
+        console.log(err)
+      })
     }
   },
   mutations: {
@@ -48,6 +55,15 @@ export default new Vuex.Store({
       console.log("state.status", state.status)
     },
     SET_MATCHES: (state, { matches }) => {
+
+      // TODO: remove this (manipulates some matches to be live & scheduled)
+      for(var i=matches.length-1; i>=matches.length-6; i--) {
+        matches[i].status = "scheduled"
+      }
+      for(var i=matches.length-7; i>=matches.length-8; i--) {
+        matches[i].status = "live"
+      }
+
       state.matches = matches
     },
     SET_USERS: (state, { users }) => {
@@ -55,14 +71,49 @@ export default new Vuex.Store({
     },
     SET_USER: (state, { user }) => {
       state.user = user
+    },
+    SET_OWN_BETS: (state, { ownBets }) => {
+      state.ownBets = ownBets
     }
   },
   getters: {
     playedMatches: state => {
-      return state.matches.filter(match => match.status === "over")
+
+      // Filter matches that are over
+      var played = state.matches.filter(match => match.status === "over")
+
+      // Add own bets to each played match
+      if(played && state.ownBets) {
+        played.forEach(function(match){
+          var ownBet = state.ownBets.find(function(bet){
+            return bet.match.match_id === match.match_id
+          }, this)
+
+          match.ownBet = ownBet
+          match.supertip = ownBet.supertip
+        }, this)
+      }
+
+      return played
     },
     liveMatches: state => {
-      return state.matches.filter(match => match.status === "live")
+
+      // Filter matches that live
+      var live = state.matches.filter(match => match.status === "live")
+
+      // Add own bets to each live match
+      if(live && state.ownBets) {
+        live.forEach(function(match){
+          var ownBet = state.ownBets.find(function(bet){
+            return bet.match.match_id === match.match_id
+          }, this)
+
+          match.ownBet = ownBet
+          match.supertip = ownBet.supertip
+        }, this)
+      }
+
+      return live;
     },
     upcomingMatches: state => {
       return state.matches.filter(match => match.status === "scheduled")
@@ -72,6 +123,9 @@ export default new Vuex.Store({
     },
     loggedInUser: state => {
       return state.status.user
+    },
+    ownBets: state => {
+      return state.ownBets
     }
   }
 })

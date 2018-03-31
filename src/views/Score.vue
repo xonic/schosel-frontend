@@ -66,13 +66,18 @@ export default {
     this.gridData = this.allUsers
 
     this.gridData.forEach(function(el, i){
+
+      // Set rank column value
       el.rank = i + 1;
+
+      // Beautify score
       el.score = el.points.toFixed(2)
 
+      // Calculate difference of logged in player score to other players score
       el.difference = (el.points - this.loggedInUser.points).toFixed(2)
-
       if(el.difference == 0.00) el.difference = "-"
 
+      // Set logged in player rank
       if (el.user_id === this.loggedInUser.user_id) {
         this.loggedInUserRank = el.rank
       }

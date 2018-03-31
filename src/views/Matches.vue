@@ -76,9 +76,6 @@ export default {
     Tabs,
     Tab,
     MatchItem
-  },
-  mounted () {
-    this.$store.dispatch('LOAD_MATCHES')
   }
 }
 </script>

@@ -1,23 +1,23 @@
 <template>
   <div>
     <a href="javascript:history.go(-1)">&lt; Back</a>
-    <div class='match'>
+    <div class='match' v-if='this.match'>
       <div class="">
-        05 June &mdash; 20:45
+        {{ match.matchDate }}
       </div>
       <div class="">
-        North Korea &mdash; Saudi Arabia
+        {{ match.team1_name }} &mdash; {{ match.team2_name }}
       </div>
       <div class="">
-        3 : 0
+        {{ match.team1_goals }} : {{ match.team2_goals }}
       </div>
       <div class="">
-        +20.60 pts
+        {{ ownScore }}
       </div>
-      <div class="">
-        <span>Home 10.30 pts</span>
-        <span>Draw 4.50 pts</span>
-        <span>Away 3.81 pts</span>
+      <div class="" v-if='this.match.odds'>
+        <span>Home {{ match.odds['1'] }} pts</span>
+        <span>Draw {{ match.odds['X'] }} pts</span>
+        <span>Away {{ match.odds['2'] }} pts</span>
       </div>
     </div>
     <grid
@@ -30,6 +30,8 @@
 <script>
 // @ is an alias to /src
 import Grid from '@/components/Grid.vue'
+import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'match',
@@ -38,19 +40,56 @@ export default {
   },
   data: function () {
     return {
-      searchQuery: '',
-      gridColumns: ['rank', 'player', 'bet', 'score'],
-      gridData: [
-        { rank: 1, player: 'Chuck Norris', bet: 'Home', score: '10.30' },
-        { rank: 2, player: 'Bruce Lee', bet: 'Away', score: '3.81' },
-        { rank: 3, player: 'Jackie Chan', bet: 'Draw', score: '4.50' },
-        { rank: 4, player: 'Jet Li', bet: 'Away', score: '3.81' }
-      ]
+      match: {},
+      gridColumns: ['player', 'bet', 'score'],
+      gridData: []
     }
   },
+  props: ['id'],
   mounted () {
-    console.warn("TODO: fetch match data from https://www.schosel.net/worlds2018/api/v1" + this.$route.fullPath)
-    console.warn("TODO: fetch bet data from https://www.schosel.net/worlds2018/api/v1" + this.$route.fullPath + "/bets")
+    axios.get('http://localhost:5000/api/v1/matches/' + this.id, {withCredentials: true}).then((response) => {
+      this.match = response.data
+      this.setGrid(response.data.bets)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+  computed: {
+    ...mapGetters([
+      'ownBets'
+    ]),
+    matchDate: function() {
+      return new Date(this.match.date).toLocaleString()
+    },
+    ownScore: function() {
+      // this.ownBets.find(function(el) {
+      //   return el.match.match_id === this.match.match_id
+      // }, this)
+    }
+  },
+  methods: {
+    setGrid: function(gridData) {
+      gridData.forEach(function(el, i){
+
+        // Calculate score for each player
+        var currentScore = this.match.outcome === el.outcome ? el.points : 0.00
+        if(el.supertip && currentScore) {
+          currentScore *= 2
+        }
+
+        // Set grid data
+        this.gridData.push({
+          player: el.user.name,
+          bet: el.outcome || "-",
+          score: currentScore
+        })
+
+        // Sort grid by score
+        this.gridData.sort(function(obj1, obj2){
+          return obj2.score - obj1.score
+        })
+      }, this)
+    }
   }
 }
 </script>

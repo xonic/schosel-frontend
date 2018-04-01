@@ -1,29 +1,32 @@
 <template>
   <div>
     <a href="javascript:history.go(-1)">&lt; Back</a>
-    <div class='match' v-if='this.match'>
-      <div class="">
-        {{ match.matchDate }}
+    <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
+    <div v-if='!loading'>
+      <div class='match' v-if='this.match'>
+        <div class="">
+          {{ match.matchDate }}
+        </div>
+        <div class="">
+          {{ match.team1_name }} &mdash; {{ match.team2_name }}
+        </div>
+        <div class="">
+          {{ match.team1_goals }} : {{ match.team2_goals }}
+        </div>
+        <div class="">
+          {{ ownScore }}
+        </div>
+        <div class="" v-if='this.match.odds'>
+          <span>Home {{ match.odds['1'] }} pts</span>
+          <span>Draw {{ match.odds['X'] }} pts</span>
+          <span>Away {{ match.odds['2'] }} pts</span>
+        </div>
       </div>
-      <div class="">
-        {{ match.team1_name }} &mdash; {{ match.team2_name }}
-      </div>
-      <div class="">
-        {{ match.team1_goals }} : {{ match.team2_goals }}
-      </div>
-      <div class="">
-        {{ ownScore }}
-      </div>
-      <div class="" v-if='this.match.odds'>
-        <span>Home {{ match.odds['1'] }} pts</span>
-        <span>Draw {{ match.odds['X'] }} pts</span>
-        <span>Away {{ match.odds['2'] }} pts</span>
-      </div>
+      <grid
+        :data="gridData"
+        :columns="gridColumns">
+      </grid>
     </div>
-    <grid
-      :data="gridData"
-      :columns="gridColumns">
-    </grid>
   </div>
 </template>
 
@@ -32,17 +35,22 @@
 import Grid from '@/components/Grid.vue'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
 export default {
   name: 'match',
   components: {
-    Grid
+    Grid,
+    ClipLoader
   },
-  data: function () {
+  data () {
     return {
       match: {},
       gridColumns: ['player', 'bet', 'score'],
-      gridData: []
+      gridData: [],
+      loading: true,
+      size: "32px",
+      color: "#3EABDC"
     }
   },
   props: ['id'],
@@ -50,6 +58,7 @@ export default {
     axios.get('http://localhost:5000/api/v1/matches/' + this.id, {withCredentials: true}).then((response) => {
       this.match = response.data
       this.setGrid(response.data.bets)
+      this.loading = false
     }, (err) => {
       console.log(err)
     })

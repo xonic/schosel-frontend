@@ -96,6 +96,55 @@ export default new Vuex.Store({
 
       return played
     },
+    playedMatchDays: state => {
+
+      // Filter matches that are over
+      var played = state.matches.filter(match => match.status === "over")
+
+      // Add own bets to each played match
+      if(played && state.ownBets) {
+        played.forEach(function(match){
+          var ownBet = state.ownBets.find(function(bet){
+            return bet.match.match_id === match.match_id
+          }, this)
+
+          match.ownBet = ownBet
+          match.supertip = ownBet.supertip
+        }, this)
+      }
+
+      // Split matches into match days
+      var splitMatches = played.reduce((acc, curr) => {
+
+        // Get real date, set hours zero to put matches with same date but
+        // different daytime into same matchday group
+        var currDate = new Date(curr.date)
+        currDate.setHours(0,0,0,0)
+
+        // Check if new object acc already has current date as an attribute
+        // otherwise create it
+        if(!acc.hasOwnProperty(currDate)) {
+          acc[currDate] = [];
+        }
+        acc[currDate].push(curr);
+        return acc;
+      }, {})
+
+      // Array to be returned containing list of matchday objects with date and
+      // matches attributes
+      var playedMatchDays = []
+
+      // Convert from object to array
+      for(var el in splitMatches) {
+        playedMatchDays.push({
+          date: el,
+          matches: splitMatches[el]
+        })
+      }
+
+      return playedMatchDays
+
+    },
     liveMatches: state => {
 
       // Filter matches that are live
@@ -133,6 +182,54 @@ export default new Vuex.Store({
       }
 
       return upcoming
+    },
+    upcomingMatchDays: state => {
+
+      // Filter matches that are upcomingg
+      var upcoming = state.matches.filter(match => match.status === "scheduled")
+
+      // Add own bets to each upcoming match
+      if(upcoming && state.ownBets) {
+        upcoming.forEach(function(match){
+          var ownBet = state.ownBets.find(function(bet){
+            return bet.match.match_id === match.match_id
+          }, this)
+
+          match.ownBet = ownBet
+          match.supertip = ownBet.supertip
+        }, this)
+      }
+
+      // Split matches into match days
+      var splitMatches = upcoming.reduce((acc, curr) => {
+
+        // Get real date, set hours zero to put matches with same date but
+        // different daytime into same matchday group
+        var currDate = new Date(curr.date)
+        currDate.setHours(0,0,0,0)
+
+        // Check if new object acc already has current date as an attribute
+        // otherwise create it
+        if(!acc.hasOwnProperty(currDate)) {
+          acc[currDate] = [];
+        }
+        acc[currDate].push(curr);
+        return acc;
+      }, {})
+
+      // Array to be returned containing list of matchday objects with date and
+      // matches attributes
+      var upcomingMatchDays = []
+
+      // Convert from object to array
+      for(var el in splitMatches) {
+        upcomingMatchDays.push({
+          date: el,
+          matches: splitMatches[el]
+        })
+      }
+
+      return upcomingMatchDays
     },
     allUsers: state => {
       return state.users

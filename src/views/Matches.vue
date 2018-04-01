@@ -1,15 +1,18 @@
 <template>
   <div class='matches'>
-    <tabs v-if='upcomingMatches.length ? (playedMatches.length || liveMatches.length) : (playedMatches.length && liveMatches.length)'>
-      <tab name='Played' v-if='playedMatches.length' :selected='true'>
+    <tabs v-if='upcomingMatchDays.length ? (playedMatchDays.length || liveMatches.length) : (playedMatchDays.length && liveMatches.length)'>
+      <tab name='Played' v-if='playedMatchDays.length' :selected='true'>
         <h1>Played</h1>
-        <ul>
-          <li
-            is="match-item"
-            v-for="playedMatch in playedMatches"
-            v-bind="playedMatch">
-          </li>
-        </ul>
+        <div v-for="matchDay in playedMatchDays">
+          <h4>{{ matchDate(matchDay.date) }}</h4>
+          <ul>
+            <li
+              is="match-item"
+              v-for="playedMatch in matchDay.matches"
+              v-bind="playedMatch">
+            </li>
+          </ul>
+        </div>
       </tab>
 
       <tab name='Now Playing' v-if='liveMatches.length'>
@@ -23,7 +26,7 @@
         </ul>
       </tab>
 
-      <tab name='Upcoming' v-if='upcomingMatches.length'>
+      <tab name='Upcoming' v-if='upcomingMatchDays.length'>
         <h1>Upcoming</h1>
         <div v-if="loggedInUser">
           <select v-model="loggedInUser.champion_id">
@@ -42,24 +45,32 @@
             Explain how odds work
           </div>
         </div>
-        <ul>
-          <li
-            is="match-item"
-            v-for="upcomingMatch in upcomingMatches"
-            v-bind="upcomingMatch">
-          </li>
-        </ul>
+        <div v-for="matchDay in upcomingMatchDays">
+          <h4>{{ matchDate(matchDay.date) }}</h4>
+          <ul>
+            <li
+              is="match-item"
+              v-for="upcomingMatch in matchDay.matches"
+              v-bind="upcomingMatch">
+            </li>
+          </ul>
+        </div>
       </tab>
     </tabs>
     <div v-else>
-      <h1>Played</h1>
-      <ul>
-        <li
-          is="match-item"
-          v-for="playedMatch in playedMatches"
-          v-bind="playedMatch">
-        </li>
-      </ul>
+      <tab name='Played' v-if='playedMatchDays.length' :selected='true'>
+        <h1>Played</h1>
+        <div v-for="matchDay in playedMatchDays">
+          <h4>{{ matchDate(matchDay.date) }}</h4>
+          <ul>
+            <li
+              is="match-item"
+              v-for="playedMatch in matchDay.matches"
+              v-bind="playedMatch">
+            </li>
+          </ul>
+        </div>
+      </tab>
     </div>
   </div>
 </template>
@@ -77,8 +88,10 @@ export default {
   computed: {
     ...mapGetters([
       'playedMatches',
+      'playedMatchDays',
       'liveMatches',
       'upcomingMatches',
+      'upcomingMatchDays',
       'loggedInUser'
     ])
   },
@@ -86,6 +99,12 @@ export default {
     Tabs,
     Tab,
     MatchItem
+  },
+  methods: {
+    matchDate: function(date) {
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(date).toLocaleString('de-DE', options)
+    }
   }
 }
 </script>

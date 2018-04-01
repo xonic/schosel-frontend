@@ -17,9 +17,9 @@
           {{ ownScore }}
         </div>
         <div class="" v-if='this.match.odds'>
-          <span>Home {{ match.odds['1'] }} pts</span>
-          <span>Draw {{ match.odds['X'] }} pts</span>
-          <span>Away {{ match.odds['2'] }} pts</span>
+          <span>Home {{ match.odds['1'].toFixed(2) }} pts</span>
+          <span>Draw {{ match.odds['X'].toFixed(2) }} pts</span>
+          <span>Away {{ match.odds['2'].toFixed(2) }} pts</span>
         </div>
       </div>
       <grid
@@ -90,7 +90,7 @@ export default {
         this.gridData.push({
           player: el.user.name,
           bet: el.outcome || "-",
-          score: currentScore
+          score: currentScore.toFixed(2)
         })
 
         // Sort grid by score

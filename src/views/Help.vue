@@ -1,5 +1,7 @@
 <template>
   <div class="help">
-    <h1>Help</h1>
+    <div class="wrapper">
+      <h1>Help</h1>
+    </div>
   </div>
 </template>

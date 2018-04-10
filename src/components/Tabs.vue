@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="tab-grid">
      <div class="tabs">
        <ul class="tab__items wrapper">
          <li v-for="tab in tabs" :key="tab.id" :class="{ 'is-active': tab.isActive }">
-           <a :href="tab.href" @click="selectTab(tab)">{{ tab.name }}</a>
+           <a class="tab__link" :href="tab.href" @click="selectTab(tab)">{{ tab.name }}</a>
          </li>
        </ul>
      </div>

@@ -6,13 +6,14 @@
         <tab name='Played' v-if='playedMatchDays.length' :selected='true'>
           <div class="wrapper">
             <h1>Played</h1>
-            <div v-for="matchDay in playedMatchDays">
-              <h4>{{ matchDate(matchDay.date) }}</h4>
-              <ul>
+            <div v-for="matchDay in playedMatchDays" class="list">
+              <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+              <ul class="list__items">
                 <li
                 is="match-item"
                 v-for="playedMatch in matchDay.matches"
-                v-bind="playedMatch">
+                v-bind="playedMatch"
+                class="list__item">
               </li>
             </ul>
           </div>
@@ -22,7 +23,7 @@
       <tab name='Now Playing' v-if='liveMatches.length'>
         <div class="wrapper">
           <h1>Now Playing</h1>
-          <ul>
+          <ul class="list__items">
             <li
             is="match-item"
             v-for="liveMatch in liveMatches"
@@ -52,13 +53,14 @@
                 Explain how odds work
               </div>
             </div>
-            <div v-for="matchDay in upcomingMatchDays">
-              <h4>{{ matchDate(matchDay.date) }}</h4>
-              <ul>
+            <div v-for="matchDay in upcomingMatchDays" class="list">
+              <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+              <ul class="list__items">
                 <li
                   is="match-item"
                   v-for="upcomingMatch in matchDay.matches"
-                  v-bind="upcomingMatch">
+                  v-bind="upcomingMatch"
+                  class="list__item">
                 </li>
               </ul>
             </div>
@@ -69,13 +71,14 @@
         <tab name='Played' v-if='playedMatchDays.length' :selected='true'>
           <div class="wrapper">
             <h1>Played</h1>
-            <div v-for="matchDay in playedMatchDays">
-              <h4>{{ matchDate(matchDay.date) }}</h4>
+            <div v-for="matchDay in playedMatchDays" class="list">
+              <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
               <ul>
                 <li
                   is="match-item"
                   v-for="playedMatch in matchDay.matches"
-                  v-bind="playedMatch">
+                  v-bind="playedMatch"
+                  class="list__item">
                 </li>
               </ul>
             </div>

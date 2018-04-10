@@ -12,6 +12,8 @@
   font-weight: $bold-font-weight;
 
   @media (min-width: 768px) {
+    font-size: 1.5rem;
+    text-transform: uppercase;
     background: transparent;
   }
 }

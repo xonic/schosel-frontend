@@ -2,27 +2,60 @@
   @extend .cf;
 }
 
+.match-item__time {
+  float: left;
+  clear: both;
+  margin-right: $space-35;
+  color: $gray-100;
+}
+
 .match-item__time,
 .match-item__odds,
 .match-item__bet {
   font-size: 1.5rem;
 }
 
-.match-item__teams,
-.match-item__odds {
+.match-item__teams {
   float: left;
 }
 
-.match-item__goals,
-.match-item__bet {
+.match-item__goals {
   float: right;
 }
 
+.match-item__ownBet {
+  clear: both;
+  display: flex;
+}
+
 .match-item__odds {
+  flex: 1 0 auto;
+  display: flex;
   color: $gray-100;
   text-transform: uppercase;
+
+  > div {
+    margin-right: $space-25;
+  }
 }
 
 .match-item__bet {
+  color: $gray-100;
+}
+
+.has-bet {
   font-weight: $bold-font-weight;
+  color: $black;
+}
+
+.has-scored {
+  font-weight: $bold-font-weight;
+  color: $green-100;
+}
+
+.failed-supertip {
+  path {
+    fill: $gray-25;
+    stroke: $gray-100;
+  }
 }

@@ -62,12 +62,15 @@ export default new Vuex.Store({
     SET_MATCHES: (state, { matches }) => {
 
       // TODO: remove this (manipulates some matches to be live & scheduled)
-      // for(var i=matches.length-1; i>=20; i--) {
-      //   matches[i].status = "scheduled"
-      // }
-      // for(var i=matches.length-7; i>=matches.length-8; i--) {
-      //   matches[i].status = "live"
-      // }
+      for(var i=matches.length-1; i>=20; i--) {
+        matches[i].status = "scheduled"
+        matches[i].odds["1"] = "medium"
+        matches[i].odds["X"] = "low"
+        matches[i].odds["2"] = "high"
+      }
+      for(var i=matches.length-7; i>=matches.length-8; i--) {
+        matches[i].status = "live"
+      }
       state.loadInfo.matches = false
       state.matches = matches
     },

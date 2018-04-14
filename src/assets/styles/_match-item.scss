@@ -7,6 +7,13 @@
   clear: both;
   margin-right: $space-35;
   color: $gray-100;
+
+  .match-item--upcoming & {
+    float: right;
+    clear: none;
+    margin: 0 0 0 $space-35;
+    line-height: $space-100;
+  }
 }
 
 .match-item__time,
@@ -40,7 +47,12 @@
 }
 
 .match-item__bet {
+  clear: both;
   color: $gray-100;
+
+  .match-item--upcoming & {
+    display: flex;
+  }
 }
 
 .has-bet {
@@ -58,4 +70,43 @@
     fill: $gray-25;
     stroke: $gray-100;
   }
+}
+
+.odds-estimation {
+  display: inline-block;
+  width: $space-35;
+  height: $space-35;
+  transform-origin: bottom;
+
+  &.medium {
+    transform: rotateZ(90deg);
+    path {
+      fill: $orange-100;
+    }
+  }
+
+  &.low {
+    transform: rotateZ(180deg);
+    path {
+      fill: $red-100;
+    }
+  }
+}
+
+.match__input {
+  display: none;
+
+  &:checked + .match__label {
+    background: $blue-150;
+    border: 1px solid $blue-140;
+    color: $black;
+  }
+}
+
+.match__label {
+  display: block;
+  padding: $space-25 $space-35;
+  border-radius: 999em;
+  color: $blue-100;
+  text-transform: uppercase;
 }

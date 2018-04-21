@@ -68,8 +68,13 @@ export default new Vuex.Store({
         matches[i].odds["X"] = "low"
         matches[i].odds["2"] = "high"
       }
-      for(var i=matches.length-7; i>=matches.length-8; i--) {
+      for(var i=matches.length-21; i>=matches.length-22; i--) {
         matches[i].status = "live"
+        matches[i].odds["1"] = 1.53403
+        matches[i].odds["X"] = 4.28292
+        matches[i].odds["2"] = 9.10101
+        var d = new Date();
+        matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
       }
       state.loadInfo.matches = false
       state.matches = matches
@@ -241,6 +246,11 @@ export default new Vuex.Store({
       return upcomingMatchDays
     },
     allUsers: state => {
+
+      state.users.sort(function(a,b) {
+        return b.points - a.points;
+      });
+
       state.users.forEach(function(el, i){
 
         // Set rank column value
@@ -258,6 +268,11 @@ export default new Vuex.Store({
       return state.users
     },
     loggedInUser: state => {
+
+      // Get rank of logged in user
+      if(state.users && state.status.user) {
+        state.status.user.rank = state.users.map(function(e) { return e.user_id; }).indexOf(state.status.user.user_id) + 1;
+      }
       return state.status.user
     },
     ownBets: state => {

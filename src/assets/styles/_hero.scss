@@ -1,0 +1,63 @@
+$gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5));
+
+.hero {
+  margin-bottom: $space-75;
+  padding: $space-100 * 2 0;
+  background-image: $gradient-overlay, url('assets/img/hero-7.jpg');
+  background-size: cover;
+  border-bottom: $space-10 solid $blue-100;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  color: $white;
+
+  @media (min-width: 1024px) {
+    padding: $space-100 * 2 $space-100;
+    text-align: left;
+  }
+}
+
+.hero__heading {
+  font-size: 4.7rem;
+  font-weight: $bold-font-weight;
+}
+
+.hero__info {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.hero--1 {
+  background-image: $gradient-overlay, url('assets/img/hero-1.jpg');
+}
+
+.hero--2 {
+  background-image: $gradient-overlay, url('assets/img/hero-2.jpg');
+}
+
+.hero--3 {
+  background-image: $gradient-overlay, url('assets/img/hero-3.jpg');
+}
+
+.hero--4 {
+  background-image: $gradient-overlay, url('assets/img/hero-4.jpg');
+}
+
+.hero--5 {
+  background-image: $gradient-overlay, url('assets/img/hero-5.jpg');
+}
+
+.hero--6 {
+  background-image: $gradient-overlay, url('assets/img/hero-6.jpg');
+}
+
+.hero--7 {
+  background-image: $gradient-overlay, url('assets/img/hero-7.jpg');
+}
+
+.hero--8 {
+  background-image: $gradient-overlay, url('assets/img/hero-8.jpg');
+}
+
+.hero--9 {
+  background-image: $gradient-overlay, url('assets/img/hero-9.jpg');
+}

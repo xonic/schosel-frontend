@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: match_id } }" class="list__link">
+  <li>
+    <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: match_id, ownBet: ownBet, odds: odds } }" class="list__link">
       <div class="match-item match-item--played" v-if="status === 'over'">
         <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
         <div class="match-item__goals">{{ team1_goals }}&nbsp;:&nbsp;{{ team2_goals }}</div>
@@ -31,18 +31,29 @@
           </div>
         </div>
       </div>
-      <!-- <div class="match-item match-item--live" v-if="status === 'live'">
+      <div class="match-item match-item--live" v-if="status === 'live'">
+        <div class="match-item__time">{{ matchDate }} h</div>
+        <div class="match-item__time-played">{{ minutesPlayed }} minutes played</div>
         <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
         <div class="match-item__goals">{{ team1_goals }}&nbsp;:&nbsp;{{ team2_goals }}</div>
-        <div class="match-item__time">{{ matchTime }} h</div>
-        <div class="match-item__odds">Home&nbsp;{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;Draw&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;Away&nbsp;{{ odds["2"].toFixed(2) }}</div>
-        <span v-if="ownBet" class="match-item__bet">
-          {{ (ownBet.points * (ownBet.supertip + 1)).toFixed(2) }}
-          <span v-if="ownBet.supertip">
-            <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+        <span v-if="ownBet" v-bind:class="[ownBet.outcome === ownBet.match.outcome ? 'has-scored' : '']" class="match-item__bet">
+          {{ (ownBet.points * (ownBet.supertip + 1)).toFixed(2) }} pts
+          <span class="match-item__supertip" v-if="ownBet.supertip">
+            <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
           </span>
         </span>
-      </div> -->
+        <div class="match-item__odds" v-if="odds && ownBet">
+          <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
+            Home&nbsp;{{ odds["1"].toFixed(2) }}
+          </div>
+          <div v-bind:class="[ownBet.outcome == 'X' ? 'has-bet' : '']" class="match-item__odds__draw">
+            Draw&nbsp;{{ odds["X"].toFixed(2) }}
+          </div>
+          <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
+            Away&nbsp;{{ odds["2"].toFixed(2) }}
+          </div>
+        </div>
+      </div>
     </router-link>
     <div class="match-item match-item--upcoming" v-if="status === 'scheduled'">
       <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
@@ -70,7 +81,7 @@
         <label class="match__label" :for="match_id + '-supertip'">Supertip</label>
       </div>
     </div>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -102,6 +113,9 @@ export default {
     },
     matchTime: function() {
       return new Date(this.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+    },
+    minutesPlayed: function() {
+      return Math.round((((new Date() - new Date(this.date)) % 86400000) % 3600000) / 60000)
     }
   },
   methods: {

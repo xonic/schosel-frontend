@@ -110,3 +110,102 @@
   color: $blue-100;
   text-transform: uppercase;
 }
+
+$gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.7));
+
+.match-item--live {
+  padding: $space-100 0;
+  background-image: $gradient-overlay, url('assets/img/hero-8.jpg');
+  background-size: cover;
+  border-bottom: $space-10 solid $blue-100;
+  text-align: center;
+  color: $white;
+  text-shadow: 0 2px 10px rgba(0,0,0,.5);
+
+  li:nth-child(even) & {
+    background-image: $gradient-overlay, url('assets/img/hero-5.jpg');
+  }
+
+  .match-item__time,
+  .match-item__teams,
+  .match-item__goals,
+  .match-item__odds {
+    float: none;
+  }
+
+  .match-item__time,
+  .match-item__time-played,
+  .match-item__odds {
+    font-size: 1.6rem;
+    color: $white;
+  }
+
+  .match-item__teams {
+    font-size: 2.6rem;
+    font-weight: $bold-font-weight;
+  }
+
+  .match-item__goals {
+    font-size: 4.7rem;
+  }
+
+  .match-item__bet {
+    position: relative;
+    padding: $space-25 $space-75;
+    background: $red-150;
+    border-radius: 999em;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    font-size: 2.4rem;
+    font-weight: $base-font-weight;
+    color: $red-50;
+    text-shadow: none;
+
+    &.has-scored {
+      background-color: $green-150;
+      color: $green-50;
+    }
+  }
+
+  .match-item__supertip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -$space-25;
+    right: -$space-25;
+    width: $space-75;
+    height: $space-75;
+    border-radius: 50%;
+    background: $white;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+
+    svg {
+      margin-top: -1px;
+    }
+  }
+
+  .match-item__odds {
+    justify-content: center;
+    margin-top: $space-100;
+    color: $gray-25;
+
+    > div + div {
+      margin-left: $space-25;
+    }
+
+    .has-bet {
+      color: $white;
+    }
+  }
+
+  .match-item__time-played,
+  .match-item__goals {
+    margin-bottom: $space-50;
+  }
+}
+
+.live {
+  .list__items {
+    padding: 0;
+  }
+}

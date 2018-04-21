@@ -3,7 +3,9 @@
     <div class="wrapper">
       <tabs>
         <tab name="Players" :selected="true">
-          <h1>Gamblers</h1>
+          <div class="hero hero--6">
+            <h1 class="hero__heading">Players</h1>
+          </div>
           <h2>Most bets on highest odds</h2>
           <grid
             :data="gridData"
@@ -12,11 +14,15 @@
         </tab>
 
         <tab name="Teams">
-          <h1>Teams</h1>
+          <div class="hero hero--3">
+            <h1 class="hero__heading">Teams</h1>
+          </div>
         </tab>
 
         <tab name="Matches">
-          <h1>Matches</h1>
+          <div class="hero hero--1">
+            <h1 class="hero__heading">Matches</h1>
+          </div>
         </tab>
       </tabs>
     </div>

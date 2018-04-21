@@ -1,10 +1,12 @@
 <template>
   <div class="score">
     <div class="wrapper">
-      <h1>Score</h1>
+      <div class="hero hero--9">
+        <h1 class="hero__heading">Score</h1>
+        <div class="hero__info" v-if='loggedInUser'>{{ loggedInUser.points.toFixed(2) }} pts</div>
+      </div>
       <clip-loader :loading="loading.users" :color="loading.color" :size="loading.size"></clip-loader>
       <div v-if="!loading.users">
-        <div v-if='loggedInUser'>{{ loggedInUser.points.toFixed(2) }} pts</div>
         <div class="">
           <h2>Achievements</h2>
           <ul>

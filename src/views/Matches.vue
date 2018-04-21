@@ -3,9 +3,12 @@
     <clip-loader :loading="loading.matches" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
     <div v-if='!loading.status' class='wrapper'>
       <tabs v-if='upcomingMatchDays.length ? (playedMatchDays.length || liveMatches.length) : (playedMatchDays.length && liveMatches.length)'>
-        <tab name='Played' v-if='playedMatchDays.length' :selected='true'>
+        <tab name='Played' v-if='playedMatchDays.length' :selected='true' class="played">
           <div class="wrapper">
-            <h1>Played</h1>
+            <div class="hero hero--7">
+              <h1 class="hero__heading">Played</h1>
+              <div class="hero__info">{{ playedMatches.length }} Matches</div>
+            </div>
             <div v-for="matchDay in playedMatchDays" class="list">
               <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
               <ul class="list__items">
@@ -20,9 +23,8 @@
         </div>
       </tab>
 
-      <tab name='Now Playing' v-if='liveMatches.length'>
+      <tab name='Now Playing' v-if='liveMatches.length' class="live">
         <div class="wrapper">
-          <h1>Now Playing</h1>
           <ul class="list__items">
             <li
             is="match-item"
@@ -33,9 +35,12 @@
           </div>
         </tab>
 
-        <tab name='Upcoming' v-if='upcomingMatchDays.length'>
+        <tab name='Upcoming' v-if='upcomingMatchDays.length' class="upcoming">
           <div class="wrapper">
-            <h1>Upcoming</h1>
+            <div class="hero hero--9">
+              <h1 class="hero__heading">Upcoming</h1>
+              <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
+            </div>
             <div v-if="loggedInUser">
               <select v-model="loggedInUser.champion_id">
                 <option disabled value="">Please select one</option>
@@ -70,7 +75,10 @@
       <div v-else>
         <tab name='Played' v-if='playedMatchDays.length' :selected='true'>
           <div class="wrapper">
-            <h1>Played</h1>
+            <div class="hero hero--7">
+              <h1 class="hero__heading">Played</h1>
+              <div class="hero__info">{{ playedMatches.length }} Matches</div>
+            </div>
             <div v-for="matchDay in playedMatchDays" class="list">
               <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
               <ul class="list__items">

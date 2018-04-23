@@ -1,0 +1,18 @@
+.dataGrid {
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid $gray-25;
+  }
+
+  th {
+    font-size: 1.5rem;
+    font-weight: $bold-font-weight;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  td {
+    line-height: $space-75 * 2;
+  }
+}

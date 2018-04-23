@@ -1,7 +1,7 @@
 .tab-grid {
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: 2.5fr 7fr 2.5fr;
+    grid-template-columns: 2.5fr 9.5fr;
     padding-top: $space-100;
   }
 }

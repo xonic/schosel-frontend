@@ -9,31 +9,33 @@
               <h1 class="hero__heading">Played</h1>
               <div class="hero__info">{{ playedMatches.length }} Matches</div>
             </div>
-            <div v-for="matchDay in playedMatchDays" class="list">
-              <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
-              <ul class="list__items">
-                <li
-                is="match-item"
-                v-for="playedMatch in matchDay.matches"
-                v-bind="playedMatch"
-                class="list__item">
-              </li>
-            </ul>
+            <div class="grid-matches">
+              <div v-for="matchDay in playedMatchDays" class="list">
+                <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+                <ul class="list__items">
+                  <li
+                  is="match-item"
+                  v-for="playedMatch in matchDay.matches"
+                  v-bind="playedMatch"
+                  class="list__item">
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </tab>
 
       <tab name='Now Playing' v-if='liveMatches.length' class="live">
         <div class="wrapper">
-          <ul class="list__items">
+          <ul class="list__items flex-matches">
             <li
             is="match-item"
             v-for="liveMatch in liveMatches"
             v-bind="liveMatch">
               </li>
             </ul>
-          </div>
-        </tab>
+        </div>
+      </tab>
 
         <tab name='Upcoming' v-if='upcomingMatchDays.length' class="upcoming">
           <div class="wrapper">
@@ -58,16 +60,18 @@
                 Explain how odds work
               </div>
             </div>
-            <div v-for="matchDay in upcomingMatchDays" class="list">
-              <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
-              <ul class="list__items">
-                <li
-                  is="match-item"
-                  v-for="upcomingMatch in matchDay.matches"
-                  v-bind="upcomingMatch"
-                  class="list__item">
-                </li>
-              </ul>
+            <div class="grid-matches">
+              <div v-for="matchDay in upcomingMatchDays" class="list">
+                <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+                <ul class="list__items">
+                  <li
+                    is="match-item"
+                    v-for="upcomingMatch in matchDay.matches"
+                    v-bind="upcomingMatch"
+                    class="list__item">
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </tab>

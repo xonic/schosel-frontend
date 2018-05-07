@@ -68,7 +68,7 @@ export default {
   },
   props: ['id', 'ownBet', 'odds'],
   mounted () {
-    axios.get('http://localhost:5000/api/v1/matches/' + this.id, {withCredentials: true}).then((response) => {
+    axios.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
       this.match = response.data
       this.setGrid(response.data.bets)
       this.loading = false

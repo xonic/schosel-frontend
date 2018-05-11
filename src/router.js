@@ -9,7 +9,7 @@ import Help from './views/Help.vue'
 Vue.use(Router)
 
 export default new Router({
-  base: "/wm2018/static/",
+  base: "/worlds2018/static/",
   mode: 'history',
   routes: [
     {

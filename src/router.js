@@ -15,7 +15,7 @@ import Help from './views/Help.vue'
 Vue.use(Router)
 
 export default new Router({
-  base: "/",
+  base: "/worlds2018/static/",
   mode: 'history',
   routes: [
     {

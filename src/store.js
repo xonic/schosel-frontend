@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import { HTTP } from './http-constants'
 
 Vue.use(Vuex)
 
@@ -19,35 +19,35 @@ export default new Vuex.Store({
   },
   actions: {
     LOAD_STATUS: function ({ commit }) {
-      axios.get('/status', {withCredentials: true}).then((response) => {
+      HTTP.get('/status').then((response) => {
         commit('SET_STATUS', { status: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_MATCHES: function ({ commit }) {
-      axios.get('/matches', {withCredentials: true}).then((response) => {
+      HTTP.get('/matches').then((response) => {
         commit('SET_MATCHES', { matches: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_USERS: function ({ commit }) {
-      axios.get('/users', {withCredentials: true}).then((response) => {
+      HTTP.get('/users').then((response) => {
         commit('SET_USERS', { users: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_USER: function ({ commit }) {
-      axios.get('/user', {withCredentials: true}).then((response) => {
+      HTTP.get('/user').then((response) => {
         commit('SET_USER', { user: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_OWN_BETS: function ({ commit }) {
-      axios.get('/bets', {withCredentials: true}).then((response) => {
+      HTTP.get('/bets').then((response) => {
         commit('SET_OWN_BETS', { ownBets: response.data })
       }, (err) => {
         console.log(err)
@@ -62,20 +62,20 @@ export default new Vuex.Store({
     SET_MATCHES: (state, { matches }) => {
 
       // TODO: remove this (manipulates some matches to be live & scheduled)
-      for(var i=matches.length-1; i>=20; i--) {
-        matches[i].status = "scheduled"
-        matches[i].odds["1"] = "medium"
-        matches[i].odds["X"] = "low"
-        matches[i].odds["2"] = "high"
-      }
-      for(var i=matches.length-21; i>=matches.length-22; i--) {
-        matches[i].status = "live"
-        matches[i].odds["1"] = 1.53403
-        matches[i].odds["X"] = 4.28292
-        matches[i].odds["2"] = 9.10101
-        var d = new Date();
-        matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
-      }
+      // for(var i=matches.length-1; i>=20; i--) {
+      //   matches[i].status = "scheduled"
+      //   matches[i].odds["1"] = "medium"
+      //   matches[i].odds["X"] = "low"
+      //   matches[i].odds["2"] = "high"
+      // }
+      // for(var i=matches.length-21; i>=matches.length-22; i--) {
+      //   matches[i].status = "live"
+      //   matches[i].odds["1"] = 1.53403
+      //   matches[i].odds["X"] = 4.28292
+      //   matches[i].odds["2"] = 9.10101
+      //   var d = new Date();
+      //   matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
+      // }
       state.loadInfo.matches = false
       state.matches = matches
     },

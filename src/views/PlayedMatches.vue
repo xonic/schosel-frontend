@@ -5,7 +5,7 @@
           <h1 class="hero__heading">Played</h1>
           <div class="hero__info">{{ playedMatches.length }} Matches</div>
         </div>
-        <div class="grid-matches">
+        <div class="grid-matches" v-if="playedMatches.length">
           <div v-for="matchDay in playedMatchDays" class="list">
             <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
             <ul class="list__items">
@@ -18,6 +18,7 @@
           </ul>
         </div>
       </div>
+      <h1 v-else>No matches played yet</h1>
     </div>
   </div>
 </template>
@@ -35,9 +36,6 @@ export default {
     ...mapGetters([
       'playedMatches',
       'playedMatchDays',
-      'liveMatches',
-      'upcomingMatches',
-      'upcomingMatchDays',
       'loggedInUser',
       'loading'
     ])

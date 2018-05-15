@@ -112,10 +112,12 @@ export default {
   },
   computed: {
     matchDate: function() {
-      return new Date(this.date).toLocaleString()
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' }
+      return new Date(this.date).toLocaleString('de-DE', options)
     },
     matchTime: function() {
-      return new Date(this.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+      var options = { hour: '2-digit', minute:'2-digit'}
+      return new Date(this.date).toLocaleTimeString('de-DE', options)
     },
     minutesPlayed: function() {
       return Math.round((((new Date() - new Date(this.date)) % 86400000) % 3600000) / 60000)

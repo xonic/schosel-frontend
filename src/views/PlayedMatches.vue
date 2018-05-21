@@ -49,6 +49,12 @@ export default {
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(date).toLocaleString('de-DE', options)
     }
+  },
+  mounted () {
+    // Navigate to upcoming matches if no matches played
+    if(!this.playedMatches.length) {
+      this.$router.push("upcoming")
+    }
   }
 }
 </script>

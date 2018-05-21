@@ -5,7 +5,7 @@
         <h1 class="hero__heading">Upcoming</h1>
         <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
       </div>
-      <div v-if="loggedInUser">
+      <div class="champion-bet" v-if="loggedInUser">
         <select v-model="loggedInUser.champion_id">
           <option disabled value="">Please select one</option>
           <option>A</option>

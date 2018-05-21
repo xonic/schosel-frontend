@@ -19,35 +19,35 @@ export default new Vuex.Store({
   },
   actions: {
     LOAD_STATUS: function ({ commit }) {
-      HTTP.get('/status').then((response) => {
+      HTTP.get('/status', { withCredentials: true }).then((response) => {
         commit('SET_STATUS', { status: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_MATCHES: function ({ commit }) {
-      HTTP.get('/matches').then((response) => {
+      HTTP.get('/matches', { withCredentials: true }).then((response) => {
         commit('SET_MATCHES', { matches: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_USERS: function ({ commit }) {
-      HTTP.get('/users').then((response) => {
+      HTTP.get('/users', { withCredentials: true }).then((response) => {
         commit('SET_USERS', { users: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_USER: function ({ commit }) {
-      HTTP.get('/user').then((response) => {
+      HTTP.get('/user', { withCredentials: true }).then((response) => {
         commit('SET_USER', { user: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_OWN_BETS: function ({ commit }) {
-      HTTP.get('/bets').then((response) => {
+      HTTP.get('/bets', { withCredentials: true }).then((response) => {
         commit('SET_OWN_BETS', { ownBets: response.data })
       }, (err) => {
         console.log(err)
@@ -62,13 +62,13 @@ export default new Vuex.Store({
     SET_MATCHES: (state, { matches }) => {
 
       // TODO: remove this (manipulates some matches to be live & scheduled)
-      // for(var i=matches.length-1; i>=20; i--) {
-      //   matches[i].status = "scheduled"
-      //   matches[i].odds["1"] = "medium"
-      //   matches[i].odds["X"] = "low"
-      //   matches[i].odds["2"] = "high"
+      // for(var i=0; i<=3; i++) {
+      //   matches[i].status = "over"
+      //   matches[i].odds["1"] = 1.53403
+      //   matches[i].odds["X"] = 4.28292
+      //   matches[i].odds["2"] = 9.10101
       // }
-      // for(var i=matches.length-21; i>=matches.length-22; i--) {
+      // for(var i=4; i<= 5; i++) {
       //   matches[i].status = "live"
       //   matches[i].odds["1"] = 1.53403
       //   matches[i].odds["X"] = 4.28292

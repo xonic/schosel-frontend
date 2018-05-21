@@ -46,7 +46,7 @@
 <script>
 // @ is an alias to /src
 import Grid from '@/components/Grid.vue'
-import axios from 'axios'
+import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
@@ -68,7 +68,7 @@ export default {
   },
   props: ['id', 'ownBet', 'odds'],
   mounted () {
-    axios.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
+    HTTP.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
       this.match = response.data
       this.setGrid(response.data.bets)
       this.loading = false

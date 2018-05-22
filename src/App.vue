@@ -35,6 +35,9 @@
                 </div> More
               </router-link>
             </li>
+            <li class="nav__item">
+              <a href="../../about" @click="goToAbout()">Rules</a>
+            </li>
           </ul>
         </nav>
         <div class="player-info">
@@ -67,6 +70,11 @@
       ...mapGetters([
         'loggedInUser'
       ])
+    },
+    methods: {
+      goToAbout() {
+        window.location.href = '../about'
+      }
     }
   }
 </script>

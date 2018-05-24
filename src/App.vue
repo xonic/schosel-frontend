@@ -45,8 +45,8 @@
             <span v-if="loggedInUser && loggedInUser.points">{{ loggedInUser.points.toFixed(2) }}</span>
             <span class="player-info__label"> pts</span>
           </div>
-          <div class="player-info__rank">
-            <span class="player-info__label">Rank</span> <span v-if="loggedInUser && loggedInUser.rank">{{ loggedInUser.rank }}</span>.
+          <div v-if="loggedInUser && loggedInUser.rank" class="player-info__rank">
+            <span class="player-info__label">Rank</span> <span>{{ loggedInUser.rank }}</span>.
           </div>
         </div>
       </div>

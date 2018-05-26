@@ -69,7 +69,7 @@
         <label class="match__label match__label--radio" :for="match_id + '-draw'">Draw</label>
         <input class="match__input" type="radio" :id="match_id + '-away'" value="2" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
         <label class="match__label match__label--radio" :for="match_id + '-away'">Away</label>
-        <input class="match__input" type="checkbox" :id="match_id + '-supertip'" v-model="ownBet.supertip" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)" :disabled="(maxSuperbets - loggedInUser.visible_supertips) <= 0">
+        <input class="match__input" type="checkbox" :id="match_id + '-supertip'" v-model="ownBet.supertip" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
         <label class="match__label" :for="match_id + '-supertip'">
           <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
         </label>
@@ -122,6 +122,10 @@ export default {
   },
   methods: {
     postBet(match_id, outcome, supertip) {
+      if(!match_id || !outcome) {
+        console.log("Missing match_id or outcome")
+        return
+      }
       console.log(match_id)
       console.log(outcome)
       console.log(supertip)

@@ -65,6 +65,10 @@
       this.$store.dispatch('LOAD_STATUS')
       this.$store.dispatch('LOAD_OWN_BETS')
       this.$store.dispatch('LOAD_USERS')
+
+      setInterval( () => {
+        this.$store.dispatch('LOAD_MATCHES')
+      }, 10000);
     },
     computed: {
       ...mapGetters([

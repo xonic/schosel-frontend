@@ -14,7 +14,7 @@
             {{ match.team1_name }} &mdash; {{ match.team2_name }}
           </div>
           <div class="match-item__goals">
-            {{ match.team1_goals }} : {{ match.team2_goals }}
+            <span v-if="match.team1_goals">{{ match.team1_goals }}</span><span v-else>0</span> : <span v-if="match.team2_goals">{{ match.team2_goals }}</span><span v-else>0</span>
           </div>
           <span v-if="ownBet" v-bind:class="[ownBet.outcome === ownBet.match.outcome ? 'has-scored' : '']" class="match-item__bet">
             {{ (ownBet.points * (ownBet.supertip + 1)).toFixed(2) }} pts
@@ -59,6 +59,7 @@ export default {
   data () {
     return {
       match: {},
+      interval: null,
       gridColumns: ['player', 'bet', 'score'],
       gridData: [],
       loading: true,
@@ -68,13 +69,7 @@ export default {
   },
   props: ['id', 'ownBet', 'odds'],
   mounted () {
-    HTTP.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
-      this.match = response.data
-      this.setGrid(response.data.bets)
-      this.loading = false
-    }, (err) => {
-      console.log(err)
-    })
+    this.loadMatchData()
   },
   computed: {
     matchDate: function() {
@@ -82,6 +77,27 @@ export default {
     }
   },
   methods: {
+    loadMatchData: function() {
+      HTTP.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
+        this.match = response.data
+        this.setGrid(response.data.bets)
+        this.loading = false
+        // TODO: check how to properly poll data without polluting global space with intervals
+        // if(this.match.status === 'live') {
+          // this.setLoadingInterval()
+        // }
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    setLoadingInterval: function() {
+      if(!this.interval)
+      {
+        this.interval = setInterval( () => {
+          this.loadMatchData()
+        }, 5000);
+      }
+    },
     setGrid: function(rawGridData) {
       rawGridData.forEach(function(el, i){
 

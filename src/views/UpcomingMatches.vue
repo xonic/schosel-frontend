@@ -6,17 +6,16 @@
         <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
       </div>
       <div class="champion-bet" v-if="loggedInUser">
-        <select v-model="loggedInUser.champion_id">
+        <select v-model="loggedInUser.champion_id" @change="postChampion()">
           <option disabled value="">Please select one</option>
-          <option>A</option>
-          <option>B</option>
-          <option>C</option>
+          <option v-for="team in status.teams"
+                  v-bind:value="team.team_id">{{ team.name }}</option>
         </select>
         <span>Selected: {{ loggedInUser.champion_id }}</span>
       </div>
       <div class="legend">
         <div v-if="loggedInUser">
-          Remaining super bets: {{ 4 - loggedInUser.visible_supertips }}
+          Remaining super bets: {{ maxSuperbets - loggedInUser.visible_supertips }}
         </div>
         <div class="">
           Explain how odds work
@@ -43,18 +42,24 @@
 <script>
 // @ is an alias to /src
 import MatchItem from '@/components/MatchItem.vue'
-import axios from 'axios'
+import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
 export default {
   name: 'matches',
+  data () {
+    return {
+      maxSuperbets: 8
+    }
+  },
   computed: {
     ...mapGetters([
       'upcomingMatches',
       'upcomingMatchDays',
       'loggedInUser',
-      'loading'
+      'loading',
+      'status'
     ])
   },
   components: {
@@ -65,6 +70,22 @@ export default {
     matchDate: function(date) {
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(date).toLocaleString('de-DE', options)
+    },
+    postChampion () {
+      HTTP('/champion', {
+        method: "post",
+        withCredentials: true,
+        data: {
+          champion_id: this.loggedInUser.champion_id
+        }
+      })
+      .then(response => {
+        console.log("saved")
+      })
+      .catch(e => {
+        console.log(this.loggedInUser.champion_id)
+        console.log(e)
+      })
     }
   }
 }

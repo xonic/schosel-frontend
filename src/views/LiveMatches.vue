@@ -36,7 +36,7 @@ export default {
   methods: {
     matchDate: function(date) {
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(date).toLocaleString('de-DE', options)
+      return new Date(date).toLocaleString('en-GB', options)
     }
   },
   mounted () {

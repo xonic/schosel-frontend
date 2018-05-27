@@ -59,16 +59,21 @@
         </div>
       </div>
     </router-link>
-    <div class="match-item match-item--upcoming" v-if="status === 'scheduled'">
-      <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
-      <div class="match-item__time">{{ matchTime }} h</div>
-      <div v-if="odds && ownBet" class="match-item__bet">
-        <input class="match__input" type="radio" :id="match_id + '-home'" value="1" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label match__label--radio" :for="match_id + '-home'">Home</label>
+    <div class="match-item" v-if="status === 'scheduled' && ownBet">
+      <div class="match__group-time"><!-- TODO: Group A - -->{{ matchTime }}</div>
+      <div class="match-item--upcoming">
+        <input :id="match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
+        <label class="match__label match__label--radio" :for="match_id + '-home'">{{ team1_name }}</label>
+
+
         <input class="match__input" type="radio" :id="match_id + '-draw'" value="X" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
         <label class="match__label match__label--radio" :for="match_id + '-draw'">Draw</label>
+
+
         <input class="match__input" type="radio" :id="match_id + '-away'" value="2" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label match__label--radio" :for="match_id + '-away'">Away</label>
+        <label class="match__label match__label--radio" :for="match_id + '-away'">{{ team2_name }}</label>
+
+
         <input class="match__input" type="checkbox" :id="match_id + '-supertip'" v-model="ownBet.supertip" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
         <label class="match__label" :for="match_id + '-supertip'">
           <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
@@ -110,11 +115,11 @@ export default {
     ]),
     matchDate: function() {
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit', timezone: 'GMT' }
-      return new Date(this.date).toLocaleString('de-DE', options)
+      return new Date(this.date).toLocaleString('en-GB', options)
     },
     matchTime: function() {
       var options = { hour: '2-digit', minute:'2-digit', timezone: 'UTC+02:00'}
-      return new Date(this.date).toLocaleTimeString('de-DE', options)
+      return new Date(this.date).toLocaleTimeString('en-GB', options)
     },
     minutesPlayed: function() {
       return Math.round((((new Date() - new Date(this.date)) % 86400000) % 3600000) / 60000)
@@ -126,10 +131,11 @@ export default {
         console.log("Missing match_id or outcome")
         return
       }
-      console.log(match_id)
-      console.log(outcome)
-      console.log(supertip)
-      console.log("----------")
+      console.log({
+        match_id: match_id,
+        outcome: outcome,
+        supertip: supertip
+      })
 
       HTTP('/bets/' + match_id, {
         method: "post",
@@ -140,7 +146,7 @@ export default {
         }
       })
       .then(response => {
-        console.log("saved")
+        console.log("match bet saved")
         this.$store.dispatch('LOAD_STATUS')
       })
       .catch(e => {

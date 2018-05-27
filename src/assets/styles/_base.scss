@@ -64,3 +64,20 @@ a {
   line-height: 1;
   -webkit-appearance: none;
 }
+
+.not-paid {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: $space-50 $space-75;
+  background: #F8E71C;
+  font-size: 1.5rem;
+  font-weight: $bold-font-weight;
+  text-align: center;
+  text-transform: uppercase;
+
+  & + .header {
+    margin-top: 5.6rem;
+  }
+}

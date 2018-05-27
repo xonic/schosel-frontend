@@ -35,8 +35,19 @@
         </div>
       </div>
       <h1 v-else>No more upcoming matches</h1>
-      <div class="saving">
-        Saving <span class="ellipsis ellipsis-1">.</span> <span class="ellipsis ellipsis-2">.</span> <span class="ellipsis ellipsis-3">.</span>
+      <div class="msg--save" v-bind:class="{ saveSuccess: saveSuccess }">
+        <div class="saving">
+          Saving <span class="ellipsis ellipsis-1">.</span> <span class="ellipsis ellipsis-2">.</span> <span class="ellipsis ellipsis-3">.</span>
+        </div>
+        <div class="saved">
+          Saved&nbsp;&nbsp;<svg width="13px" height="14px" viewBox="0 0 13 14">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g transform="translate(-39.000000, -982.000000)" stroke="#7ED321" stroke-width="3">
+                      <polyline points="40.6875603 990.432675 43.9671236 993.637648 50.6875603 983.634009"></polyline>
+                  </g>
+              </g>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -54,7 +65,8 @@ export default {
   data () {
     return {
       maxSuperbets: 8,
-      isSaving: false
+      isSaving: false,
+      saveSuccess: false
     }
   },
   computed: {
@@ -104,12 +116,19 @@ export default {
     setSaving() {
       // console.log('isSaving')
       this.isSaving += 1
+      this.saveSuccess = false
     },
     stopSaving() {
       // console.log('stoppedSaving')
+
       setTimeout(() => {
-        this.isSaving -= 1
-      }, 3000)
+        this.saveSuccess = true
+
+        setTimeout(() => {
+          this.isSaving -= 1
+        }, 1000)
+      }, 2000)
+
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="matches"  v-bind:class="[maxSuperbets - loggedInUser.visible_supertips <= 0 ? 'no-superbets-left' : '']">
-    <div class="wrapper">
+  <div class="matches" v-bind:class="[maxSuperbets - loggedInUser.visible_supertips <= 0 ? 'no-superbets-left' : '']">
+    <div class="wrapper" v-bind:class="{ isSaving: isSaving }">
       <div class="hero hero--9">
         <h1 class="hero__heading">Upcoming</h1>
         <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
@@ -27,12 +27,17 @@
               is="match-item"
               v-for="upcomingMatch in matchDay.matches"
               v-bind="upcomingMatch"
+              v-on:is-saving="setSaving()"
+              v-on:stopped-saving="stopSaving()"
               class="list__item">
             </li>
           </ul>
         </div>
       </div>
       <h1 v-else>No more upcoming matches</h1>
+      <div class="saving">
+        Saving <span class="ellipsis ellipsis-1">.</span> <span class="ellipsis ellipsis-2">.</span> <span class="ellipsis ellipsis-3">.</span>
+      </div>
     </div>
   </div>
 </template>
@@ -48,7 +53,8 @@ export default {
   name: 'matches',
   data () {
     return {
-      maxSuperbets: 8
+      maxSuperbets: 8,
+      isSaving: false
     }
   },
   computed: {
@@ -70,6 +76,8 @@ export default {
       return new Date(date).toLocaleString('en-GB', options)
     },
     postChampion () {
+      this.isSaving = true
+
       HTTP('/champion', {
         method: "post",
         withCredentials: true,
@@ -78,12 +86,30 @@ export default {
         }
       })
       .then(response => {
-        console.log("champion bet saved")
+        // console.log("champion bet saved")
+
+        setTimeout(() => {
+          this.isSaving = false
+        }, 3000)
       })
       .catch(e => {
         console.log(this.loggedInUser.champion_id)
         console.log(e)
+
+        setTimeout(() => {
+          this.isSaving = false
+        }, 3000)
       })
+    },
+    setSaving() {
+      // console.log('isSaving')
+      this.isSaving += 1
+    },
+    stopSaving() {
+      // console.log('stoppedSaving')
+      setTimeout(() => {
+        this.isSaving -= 1
+      }, 3000)
     }
   }
 }

@@ -43,3 +43,24 @@ a {
   margin-bottom: $space-100;
   padding: 0 $space-25;
 }
+
+.label {
+  font-size: 1.5rem;
+  font-weight: $bold-font-weight;
+  text-transform: uppercase;
+}
+
+.select {
+  display: block;
+  position: relative;
+  margin: 0 0 $space-75;
+  padding: $space-25 $space-35;
+  background: url(assets/img/icons/i--triangle-down.png) no-repeat $white;
+  background-position: calc(100% - 12px) center;
+  border: 1px solid $gray-25;
+  border-radius: 4px;
+  font-family: $base-font;
+  font-size: $base-font-size;
+  line-height: 1;
+  -webkit-appearance: none;
+}

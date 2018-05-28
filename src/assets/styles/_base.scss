@@ -88,3 +88,27 @@ a {
   color: $gray-25;
   text-align: center;
 }
+
+.popover-container {
+  position: relative;
+}
+
+.popover {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 800;
+  background: $white;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08),
+              0 4px 8px rgba(0,0,0,.1),
+              0 2px 4px rgba(0,0,0,.1);
+
+  a {
+    display: block;
+    padding: 0 $space-50 $space-35;
+  }
+
+  li:first-child a {
+    padding-top: $space-35;
+  }
+}

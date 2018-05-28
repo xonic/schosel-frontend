@@ -43,7 +43,7 @@
                     <a href="../about">Rules</a>
                   </li>
                   <li>
-                    <a href="../account">My&nbsp;Account</a>
+                    <a href="../profile">My&nbsp;Account</a>
                   </li>
                   <li>
                     <a href="../logout">Logout</a>

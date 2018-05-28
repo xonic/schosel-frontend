@@ -16,7 +16,7 @@ Vue.use(Router)
 
 export default new Router({
   base: "/worlds2018/static/",
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',

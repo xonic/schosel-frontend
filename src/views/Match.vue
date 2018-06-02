@@ -17,7 +17,7 @@
             <span v-if="match.team1_goals">{{ match.team1_goals }}</span><span v-else>0</span> : <span v-if="match.team2_goals">{{ match.team2_goals }}</span><span v-else>0</span>
           </div>
           <span v-if="ownBet" v-bind:class="[ownBet.outcome === ownBet.match.outcome ? 'has-scored' : '']" class="match-item__bet">
-            {{ (ownBet.points * (ownBet.supertip + 1)).toFixed(2) }} pts
+            {{ (ownBet.points).toFixed(2) }} pts
             <span class="match-item__supertip" v-if="ownBet.supertip">
               <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
             </span>
@@ -103,10 +103,6 @@ export default {
 
         // Calculate score for each player
         var currentScore = this.match.outcome === el.outcome ? el.points : 0.00
-
-        if(el.supertip && currentScore) {
-          currentScore *= 2
-        }
 
         // Set grid data
         this.gridData.push({

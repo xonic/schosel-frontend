@@ -1,7 +1,7 @@
 <template>
   <div class="matches">
     <div class="wrapper">
-      <ul class="list__items flex-matches" v-if="liveMatches.length">
+      <ul class="flex-matches" v-if="liveMatches.length">
         <li
         is="match-item"
         v-for="liveMatch in liveMatches"

@@ -2,17 +2,19 @@
 .header {
   background: linear-gradient(to left, $blue-30, $blue-20);
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     background: $white;
     box-shadow: 0 0 500px rgba(0,0,0,.2);
   }
 }
 
 .header__grid {
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 2.5fr 7fr 2.5fr;
+  @media (min-width: 800px) {
+    display: flex;
     height: 6rem;
+    > * {
+      flex: 1 0 auto;
+    }
   }
 }
 
@@ -20,17 +22,24 @@
 .player-info {
   display: none;
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     display: flex;
   }
 }
 
 .logo {
+  flex: 0 0 auto;
+  margin-right: $space-75;
   align-items: center;
   font-size: 2rem;
   font-weight: $bold-font-weight;
   color: $yellow-80;
   text-transform: uppercase;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    margin-right: $space-75 * 2;
+  }
 }
 
 .logo__tournament {
@@ -39,9 +48,9 @@
 }
 
 .nav {
-  margin: 0 $space-100;
+  margin: 0 $space-50;
   padding: $space-25 0 0;
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     display: flex;
     align-items: center;
     margin: 0;
@@ -56,7 +65,7 @@
 
 .nav__item {
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     margin-right: $space-100;
   }
 }
@@ -71,17 +80,19 @@
   &.router-link-active {
     color: $blue-100;
 
-    svg g {
+    svg g,
+    svg path {
       fill: $blue-100;
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     font-size: 15px;
     line-height: $space-75;
     color: $black;
 
-    svg g {
+    svg g,
+    svg path {
       fill: $black;
 
       .router-link-active {
@@ -103,7 +114,7 @@
     height: $space-75;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     display: inline;
 
     svg {

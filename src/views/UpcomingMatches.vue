@@ -7,11 +7,15 @@
       </div>
       <div class="champion-bet" v-if="loggedInUser">
         <label for="champion-bet" class="label">Champion bet</label>
-        <select id="champion-bet" class="select" v-model="loggedInUser.champion_id" @change="postChampion()">
+        <select id="champion-bet" class="select"
+          v-model="loggedInUser.champion_id"
+          @change="postChampion()"
+          v-if="status.champion_editable">
           <option disabled value="">Please select one</option>
           <option v-for="team in status.teams"
                   v-bind:value="team.team_id">{{ team.name }}</option>
         </select>
+        <div v-else>{{ championBet() }}</div>
       </div>
       <div class="legend">
         <div v-if="loggedInUser">
@@ -129,6 +133,13 @@ export default {
         }, 1000)
       }, 2000)
 
+    },
+    championBet() {
+      var champion = this.status.teams.find((el) => {
+        return el.team_id === this.loggedInUser.champion_id
+      })
+
+      return champion.name
     }
   }
 }

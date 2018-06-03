@@ -13,6 +13,12 @@
   }
 }
 
+.legend .wrapper {
+  @media (min-width: 768px) {
+    padding: 0 $space-100;
+  }
+}
+
 .grid-matches {
   @media (min-width: 1024px) {
     display: grid;

@@ -32,6 +32,10 @@ a {
   text-decoration: none;
 }
 
+h2 {
+  margin-bottom: $space-100;
+}
+
 .cf:after {
   content: "";
   display: table;
@@ -122,4 +126,8 @@ a {
   li:first-child a {
     padding-top: $space-35;
   }
+}
+
+.island {
+  padding: 0 $space-25;
 }

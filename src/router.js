@@ -10,7 +10,12 @@ import Stats from './views/Stats.vue'
 import PlayerStats from './views/PlayerStats.vue'
 import TeamStats from './views/TeamStats.vue'
 import MatchStats from './views/MatchStats.vue'
-import Help from './views/Help.vue'
+import Goals from './views/Goals.vue'
+import GamblerGoal from './views/GamblerGoal.vue'
+import HustlerGoal from './views/HustlerGoal.vue'
+import ExpertGoal from './views/ExpertGoal.vue'
+import HattrickGoal from './views/HattrickGoal.vue'
+import SecretGoal from './views/SecretGoal.vue'
 
 Vue.use(Router)
 
@@ -52,6 +57,39 @@ export default new Router({
       component: Score
     },
     {
+      path: '/goals',
+      name: 'goals',
+      component: Goals,
+      redirect: '/goals/gambler',
+      children: [
+        {
+          name: 'gambler',
+          path: 'gambler',
+          component: GamblerGoal
+        },
+        {
+          name: 'hustler',
+          path: 'hustler',
+          component: HustlerGoal
+        },
+        {
+          name: 'hattrick',
+          path: 'hattrick',
+          component: HattrickGoal
+        },
+        {
+          name: 'secret',
+          path: 'secret',
+          component: SecretGoal
+        },
+        {
+          name: 'expert',
+          path: 'expert',
+          component: ExpertGoal
+        }
+      ]
+    },
+    {
       path: '/stats',
       name: 'stats',
       component: Stats,
@@ -73,11 +111,6 @@ export default new Router({
           component: MatchStats
         }
       ]
-    },
-    {
-      path: '/help',
-      name: 'help',
-      component: Help
     },
     {
       path: '/matches/:id',

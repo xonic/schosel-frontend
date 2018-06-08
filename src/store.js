@@ -59,29 +59,44 @@ export default new Vuex.Store({
       console.log(status)
 
       //TODO: remove this
-      // status.user.achievements = {}
-      //
-      // status.user.achievements.gambler = {}
-      // status.user.achievements.hustler = {}
-      // status.user.achievements.expert = {}
-      // status.user.achievements.hattrick = {}
-      // status.user.achievements.secret = {}
-      //
-      // status.user.achievements.gambler.rank = 1
-      // status.user.achievements.gambler.score = 1000
-      //
-      // status.user.achievements.hustler.rank = 1
-      // status.user.achievements.hustler.score = 1000
-      // status.user.achievements.hustler.times_correct = 2
-      //
-      // status.user.achievements.expert.rank = 1
-      // status.user.achievements.expert.score = 1000
-      // status.user.achievements.expert.team_name = 'Russia'
-      //
-      // status.user.achievements.hattrick.rank = 1
-      // status.user.achievements.hattrick.score = 1000
-      //
-      // status.user.achievements.secret.rank = 1
+      if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        status.user.achievements = {}
+
+        status.user.achievements.gambler = {}
+        status.user.achievements.hustler = {}
+        status.user.achievements.expert = {}
+        status.user.achievements.hattrick = {}
+        status.user.achievements.secret = {}
+
+        status.user.achievements.gambler.rank = 1
+        status.user.achievements.gambler.score = 1000
+
+        status.user.achievements.hustler.rank = 1
+        status.user.achievements.hustler.score = 1000
+        status.user.achievements.hustler.times_correct = 2
+
+        status.user.achievements.expert.rank = 1
+        status.user.achievements.expert.score = 1000
+        status.user.achievements.expert.team_name = 'Russia'
+
+        status.user.achievements.hattrick.rank = 1
+        status.user.achievements.hattrick.score = 1000
+
+        status.user.achievements.secret.rank = 1
+      }
+
+      // Check if logged in user is leading any goals
+      if(status.user && status.user.achievements) {
+        var goals = []
+
+        if(status.user.achievements.gambler.rank === 1) goals.push("Gambler")
+        if(status.user.achievements.hustler.rank === 1) goals.push("Hustler")
+        if(status.user.achievements.expert.rank === 1) goals.push("Expert")
+        if(status.user.achievements.hattrick.rank === 1) goals.push("Hattrick")
+        if(status.user.achievements.secret.rank === 1) goals.push("Secret")
+
+        status.user.goals = goals.join(", ")
+      }
 
       state.status = status
       state.loadInfo.status = false
@@ -105,33 +120,54 @@ export default new Vuex.Store({
     SET_USERS: (state, { users }) => {
 
       // TODO: Remove this
-      // users.forEach((user, i) => {
-      //   user.achievements = {}
-      //
-      //   user.achievements.gambler = {}
-      //   user.achievements.hustler = {}
-      //   user.achievements.expert = {}
-      //   user.achievements.hattrick = {}
-      //   user.achievements.secret = {}
-      //
-      //   user.achievements.gambler.rank = i + 1
-      //   user.achievements.gambler.score = (1000 - i) / (i + 1)
-      //
-      //   user.achievements.hustler.rank = i + 1
-      //   user.achievements.hustler.score = (1000 - i) / (i + 1)
-      //   user.achievements.hustler.times_correct = users.length - i
-      //
-      //   user.achievements.expert.rank = i + 1
-      //   user.achievements.expert.score = (1000 - i) / (i + 1)
-      //   user.achievements.expert.team_name = 'Russia'
-      //
-      //   user.achievements.hattrick.rank = i + 1
-      //   user.achievements.hattrick.score = (1000 - i) / (i + 1)
-      //
-      //   user.achievements.secret.rank = i + 1
-      //
-      //   console.log(user)
-      // })
+      if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        users.forEach((user, i) => {
+          user.achievements = {}
+
+          user.achievements.gambler = {}
+          user.achievements.hustler = {}
+          user.achievements.expert = {}
+          user.achievements.hattrick = {}
+          user.achievements.secret = {}
+
+          if(i === 0) {
+            user.goals = "Gambler, Hustler, Expert, Hattrick, Secret"
+          }
+
+          user.achievements.gambler.rank = i + 1
+          user.achievements.gambler.score = (1000 - i) / (i + 1)
+
+          user.achievements.hustler.rank = i + 1
+          user.achievements.hustler.score = (1000 - i) / (i + 1)
+          user.achievements.hustler.times_correct = users.length - i
+
+          user.achievements.expert.rank = i + 1
+          user.achievements.expert.score = (1000 - i) / (i + 1)
+          user.achievements.expert.team_name = 'Russia'
+
+          user.achievements.hattrick.rank = i + 1
+          user.achievements.hattrick.score = (1000 - i) / (i + 1)
+
+          user.achievements.secret.rank = i + 1
+
+          console.log(user)
+        })
+      }
+
+      // Check who is leading which goals to show in score board
+      if(users && users[0].achievements) {
+        users.forEach((user) => {
+          var goals = []
+
+          user.achievements.gambler.rank === 1 ? goals.push("Gambler") :
+          user.achievements.hustler.rank === 1 ? goals.push("Hustler") :
+          user.achievements.expert.rank === 1 ? goals.push("Expert") :
+          user.achievements.hattrick.rank === 1 ? goals.push("Hattrick") :
+          user.achievements.secret.rank === 1 ? goals.push("Secret") :
+
+          goals.length ? user.goals = goals.join(", ") : user.goals = "-"
+        })
+      }
 
       state.loadInfo.users = false
       state.users = users

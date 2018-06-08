@@ -2,8 +2,12 @@
   <div class="gambler">
     <div class="wrapper">
       <div class="hero hero--6">
-        <h1 class="hero__heading">Gambler</h1>
-        <div class="hero__info">Most correct bets on highest odds</div>
+        <transition name="hero" appear>
+          <div>
+            <h1 class="hero__heading">Gambler</h1>
+            <div class="hero__info">Most correct bets on highest odds</div>
+          </div>
+        </transition>
       </div>
       <div class="island">
         <grid

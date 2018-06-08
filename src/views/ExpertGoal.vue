@@ -2,8 +2,12 @@
   <div class="expert">
     <div class="wrapper">
       <div class="hero hero--11">
-        <h1 class="hero__heading">Expert</h1>
-        <div class="hero__info">Most correct bets for one nation</div>
+        <transition name="hero" appear>
+          <div>
+            <h1 class="hero__heading">Expert</h1>
+            <div class="hero__info">Most correct bets for one nation</div>
+          </div>
+        </transition>
       </div>
       <div class="island">
         <grid

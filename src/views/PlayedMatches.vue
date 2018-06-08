@@ -2,8 +2,12 @@
   <div class="matches">
       <div class="wrapper">
         <div class="hero hero--7">
-          <h1 class="hero__heading">Played</h1>
-          <div class="hero__info">{{ playedMatches.length }} Matches</div>
+          <transition name="hero" appear>
+            <div>
+              <h1 class="hero__heading">Played</h1>
+              <div class="hero__info">{{ playedMatches.length }} Matches</div>
+            </div>
+          </transition>
         </div>
         <div class="grid-matches" v-if="playedMatches.length">
           <div v-for="matchDay in playedMatchDays" class="list">

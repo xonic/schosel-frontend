@@ -1,15 +1,17 @@
 <template>
   <div class="matches">
-    <div class="wrapper">
-      <ul class="flex-matches" v-if="liveMatches.length">
-        <li
-        is="match-item"
-        v-for="liveMatch in liveMatches"
-        v-bind="liveMatch">
-          </li>
-        </ul>
-        <h1 v-else>No matches currently being played</h1>
-    </div>
+    <transition name="hero" appear>
+      <div class="wrapper">
+        <ul class="flex-matches" v-if="liveMatches.length">
+          <li
+          is="match-item"
+          v-for="liveMatch in liveMatches"
+          v-bind="liveMatch">
+            </li>
+          </ul>
+          <h1 v-else>No matches currently being played</h1>
+      </div>
+    </transition>
   </div>
 </template>
 

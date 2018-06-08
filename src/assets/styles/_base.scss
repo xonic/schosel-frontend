@@ -143,7 +143,7 @@ h2 {
 
 .hero-enter {
   opacity: 0;
-  transform: translateY(10%);
+  transform: translateY(5px);
 }
 
 .hero-enter-active {
@@ -161,11 +161,11 @@ h2 {
 .hero-leave-active {
   transition: all .2s ease-in;
   opacity: 0;
-  transform: translateY(10%);
+  transform: translateY(5px);
 }
 
 .hero-leave-to {
-  transform: translateY(10%);
+  transform: translateY(5px);
 }
 
 .content-enter {

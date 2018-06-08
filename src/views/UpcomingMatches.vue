@@ -8,19 +8,21 @@
             <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
           </div>
         </transition>
-        </div>
-      <div class="champion-bet" v-if="loggedInUser">
-        <label for="champion-bet" class="label">Champion bet</label>
-        <select id="champion-bet" class="select"
-          v-model="loggedInUser.champion_id"
-          @change="postChampion()"
-          v-if="status.champion_editable">
-          <option disabled value="">Please select one</option>
-          <option v-for="team in status.teams"
-                  v-bind:value="team.team_id">{{ team.name }}</option>
-        </select>
-        <div v-else>{{ championBet() }}</div>
       </div>
+      <transition name="content" appear>
+        <div class="champion-bet" v-if="loggedInUser">
+          <label for="champion-bet" class="label">Champion bet</label>
+          <select id="champion-bet" class="select"
+            v-model="loggedInUser.champion_id"
+            @change="postChampion()"
+            v-if="status.champion_editable">
+            <option disabled value="">Please select one</option>
+            <option v-for="team in status.teams"
+                    v-bind:value="team.team_id">{{ team.name }}</option>
+          </select>
+          <div v-else>{{ championBet() }}</div>
+        </div>
+      </transition>
       <transition name="legend" appear>
         <div class="legend" v-if="loggedInUser">
           <div class="wrapper">
@@ -38,22 +40,26 @@
           </div>
         </div>
       </transition>
-      <div class="grid-matches" v-if="upcomingMatches.length">
-        <div v-for="matchDay in upcomingMatchDays" class="list">
-          <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
-          <ul class="list__items">
-            <li
-              is="match-item"
-              v-for="upcomingMatch in matchDay.matches"
-              v-bind="upcomingMatch"
-              v-on:is-saving="setSaving()"
-              v-on:stopped-saving="stopSaving()"
-              class="list__item">
-            </li>
-          </ul>
+      <transition name="content" appear>
+        <div>
+          <div class="grid-matches" v-if="upcomingMatches.length">
+            <div v-for="matchDay in upcomingMatchDays" class="list">
+              <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+              <ul class="list__items">
+                <li
+                  is="match-item"
+                  v-for="upcomingMatch in matchDay.matches"
+                  v-bind="upcomingMatch"
+                  v-on:is-saving="setSaving()"
+                  v-on:stopped-saving="stopSaving()"
+                  class="list__item">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h2 v-else class="blankslate">No more upcoming matches</h2>
         </div>
-      </div>
-      <h2 v-else class="blankslate">No more upcoming matches</h2>
+      </transition>
       <div class="msg--save" v-bind:class="{ saveSuccess: saveSuccess }">
         <div class="saving">
           Saving <span class="ellipsis ellipsis-1">.</span> <span class="ellipsis ellipsis-2">.</span> <span class="ellipsis ellipsis-3">.</span>

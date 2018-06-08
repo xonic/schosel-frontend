@@ -10,40 +10,44 @@
         </transition>
       </div>
       <clip-loader :loading="loading.users" :color="loading.color" :size="loading.size"></clip-loader>
-      <div v-if="!loading.users">
-        <div class="island" v-if="allUsers && allUsers.length">
-          <!-- <h2>Achievements</h2>
-          <ul>
-            <li>
-              <div class="">
-                National expert
-              </div>
-              <div class="">
-                Most correct bets for one team
-              </div>
-              <div class="">
-                12 times North Korea
-              </div>
-            </li>
-            <li>
-              <div class="">
-                Gambler
-              </div>
-              <div class="">
-                Most bets on highest odds
-              </div>
-              <div class="">
-                18 times
-              </div>
-            </li>
-          </ul>
-          <h2>Ranking</h2> -->
-          <grid
-            :data="allUsers"
-            :columns="gridColumns">
-          </grid>
-        </div>
-        <h2 v-else class="blankslate">There is no score ranking yet</h2>
+        <div v-if="!loading.users">
+          <transition name="content" appear>
+            <div>
+            <div class="island" v-if="allUsers && allUsers.length">
+              <!-- <h2>Achievements</h2>
+              <ul>
+                <li>
+                  <div class="">
+                    National expert
+                  </div>
+                  <div class="">
+                    Most correct bets for one team
+                  </div>
+                  <div class="">
+                    12 times North Korea
+                  </div>
+                </li>
+                <li>
+                  <div class="">
+                    Gambler
+                  </div>
+                  <div class="">
+                    Most bets on highest odds
+                  </div>
+                  <div class="">
+                    18 times
+                  </div>
+                </li>
+              </ul>
+              <h2>Ranking</h2> -->
+              <grid
+                :data="allUsers"
+                :columns="gridColumns">
+              </grid>
+            </div>
+            <h2 v-else class="blankslate">There is no score ranking yet</h2>
+          </div>
+        </transition>
       </div>
     </div>
   </div>

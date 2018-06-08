@@ -61,6 +61,10 @@ h2 {
   background: $blue-100;
   .isSaving & {
   }
+
+  svg {
+    margin-right: $space-25 / 4;
+  }
 }
 
 .label {
@@ -162,4 +166,31 @@ h2 {
 
 .hero-leave-to {
   transform: translateY(10%);
+}
+
+.content-enter {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.content-enter-active {
+  transition: all .25s .15s ease-out;
+}
+
+.content-enter-to {
+  transform: translateY(0);
+}
+
+.content-leave {
+  transform: translateY(0);
+}
+
+.content-leave-active {
+  transition: all .2s .1s ease-in;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.content-leave-to {
+  transform: translateY(5px);
 }

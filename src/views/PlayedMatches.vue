@@ -9,20 +9,24 @@
             </div>
           </transition>
         </div>
-        <div class="grid-matches" v-if="playedMatches.length">
-          <div v-for="matchDay in playedMatchDays" class="list">
-            <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
-            <ul class="list__items">
-              <li
-              is="match-item"
-              v-for="playedMatch in matchDay.matches"
-              v-bind="playedMatch"
-              class="list__item">
-            </li>
-          </ul>
+        <transition name="content" appear>
+          <div>
+            <div class="grid-matches" v-if="playedMatches.length">
+              <div v-for="matchDay in playedMatchDays" class="list">
+                <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+                <ul class="list__items">
+                  <li
+                  is="match-item"
+                  v-for="playedMatch in matchDay.matches"
+                  v-bind="playedMatch"
+                  class="list__item">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h1 v-else>No matches played yet</h1>
         </div>
-      </div>
-      <h1 v-else>No matches played yet</h1>
+      </transition>
     </div>
   </div>
 </template>

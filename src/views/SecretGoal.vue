@@ -9,13 +9,15 @@
           </div>
         </transition>
       </div>
-      <div class="island">
-        <grid
-          :data="gridData"
-          :columns="gridColumns"
-          v-if="allUsers.length">
-        </grid>
-      </div>
+      <transition name="content" appear>
+        <div class="island">
+          <grid
+            :data="gridData"
+            :columns="gridColumns"
+            v-if="allUsers.length">
+          </grid>
+        </div>
+      </transition>
     </div>
   </div>
 </template>

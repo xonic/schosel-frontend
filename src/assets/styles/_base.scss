@@ -194,3 +194,30 @@ h2 {
 .content-leave-to {
   transform: translateY(5px);
 }
+
+.tabs-enter {
+  opacity: 0;
+  transform: translateX(-5px);
+}
+
+.tabs-enter-active {
+  transition: all .25s .15s ease-out;
+}
+
+.tabs-enter-to {
+  transform: translateX(0);
+}
+
+.tabs-leave {
+  transform: translateX(0);
+}
+
+.tabs-leave-active {
+  transition: all .2s .1s ease-in;
+  opacity: 0;
+  transform: translateX(-5px);
+}
+
+.tabs-leave-to {
+  transform: translateX(-5px);
+}

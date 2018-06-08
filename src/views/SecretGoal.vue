@@ -3,9 +3,9 @@
     <div class="wrapper">
       <div class="hero hero--13">
         <h1 class="hero__heading">Secret Goal</h1>
+        <div class="hero__info">To be revealed after the tournament</div>
       </div>
       <div class="island">
-        <h2>To be revealed after the tournament.</h2>
         <grid
           :data="gridData"
           :columns="gridColumns"

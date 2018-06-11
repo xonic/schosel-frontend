@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Match from './views/Match.vue'
+import User from './views/User.vue'
 import Matches from './views/Matches.vue'
 import PlayedMatches from './views/PlayedMatches.vue'
 import LiveMatches from './views/LiveMatches.vue'
@@ -89,33 +90,39 @@ export default new Router({
         }
       ]
     },
-    {
-      path: '/stats',
-      name: 'stats',
-      component: Stats,
-      redirect: '/stats/players',
-      children: [
-        {
-          name: 'players',
-          path: 'players',
-          component: PlayerStats
-        },
-        {
-          name: 'teams',
-          path: 'teams',
-          component: TeamStats
-        },
-        {
-          name: 'match-stats',
-          path: 'matches',
-          component: MatchStats
-        }
-      ]
-    },
+    // {
+    //   path: '/stats',
+    //   name: 'stats',
+    //   component: Stats,
+    //   redirect: '/stats/players',
+    //   children: [
+    //     {
+    //       name: 'players',
+    //       path: 'players',
+    //       component: PlayerStats
+    //     },
+    //     {
+    //       name: 'teams',
+    //       path: 'teams',
+    //       component: TeamStats
+    //     },
+    //     {
+    //       name: 'match-stats',
+    //       path: 'matches',
+    //       component: MatchStats
+    //     }
+    //   ]
+    // },
     {
       path: '/matches/:id',
       name: 'match',
       component: Match,
+      props: true
+    },
+    {
+      path: '/users/:id',
+      name: 'user',
+      component: User,
       props: true
     }
   ]

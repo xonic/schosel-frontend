@@ -77,10 +77,6 @@ export default {
       gridColumns: ['rank', 'name', 'goals', 'score'],
       gridData: undefined
     }
-  },
-  mounted () {
-
-
   }
 }
 </script>

@@ -21,36 +21,36 @@
               <div class="score-card-grid">
                 <div class="score-card score-card--gambler" v-if="user.achievements.gambler">
                   <h2 class="score-card__title">Gambler</h2>
-                  <p class="score-card__score">{{ user.achievements.gambler.score }} pts</p>
-                  <p class="score-card__rank">Rank {{ user.achievements.gambler.rank }}</p>
+                  <p class="score-card__score">{{ user.achievements.gambler.rank }}.</p>
+                  <p class="score-card__rank">{{ user.achievements.gambler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
                 </div>
 
                 <div class="score-card score-card--hustler" v-if="user.achievements.hustler">
                   <h2 class="score-card__title">Hustler</h2>
-                  <p class="score-card__score">{{ user.achievements.hustler.score }} pts</p>
-                  <p class="score-card__rank">Rank {{ user.achievements.hustler.rank }}</p>
+                  <p class="score-card__score">{{ user.achievements.hustler.rank }}.</p>
+                  <p class="score-card__rank">{{ user.achievements.hustler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
                 </div>
 
                 <div class="score-card score-card--expert" v-if="user.achievements.expert">
                   <h2 class="score-card__title">Expert</h2>
-                  <p class="score-card__score">{{ user.achievements.expert.score }} pts</p>
-                  <p class="score-card__rank">Rank {{ user.achievements.expert.rank }}</p>
+                  <p class="score-card__score">{{ user.achievements.expert.rank }}.</p>
+                  <p class="score-card__rank">{{ user.achievements.expert.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
                 </div>
 
                 <div class="score-card score-card--hattrick" v-if="user.achievements.hattrick">
                   <h2 class="score-card__title">Hattrick</h2>
-                  <p class="score-card__score">{{ user.achievements.hattrick.score }} pts</p>
-                  <p class="score-card__rank">Rank {{ user.achievements.hattrick.rank }}</p>
+                  <p class="score-card__score">{{ user.achievements.hattrick.rank }}.</p>
+                  <p class="score-card__rank">{{ user.achievements.hattrick.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
                 </div>
 
                 <div class="score-card score-card--secret" v-if="user.achievements.secret">
                   <h2 class="score-card__title">Secret</h2>
-                  <p class="score-card__rank">Rank {{ user.achievements.secret.rank }}</p>
+                  <p class="score-card__score">{{ user.achievements.secret.rank }}.</p>
                 </div>
               </div>
             </div>
 
-            <div class="list__items">
+            <div class="list__items" v-if="gridData.length">
               <grid
                 :data="gridData"
                 :columns="gridColumns"
@@ -59,6 +59,7 @@
                 :idKey="'match_id'">
               </grid>
             </div>
+            <h2 v-else class="blankslate">There are no bets yet</h2>
           </div>
         </transition>
       </div>

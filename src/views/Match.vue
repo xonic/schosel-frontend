@@ -25,13 +25,13 @@
             </span>
             <div class="match-item__odds" v-if='match.odds && ownBet'>
               <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
-                Home&nbsp;{{ odds["1"].toFixed(2) }}
+                Home&nbsp;{{ match.odds["1"].toFixed(2) }}
               </div>
               <div v-bind:class="[ownBet.outcome == 'X' ? 'has-bet' : '']" class="match-item__odds__draw">
-                Draw&nbsp;{{ odds["X"].toFixed(2) }}
+                Draw&nbsp;{{ match.odds["X"].toFixed(2) }}
               </div>
               <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
-                Away&nbsp;{{ odds["2"].toFixed(2) }}
+                Away&nbsp;{{ match.odds["2"].toFixed(2) }}
               </div>
             </div>
           </div>
@@ -40,7 +40,10 @@
           <div class="list__items">
             <grid
               :data="gridData"
-              :columns="gridColumns">
+              :columns="gridColumns"
+              :hasLinks="true"
+              :linkToComponent="'user'"
+              :idKey="'user_id'">
             </grid>
           </div>
         </transition>
@@ -74,7 +77,7 @@ export default {
       ownBet: null
     }
   },
-  props: ['id', 'odds'],
+  props: ['id'],
   mounted () {
     this.loadMatchData()
   },
@@ -117,6 +120,7 @@ export default {
     },
     setGrid: function(rawGridData) {
       this.gridData = []
+      console.log(rawGridData)
       rawGridData.forEach(function(el, i){
 
         // Calculate score for each player
@@ -124,6 +128,7 @@ export default {
 
         // Set grid data
         this.gridData.push({
+          user_id: el.user.user_id,
           player: el.user.name,
           bet: el.outcome || "-",
           score: currentScore.toFixed(2)

@@ -1,5 +1,9 @@
 <template>
   <div class="wrapper">
+    <div class="tab-grid">
+      <div class="tabs">
+        <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
+      </div>
       <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
       <div v-if='!loading' class="tabs-details">
         <div class="hero hero--14">
@@ -11,11 +15,50 @@
           </transition>
         </div>
         <transition name="content" appear>
-          <div class="list__items">
-            <grid
-              :data="gridData"
-              :columns="gridColumns">
-            </grid>
+          <div>
+            <div class="island">
+
+              <div class="score-card-grid">
+                <div class="score-card score-card--gambler" v-if="user.achievements.gambler">
+                  <h2 class="score-card__title">Gambler</h2>
+                  <p class="score-card__score">{{ user.achievements.gambler.score }} pts</p>
+                  <p class="score-card__rank">Rank {{ user.achievements.gambler.rank }}</p>
+                </div>
+
+                <div class="score-card score-card--hustler" v-if="user.achievements.hustler">
+                  <h2 class="score-card__title">Hustler</h2>
+                  <p class="score-card__score">{{ user.achievements.hustler.score }} pts</p>
+                  <p class="score-card__rank">Rank {{ user.achievements.hustler.rank }}</p>
+                </div>
+
+                <div class="score-card score-card--expert" v-if="user.achievements.expert">
+                  <h2 class="score-card__title">Expert</h2>
+                  <p class="score-card__score">{{ user.achievements.expert.score }} pts</p>
+                  <p class="score-card__rank">Rank {{ user.achievements.expert.rank }}</p>
+                </div>
+
+                <div class="score-card score-card--hattrick" v-if="user.achievements.hattrick">
+                  <h2 class="score-card__title">Hattrick</h2>
+                  <p class="score-card__score">{{ user.achievements.hattrick.score }} pts</p>
+                  <p class="score-card__rank">Rank {{ user.achievements.hattrick.rank }}</p>
+                </div>
+
+                <div class="score-card score-card--secret" v-if="user.achievements.secret">
+                  <h2 class="score-card__title">Secret</h2>
+                  <p class="score-card__rank">Rank {{ user.achievements.secret.rank }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="list__items">
+              <grid
+                :data="gridData"
+                :columns="gridColumns"
+                :hasLinks="true"
+                :linkToComponent="'match'"
+                :idKey="'match_id'">
+              </grid>
+            </div>
           </div>
         </transition>
       </div>
@@ -40,8 +83,7 @@ export default {
     return {
       user: {},
       interval: null,
-      gridColumns: ['player', 'bet', 'score'],
-      gridData: [],
+      gridColumns: ['match', 'bet', 'outcome', 'superbet', 'score'],
       loading: true,
       size: "32px",
       color: "#3EABDC"
@@ -52,8 +94,25 @@ export default {
     this.loadUserData()
   },
   computed: {
-    matchDate: function() {
+    matchDate () {
       return new Date(this.match.date).toLocaleString()
+    },
+    gridData () {
+
+      var gridData = []
+
+      this.user.bets.forEach((bet, i) => {
+        gridData.push({
+          match_id: bet.match.match_id,
+          match: bet.match.team1_name + " vs. " + bet.match.team2_name,
+          bet: bet.outcome == 1 ? bet.match.team1_name : (bet.outcome == 2 ? bet.match.team2_name : "Draw"),
+          outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
+          superbet: bet.supertip ? "Yes" : "-",
+          score: bet.points ? bet.points.toFixed(2) : "-"
+        })
+      })
+
+      return gridData;
     }
   },
   methods: {
@@ -61,12 +120,8 @@ export default {
 
       HTTP.get('/users/' + this.id, {withCredentials: true}).then((response) => {
         this.user = response.data
-        // this.setGrid(response.data.bets)
         this.loading = false
 
-        // if(this.match.status === 'live') {
-        //   this.setLoadingInterval()
-        // }
       }, (err) => {
         console.log(err)
       })

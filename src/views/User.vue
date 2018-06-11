@@ -2,12 +2,14 @@
   <div class="wrapper">
       <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
       <div v-if='!loading' class="tabs-details">
-        <transition name="hero" appear>
-          <div>
-            <h1 class="hero__heading">{{ user.name }}</h1>
-            <div class="hero__info">{{ user.score }} pts, ranked {{ user.rank }}.</div>
-          </div>
-        </transition>
+        <div class="hero hero--14">
+          <transition name="hero" appear>
+            <div>
+              <h1 class="hero__heading">{{ user.name }}</h1>
+              <div class="hero__info">{{ user.points }} pts</div>
+            </div>
+          </transition>
+        </div>
         <transition name="content" appear>
           <div class="list__items">
             <grid

@@ -25,13 +25,13 @@
             </span>
             <div class="match-item__odds" v-if='match.odds && ownBet'>
               <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
-                Home&nbsp;{{ match.odds["1"].toFixed(2) }}
+                {{ match.team1_name }}&nbsp;{{ match.odds["1"].toFixed(2) }}
               </div>
               <div v-bind:class="[ownBet.outcome == 'X' ? 'has-bet' : '']" class="match-item__odds__draw">
                 Draw&nbsp;{{ match.odds["X"].toFixed(2) }}
               </div>
               <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
-                Away&nbsp;{{ match.odds["2"].toFixed(2) }}
+                {{ match.team2_name }}&nbsp;{{ match.odds["2"].toFixed(2) }}
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default {
         this.ownBet = this.ownBets.find((el) => {
           return el.match.match_id === this.id
         })
-        console.log(this.ownBet)
+        // console.log(this.ownBet)
       }
       HTTP.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
         this.match = response.data
@@ -120,8 +120,8 @@ export default {
     },
     setGrid: function(rawGridData) {
       this.gridData = []
-      console.log(rawGridData)
-      rawGridData.forEach(function(el, i){
+      // console.log(rawGridData)
+      rawGridData.forEach((el, i) => {
 
         // Calculate score for each player
         var currentScore = this.match.outcome === el.outcome ? el.points : 0.00
@@ -130,7 +130,7 @@ export default {
         this.gridData.push({
           user_id: el.user.user_id,
           player: el.user.name,
-          bet: el.outcome || "-",
+          bet: el.outcome == 1 ? this.match.team1_name : el.outcome == 2 ? this.match.team2_name : el.outcome == "X" ? "Draw" : "-",
           score: currentScore.toFixed(2)
         })
 

@@ -150,7 +150,7 @@ export default {
       })
       .then(response => {
         // console.log("match bet saved")
-        this.$store.dispatch('LOAD_STATUS')
+        // this.$store.dispatch('LOAD_STATUS')
 
         this.$emit("stopped-saving")
       })

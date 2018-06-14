@@ -93,7 +93,7 @@ export default new Vuex.Store({
         if(status.user.achievements.expert.rank === 1) extras.push("Expert")
         if(status.user.achievements.hattrick.rank === 1) extras.push("Hattrick")
         if(status.user.achievements.secret && status.user.achievements.secret.rank === 1) extras.push("Secret")
-        console.log(status.user)
+        // console.log(status.user)
 
         extras.length ? status.user.extras = extras.join(", ") : status.user.extras = "-"
       }
@@ -160,15 +160,15 @@ export default new Vuex.Store({
           var extras = []
 
           if(user.achievements.gambler.rank == 1) extras.push("Gambler")
-          if(user.achievements.hustler.rank == 1) extras.push("Hustler") 
+          if(user.achievements.hustler.rank == 1) extras.push("Hustler")
           if(user.achievements.expert.rank == 1) extras.push("Expert")
           if(user.achievements.hattrick.rank == 1) extras.push("Hattrick")
           if(user.achievements.secret && user.achievements.secret.rank == 1) extras.push("Secret")
-console.log(extras)
+// console.log(extras)
           extras.length ? user.extras = extras.join(", ") : user.extras = "-"
         })
       }
-      console.log(users[0])
+      // console.log(users[0])
       state.users = users
       state.loadInfo.users = false
     },

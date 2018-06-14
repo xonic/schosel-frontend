@@ -111,12 +111,12 @@ export default {
       })
     },
     setLoadingInterval: function() {
-      if(!this.interval)
-      {
-        this.interval = setInterval( () => {
-          this.loadMatchData()
-        }, 10000);
-      }
+      // if(!this.interval)
+      // {
+      //   this.interval = setInterval( () => {
+      //     this.loadMatchData()
+      //   }, 10000);
+      // }
     },
     setGrid: function(rawGridData) {
       this.gridData = []

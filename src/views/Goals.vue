@@ -17,7 +17,7 @@
              <li>
                <router-link :to="{ name: 'hattrick' }" class="tab__link tab__link--tight">Hattrick</router-link>
              </li>
-             <li>
+             <li v-if="loggedInUser.achievements.secret">
                <router-link :to="{ name: 'secret' }" class="tab__link tab__link--tight">Secret</router-link>
              </li>
            </ul>
@@ -39,6 +39,7 @@ export default {
   name: 'goals',
   computed: {
     ...mapGetters([
+      'loggedInUser',
       'loading'
     ])
   },

@@ -112,6 +112,14 @@
   text-transform: uppercase;
 }
 
+.btn--supertip {
+  transition: transform .2s ease-in-out;
+}
+
+input:not(:checked) + label .btn--supertip {
+  transform: rotateZ(144deg);
+}
+
 input:not(:checked) + label .btn--supertip path {
   fill: $white;
   stroke: $gray-100;

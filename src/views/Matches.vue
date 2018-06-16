@@ -1,6 +1,6 @@
 <template>
   <div class="matches">
-    <clip-loader :loading="loading.matches" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
+    <clip-loader :loading="loading.matches && loading.status" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
     <div v-if='!loading.status && !loading.matches' class='wrapper'>
       <div class="tab-grid" v-if="playedMatches.length || liveMatches.length">
          <div class="tabs">

@@ -92,10 +92,10 @@
       this.$store.dispatch('LOAD_OWN_BETS')
       this.$store.dispatch('LOAD_USERS')
 
-      // setInterval( () => {
-      //   this.$store.dispatch('LOAD_MATCHES')
-      //   this.$store.dispatch('LOAD_OWN_BETS')
-      // }, 10000);
+      setInterval( () => {
+        this.$store.dispatch('LOAD_MATCHES')
+        this.$store.dispatch('LOAD_OWN_BETS')
+      }, 60000);
     },
     computed: {
       ...mapGetters([

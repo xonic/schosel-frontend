@@ -127,12 +127,12 @@ export default {
       })
     },
     setLoadingInterval: function() {
-      // if(!this.interval)
-      // {
-      //   this.interval = setInterval( () => {
-      //     this.loadMatchData()
-      //   }, 10000);
-      // }
+      if(!this.interval)
+      {
+        this.interval = setInterval( () => {
+          this.loadMatchData()
+        }, 60000);
+      }
     }
   },
   beforeDestroy () {

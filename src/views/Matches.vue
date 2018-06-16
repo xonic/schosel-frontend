@@ -8,7 +8,10 @@
              <li v-if="playedMatches.length">
                <router-link :to="{ name: 'played' }" class="tab__link">Played</router-link>
              </li>
-             <li v-if="liveMatches.length">
+             <li v-if="liveMatches.length === 1">
+               <router-link :to="{ name: 'match', params: { id: liveMatches[0].match_id} }" class="tab__link">Live</router-link>
+             </li>
+             <li v-if="liveMatches.length > 1">
                <router-link :to="{ name: 'live' }" class="tab__link">Live</router-link>
              </li>
              <li>

@@ -16,6 +16,9 @@
             <grid
               :data="gridData"
               :columns="gridColumns"
+              :hasLinks="true"
+              :linkToComponent="'user'"
+              :idKey="'user_id'"
               v-if="allUsers.length">
             </grid>
           </div>
@@ -51,6 +54,7 @@ export default {
         this.allUsers.forEach((user) => {
 
           gridData.push({
+            user_id: user.user_id,
             rank: user.achievements.hustler.rank,
             name: user.name,
             score: user.achievements.hustler.score.toFixed(2),

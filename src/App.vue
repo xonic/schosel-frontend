@@ -90,8 +90,8 @@
       this.$store.dispatch('LOAD_MATCHES')
       this.$store.dispatch('LOAD_STATUS')
       this.$store.dispatch('LOAD_OWN_BETS')
-      // this.$store.dispatch('LOAD_USERS')
-      //
+      this.$store.dispatch('LOAD_USERS')
+
       // setInterval( () => {
       //   this.$store.dispatch('LOAD_MATCHES')
       //   this.$store.dispatch('LOAD_OWN_BETS')

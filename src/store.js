@@ -213,7 +213,9 @@ export default new Vuex.Store({
         }, this)
       }
 
-      return played
+      return played.sort((a, b) => {
+        return b.match_id - a.match_id
+      })
     },
     playedMatchDays: state => {
 
@@ -246,6 +248,11 @@ export default new Vuex.Store({
           acc[currDate] = [];
         }
         acc[currDate].push(curr);
+
+        acc[currDate].sort((a, b) => {
+          return b.match_id - a.match_id
+        })
+
         return acc;
       }, {})
 
@@ -261,8 +268,9 @@ export default new Vuex.Store({
         })
       }
 
-      return playedMatchDays
-
+      return playedMatchDays.sort((a, b) => {
+        return b.match_id - a.match_id
+      })
     },
     liveMatches: state => {
 

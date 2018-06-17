@@ -131,7 +131,7 @@ export default {
       {
         this.interval = setInterval( () => {
           this.loadMatchData()
-        }, 60000);
+        }, 10000);
       }
     }
   },

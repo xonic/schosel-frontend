@@ -10,6 +10,7 @@
           <transition name="hero" appear>
             <div>
               <h1 class="hero__heading">{{ user.name }}</h1>
+              <div class="hero__info" v-if="user.rank">Rank {{ user.rank }}.</div>
               <div class="hero__info">{{ user.points || "0" }} pts</div>
               <div class="hero__info">{{ user.bets.length || "0" }} bets placed</div>
               <div class="hero__info" v-if="user.points && user.bets.length">Avg. {{ (user.points / user.bets.length).toFixed(2) }} pts per bet</div>
@@ -23,34 +24,40 @@
             <div class="island" v-if="user.achievements">
 
               <div class="score-card-grid">
-                <div class="score-card score-card--gambler" v-if="user.achievements.gambler">
-                  <h2 class="score-card__title">Gambler</h2>
-                  <p class="score-card__score">{{ user.achievements.gambler.rank }}.</p>
-                  <p class="score-card__rank">{{ user.achievements.gambler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                </div>
-
-                <div class="score-card score-card--hustler" v-if="user.achievements.hustler">
-                  <h2 class="score-card__title">Hustler</h2>
-                  <p class="score-card__score">{{ user.achievements.hustler.rank }}.</p>
-                  <p class="score-card__rank">{{ user.achievements.hustler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                </div>
-
-                <div class="score-card score-card--expert" v-if="user.achievements.expert">
-                  <h2 class="score-card__title">Expert</h2>
-                  <p class="score-card__score">{{ user.achievements.expert.rank }}.</p>
-                  <p class="score-card__rank">{{ user.achievements.expert.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                </div>
-
-                <div class="score-card score-card--hattrick" v-if="user.achievements.hattrick">
-                  <h2 class="score-card__title">Hattrick</h2>
-                  <p class="score-card__score">{{ user.achievements.hattrick.rank }}.</p>
-                  <p class="score-card__rank">{{ user.achievements.hattrick.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                </div>
-
-                <div class="score-card score-card--secret" v-if="user.achievements.secret">
-                  <h2 class="score-card__title">Secret</h2>
-                  <p class="score-card__score">{{ user.achievements.secret.rank }}.</p>
-                </div>
+                <router-link :to="{ name: 'gambler' }" v-if="user.achievements.gambler">
+                  <div class="score-card score-card--gambler">
+                    <h2 class="score-card__title">Gambler</h2>
+                    <p class="score-card__score">{{ user.achievements.gambler.rank }}.</p>
+                    <p class="score-card__rank">{{ user.achievements.gambler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                  </div>
+                </router-link>
+                <router-link :to="{ name: 'hustler' }" v-if="user.achievements.hustler">
+                  <div class="score-card score-card--hustler">
+                    <h2 class="score-card__title">Hustler</h2>
+                    <p class="score-card__score">{{ user.achievements.hustler.rank }}.</p>
+                    <p class="score-card__rank">{{ user.achievements.hustler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                  </div>
+                </router-link>
+                <router-link :to="{ name: 'expert' }" v-if="user.achievements.expert">
+                  <div class="score-card score-card--expert">
+                    <h2 class="score-card__title">Expert</h2>
+                    <p class="score-card__score">{{ user.achievements.expert.rank }}.</p>
+                    <p class="score-card__rank">{{ user.achievements.expert.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                  </div>
+                </router-link>
+                <router-link :to="{ name: 'hattrick' }" v-if="user.achievements.hattrick">
+                  <div class="score-card score-card--hattrick">
+                    <h2 class="score-card__title">Hattrick</h2>
+                    <p class="score-card__score">{{ user.achievements.hattrick.rank }}.</p>
+                    <p class="score-card__rank">{{ user.achievements.hattrick.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                  </div>
+                </router-link>
+                <router-link :to="{ name: 'secret' }" v-if="user.achievements.secret">
+                  <div class="score-card score-card--secret">
+                    <h2 class="score-card__title">Secret</h2>
+                    <p class="score-card__score">{{ user.achievements.secret.rank }}.</p>
+                  </div>
+                </router-link>
               </div>
             </div>
 
@@ -95,10 +102,16 @@ export default {
     }
   },
   props: ['id'],
+  created () {
+    this.$store.dispatch('LOAD_USERS')
+  },
   mounted () {
     this.loadUserData()
   },
   computed: {
+    ...mapGetters([
+      'allUsers'
+    ]),
     matchDate () {
       return new Date(this.match.date).toLocaleString()
     },
@@ -130,6 +143,27 @@ export default {
 
       HTTP.get('/users/' + this.id, {withCredentials: true}).then((response) => {
         this.user = response.data
+
+        if(this.allUsers && this.user) {
+
+          var alterEgo = this.allUsers.find((el) => {
+            return el.user_id === this.user.user_id
+          })
+
+          // while (!alterEgo) {
+          //   console.log("waiting")
+          // }
+
+          if (this.user.achievements && alterEgo) {
+            this.user.rank = alterEgo.rank
+            this.user.achievements.gambler.rank = alterEgo.achievements.gambler.rank
+            this.user.achievements.hustler.rank = alterEgo.achievements.hustler.rank
+            this.user.achievements.expert.rank = alterEgo.achievements.expert.rank
+            this.user.achievements.hattrick.rank = alterEgo.achievements.hattrick.rank
+          }
+          // console.log(this.user)
+        }
+        this.setLoadingInterval();
         this.loading = false
 
       }, (err) => {
@@ -141,7 +175,7 @@ export default {
       {
         this.interval = setInterval( () => {
           this.loadUserData()
-        }, 10000);
+        }, 3000);
       }
     }
   },

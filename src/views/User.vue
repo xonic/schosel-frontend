@@ -102,15 +102,12 @@ export default {
     }
   },
   props: ['id'],
-  created () {
-    this.$store.dispatch('LOAD_USERS')
-  },
   mounted () {
     this.loadUserData()
   },
   computed: {
     ...mapGetters([
-      'allUsers'
+      'status'
     ]),
     matchDate () {
       return new Date(this.match.date).toLocaleString()
@@ -144,25 +141,6 @@ export default {
       HTTP.get('/users/' + this.id, {withCredentials: true}).then((response) => {
         this.user = response.data
 
-        if(this.allUsers && this.user) {
-
-          var alterEgo = this.allUsers.find((el) => {
-            return el.user_id === this.user.user_id
-          })
-
-          // while (!alterEgo) {
-          //   console.log("waiting")
-          // }
-
-          if (this.user.achievements && alterEgo) {
-            this.user.rank = alterEgo.rank
-            this.user.achievements.gambler.rank = alterEgo.achievements.gambler.rank
-            this.user.achievements.hustler.rank = alterEgo.achievements.hustler.rank
-            this.user.achievements.expert.rank = alterEgo.achievements.expert.rank
-            this.user.achievements.hattrick.rank = alterEgo.achievements.hattrick.rank
-          }
-          // console.log(this.user)
-        }
         this.setLoadingInterval();
         this.loading = false
 
@@ -175,7 +153,7 @@ export default {
       {
         this.interval = setInterval( () => {
           this.loadUserData()
-        }, 3000);
+        }, 10000);
       }
     }
   },

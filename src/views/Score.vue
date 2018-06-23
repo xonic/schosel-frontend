@@ -14,34 +14,8 @@
           <transition name="content" appear>
             <div>
             <div class="island" v-if="allUsers && allUsers.length">
-              <!-- <h2>Achievements</h2>
-              <ul>
-                <li>
-                  <div class="">
-                    National expert
-                  </div>
-                  <div class="">
-                    Most correct bets for one team
-                  </div>
-                  <div class="">
-                    12 times North Korea
-                  </div>
-                </li>
-                <li>
-                  <div class="">
-                    Gambler
-                  </div>
-                  <div class="">
-                    Most bets on highest odds
-                  </div>
-                  <div class="">
-                    18 times
-                  </div>
-                </li>
-              </ul>
-              <h2>Ranking</h2> -->
               <grid
-                :data="allUsers"
+                :data="gridData"
                 :columns="gridColumns"
                 :hasLinks="true"
                 :linkToComponent="'user'"
@@ -69,7 +43,15 @@ export default {
       'allUsers',
       'loggedInUser',
       'loading'
-    ])
+    ]),
+    gridData () {
+      if(this.allUsers) {
+        this.allUsers.forEach((el) => {
+          el.points = el.points.toFixed(2)
+        })
+        return this.allUsers
+      }
+    }
   },
   components: {
     Grid,
@@ -77,8 +59,7 @@ export default {
   },
   data () {
     return {
-      gridColumns: ['rank', 'name', 'extras', 'score'],
-      gridData: undefined
+      gridColumns: ['rank', 'name', 'extras', 'points']
     }
   }
 }

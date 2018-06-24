@@ -14,8 +14,7 @@
               <div class="hero__info">{{ user.points || "0" }} pts</div>
               <div class="hero__info">{{ user.bets.length || "0" }} bets placed</div>
               <div class="hero__info" v-if="user.points && user.bets.length">Avg. {{ (user.points / user.bets.length).toFixed(2) }} pts per bet</div>
-              <!-- <div class="hero__info" v-if="remainingSuperbets === 1">{{ remainingSuperbets }} superbet left</div>
-              <div class="hero__info" v-else>{{ remainingSuperbets }} superbets left</div> -->
+              <div class="hero__info" v-if="user.achievements.expert.team.name && user.achievements.expert.team.odds">Champion Bet: {{ user.achievements.expert.team.name }} - {{ user.achievements.expert.team.odds }} pts</div>
             </div>
           </transition>
         </div>

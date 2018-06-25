@@ -7,6 +7,7 @@ import PlayedMatches from './views/PlayedMatches.vue'
 import LiveMatches from './views/LiveMatches.vue'
 import UpcomingMatches from './views/UpcomingMatches.vue'
 import Score from './views/Score.vue'
+import Teams from './views/Teams.vue'
 import Stats from './views/Stats.vue'
 import PlayerStats from './views/PlayerStats.vue'
 import TeamStats from './views/TeamStats.vue'
@@ -28,6 +29,11 @@ export default new Router({
       path: '/',
       name: 'home',
       redirect: '/matches/live'
+    },
+    {
+      path: '/teams',
+      name: 'teams',
+      component: Teams
     },
     {
       path: '/matches',

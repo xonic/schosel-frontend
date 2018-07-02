@@ -34,15 +34,30 @@
     bottom: 0;
   }
 
-  .saved {
+  .saved,
+  .error {
     display: none;
   }
 
   &.saveSuccess {
-    .saving {
+    .saving,
+    .error {
       display: none;
     }
     .saved {
+      display: block;
+    }
+  }
+
+  &.saveError {
+    background: #E65449;
+    color: white;
+
+    .saving,
+    .saved {
+      display: none;
+    }
+    .error {
       display: block;
     }
   }

@@ -52,6 +52,7 @@
                   v-bind="upcomingMatch"
                   v-on:is-saving="setSaving()"
                   v-on:stopped-saving="stopSaving()"
+                  v-on:is-error="stopSavingWithError()"
                   class="list__item">
                 </li>
               </ul>
@@ -61,6 +62,9 @@
         </div>
       </transition>
       <div class="msg--save" v-bind:class="{ saveSuccess: saveSuccess, saveError: saveError }">
+        <div class="error">
+          Error :(
+        </div>
         <div class="saving">
           Saving <span class="ellipsis ellipsis-1">.</span> <span class="ellipsis ellipsis-2">.</span> <span class="ellipsis ellipsis-3">.</span>
         </div>
@@ -169,7 +173,7 @@ export default {
 
         setTimeout(() => {
           this.isSaving -= 1
-        }, 1000)
+        }, 5000)
       }, 2000)
 
     },

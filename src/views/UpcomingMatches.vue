@@ -44,8 +44,7 @@
         <div>
           <div class="grid-matches" v-if="upcomingMatches.length">
             <div v-for="matchDay in upcomingMatchDays" class="list">
-              <h3 v-if="currentHeader !== matchDay[0].stage">{{ setCurrentHeader(matchDay[0].stage) }}</h3>
-              <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+              <h4 class="list__header"><span>{{ matchDate(matchDay.date) }}</span><span>{{ matchDay.matches[0].stage }}</span></h4>
               <ul class="list__items">
                 <li
                   is="match-item"
@@ -61,7 +60,7 @@
           <h2 v-else class="blankslate">No more upcoming matches</h2>
         </div>
       </transition>
-      <div class="msg--save" v-bind:class="{ saveSuccess: saveSuccess }">
+      <div class="msg--save" v-bind:class="{ saveSuccess: saveSuccess, saveError: saveError }">
         <div class="saving">
           Saving <span class="ellipsis ellipsis-1">.</span> <span class="ellipsis ellipsis-2">.</span> <span class="ellipsis ellipsis-3">.</span>
         </div>
@@ -92,7 +91,9 @@ export default {
     return {
       maxSuperbets: 8,
       isSaving: false,
+      isError: false,
       saveSuccess: false,
+      saveError: false,
       currentHeader: ""
     }
   },
@@ -129,31 +130,42 @@ export default {
         }
       })
       .then(response => {
-        // console.log("champion bet saved")
 
         setTimeout(() => {
-          this.isSaving = false
+          this.isSaving -= 1
         }, 3000)
       })
       .catch(e => {
-        // console.log(this.loggedInUser.champion_id)
-        console.log(e)
+
+        this.isError = true
 
         setTimeout(() => {
+          this.isError = false
           this.isSaving = false
         }, 3000)
       })
     },
     setSaving() {
-      // console.log('isSaving')
+
       this.isSaving += 1
       this.saveSuccess = false
+      this.saveError = false
     },
     stopSaving() {
-      // console.log('stoppedSaving')
 
       setTimeout(() => {
         this.saveSuccess = true
+
+        setTimeout(() => {
+          this.isSaving -= 1
+        }, 1000)
+      }, 2000)
+    },
+    stopSavingWithError() {
+
+      setTimeout(() => {
+        this.saveSuccess = false
+        this.saveError = true
 
         setTimeout(() => {
           this.isSaving -= 1
@@ -163,10 +175,6 @@ export default {
     },
     championBet() {
       return this.loggedInUser.champion.name || "-"
-    },
-    setCurrentHeader (header) {
-      this.currentHeader = header
-      return header
     }
   }
 }

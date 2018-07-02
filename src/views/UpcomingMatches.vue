@@ -44,6 +44,7 @@
         <div>
           <div class="grid-matches" v-if="upcomingMatches.length">
             <div v-for="matchDay in upcomingMatchDays" class="list">
+              <h3 v-if="currentHeader !== matchDay[0].stage">{{ setCurrentHeader(matchDay[0].stage) }}</h3>
               <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
               <ul class="list__items">
                 <li
@@ -91,7 +92,8 @@ export default {
     return {
       maxSuperbets: 8,
       isSaving: false,
-      saveSuccess: false
+      saveSuccess: false,
+      currentHeader: ""
     }
   },
   computed: {
@@ -161,6 +163,10 @@ export default {
     },
     championBet() {
       return this.loggedInUser.champion.name || "-"
+    },
+    setCurrentHeader (header) {
+      this.currentHeader = header
+      return header
     }
   }
 }

@@ -127,7 +127,6 @@ export default new Vuex.Store({
         var hustler = 0
         var hattrick = 0
         state.rewards.total = users.length * 1000
-        console.log(state.rewards.total)
 
         users.forEach((user) => {
           var extras = []
@@ -343,6 +342,19 @@ export default new Vuex.Store({
       return upcomingMatchDays
     },
     allUsers: state => {
+
+      state.users.forEach((el, i) => {
+
+        el.reward = 0
+        if(el.rank == 1) el.reward += state.rewards.first
+        if(el.achievements.gambler.rank == 1) el.reward += state.rewards.gambler
+        if(el.achievements.hustler.rank == 1) el.reward += state.rewards.hustler
+        if(el.achievements.expert.rank == 1) el.reward += state.rewards.expert
+        if(el.achievements.hattrick.rank == 1) el.reward += state.rewards.hattrick
+
+        el.reward ? el.reward = (el.reward / 100).toFixed(2) + "€" : el.reward = "-"
+
+      })
 
       return state.users
     },

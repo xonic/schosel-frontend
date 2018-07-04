@@ -15,6 +15,16 @@ export default new Vuex.Store({
       status: true,
       matches: true,
       users: true
+    },
+    rewards: {
+      total: 87000,
+      first: 0,
+      second: 0,
+      third: 0,
+      gambler: 0,
+      expert: 0,
+      hustler: 0,
+      hattrick: 0
     }
   },
   actions: {
@@ -109,18 +119,52 @@ export default new Vuex.Store({
 
       // Check who is leading which goals to show in score board
       if(users && users[0].achievements) {
+        var first = 0
+        var second = 0
+        var third = 0
+        var gambler = 0
+        var expert = 0
+        var hustler = 0
+        var hattrick = 0
+        state.rewards.total = users.length * 1000
+        console.log(state.rewards.total)
+
         users.forEach((user) => {
           var extras = []
 
-          if(user.achievements.gambler.rank == 1) extras.push("Gambler")
-          if(user.achievements.hustler.rank == 1) extras.push("Hustler")
-          if(user.achievements.expert.rank == 1) extras.push("Expert")
-          if(user.achievements.hattrick.rank == 1) extras.push("Hattrick")
+          if(user.rank == 1) first += 1
+          if(user.rank == 2) second += 1
+          if(user.rank == 3) third += 1
+
+          if(user.achievements.gambler.rank == 1) {
+            gambler += 1
+            extras.push("Gambler")
+          }
+          if(user.achievements.hustler.rank == 1) {
+            hustler += 1
+            extras.push("Hustler")
+          }
+          if(user.achievements.expert.rank == 1) {
+            expert += 1
+            extras.push("Expert")
+          }
+          if(user.achievements.hattrick.rank == 1) {
+            hattrick += 1
+            extras.push("Hattrick")
+          }
           if(user.achievements.secret && user.achievements.secret.rank == 1) extras.push("Secret")
 
           extras.length ? user.extras = extras.join(", ") : user.extras = "-"
         })
       }
+
+      state.rewards.first = state.rewards.total * (0.5 / first)
+      state.rewards.second = state.rewards.total * (0.2 / second)
+      state.rewards.third = state.rewards.total * (0.2 / third)
+      state.rewards.gambler = state.rewards.total * (0.04 / gambler)
+      state.rewards.hustler = state.rewards.total * (0.04 / hustler)
+      state.rewards.expert = state.rewards.total * (0.04 / expert)
+      state.rewards.hattrick = state.rewards.total * (0.04 / hattrick)
 
       state.users = users
       state.loadInfo.users = false
@@ -320,6 +364,9 @@ export default new Vuex.Store({
     },
     status: state => {
       return state.status
+    },
+    rewards: state => {
+      return state.rewards
     }
   }
 })

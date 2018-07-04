@@ -100,7 +100,8 @@
     },
     computed: {
       ...mapGetters([
-        'loggedInUser'
+        'loggedInUser',
+        'rewards'
       ])
     },
     methods: {

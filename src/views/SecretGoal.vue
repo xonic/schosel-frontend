@@ -5,7 +5,7 @@
         <transition name="hero" appear>
           <div>
             <h1 class="hero__heading">Secret Goal</h1>
-            <div class="hero__info">To be revealed after the tournament</div>
+            <div class="hero__info">Most wrong bets</div>
           </div>
         </transition>
       </div>
@@ -56,6 +56,7 @@ export default {
           gridData.push({
             user_id: user.user_id,
             rank: user.achievements.secret.rank,
+            score: user.achievements.secret.score,
             name: user.name,
           })
         })
@@ -67,7 +68,7 @@ export default {
   },
   data: function () {
     return {
-      gridColumns: ['rank', 'name'],
+      gridColumns: ['rank', 'name', 'score'],
     }
   }
 }

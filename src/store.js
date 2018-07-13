@@ -24,7 +24,8 @@ export default new Vuex.Store({
       gambler: 0,
       expert: 0,
       hustler: 0,
-      hattrick: 0
+      hattrick: 0,
+      secret: 0
     }
   },
   actions: {
@@ -82,8 +83,10 @@ export default new Vuex.Store({
   mutations: {
     SET_STATUS: (state, { status }) => {
 
+
       // Check if logged in user is leading any goals
       if(status.user && status.user.achievements) {
+        // status.user.achievements.secret = {rank: 2} MOCK DATA
         var extras = []
 
         if(status.user.achievements.gambler.rank === 1) extras.push("Gambler")
@@ -126,9 +129,18 @@ export default new Vuex.Store({
         var expert = 0
         var hustler = 0
         var hattrick = 0
+        var secret = 0
+
+        // var tmp = 0 MOCK DATA
+
         state.rewards.total = users.length * 1000
 
         users.forEach((user) => {
+          // tmp++ MOCK DATA
+          // user.achievements.secret = {} MOCK DATA
+          // user.achievements.secret.rank = tmp MOCK DATA
+          // user.achievements.secret.score = 10 MOCK DATA
+
           var extras = []
 
           if(user.rank == 1) first += 1
@@ -151,7 +163,10 @@ export default new Vuex.Store({
             hattrick += 1
             extras.push("Hattrick")
           }
-          if(user.achievements.secret && user.achievements.secret.rank == 1) extras.push("Secret")
+          if(user.achievements.secret && user.achievements.secret.rank == 1) {
+            secret += 1
+            extras.push("Secret")
+          }
 
           extras.length ? user.extras = extras.join(", ") : user.extras = "-"
         })
@@ -164,6 +179,7 @@ export default new Vuex.Store({
       state.rewards.hustler = state.rewards.total * (0.04 / hustler)
       state.rewards.expert = state.rewards.total * (0.04 / expert)
       state.rewards.hattrick = state.rewards.total * (0.04 / hattrick)
+      state.rewards.secret = state.rewards.total * (0.04 / secret)
 
       state.users = users
       state.loadInfo.users = false
@@ -353,6 +369,7 @@ export default new Vuex.Store({
         if(el.achievements.hustler.rank == 1) el.reward += state.rewards.hustler
         if(el.achievements.expert.rank == 1) el.reward += state.rewards.expert
         if(el.achievements.hattrick.rank == 1) el.reward += state.rewards.hattrick
+        if(el.achievements.secret && el.achievements.secret.rank == 1) el.reward += state.rewards.secret
 
         el.reward ? el.reward = (el.reward / 100).toFixed(2) + "€" : el.reward = "-"
 

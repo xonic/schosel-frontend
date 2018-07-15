@@ -5,7 +5,7 @@
         <transition name="hero" appear>
           <div>
             <h1 class="hero__heading">Secret Goal</h1>
-            <div class="hero__info">Most wrong bets</div>
+            <div class="hero__info"></div>
           </div>
         </transition>
       </div>

@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { HTTP } from './http-constants'
+import HTTP from './http-constants'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    auth: {
+      idToken: null,
+      userId: null,
+      user: null
+    },
     status: {},
     user: {},
     users: [],
@@ -29,58 +34,85 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    LOAD_STATUS: function ({ commit }) {
-      HTTP.get('/status', { withCredentials: true }).then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_STATUS', { status: response.data })
-      }, (err) => {
-        console.log(err)
+    login ({commit}, authData) {
+      HTTP.post('signInWithPassword?key=AIzaSyDiEh8tzcwHfkVnkex5Mm1ZBD_vc3UKaN0', {
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true
       })
+        .then(res => {
+          console.log(res)
+          // commit('authUser', {
+          //   token: res.data.idToken,
+          //   userId: res.data.localId
+          // })
+        })
+        .catch(error => console.log(error))
+    },
+    LOAD_STATUS: function ({ commit }) {
+      console.log('LOAD_STATUS called')
+      // HTTP.get('/status', { withCredentials: true }).then((response) => {
+      //   if(response.headers["content-type"] !== "application/json") {
+      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
+      //   }
+      //   commit('SET_STATUS', { status: response.data })
+      // }, (err) => {
+      //   console.log(err)
+      // })
     },
     LOAD_MATCHES: function ({ commit }) {
-      HTTP.get('/matches', { withCredentials: true }).then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_MATCHES', { matches: response.data })
-      }, (err) => {
-        console.log(err)
-      })
+      console.log('LOAD_MATCHES called')
+      // HTTP.get('/matches', { withCredentials: true }).then((response) => {
+      //   if(response.headers["content-type"] !== "application/json") {
+      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
+      //   }
+      //   commit('SET_MATCHES', { matches: response.data })
+      // }, (err) => {
+      //   console.log(err)
+      // })
     },
     LOAD_USERS: function ({ commit }) {
-      HTTP.get('/users', { withCredentials: true }).then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_USERS', { users: response.data })
-      }, (err) => {
-        console.log(err)
-      })
+      console.log('LOAD_USERS called')
+      // HTTP.get('/users', { withCredentials: true }).then((response) => {
+      //   if(response.headers["content-type"] !== "application/json") {
+      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
+      //   }
+      //   commit('SET_USERS', { users: response.data })
+      // }, (err) => {
+      //   console.log(err)
+      // })
     },
     LOAD_USER: function ({ commit }) {
-      HTTP.get('/user', { withCredentials: true }).then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_USER', { user: response.data })
-      }, (err) => {
-        console.log(err)
-      })
+      console.log('LOAD_USER called')
+      // HTTP.get('/user', { withCredentials: true }).then((response) => {
+      //   if(response.headers["content-type"] !== "application/json") {
+      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
+      //   }
+      //   commit('SET_USER', { user: response.data })
+      // }, (err) => {
+      //   console.log(err)
+      // })
     },
     LOAD_OWN_BETS: function ({ commit }) {
-      HTTP.get('/bets', { withCredentials: true }).then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_OWN_BETS', { ownBets: response.data })
-      }, (err) => {
-        console.log(err)
-      })
+      console.log('LOAD_OWN_BETS called')
+      // HTTP.get('/bets', { withCredentials: true }).then((response) => {
+      //   if(response.headers["content-type"] !== "application/json") {
+      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
+      //   }
+      //   commit('SET_OWN_BETS', { ownBets: response.data })
+      // }, (err) => {
+      //   console.log(err)
+      // })
     }
   },
   mutations: {
+    authUser (state, userData) {
+      state.auth.idToken = userData.token
+      state.auth.userId = userData.userId
+    },
+    storeAuthUser (state, user) {
+      state.auth.user = user
+    },
     SET_STATUS: (state, { status }) => {
 
 

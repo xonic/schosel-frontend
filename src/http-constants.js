@@ -8,7 +8,18 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   baseURL = 'https://www.schosel.net/worlds2018/api/v1'
 }
 
-export const HTTP = axios.create(
+// TODO: put this in else block
+baseURL = 'https://identitytoolkit.googleapis.com/v1/accounts:'
+
+const HTTP = axios.create(
   {
-    baseURL: baseURL
+    baseURL: baseURL,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   })
+
+// HTTP.defaults.headers.post["Access-Control-Allow-Origin"] = "*"
+// HTTP.defaults.headers.common["Content-Type"] = "application/json"
+
+export default HTTP

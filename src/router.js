@@ -19,10 +19,11 @@ import HustlerGoal from './views/HustlerGoal.vue'
 import ExpertGoal from './views/ExpertGoal.vue'
 import HattrickGoal from './views/HattrickGoal.vue'
 import SecretGoal from './views/SecretGoal.vue'
+import store from './store'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   base: "/worlds2018/static/",
   // mode: 'history',
   routes: [
@@ -34,71 +35,110 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      redirect: '/matches/live'
+      redirect: '/matches/live',
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/stats',
       name: 'stats',
-      component: Stats
+      component: Stats,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/matches',
       name: 'matches',
       component: Matches,
       redirect: '/matches/live',
+      meta: {
+        requiresAuth: true
+      },
       children: [
         {
           name: 'played',
           path: 'played',
-          component: PlayedMatches
+          component: PlayedMatches,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           name: 'live',
           path: 'live',
-          component: LiveMatches
+          component: LiveMatches,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           name: 'upcoming',
           path: 'upcoming',
-          component: UpcomingMatches
+          component: UpcomingMatches,
+          meta: {
+            requiresAuth: true
+          }
         }
       ]
     },
     {
       path: '/score',
       name: 'score',
-      component: Score
+      component: Score,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/extras',
       name: 'extras',
       component: Goals,
       redirect: '/extras/gambler',
+      meta: {
+        requiresAuth: true
+      },
       children: [
         {
           name: 'gambler',
           path: 'gambler',
-          component: GamblerGoal
+          component: GamblerGoal,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           name: 'hustler',
           path: 'hustler',
-          component: HustlerGoal
+          component: HustlerGoal,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           name: 'hattrick',
           path: 'hattrick',
-          component: HattrickGoal
+          component: HattrickGoal,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           name: 'secret',
           path: 'secret',
-          component: SecretGoal
+          component: SecretGoal,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           name: 'expert',
           path: 'expert',
-          component: ExpertGoal
+          component: ExpertGoal,
+          meta: {
+            requiresAuth: true
+          }
         }
       ]
     },
@@ -129,13 +169,40 @@ export default new Router({
       path: '/matches/:id',
       name: 'match',
       component: Match,
-      props: true
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/users/:id',
       name: 'user',
       component: User,
-      props: true
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
+
+// Global navigation guard checks each route if
+// authentication is needed
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!store.state.authenticated) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
+})
+
+export default router

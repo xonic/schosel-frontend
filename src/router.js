@@ -19,13 +19,16 @@ import HustlerGoal from './views/HustlerGoal.vue'
 import ExpertGoal from './views/ExpertGoal.vue'
 import HattrickGoal from './views/HattrickGoal.vue'
 import SecretGoal from './views/SecretGoal.vue'
+import Rules from './views/Rules.vue'
+import Profile from './views/Profile.vue'
+import Logout from './views/Logout.vue'
 import store from './store'
 
 Vue.use(Router)
 
 const router =  new Router({
-  base: "/worlds2018/static/",
-  // mode: 'history',
+  base: "/",
+  mode: 'history',
   routes: [
     {
       path: '/login',
@@ -35,7 +38,7 @@ const router =  new Router({
     {
       path: '/',
       name: 'home',
-      redirect: '/matches/live',
+      redirect: '/matches',
       meta: {
         requiresAuth: true
       }
@@ -142,29 +145,22 @@ const router =  new Router({
         }
       ]
     },
-    // {
-    //   path: '/stats',
-    //   name: 'stats',
-    //   component: Stats,
-    //   redirect: '/stats/players',
-    //   children: [
-    //     {
-    //       name: 'players',
-    //       path: 'players',
-    //       component: PlayerStats
-    //     },
-    //     {
-    //       name: 'teams',
-    //       path: 'teams',
-    //       component: TeamStats
-    //     },
-    //     {
-    //       name: 'match-stats',
-    //       path: 'matches',
-    //       component: MatchStats
-    //     }
-    //   ]
-    // },
+    {
+      path: '/rules',
+      name: 'rules',
+      component: Rules,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+      meta: {
+        requiresAuth: true
+      }
+    },
     {
       path: '/matches/:id',
       name: 'match',
@@ -182,13 +178,22 @@ const router =  new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: Logout,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
 // Global navigation guard checks each route if
 // authentication is needed
 router.beforeEach((to, from, next) => {
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.

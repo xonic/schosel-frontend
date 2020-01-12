@@ -5,7 +5,7 @@
   export default {
     name: 'logout',
     mounted () {
-      this.$store.dispatch('logout')
+      this.$store.dispatch('LOGOUT')
     }
   }
 </script>

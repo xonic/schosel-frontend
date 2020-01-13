@@ -1,0 +1,14 @@
+
+.avatar {
+  display: inline-block;
+  border-radius: $space-25;
+  vertical-align: middle;
+}
+
+.avatar--small {
+  width: $space-100;
+}
+
+.avatar--medium {
+  width: $space-100 * 4;
+}

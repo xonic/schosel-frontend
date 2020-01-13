@@ -9,6 +9,7 @@
         <div class="hero hero--14">
           <transition name="hero" appear>
             <div>
+              <img class="avatar avatar--medium" :src="user.avatar" />
               <h1 class="hero__heading">{{ user.name }}</h1>
               <div class="hero__info" v-if="user.rank">Rank {{ user.rank }}.</div>
               <div class="hero__info">{{ user.points || "0" }} pts</div>
@@ -107,7 +108,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'status'
+      'status',
+      'allUsers'
     ]),
     matchDate () {
       return new Date(this.match.date).toLocaleString()
@@ -141,6 +143,8 @@ export default {
       HTTP.get('/users/' + this.id, {withCredentials: true}).then((response) => {
         this.user = response.data
         // this.user.achievements.secret = {rank: 1, score: 10} MOCK DATA
+
+        this.user.avatar = this.allUsers.find(user => user.user_id === this.user.user_id).avatar
 
         this.setLoadingInterval();
         this.loading = false

@@ -4,7 +4,7 @@
     <div class="login-form">
       <form @submit.prevent="onSubmit">
         <div class="input">
-          <label for="email">Mail</label>
+          <label for="email">Email</label>
           <input
                   type="email"
                   id="email"
@@ -19,6 +19,7 @@
         </div>
         <div class="submit">
           <button type="submit">Submit</button>
+          <router-link :to="{ name: 'register' }">Register</router-link>
         </div>
       </form>
     </div>

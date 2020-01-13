@@ -59,7 +59,7 @@ export default {
   },
   data () {
     return {
-      gridColumns: ['rank', 'name', 'extras', 'points', 'reward']
+      gridColumns: ['rank', 'avatar', 'name', 'extras', 'points', 'reward']
     }
   }
 }

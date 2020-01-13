@@ -17,15 +17,20 @@
        <td v-for="key in columns"
          :key="key.id">
          <router-link :to="{ name: linkToComponent, params: { id: entry[idKey] } }" v-if="hasLinks">
-           <div v-if="key === 'superbet' && entry[key] === 'correct'">
-             <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+           <div v-if="key === 'avatar'">
+             <img class="avatar avatar--small" :src="entry[key]" />
            </div>
            <div v-else>
-             <div v-if="key === 'superbet' && entry[key] === 'wrong'">
-               <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#fff" stroke="#9b9b9b" fill-rule="evenodd"/></svg>
+             <div v-if="key === 'superbet' && entry[key] === 'correct'">
+               <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
              </div>
              <div v-else>
-               {{ entry[key] }}
+               <div v-if="key === 'superbet' && entry[key] === 'wrong'">
+                 <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#fff" stroke="#9b9b9b" fill-rule="evenodd"/></svg>
+               </div>
+               <div v-else>
+                 {{ entry[key] }}
+               </div>
              </div>
            </div>
           </router-link>

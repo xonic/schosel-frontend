@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Match from './views/Match.vue'
 import User from './views/User.vue'
 import Login from './views/Login.vue'
+import Register from './views/Register.vue'
 import Matches from './views/Matches.vue'
 import PlayedMatches from './views/PlayedMatches.vue'
 import LiveMatches from './views/LiveMatches.vue'
@@ -34,6 +35,11 @@ const router =  new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     },
     {
       path: '/',

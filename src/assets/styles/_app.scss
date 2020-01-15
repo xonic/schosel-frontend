@@ -1,0 +1,21 @@
+.app {
+  background: linear-gradient(215deg, #ff008a, #f200f3, #a600ff, #4e00ff, #0053ff, #0097ff);
+  background-size: 1200% 1200%;
+  animation: AnimationName 60s ease infinite;
+
+  @-webkit-keyframes AnimationName {
+     0%{background-position:88% 0%}
+     50%{background-position:13% 100%}
+     100%{background-position:88% 0%}
+  }
+  @-moz-keyframes AnimationName {
+     0%{background-position:88% 0%}
+     50%{background-position:13% 100%}
+     100%{background-position:88% 0%}
+  }
+  @keyframes AnimationName {
+     0%{background-position:88% 0%}
+     50%{background-position:13% 100%}
+     100%{background-position:88% 0%}
+  }
+}

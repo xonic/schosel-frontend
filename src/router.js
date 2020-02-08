@@ -15,6 +15,7 @@ import PlayerStats from './views/PlayerStats.vue'
 import TeamStats from './views/TeamStats.vue'
 import MatchStats from './views/MatchStats.vue'
 import Goals from './views/Goals.vue'
+import TheSchosel from './views/TheSchosel.vue'
 import GamblerGoal from './views/GamblerGoal.vue'
 import HustlerGoal from './views/HustlerGoal.vue'
 import ExpertGoal from './views/ExpertGoal.vue'
@@ -96,19 +97,19 @@ const router =  new Router({
       path: '/score',
       name: 'score',
       component: Score,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/extras',
-      name: 'extras',
-      component: Goals,
-      redirect: '/extras/gambler',
+      redirect: '/score/schosel',
       meta: {
         requiresAuth: true
       },
       children: [
+        {
+          name: 'schosel',
+          path: 'schosel',
+          component: TheSchosel,
+          meta: {
+            requiresAuth: true
+          }
+        },
         {
           name: 'gambler',
           path: 'gambler',

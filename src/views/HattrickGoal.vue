@@ -1,10 +1,10 @@
 <template>
-  <div class="hattrick">
+  <div class="balanced">
     <div class="wrapper">
       <div class="hero hero--10">
         <transition name="hero" appear>
           <div>
-            <h1 class="hero__heading">Hattrick</h1>
+            <h1 class="hero__heading">The Balanced</h1>
             <div class="hero__info">Most points from 3+ consecutive correct bets</div>
           </div>
         </transition>

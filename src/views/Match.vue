@@ -70,7 +70,7 @@
       return {
         match: {},
         interval: null,
-        gridColumns: ['avatar', 'player', 'bet', 'superbet', 'score'],
+        gridColumns: ['name', 'bet', 'superbet', 'score'],
         loading: true,
         size: "32px",
         color: "#3EABDC",
@@ -97,7 +97,7 @@
             gridData.push({
               user_id: bet.user.user_id,
               avatar: this.allUsers.find(user => user.user_id === bet.user.user_id).avatar,
-              player: bet.user.name,
+              name: bet.user.name,
               bet: bet.outcome == 1 ? this.match.team1_name : bet.outcome == 2 ? this.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
               superbet: bet.supertip ? (bet.points ? "correct" : "wrong") : "",
               score: bet.points ? bet.points.toFixed(2) : 0

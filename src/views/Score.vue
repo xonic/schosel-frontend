@@ -1,6 +1,36 @@
 <template>
   <div class="score">
-    <div class="wrapper">
+    <clip-loader :loading="loading.matches" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
+    <div v-if='!loading.status' class='wrapper'>
+      <div class="tab-grid">
+         <div class="tabs">
+           <ul class="tab__items wrapper">
+             <li>
+               <router-link :to="{ name: 'schosel' }" class="schosel tab__link tab__link--tight">Schosel</router-link>
+             </li>
+             <li>
+               <router-link :to="{ name: 'gambler' }" class="oldfashioned tab__link tab__link--tight">Oldfashioned</router-link>
+             </li>
+             <li>
+               <router-link :to="{ name: 'hustler' }" class="underdog tab__link tab__link--tight">Underdog</router-link>
+             </li>
+             <li>
+               <router-link :to="{ name: 'expert' }" class="loser tab__link tab__link--tight">Loser</router-link>
+             </li>
+             <li>
+               <router-link :to="{ name: 'hattrick' }" class="balanced tab__link tab__link--tight">Balanced</router-link>
+             </li>
+             <li>
+               <router-link :to="{ name: 'secret' }" class="secret tab__link tab__link--tight">Hidden</router-link>
+             </li>
+           </ul>
+         </div>
+         <div class="tabs-details">
+           <router-view />
+         </div>
+       </div>
+     </div>
+    <!-- <div class="wrapper">
       <div class="hero hero--2">
         <transition name="hero" appear>
           <div>
@@ -26,7 +56,7 @@
           </div>
         </transition>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

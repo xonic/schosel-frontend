@@ -6,7 +6,7 @@
     <header class="header">
       <div class="wrapper header__grid">
         <div class="logo">
-          <router-link :to="{ name: 'home' }">Schosel <span class="logo__tournament">WM 2018</span></router-link>
+          <router-link :to="{ name: 'home' }">Schosel <span class="logo__tournament">EM 2020</span></router-link>
         </div>
         <nav class="nav">
           <ul class="nav__items">
@@ -24,28 +24,22 @@
                 </div> Score
               </router-link>
             </li>
-            <!-- <li class="nav__item" v-if="authenticated">
-              <router-link class="nav__link" to="/extras">
-                <div class="nav__img">
-                  <svg viewBox="0 0 14 16" width="14" height="16" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" fill-rule="evenodd"><circle cx="7" cy="6" r="6"/><path d="M11.724 11.166l1.596 2.763-.043.025-2.685-.759-.694 2.71-.042.024-1.743-3.017a6.977 6.977 0 0 0 3.611-1.746zm-9.657-.2a6.985 6.985 0 0 0 3.526 1.893l-1.773 3.07-.043-.024-.685-2.705-2.694.754-.042-.025 1.71-2.963z"/></g></svg>
-                </div> Extras
-              </router-link>
-            </li> -->
           </ul>
         </nav>
-        <div class="player-info">
-          <!-- <div v-if='loggedInUser' class="player-info__score">
-            <span v-if="loggedInUser && loggedInUser.points">{{ loggedInUser.points.toFixed(2) }}</span>
+        <div v-if="authenticated && loggedInUser" class="player-info">
+          <div v-if='loggedInUser.name' class="player-info__name">
+            {{ loggedInUser.name }}
+          </div>
+          <div v-if='loggedInUser.points' class="player-info__score">
+            <span>{{ loggedInUser.points.toFixed(2) }}</span>
             <span class="player-info__label"> pts</span>
           </div>
-          <div v-if="loggedInUser && loggedInUser.rank" class="player-info__rank">
+          <div v-if="loggedInUser.rank" class="player-info__rank">
             <span class="player-info__label">Rank</span> <span>{{ loggedInUser.rank }}</span>.
-          </div> -->
-          <div v-if="authenticated && loggedInUser" class="user-menu">
-            <popover :items="userMenuItems">
-              <img class="avatar avatar--small" :src="loggedInUser.avatar"/>
-            </popover>
           </div>
+          <popover :items="userMenuItems">
+            <img class="avatar avatar--small" :src="loggedInUser.avatar"/>
+          </popover>
         </div>
       </div>
     </header>

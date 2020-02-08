@@ -1,10 +1,10 @@
 <template>
-  <div class="expert">
+  <div class="loser">
     <div class="wrapper">
       <div class="hero hero--11">
         <transition name="hero" appear>
           <div>
-            <h1 class="hero__heading">Expert</h1>
+            <h1 class="hero__heading">The Loser</h1>
             <div class="hero__info">Most correct bets for one nation</div>
           </div>
         </transition>

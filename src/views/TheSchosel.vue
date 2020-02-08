@@ -1,26 +1,28 @@
 <template>
-  <div class="underdog">
+  <div class="schosel">
     <div class="wrapper">
-      <div class="hero hero--12">
+      <div class="hero hero--2">
         <transition name="hero" appear>
           <div>
-            <h1 class="hero__heading">The Underdog</h1>
-            <div class="hero__info">Most points from superbets</div>
+            <h1 class="hero__heading">The Schosel</h1>
+            <div class="hero__info" v-if='loggedInUser && loggedInUser.points'>{{ loggedInUser.points.toFixed(2) }} pts</div>
           </div>
         </transition>
       </div>
       <clip-loader :loading="loading.users" :color="loading.color" :size="loading.size"></clip-loader>
-      <div v-if="!loading.users">
-        <transition name="content" appear>
-          <div class="island">
-            <grid
-              :data="gridData"
-              :columns="gridColumns"
-              :hasLinks="true"
-              :linkToComponent="'user'"
-              :idKey="'user_id'"
-              v-if="allUsers.length">
-            </grid>
+        <div v-if="!loading.users">
+          <transition name="content" appear>
+            <div>
+            <div class="island" v-if="allUsers && allUsers.length">
+              <grid
+                :data="gridData"
+                :columns="gridColumns"
+                :hasLinks="true"
+                :linkToComponent="'user'"
+                :idKey="'user_id'">
+              </grid>
+            </div>
+            <h2 v-else class="blankslate">There is no score ranking yet</h2>
           </div>
         </transition>
       </div>
@@ -35,7 +37,7 @@ import Grid from '@/components/Grid.vue'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'hustler',
+  name: 'gambler',
   components: {
     Grid,
     ClipLoader
@@ -55,11 +57,10 @@ export default {
 
           gridData.push({
             user_id: user.user_id,
-            rank: user.achievements.hustler.rank,
+            rank: user.achievements.gambler.rank,
             avatar: user.avatar,
             name: user.name,
-            score: user.achievements.hustler.score.toFixed(2),
-            times_correct: user.achievements.hustler.times_correct
+            score: user.achievements.gambler.score.toFixed(2)
           })
         })
       }
@@ -68,9 +69,9 @@ export default {
       });
     }
   },
-  data: function () {
+  data () {
     return {
-      gridColumns: ['rank', 'name', 'times_correct', 'score'],
+      gridColumns: ['rank', 'name', 'score']
     }
   }
 }

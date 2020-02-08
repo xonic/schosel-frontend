@@ -23,7 +23,7 @@
 }
 
 .tab__link {
-  display: block;
+  display: inline-block;
   margin: $space-25 0;
   padding: 0 $space-50;
   height: $space-100;
@@ -32,24 +32,25 @@
   color: $white;
 
   &.router-link-active {
+    background: rgba(0,0,0,.5);
     // background: rgba($white, .8);
     // color: $blue-30;
   }
 
   @media (min-width: 768px) {
     margin: 0 0 $space-75;
-    padding: 0;
+    // padding: 0;
     // color: $blue-100;
 
     &.router-link-active {
-      background: transparent;
+      background: rgba(0,0,0,.5);
       // color: $black;
     }
   }
 }
 
 .tab__link--tight {
-  padding: 0 $space-25;
+  // padding: 0 $space-25;
 }
 
 .tab__link-meta {

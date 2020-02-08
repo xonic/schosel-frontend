@@ -56,6 +56,7 @@ export default {
           gridData.push({
             user_id: user.user_id,
             rank: user.achievements.hattrick.rank,
+            avatar: user.avatar,
             name: user.name,
             score: user.achievements.hattrick.score.toFixed(2)
           })

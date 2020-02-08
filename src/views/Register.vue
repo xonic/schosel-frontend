@@ -1,5 +1,5 @@
 <template>
-  <div id="register">
+  <div id="register" class="external-pages">
     <h1>Register</h1>
     <div class="register-form">
       <form @submit.prevent="onSubmit">

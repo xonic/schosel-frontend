@@ -24,43 +24,27 @@
                 </div> Score
               </router-link>
             </li>
-            <li class="nav__item" v-if="loggedInUser && loggedInUser.achievements">
+            <!-- <li class="nav__item" v-if="authenticated">
               <router-link class="nav__link" to="/extras">
                 <div class="nav__img">
                   <svg viewBox="0 0 14 16" width="14" height="16" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" fill-rule="evenodd"><circle cx="7" cy="6" r="6"/><path d="M11.724 11.166l1.596 2.763-.043.025-2.685-.759-.694 2.71-.042.024-1.743-3.017a6.977 6.977 0 0 0 3.611-1.746zm-9.657-.2a6.985 6.985 0 0 0 3.526 1.893l-1.773 3.07-.043-.024-.685-2.705-2.694.754-.042-.025 1.71-2.963z"/></g></svg>
                 </div> Extras
               </router-link>
-            </li>
-            <li class="nav__item">
-              <router-link class="nav__link" v-if="authenticated" :to="{ name: 'rules' }">
-                <div class="nav__img">
-                  <svg viewBox="0 0 24 24" width="24" height="21" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" fill-rule="nonzero"><path d="M23.782 14.617a.817.817 0 0 0-.819-.817h-3.38L19.5 3.19a3 3 0 0 0-3-2.973H3.217a3 3 0 0 0-3 3V16.61a3.9 3.9 0 0 0 3.9 3.927h15.9a3.9 3.9 0 0 0 3.765-3.927v-1.992zM4.117 18.9a2.265 2.265 0 0 1-2.263-2.265V3.219c0-.753.612-1.364 1.365-1.363h13.254c.753 0 1.364.611 1.364 1.364l.08 10.608H7.228a.817.817 0 0 0-.817.82v1.99A2.265 2.265 0 0 1 4.117 18.9zm18.029-2.265a2.265 2.265 0 0 1-2.265 2.265H7.311a3.86 3.86 0 0 0 .735-2.265v-1.2h14.1v1.2z"/><path d="M4.037 3.79h6.409v1.637h-6.41V3.791zm0 3.274H15.9V8.7H4.036V7.064zm0 3.272H15.9v1.637H4.036v-1.637z"/></g></svg>
-                </div> Rules
-              </router-link>
-            </li>
-            <li class="nav__item">
-              <router-link class="nav__link" v-if="authenticated" :to="{ name: 'profile' }">
-                <div class="nav__img">
-                  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12zm0-11.078a4.616 4.616 0 1 0 .166-9.229 4.616 4.616 0 0 0-.166 9.23zm-8.685 4.343A10.147 10.147 0 0 0 12 22.155a10.147 10.147 0 0 0 8.685-4.89.459.459 0 0 0-.098-.228c-1.138-1.423-2.94-2.268-5.356-2.268H8.769c-2.417 0-4.218.845-5.355 2.268a.459.459 0 0 0-.099.228z" fill="#fff" fill-rule="evenodd"/></svg>
-                </div>&nbsp;Profile
-              </router-link>
-            </li>
-            <li class="nav__item">
-              <router-link class="nav__link" v-if="authenticated" :to="{ name: 'logout' }">
-                <div class="nav__img">
-                  <svg viewBox="0 0 24 24" width="24" height="21" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" fill-rule="nonzero"><path d="M13.07 18.365H2.74V2.505h10.33v5.738h2.504V0H.234v20.87h15.34v-8.244H13.07z"/><path d="M18.991 11.687l-1.826 1.826 1.774 1.774 3.965-3.965.861-.887-.86-.887-3.966-3.965-1.774 1.774 1.826 1.826h-8.426v2.504z"/></g></svg>
-                </div> Logout
-              </router-link>
-            </li>
+            </li> -->
           </ul>
         </nav>
         <div class="player-info">
-          <div v-if='loggedInUser' class="player-info__score">
+          <!-- <div v-if='loggedInUser' class="player-info__score">
             <span v-if="loggedInUser && loggedInUser.points">{{ loggedInUser.points.toFixed(2) }}</span>
             <span class="player-info__label"> pts</span>
           </div>
           <div v-if="loggedInUser && loggedInUser.rank" class="player-info__rank">
             <span class="player-info__label">Rank</span> <span>{{ loggedInUser.rank }}</span>.
+          </div> -->
+          <div v-if="authenticated && loggedInUser" class="user-menu">
+            <popover :items="userMenuItems">
+              <img class="avatar avatar--small" :src="loggedInUser.avatar"/>
+            </popover>
           </div>
         </div>
       </div>
@@ -72,11 +56,29 @@
 <script>
   import { mapGetters } from 'vuex'
   import { HTTP } from './http-constants'
+  import Popover from '@/components/Popover.vue'
 
   export default {
+    components: {
+      Popover
+    },
     data () {
       return {
-        showMorePopover: false
+        showMorePopover: false,
+        userMenuItems: [
+          {
+            name: 'Profile',
+            route: 'profile'
+          },
+          {
+            name: 'Rules',
+            route: 'rules'
+          },
+          {
+            name: 'Logout',
+            route: 'logout'
+          }
+        ]
       }
     },
     created () {

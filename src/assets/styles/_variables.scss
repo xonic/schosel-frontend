@@ -36,11 +36,13 @@
     $yellow-80:    #AA7200;
     $yellow-100:   #D48E00;
 
+    $body-bg: hsl(95, 5%, 15%);
+
 
 //  = TYPOGRAPHY
 //  ---------------------------------------------------------------------------
 
-    $base-font: 'PT Sans Narrow', sans-serif;
+    $base-font: 'unitext', sans-serif; // unitext, snicker, arboria
     $base-font-size: 2rem;
     $base-font-weight: 400;
     $bold-font-weight: 700;

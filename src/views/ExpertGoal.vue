@@ -56,6 +56,7 @@ export default {
           gridData.push({
             user_id: user.user_id,
             rank: user.achievements.expert.rank,
+            avatar: user.avatar,
             name: user.name,
             team_name: user.achievements.expert.team.name,
             score: user.achievements.expert.score.toFixed(2)

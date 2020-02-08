@@ -186,6 +186,10 @@ export default new Vuex.Store({
         extras.length ? status.user.extras = extras.join(", ") : status.user.extras = "-"
       }
 
+      if(status.user) {
+        status.user['avatar'] = state.avatarUrl + status.user.name
+      }
+
       state.status = status
       state.loadInfo.status = false
     },
@@ -481,6 +485,7 @@ export default new Vuex.Store({
           return e.user_id;
         }).indexOf(state.status.user.user_id) + 1;
       }
+
       return state.status.user
     },
     ownBets: state => {

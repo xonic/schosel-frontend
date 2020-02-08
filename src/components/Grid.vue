@@ -17,8 +17,9 @@
        <td v-for="key in columns"
          :key="key.id">
          <router-link :to="{ name: linkToComponent, params: { id: entry[idKey] } }" v-if="hasLinks">
-           <div v-if="key === 'avatar'">
-             <img class="avatar avatar--small" :src="entry[key]" />
+           <div v-if="key === 'name'">
+             <img class="avatar avatar--small" :src="entry['avatar']" />
+             <span class="name" style="margin-left:16px;">{{ entry[key] }}</span>
            </div>
            <div v-else>
              <div v-if="key === 'superbet' && entry[key] === 'correct'">

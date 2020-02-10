@@ -67,6 +67,7 @@
 .tab__items {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 
   @media (min-width: 768px) {
     display: block;

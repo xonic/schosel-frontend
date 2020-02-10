@@ -7,7 +7,7 @@ $gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5));
   text-shadow: 0 1px 1px rgba(0,0,0,.3);
   color: $white;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     padding: $space-100 * 2 0;
     text-align: left;
 
@@ -20,9 +20,10 @@ $gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5));
 .hero__heading {
   font-size: 4.7rem;
   font-weight: $bold-font-weight;
+  font-family: 'snicker';
 }
 
 .hero__info {
-  font-size: 1.5rem;
-  text-transform: uppercase;
+  font-size: 1.6rem;
+  // text-transform: uppercase;
 }

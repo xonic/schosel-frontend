@@ -2,7 +2,9 @@
   <li>
     <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: match_id, odds: odds } }" class="list__link">
       <div class="match-item match-item--played" v-if="status === 'over'">
-        <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
+        <div class="match-item__teams">
+          <img class="flag flag--small" :src="team1_flag_src">{{ team1_name }} —
+            <img class="flag flag--small" :src="team2_flag_src">{{ team2_name }}</div>
         <div class="match-item__goals">
           <span v-if="team1_goals">{{ team1_goals }}</span><span v-else>0</span>&nbsp;:&nbsp;<span v-if="team2_goals">{{ team2_goals }}</span><span v-else>0</span>
         </div>
@@ -36,7 +38,9 @@
       <div class="match-item match-item--live" v-if="status === 'live'">
         <div class="match-item__time">{{ matchDate }} h</div>
         <!-- <div class="match-item__time-played">{{ minutesPlayed }} minutes played</div> -->
-        <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
+        <div class="match-item__teams">
+          <img class="flag flag--small" :src="team1_flag_src">{{ team1_name }} —
+            <img class="flag flag--small" :src="team2_flag_src">{{ team2_name }}</div>
         <div class="match-item__goals">
           <span v-if="team1_goals">{{ team1_goals }}</span><span v-else>0</span>&nbsp;:&nbsp;<span v-if="team2_goals">{{ team2_goals }}</span><span v-else>0</span>
         </div>
@@ -63,7 +67,10 @@
       <div class="match__group-time"><!-- TODO: Group A - -->{{ matchTime }}</div>
       <div class="match-item--upcoming">
         <input :id="match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label match__label--radio" :for="match_id + '-home'">{{ team1_name }}</label>
+        <label class="match__label match__label--radio" :for="match_id + '-home'">
+          <img class="flag flag--small" :src="team1_flag_src">
+          {{ team1_name }}
+        </label>
 
 
         <input class="match__input" type="radio" :id="match_id + '-draw'" value="X" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
@@ -71,7 +78,10 @@
 
 
         <input class="match__input" type="radio" :id="match_id + '-away'" value="2" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label match__label--radio" :for="match_id + '-away'">{{ team2_name }}</label>
+        <label class="match__label match__label--radio" :for="match_id + '-away'">
+          <img class="flag flag--small" :src="team2_flag_src">
+          {{ team2_name }}
+        </label>
 
 
         <input class="match__input" type="checkbox" :id="match_id + '-supertip'" v-model="ownBet.supertip" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
@@ -123,6 +133,12 @@ export default {
     },
     minutesPlayed: function() {
       return Math.round((((new Date() - new Date(this.date)) % 86400000) % 3600000) / 60000)
+    },
+    team1_flag_src () {
+      return "https://media.api-sports.io/flags/" + this.team1_iso.substr(0, 2) + ".svg"
+    },
+    team2_flag_src () {
+      return "https://media.api-sports.io/flags/" + this.team2_iso.substr(0, 2) + ".svg"
     }
   },
   methods: {

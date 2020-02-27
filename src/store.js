@@ -171,11 +171,13 @@ export default new Vuex.Store({
     },
     SET_STATUS: (state, { status }) => {
 
+      // console.log(status.user)
 
       // Check if logged in user is leading any goals
       if(status.user && status.user.achievements) {
         // status.user.achievements.secret = {rank: 2} MOCK DATA
         var extras = []
+
 
         if(status.user.achievements.gambler.rank === 1) extras.push("Gambler")
         if(status.user.achievements.hustler.rank === 1) extras.push("Hustler")

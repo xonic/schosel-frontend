@@ -24,6 +24,7 @@ import SecretGoal from './views/SecretGoal.vue'
 import Rules from './views/Rules.vue'
 import Profile from './views/Profile.vue'
 import Logout from './views/Logout.vue'
+import Home from './views/Home.vue'
 import store from './store'
 
 Vue.use(Router)
@@ -44,8 +45,16 @@ const router =  new Router({
     },
     {
       path: '/',
-      name: 'home',
+      name: 'temp',
       redirect: '/matches',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home,
       meta: {
         requiresAuth: true
       }

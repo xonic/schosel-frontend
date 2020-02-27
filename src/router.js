@@ -1,30 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Match from './views/Match.vue'
-import User from './views/User.vue'
-import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-import Matches from './views/Matches.vue'
-import PlayedMatches from './views/PlayedMatches.vue'
-import LiveMatches from './views/LiveMatches.vue'
-import UpcomingMatches from './views/UpcomingMatches.vue'
-import Score from './views/Score.vue'
-// import Teams from './views/Teams.vue'
-import Stats from './views/Stats.vue'
-import PlayerStats from './views/PlayerStats.vue'
-import TeamStats from './views/TeamStats.vue'
-import MatchStats from './views/MatchStats.vue'
-import Goals from './views/Goals.vue'
-import TheSchosel from './views/TheSchosel.vue'
-import GamblerGoal from './views/GamblerGoal.vue'
-import HustlerGoal from './views/HustlerGoal.vue'
-import ExpertGoal from './views/ExpertGoal.vue'
-import HattrickGoal from './views/HattrickGoal.vue'
-import SecretGoal from './views/SecretGoal.vue'
-import Rules from './views/Rules.vue'
-import Profile from './views/Profile.vue'
+import Login from './views/Login.vue'
+import ResetPassword from './views/ResetPassword.vue'
 import Logout from './views/Logout.vue'
+import Rules from './views/Rules.vue'
 import Home from './views/Home.vue'
+import Bets from './views/Bets.vue'
+import Results from './views/Results.vue'
+import Result from './views/Result.vue'
+import Scores from './views/Scores.vue'
+import User from './views/User.vue'
+import Profile from './views/Profile.vue'
 import store from './store'
 
 Vue.use(Router)
@@ -45,14 +32,6 @@ const router =  new Router({
     },
     {
       path: '/',
-      name: 'temp',
-      redirect: '/matches',
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/home',
       name: 'home',
       component: Home,
       meta: {
@@ -60,106 +39,28 @@ const router =  new Router({
       }
     },
     {
-      path: '/stats',
-      name: 'stats',
-      component: Stats,
+      path: '/bets',
+      name: 'bets',
+      component: Bets,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/matches',
-      name: 'matches',
-      component: Matches,
-      redirect: '/matches/live',
+      path: '/results',
+      name: 'results',
+      component: Results,
       meta: {
         requiresAuth: true
-      },
-      children: [
-        {
-          name: 'played',
-          path: 'played',
-          component: PlayedMatches,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'live',
-          path: 'live',
-          component: LiveMatches,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'upcoming',
-          path: 'upcoming',
-          component: UpcomingMatches,
-          meta: {
-            requiresAuth: true
-          }
-        }
-      ]
+      }
     },
     {
-      path: '/score',
-      name: 'score',
-      component: Score,
-      redirect: '/score/schosel',
+      path: '/scores',
+      name: 'scores',
+      component: Scores,
       meta: {
         requiresAuth: true
-      },
-      children: [
-        {
-          name: 'schosel',
-          path: 'schosel',
-          component: TheSchosel,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'gambler',
-          path: 'gambler',
-          component: GamblerGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'hustler',
-          path: 'hustler',
-          component: HustlerGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'hattrick',
-          path: 'hattrick',
-          component: HattrickGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'secret',
-          path: 'secret',
-          component: SecretGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'expert',
-          path: 'expert',
-          component: ExpertGoal,
-          meta: {
-            requiresAuth: true
-          }
-        }
-      ]
+      }
     },
     {
       path: '/rules',
@@ -178,9 +79,9 @@ const router =  new Router({
       }
     },
     {
-      path: '/matches/:id',
-      name: 'match',
-      component: Match,
+      path: '/results/:id',
+      name: 'result',
+      component: Result,
       props: true,
       meta: {
         requiresAuth: true

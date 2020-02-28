@@ -6,22 +6,19 @@
          <div class="tabs">
            <ul class="tab__items wrapper">
              <li>
-               <router-link :to="{ name: 'schosel' }" class="schosel tab__link tab__link--tight">Schosel</router-link>
+               <router-link :to="{ name: 'kingsgame' }" class="schosel tab__link tab__link--tight">King's Game</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'gambler' }" class="oldfashioned tab__link tab__link--tight">Oldfashioned</router-link>
+               <router-link :to="{ name: 'oldfashioned' }" class="oldfashioned tab__link tab__link--tight">Oldfashioned</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'hustler' }" class="underdog tab__link tab__link--tight">Underdog</router-link>
+               <router-link :to="{ name: 'underdog' }" class="underdog tab__link tab__link--tight">Underdog</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'expert' }" class="loser tab__link tab__link--tight">Loser</router-link>
+               <router-link :to="{ name: 'balanced' }" class="balanced tab__link tab__link--tight">Balanced</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'hattrick' }" class="balanced tab__link tab__link--tight">Balanced</router-link>
-             </li>
-             <li>
-               <router-link :to="{ name: 'secret' }" class="secret tab__link tab__link--tight">Hidden</router-link>
+               <router-link :to="{ name: 'hidden' }" class="secret tab__link tab__link--tight">Hidden</router-link>
              </li>
            </ul>
          </div>

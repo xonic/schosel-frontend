@@ -59,6 +59,7 @@
     },
     data () {
       return {
+        showMorePopover: false,
         userMenuItems: [
           {
             name: 'Profile',

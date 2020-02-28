@@ -10,6 +10,11 @@ import Bets from './views/Bets.vue'
 import Results from './views/Results.vue'
 import Result from './views/Result.vue'
 import Scores from './views/Scores.vue'
+import KingsGame from './views/ScoreKingsGame.vue'
+import Oldfashioned from './views/ScoreOldfashioned.vue'
+import Underdog from './views/ScoreUnderdog.vue'
+import Balanced from './views/ScoreBalanced.vue'
+import Hidden from './views/ScoreHidden.vue'
 import User from './views/User.vue'
 import Profile from './views/Profile.vue'
 import store from './store'
@@ -60,7 +65,49 @@ const router =  new Router({
       component: Scores,
       meta: {
         requiresAuth: true
-      }
+      },
+      children: [
+        {
+          path: '/scores/kings-game',
+          name: 'kingsgame',
+          component: KingsGame,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/scores/oldfashioned',
+          name: 'oldfashioned',
+          component: Oldfashioned,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/scores/underdog',
+          name: 'underdog',
+          component: Underdog,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/scores/balanced',
+          name: 'balanced',
+          component: Balanced,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/scores/hidden',
+          name: 'hidden',
+          component: Hidden,
+          meta: {
+            requiresAuth: true
+          }
+        },
+      ]
     },
     {
       path: '/rules',

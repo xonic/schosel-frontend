@@ -1,8 +1,21 @@
 <template>
   <div class="home">
-    <ul v-if="liveMatches.length">
+    <ul v-if="liveMatches.length || playedMatches.length">
       <li v-for="match in liveMatches">
-        {{ match.team1_name }} {{ match.team1_goals }} : {{ match.team2_goals }} {{ match.team2_name }}
+        LIVE<br>
+        {{ match.date }}<br>
+        {{ match.team1_name }} {{ match.team1_goals }} : {{ match.team2_goals }} {{ match.team2_name }}<br>
+        1: {{ Math.round( (match.odds['1'] + Number.EPSILON) * 100) / 100 }} &middot;
+        X: {{ Math.round( (match.odds['X'] + Number.EPSILON) * 100) / 100 }} &middot;
+        2: {{ Math.round( (match.odds['2'] + Number.EPSILON) * 100) / 100 }}<br>
+        {{ match.superbet ? 'Superbet!' : null }}
+      </li>
+      <li v-for="match in recentlyPlayed">
+        {{ match.date }}<br>
+        {{ match.team1_name }} {{ match.team1_goals }} : {{ match.team2_goals }} {{ match.team2_name }}<br>
+        1: {{ Math.round( (match.odds['1'] + Number.EPSILON) * 100) / 100 }} &middot;
+        X: {{ Math.round( (match.odds['X'] + Number.EPSILON) * 100) / 100 }} &middot;
+        2: {{ Math.round( (match.odds['2'] + Number.EPSILON) * 100) / 100 }}
       </li>
     </ul>
     <div v-else-if="playedMatches.length">
@@ -57,6 +70,15 @@ export default {
 
       return achievements
     },
+    recentlyPlayed () {
+      // Sort played matches most recent first
+      let recentFirst = this.playedMatches.sort((a,b) => { return a.date < b.date })
+
+      // Depending on the current number of live matches, return 0 - 3 played matches
+      let mostRecent = recentFirst.splice(0, 3 - this.liveMatches.length)
+
+      return mostRecent
+    }
   },
   components: {
     ClipLoader

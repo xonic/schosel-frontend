@@ -201,12 +201,13 @@ export default new Vuex.Store({
       for(var i=0; i<10; i++) {
         matches[i].status = "scheduled"
       }
-      for(var i=11; i<= 12; i++) {
+      for(var i=11; i<= 11; i++) {
         matches[i].status = "live"
-        matches[i].odds = new Array();
+        matches[i].odds = {};
         matches[i].odds["1"] = 1.53403
         matches[i].odds["X"] = 4.28292
         matches[i].odds["2"] = 9.10101
+        matches[i].superbet = true
         var d = new Date();
         matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
       }

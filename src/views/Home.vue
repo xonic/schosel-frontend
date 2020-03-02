@@ -2,26 +2,32 @@
   <div class="home">
     <ul v-if="liveMatches.length || playedMatches.length">
       <li v-for="match in liveMatches">
-        LIVE<br>
-        {{ match.date }}<br>
-        {{ match.team1_name }} {{ match.team1_goals }} : {{ match.team2_goals }} {{ match.team2_name }}<br>
-        1: {{ Math.round( (match.odds['1'] + Number.EPSILON) * 100) / 100 }} &middot;
-        X: {{ Math.round( (match.odds['X'] + Number.EPSILON) * 100) / 100 }} &middot;
-        2: {{ Math.round( (match.odds['2'] + Number.EPSILON) * 100) / 100 }}<br>
-        {{ match.superbet ? 'Superbet!' : null }}
+        <result-preview
+          v-bind:date="match.date"
+          v-bind:status="match.status"
+          v-bind:team1_name="match.team1_name"
+          v-bind:team1_goals="match.team2_goals"
+          v-bind:team2_name="match.team2_name"
+          v-bind:team2_goals="match.team2_goals"
+          v-bind:odds_1="match.odds['1']"
+          v-bind:odds_X="match.odds['X']"
+          v-bind:odds_2="match.odds['2']"
+        ></result-preview>
       </li>
       <li v-for="match in recentlyPlayed">
-        {{ match.date }}<br>
-        {{ match.team1_name }} {{ match.team1_goals }} : {{ match.team2_goals }} {{ match.team2_name }}<br>
-        1: {{ Math.round( (match.odds['1'] + Number.EPSILON) * 100) / 100 }} &middot;
-        X: {{ Math.round( (match.odds['X'] + Number.EPSILON) * 100) / 100 }} &middot;
-        2: {{ Math.round( (match.odds['2'] + Number.EPSILON) * 100) / 100 }}
+        <result-preview
+          v-bind:date="new Date(match.date)"
+          v-bind:status="match.status"
+          v-bind:team1_name="match.team1_name"
+          v-bind:team1_goals="match.team2_goals"
+          v-bind:team2_name="match.team2_name"
+          v-bind:team2_goals="match.team2_goals"
+          v-bind:odds_1="match.odds['1']"
+          v-bind:odds_X="match.odds['X']"
+          v-bind:odds_2="match.odds['2']"
+        ></result-preview>
       </li>
     </ul>
-    <div v-else-if="playedMatches.length">
-
-      played match
-    </div>
     <div class="scores">
       <ul v-if="getRanks" style="display: flex;">
         <li v-for="rank in getRanks">
@@ -46,6 +52,7 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
+import ResultPreview from '@/components/ResultPreview.vue'
 
 export default {
   name: 'home',
@@ -81,7 +88,8 @@ export default {
     }
   },
   components: {
-    ClipLoader
+    ClipLoader,
+    ResultPreview
   },
 }
 </script>

@@ -2,30 +2,10 @@
   <div class="home">
     <ul v-if="liveMatches.length || playedMatches.length">
       <li v-for="match in liveMatches">
-        <result-preview
-          v-bind:date="match.date"
-          v-bind:status="match.status"
-          v-bind:team1_name="match.team1_name"
-          v-bind:team1_goals="match.team2_goals"
-          v-bind:team2_name="match.team2_name"
-          v-bind:team2_goals="match.team2_goals"
-          v-bind:odds_1="match.odds['1']"
-          v-bind:odds_X="match.odds['X']"
-          v-bind:odds_2="match.odds['2']"
-        ></result-preview>
+        <result-preview :match="match"></result-preview>
       </li>
       <li v-for="match in recentlyPlayed">
-        <result-preview
-          v-bind:date="new Date(match.date)"
-          v-bind:status="match.status"
-          v-bind:team1_name="match.team1_name"
-          v-bind:team1_goals="match.team2_goals"
-          v-bind:team2_name="match.team2_name"
-          v-bind:team2_goals="match.team2_goals"
-          v-bind:odds_1="match.odds['1']"
-          v-bind:odds_X="match.odds['X']"
-          v-bind:odds_2="match.odds['2']"
-        ></result-preview>
+        <result-preview :match="match"></result-preview>
       </li>
     </ul>
     <div class="scores">

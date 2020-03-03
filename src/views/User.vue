@@ -67,7 +67,7 @@
                 :data="gridData"
                 :columns="gridColumns"
                 :hasLinks="true"
-                :linkToComponent="'match'"
+                :linkToComponent="'result'"
                 :idKey="'match_id'">
               </grid>
             </div>

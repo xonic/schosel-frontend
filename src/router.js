@@ -57,6 +57,15 @@ const router =  new Router({
       component: Results,
       meta: {
         requiresAuth: true
+      },
+    },
+    {
+      path: '/result/:id',
+      name: 'result',
+      component: Result,
+      props: true,
+      meta: {
+        requiresAuth: true
       }
     },
     {
@@ -126,16 +135,7 @@ const router =  new Router({
       }
     },
     {
-      path: '/results/:id',
-      name: 'result',
-      component: Result,
-      props: true,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/users/:id',
+      path: '/user/:id',
       name: 'user',
       component: User,
       props: true,

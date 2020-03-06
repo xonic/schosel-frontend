@@ -79,14 +79,8 @@
               </div>
             </div>
 
-            <div class="list__items" v-if="gridData.length">
-              <grid
-                :data="gridData"
-                :columns="gridColumns"
-                :hasLinks="true"
-                :linkToComponent="'result'"
-                :idKey="'match_id'">
-              </grid>
+            <div class="list__items" v-if="bets.length">
+              <bet-grid :data="bets" />
             </div>
             <h2 v-else class="blankslate">There are no bets yet</h2>
           </div>
@@ -98,7 +92,7 @@
 
 <script>
 // @ is an alias to /src
-import Grid from '@/components/Grid.vue'
+import BetGrid from '@/components/BetGrid.vue'
 import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
@@ -109,11 +103,10 @@ import Avatar from '@/components/Avatar.vue'
 export default {
   name: 'user',
   components: {
-    Grid,
+    BetGrid,
     ClipLoader,
     RadarChart,
     Avatar,
-    // RankProgressBar
   },
   data () {
     return {
@@ -121,7 +114,6 @@ export default {
       userWithAchievements: {},
       // switchLayout: true,
       interval: null,
-      gridColumns: ['match', 'bet', 'outcome', 'superbet', 'score'],
       loading: true,
       size: "32px",
       color: "#3EABDC",
@@ -169,27 +161,20 @@ export default {
         ]
       }
     },
-    gridData () {
-
-      var gridData = []
-
-      this.user.bets.forEach((bet, i) => {
-        gridData.push({
-          match_id: bet.match.match_id,
+    remainingSuperbets () {
+      return 8 - this.user.visible_supertips
+    },
+    bets () {
+      return this.user.bets.map(bet => {
+        return {
+          id: bet.match.match_id,
           match: bet.match.team1_name + " vs. " + bet.match.team2_name,
           bet: bet.outcome == 1 ? bet.match.team1_name : bet.outcome == 2 ? bet.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
           outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
-          superbet: bet.supertip ? (bet.points ? "correct" : "wrong") : "",
+          superbet: bet.supertip,
           score: bet.points ? bet.points.toFixed(2) : 0
-        })
+        }
       })
-
-      return gridData.sort((a, b) => {
-        return b.match_id - a.match_id
-      })
-    },
-    remainingSuperbets () {
-      return 8 - this.user.visible_supertips
     }
   },
   methods: {

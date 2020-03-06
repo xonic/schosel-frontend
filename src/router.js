@@ -9,12 +9,11 @@ import Home from './views/Home.vue'
 import Bets from './views/Bets.vue'
 import Results from './views/Results.vue'
 import Result from './views/Result.vue'
-import Scores from './views/Scores.vue'
-import KingsGame from './views/ScoreKingsGame.vue'
-import Oldfashioned from './views/ScoreOldfashioned.vue'
-import Underdog from './views/ScoreUnderdog.vue'
-import Balanced from './views/ScoreBalanced.vue'
-import Hidden from './views/ScoreHidden.vue'
+import KingsGame from './views/RankKingsGame.vue'
+import Oldfashioned from './views/RankOldfashioned.vue'
+import Underdog from './views/RankUnderdog.vue'
+import Balanced from './views/RankBalanced.vue'
+import Hidden from './views/RankHidden.vue'
 import User from './views/User.vue'
 import Profile from './views/Profile.vue'
 import store from './store'
@@ -111,14 +110,6 @@ const router =  new Router({
         requiresAuth: true
       }
     },
-    // {
-    //   path: '/scores',
-    //   name: 'scores',
-    //   component: Scores,
-    //   meta: {
-    //     requiresAuth: true
-    //   },
-    // },
     {
       path: '/rules',
       name: 'rules',

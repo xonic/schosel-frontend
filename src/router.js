@@ -41,7 +41,49 @@ const router =  new Router({
       component: Home,
       meta: {
         requiresAuth: true
-      }
+      },
+      children: [
+        {
+          path: '/kings-game',
+          name: 'kingsgame',
+          component: KingsGame,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/oldfashioned',
+          name: 'oldfashioned',
+          component: Oldfashioned,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/underdog',
+          name: 'underdog',
+          component: Underdog,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/balanced',
+          name: 'balanced',
+          component: Balanced,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/hidden',
+          name: 'hidden',
+          component: Hidden,
+          meta: {
+            requiresAuth: true
+          }
+        },
+      ]
     },
     {
       path: '/bets',
@@ -68,56 +110,14 @@ const router =  new Router({
         requiresAuth: true
       }
     },
-    {
-      path: '/scores',
-      name: 'scores',
-      component: Scores,
-      meta: {
-        requiresAuth: true
-      },
-      children: [
-        {
-          path: '/scores/kings-game',
-          name: 'kingsgame',
-          component: KingsGame,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/scores/oldfashioned',
-          name: 'oldfashioned',
-          component: Oldfashioned,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/scores/underdog',
-          name: 'underdog',
-          component: Underdog,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/scores/balanced',
-          name: 'balanced',
-          component: Balanced,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/scores/hidden',
-          name: 'hidden',
-          component: Hidden,
-          meta: {
-            requiresAuth: true
-          }
-        },
-      ]
-    },
+    // {
+    //   path: '/scores',
+    //   name: 'scores',
+    //   component: Scores,
+    //   meta: {
+    //     requiresAuth: true
+    //   },
+    // },
     {
       path: '/rules',
       name: 'rules',

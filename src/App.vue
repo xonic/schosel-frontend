@@ -27,11 +27,11 @@
                 Results
               </router-link>
             </li>
-            <li class="nav__item">
+            <!-- <li class="nav__item">
               <router-link class="nav__link" :to="{ name: 'scores' }">
                 Scores
               </router-link>
-            </li>
+            </li> -->
           </ul>
         </nav>
         <div v-if="loggedInUser" class="player-info">

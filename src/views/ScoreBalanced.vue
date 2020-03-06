@@ -1,27 +1,39 @@
 <template>
   <div class="score">
     <h1>Balanced</h1>
-    <ol>
-      <li v-for="user in mockUsers">
-        {{ user.name }}
-      </li>
-    </ol>
+    <rank-grid :data="rankedUsers" />
   </div>
 </template>
 
 <script>
-  import json from '@/data/Rank.json'
+  import { mapGetters } from 'vuex'
+  import RankGrid from '@/components/RankGrid'
 
   export default {
-    name: 'balanced',
+    name: 'kings-game',
     data () {
       return {
-        mockUsers: []
+
       }
     },
-    mounted () {
-      this.mockUsers = json
-      this.mockUsers.sort((a, b) => a.ranking[3].rank > b.ranking[3].rank)
-    }
+    components: {
+      RankGrid
+    },
+    computed: {
+      ...mapGetters([
+        'allUsers'
+      ]),
+      rankedUsers() {
+        return this.allUsers.map(user => {
+          return {
+            id: user.user_id,
+            name: user.name,
+            rank: user.achievements.hustler.rank,
+            score: user.achievements.hustler.score,
+            avatar: user.avatar
+          }
+        })
+      }
+    },
   }
 </script>

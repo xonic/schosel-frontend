@@ -57,6 +57,7 @@
     computed: {
       sortedData() {
         return this.data.sort((a, b) => {
+          // Check what key to sort by
           switch(this.sortKey) {
             case 'rank':
               if(this.sortDirection === 'asc') {

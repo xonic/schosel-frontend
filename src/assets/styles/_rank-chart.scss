@@ -1,0 +1,66 @@
+
+.rank-chart {
+  display: flex;
+}
+
+.rank-chart__item {
+  // transform: rotateZ(90deg);
+}
+
+.rank-chart__title {
+  margin-left: $space-75;
+  line-height: $space-75;
+  transform: rotateZ(-150deg);
+  writing-mode: vertical-lr;
+}
+
+.rank-chart__img {
+  width: $space-75;
+}
+
+.ranking {
+  display: flex;
+}
+
+.ranking__item {
+  display: flex;
+
+  & + .ranking__item {
+    margin-left: 2vw;
+  }
+}
+
+.ranking__title {
+  writing-mode: vertical-lr;
+  transform: rotateZ(-180deg);
+}
+
+.ranking__progress-bar {
+  max-width: $space-75;
+}
+
+@media (min-width: 800px) {
+
+  .ranking,
+  .ranking__item {
+    display: block;
+  }
+
+  .ranking__item + .ranking__item {
+    margin-left: 0;
+  }
+
+  .ranking__title {
+    writing-mode: unset;
+    transform: rotateZ(0);
+  }
+
+  .ranking__progress-bar {
+    max-width: none;
+
+    svg {
+      max-height: $space-50;
+      transform: rotateZ(180deg);
+    }
+  }
+}

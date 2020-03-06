@@ -99,5 +99,5 @@
 </script>
 
 <style lang="scss">
-  // @import 'src/assets/styles/base';
+  @import 'src/assets/styles/base';
 </style>

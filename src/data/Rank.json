@@ -1,0 +1,2177 @@
+[
+  {
+    "name": "Melissa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 54
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 33
+      },
+      {
+        "name": "Underdog",
+        "rank": 4
+      },
+      {
+        "name": "Balanced",
+        "rank": 12
+      },
+      {
+        "name": "Hidden",
+        "rank": 1
+      }
+    ]
+  },
+  {
+    "name": "Aurora",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 74
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 37
+      },
+      {
+        "name": "Underdog",
+        "rank": 63
+      },
+      {
+        "name": "Balanced",
+        "rank": 49
+      },
+      {
+        "name": "Hidden",
+        "rank": 20
+      }
+    ]
+  },
+  {
+    "name": "Marcella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 69
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 22
+      },
+      {
+        "name": "Underdog",
+        "rank": 27
+      },
+      {
+        "name": "Balanced",
+        "rank": 9
+      },
+      {
+        "name": "Hidden",
+        "rank": 45
+      }
+    ]
+  },
+  {
+    "name": "Ginevra",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 56
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 14
+      },
+      {
+        "name": "Underdog",
+        "rank": 70
+      },
+      {
+        "name": "Balanced",
+        "rank": 74
+      },
+      {
+        "name": "Hidden",
+        "rank": 31
+      }
+    ]
+  },
+  {
+    "name": "Olga",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 60
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 35
+      },
+      {
+        "name": "Underdog",
+        "rank": 48
+      },
+      {
+        "name": "Balanced",
+        "rank": 41
+      },
+      {
+        "name": "Hidden",
+        "rank": 29
+      }
+    ]
+  },
+  {
+    "name": "Alice",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 6
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 37
+      },
+      {
+        "name": "Underdog",
+        "rank": 71
+      },
+      {
+        "name": "Balanced",
+        "rank": 65
+      },
+      {
+        "name": "Hidden",
+        "rank": 66
+      }
+    ]
+  },
+  {
+    "name": "Antonella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 7
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 50
+      },
+      {
+        "name": "Underdog",
+        "rank": 75
+      },
+      {
+        "name": "Balanced",
+        "rank": 39
+      },
+      {
+        "name": "Hidden",
+        "rank": 85
+      }
+    ]
+  },
+  {
+    "name": "Eleonora",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 21
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 13
+      },
+      {
+        "name": "Underdog",
+        "rank": 49
+      },
+      {
+        "name": "Balanced",
+        "rank": 58
+      },
+      {
+        "name": "Hidden",
+        "rank": 2
+      }
+    ]
+  },
+  {
+    "name": "Elisa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 58
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 45
+      },
+      {
+        "name": "Underdog",
+        "rank": 62
+      },
+      {
+        "name": "Balanced",
+        "rank": 71
+      },
+      {
+        "name": "Hidden",
+        "rank": 28
+      }
+    ]
+  },
+  {
+    "name": "Lidia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 58
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 37
+      },
+      {
+        "name": "Underdog",
+        "rank": 10
+      },
+      {
+        "name": "Balanced",
+        "rank": 9
+      },
+      {
+        "name": "Hidden",
+        "rank": 2
+      }
+    ]
+  },
+  {
+    "name": "Fernanda",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 31
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 76
+      },
+      {
+        "name": "Underdog",
+        "rank": 69
+      },
+      {
+        "name": "Balanced",
+        "rank": 66
+      },
+      {
+        "name": "Hidden",
+        "rank": 69
+      }
+    ]
+  },
+  {
+    "name": "Annalisa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 21
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 74
+      },
+      {
+        "name": "Underdog",
+        "rank": 18
+      },
+      {
+        "name": "Balanced",
+        "rank": 9
+      },
+      {
+        "name": "Hidden",
+        "rank": 85
+      }
+    ]
+  },
+  {
+    "name": "Silvia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 76
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 48
+      },
+      {
+        "name": "Underdog",
+        "rank": 49
+      },
+      {
+        "name": "Balanced",
+        "rank": 1
+      },
+      {
+        "name": "Hidden",
+        "rank": 65
+      }
+    ]
+  },
+  {
+    "name": "Irma",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 82
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 55
+      },
+      {
+        "name": "Underdog",
+        "rank": 86
+      },
+      {
+        "name": "Balanced",
+        "rank": 12
+      },
+      {
+        "name": "Hidden",
+        "rank": 32
+      }
+    ]
+  },
+  {
+    "name": "Melissa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 10
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 22
+      },
+      {
+        "name": "Underdog",
+        "rank": 25
+      },
+      {
+        "name": "Balanced",
+        "rank": 14
+      },
+      {
+        "name": "Hidden",
+        "rank": 57
+      }
+    ]
+  },
+  {
+    "name": "Maria",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 82
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 82
+      },
+      {
+        "name": "Underdog",
+        "rank": 58
+      },
+      {
+        "name": "Balanced",
+        "rank": 63
+      },
+      {
+        "name": "Hidden",
+        "rank": 69
+      }
+    ]
+  },
+  {
+    "name": "Nella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 28
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 39
+      },
+      {
+        "name": "Underdog",
+        "rank": 70
+      },
+      {
+        "name": "Balanced",
+        "rank": 58
+      },
+      {
+        "name": "Hidden",
+        "rank": 69
+      }
+    ]
+  },
+  {
+    "name": "Valentina",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 14
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 32
+      },
+      {
+        "name": "Underdog",
+        "rank": 10
+      },
+      {
+        "name": "Balanced",
+        "rank": 21
+      },
+      {
+        "name": "Hidden",
+        "rank": 10
+      }
+    ]
+  },
+  {
+    "name": "Viola",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 11
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 79
+      },
+      {
+        "name": "Underdog",
+        "rank": 77
+      },
+      {
+        "name": "Balanced",
+        "rank": 71
+      },
+      {
+        "name": "Hidden",
+        "rank": 42
+      }
+    ]
+  },
+  {
+    "name": "Teresa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 66
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 12
+      },
+      {
+        "name": "Underdog",
+        "rank": 83
+      },
+      {
+        "name": "Balanced",
+        "rank": 78
+      },
+      {
+        "name": "Hidden",
+        "rank": 49
+      }
+    ]
+  },
+  {
+    "name": "Pierina",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 81
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 24
+      },
+      {
+        "name": "Underdog",
+        "rank": 55
+      },
+      {
+        "name": "Balanced",
+        "rank": 35
+      },
+      {
+        "name": "Hidden",
+        "rank": 87
+      }
+    ]
+  },
+  {
+    "name": "Loretta",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 8
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 65
+      },
+      {
+        "name": "Underdog",
+        "rank": 35
+      },
+      {
+        "name": "Balanced",
+        "rank": 39
+      },
+      {
+        "name": "Hidden",
+        "rank": 11
+      }
+    ]
+  },
+  {
+    "name": "Gina",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 87
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 45
+      },
+      {
+        "name": "Underdog",
+        "rank": 67
+      },
+      {
+        "name": "Balanced",
+        "rank": 53
+      },
+      {
+        "name": "Hidden",
+        "rank": 14
+      }
+    ]
+  },
+  {
+    "name": "Irma",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 74
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 68
+      },
+      {
+        "name": "Underdog",
+        "rank": 36
+      },
+      {
+        "name": "Balanced",
+        "rank": 6
+      },
+      {
+        "name": "Hidden",
+        "rank": 43
+      }
+    ]
+  },
+  {
+    "name": "Claudia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 19
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 71
+      },
+      {
+        "name": "Underdog",
+        "rank": 5
+      },
+      {
+        "name": "Balanced",
+        "rank": 11
+      },
+      {
+        "name": "Hidden",
+        "rank": 43
+      }
+    ]
+  },
+  {
+    "name": "Vilma",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 17
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 81
+      },
+      {
+        "name": "Underdog",
+        "rank": 11
+      },
+      {
+        "name": "Balanced",
+        "rank": 19
+      },
+      {
+        "name": "Hidden",
+        "rank": 20
+      }
+    ]
+  },
+  {
+    "name": "Stefania",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 28
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 13
+      },
+      {
+        "name": "Underdog",
+        "rank": 54
+      },
+      {
+        "name": "Balanced",
+        "rank": 9
+      },
+      {
+        "name": "Hidden",
+        "rank": 55
+      }
+    ]
+  },
+  {
+    "name": "Mirella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 83
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 85
+      },
+      {
+        "name": "Underdog",
+        "rank": 5
+      },
+      {
+        "name": "Balanced",
+        "rank": 11
+      },
+      {
+        "name": "Hidden",
+        "rank": 62
+      }
+    ]
+  },
+  {
+    "name": "Nella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 27
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 49
+      },
+      {
+        "name": "Underdog",
+        "rank": 56
+      },
+      {
+        "name": "Balanced",
+        "rank": 10
+      },
+      {
+        "name": "Hidden",
+        "rank": 25
+      }
+    ]
+  },
+  {
+    "name": "Rita",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 43
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 13
+      },
+      {
+        "name": "Underdog",
+        "rank": 23
+      },
+      {
+        "name": "Balanced",
+        "rank": 75
+      },
+      {
+        "name": "Hidden",
+        "rank": 49
+      }
+    ]
+  },
+  {
+    "name": "Elena",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 73
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 24
+      },
+      {
+        "name": "Underdog",
+        "rank": 31
+      },
+      {
+        "name": "Balanced",
+        "rank": 10
+      },
+      {
+        "name": "Hidden",
+        "rank": 51
+      }
+    ]
+  },
+  {
+    "name": "Manuela",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 15
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 51
+      },
+      {
+        "name": "Underdog",
+        "rank": 80
+      },
+      {
+        "name": "Balanced",
+        "rank": 74
+      },
+      {
+        "name": "Hidden",
+        "rank": 19
+      }
+    ]
+  },
+  {
+    "name": "Gaia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 21
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 21
+      },
+      {
+        "name": "Underdog",
+        "rank": 58
+      },
+      {
+        "name": "Balanced",
+        "rank": 8
+      },
+      {
+        "name": "Hidden",
+        "rank": 18
+      }
+    ]
+  },
+  {
+    "name": "Vanda",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 70
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 16
+      },
+      {
+        "name": "Underdog",
+        "rank": 18
+      },
+      {
+        "name": "Balanced",
+        "rank": 57
+      },
+      {
+        "name": "Hidden",
+        "rank": 5
+      }
+    ]
+  },
+  {
+    "name": "Stefania",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 65
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 85
+      },
+      {
+        "name": "Underdog",
+        "rank": 4
+      },
+      {
+        "name": "Balanced",
+        "rank": 44
+      },
+      {
+        "name": "Hidden",
+        "rank": 24
+      }
+    ]
+  },
+  {
+    "name": "Ines",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 60
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 40
+      },
+      {
+        "name": "Underdog",
+        "rank": 77
+      },
+      {
+        "name": "Balanced",
+        "rank": 15
+      },
+      {
+        "name": "Hidden",
+        "rank": 48
+      }
+    ]
+  },
+  {
+    "name": "Giorgia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 87
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 58
+      },
+      {
+        "name": "Underdog",
+        "rank": 58
+      },
+      {
+        "name": "Balanced",
+        "rank": 51
+      },
+      {
+        "name": "Hidden",
+        "rank": 80
+      }
+    ]
+  },
+  {
+    "name": "Anna",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 77
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 70
+      },
+      {
+        "name": "Underdog",
+        "rank": 18
+      },
+      {
+        "name": "Balanced",
+        "rank": 24
+      },
+      {
+        "name": "Hidden",
+        "rank": 87
+      }
+    ]
+  },
+  {
+    "name": "Valeria",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 2
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 10
+      },
+      {
+        "name": "Underdog",
+        "rank": 53
+      },
+      {
+        "name": "Balanced",
+        "rank": 63
+      },
+      {
+        "name": "Hidden",
+        "rank": 32
+      }
+    ]
+  },
+  {
+    "name": "Irene",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 30
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 68
+      },
+      {
+        "name": "Underdog",
+        "rank": 17
+      },
+      {
+        "name": "Balanced",
+        "rank": 59
+      },
+      {
+        "name": "Hidden",
+        "rank": 73
+      }
+    ]
+  },
+  {
+    "name": "Olga",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 46
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 12
+      },
+      {
+        "name": "Underdog",
+        "rank": 66
+      },
+      {
+        "name": "Balanced",
+        "rank": 73
+      },
+      {
+        "name": "Hidden",
+        "rank": 15
+      }
+    ]
+  },
+  {
+    "name": "Carla",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 64
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 40
+      },
+      {
+        "name": "Underdog",
+        "rank": 33
+      },
+      {
+        "name": "Balanced",
+        "rank": 81
+      },
+      {
+        "name": "Hidden",
+        "rank": 75
+      }
+    ]
+  },
+  {
+    "name": "Lea",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 55
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 40
+      },
+      {
+        "name": "Underdog",
+        "rank": 77
+      },
+      {
+        "name": "Balanced",
+        "rank": 7
+      },
+      {
+        "name": "Hidden",
+        "rank": 31
+      }
+    ]
+  },
+  {
+    "name": "Fernanda",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 28
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 79
+      },
+      {
+        "name": "Underdog",
+        "rank": 6
+      },
+      {
+        "name": "Balanced",
+        "rank": 71
+      },
+      {
+        "name": "Hidden",
+        "rank": 28
+      }
+    ]
+  },
+  {
+    "name": "Anna Maria",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 15
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 65
+      },
+      {
+        "name": "Underdog",
+        "rank": 46
+      },
+      {
+        "name": "Balanced",
+        "rank": 30
+      },
+      {
+        "name": "Hidden",
+        "rank": 43
+      }
+    ]
+  },
+  {
+    "name": "Sofia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 32
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 1
+      },
+      {
+        "name": "Underdog",
+        "rank": 71
+      },
+      {
+        "name": "Balanced",
+        "rank": 10
+      },
+      {
+        "name": "Hidden",
+        "rank": 83
+      }
+    ]
+  },
+  {
+    "name": "Tosca",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 48
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 19
+      },
+      {
+        "name": "Underdog",
+        "rank": 63
+      },
+      {
+        "name": "Balanced",
+        "rank": 15
+      },
+      {
+        "name": "Hidden",
+        "rank": 37
+      }
+    ]
+  },
+  {
+    "name": "Mara",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 36
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 14
+      },
+      {
+        "name": "Underdog",
+        "rank": 57
+      },
+      {
+        "name": "Balanced",
+        "rank": 18
+      },
+      {
+        "name": "Hidden",
+        "rank": 84
+      }
+    ]
+  },
+  {
+    "name": "Sara",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 63
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 27
+      },
+      {
+        "name": "Underdog",
+        "rank": 59
+      },
+      {
+        "name": "Balanced",
+        "rank": 30
+      },
+      {
+        "name": "Hidden",
+        "rank": 15
+      }
+    ]
+  },
+  {
+    "name": "Luana",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 79
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 83
+      },
+      {
+        "name": "Underdog",
+        "rank": 6
+      },
+      {
+        "name": "Balanced",
+        "rank": 54
+      },
+      {
+        "name": "Hidden",
+        "rank": 85
+      }
+    ]
+  },
+  {
+    "name": "Giuliana",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 15
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 60
+      },
+      {
+        "name": "Underdog",
+        "rank": 84
+      },
+      {
+        "name": "Balanced",
+        "rank": 1
+      },
+      {
+        "name": "Hidden",
+        "rank": 14
+      }
+    ]
+  },
+  {
+    "name": "Serena",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 54
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 29
+      },
+      {
+        "name": "Underdog",
+        "rank": 16
+      },
+      {
+        "name": "Balanced",
+        "rank": 40
+      },
+      {
+        "name": "Hidden",
+        "rank": 37
+      }
+    ]
+  },
+  {
+    "name": "Isabella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 35
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 41
+      },
+      {
+        "name": "Underdog",
+        "rank": 26
+      },
+      {
+        "name": "Balanced",
+        "rank": 12
+      },
+      {
+        "name": "Hidden",
+        "rank": 83
+      }
+    ]
+  },
+  {
+    "name": "Maria",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 13
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 13
+      },
+      {
+        "name": "Underdog",
+        "rank": 67
+      },
+      {
+        "name": "Balanced",
+        "rank": 59
+      },
+      {
+        "name": "Hidden",
+        "rank": 23
+      }
+    ]
+  },
+  {
+    "name": "Letizia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 32
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 71
+      },
+      {
+        "name": "Underdog",
+        "rank": 75
+      },
+      {
+        "name": "Balanced",
+        "rank": 39
+      },
+      {
+        "name": "Hidden",
+        "rank": 83
+      }
+    ]
+  },
+  {
+    "name": "Lucrezia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 9
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 56
+      },
+      {
+        "name": "Underdog",
+        "rank": 2
+      },
+      {
+        "name": "Balanced",
+        "rank": 5
+      },
+      {
+        "name": "Hidden",
+        "rank": 35
+      }
+    ]
+  },
+  {
+    "name": "Graziella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 43
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 4
+      },
+      {
+        "name": "Underdog",
+        "rank": 62
+      },
+      {
+        "name": "Balanced",
+        "rank": 65
+      },
+      {
+        "name": "Hidden",
+        "rank": 47
+      }
+    ]
+  },
+  {
+    "name": "Bruna",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 12
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 32
+      },
+      {
+        "name": "Underdog",
+        "rank": 37
+      },
+      {
+        "name": "Balanced",
+        "rank": 76
+      },
+      {
+        "name": "Hidden",
+        "rank": 70
+      }
+    ]
+  },
+  {
+    "name": "Maria",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 19
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 39
+      },
+      {
+        "name": "Underdog",
+        "rank": 15
+      },
+      {
+        "name": "Balanced",
+        "rank": 49
+      },
+      {
+        "name": "Hidden",
+        "rank": 56
+      }
+    ]
+  },
+  {
+    "name": "Emma",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 70
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 79
+      },
+      {
+        "name": "Underdog",
+        "rank": 18
+      },
+      {
+        "name": "Balanced",
+        "rank": 50
+      },
+      {
+        "name": "Hidden",
+        "rank": 40
+      }
+    ]
+  },
+  {
+    "name": "Teresa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 44
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 23
+      },
+      {
+        "name": "Underdog",
+        "rank": 57
+      },
+      {
+        "name": "Balanced",
+        "rank": 37
+      },
+      {
+        "name": "Hidden",
+        "rank": 42
+      }
+    ]
+  },
+  {
+    "name": "Lea",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 17
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 56
+      },
+      {
+        "name": "Underdog",
+        "rank": 82
+      },
+      {
+        "name": "Balanced",
+        "rank": 9
+      },
+      {
+        "name": "Hidden",
+        "rank": 1
+      }
+    ]
+  },
+  {
+    "name": "Arianna",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 17
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 65
+      },
+      {
+        "name": "Underdog",
+        "rank": 58
+      },
+      {
+        "name": "Balanced",
+        "rank": 29
+      },
+      {
+        "name": "Hidden",
+        "rank": 87
+      }
+    ]
+  },
+  {
+    "name": "Giovanna",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 23
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 40
+      },
+      {
+        "name": "Underdog",
+        "rank": 34
+      },
+      {
+        "name": "Balanced",
+        "rank": 58
+      },
+      {
+        "name": "Hidden",
+        "rank": 14
+      }
+    ]
+  },
+  {
+    "name": "Stefania",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 26
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 16
+      },
+      {
+        "name": "Underdog",
+        "rank": 66
+      },
+      {
+        "name": "Balanced",
+        "rank": 45
+      },
+      {
+        "name": "Hidden",
+        "rank": 78
+      }
+    ]
+  },
+  {
+    "name": "Ginevra",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 50
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 84
+      },
+      {
+        "name": "Underdog",
+        "rank": 68
+      },
+      {
+        "name": "Balanced",
+        "rank": 9
+      },
+      {
+        "name": "Hidden",
+        "rank": 38
+      }
+    ]
+  },
+  {
+    "name": "Piera",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 83
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 44
+      },
+      {
+        "name": "Underdog",
+        "rank": 44
+      },
+      {
+        "name": "Balanced",
+        "rank": 18
+      },
+      {
+        "name": "Hidden",
+        "rank": 15
+      }
+    ]
+  },
+  {
+    "name": "Daniela",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 68
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 2
+      },
+      {
+        "name": "Underdog",
+        "rank": 11
+      },
+      {
+        "name": "Balanced",
+        "rank": 64
+      },
+      {
+        "name": "Hidden",
+        "rank": 21
+      }
+    ]
+  },
+  {
+    "name": "Emma",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 31
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 56
+      },
+      {
+        "name": "Underdog",
+        "rank": 32
+      },
+      {
+        "name": "Balanced",
+        "rank": 47
+      },
+      {
+        "name": "Hidden",
+        "rank": 19
+      }
+    ]
+  },
+  {
+    "name": "Marisa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 73
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 21
+      },
+      {
+        "name": "Underdog",
+        "rank": 34
+      },
+      {
+        "name": "Balanced",
+        "rank": 83
+      },
+      {
+        "name": "Hidden",
+        "rank": 83
+      }
+    ]
+  },
+  {
+    "name": "Vanda",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 17
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 42
+      },
+      {
+        "name": "Underdog",
+        "rank": 62
+      },
+      {
+        "name": "Balanced",
+        "rank": 21
+      },
+      {
+        "name": "Hidden",
+        "rank": 43
+      }
+    ]
+  },
+  {
+    "name": "Susanna",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 30
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 26
+      },
+      {
+        "name": "Underdog",
+        "rank": 56
+      },
+      {
+        "name": "Balanced",
+        "rank": 50
+      },
+      {
+        "name": "Hidden",
+        "rank": 41
+      }
+    ]
+  },
+  {
+    "name": "Fiorella",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 14
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 54
+      },
+      {
+        "name": "Underdog",
+        "rank": 6
+      },
+      {
+        "name": "Balanced",
+        "rank": 47
+      },
+      {
+        "name": "Hidden",
+        "rank": 53
+      }
+    ]
+  },
+  {
+    "name": "Fernanda",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 33
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 82
+      },
+      {
+        "name": "Underdog",
+        "rank": 53
+      },
+      {
+        "name": "Balanced",
+        "rank": 16
+      },
+      {
+        "name": "Hidden",
+        "rank": 67
+      }
+    ]
+  },
+  {
+    "name": "Lucrezia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 81
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 41
+      },
+      {
+        "name": "Underdog",
+        "rank": 29
+      },
+      {
+        "name": "Balanced",
+        "rank": 28
+      },
+      {
+        "name": "Hidden",
+        "rank": 7
+      }
+    ]
+  },
+  {
+    "name": "Rebecca",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 79
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 75
+      },
+      {
+        "name": "Underdog",
+        "rank": 32
+      },
+      {
+        "name": "Balanced",
+        "rank": 39
+      },
+      {
+        "name": "Hidden",
+        "rank": 52
+      }
+    ]
+  },
+  {
+    "name": "Assunta",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 51
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 51
+      },
+      {
+        "name": "Underdog",
+        "rank": 5
+      },
+      {
+        "name": "Balanced",
+        "rank": 62
+      },
+      {
+        "name": "Hidden",
+        "rank": 41
+      }
+    ]
+  },
+  {
+    "name": "Elisabetta",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 3
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 11
+      },
+      {
+        "name": "Underdog",
+        "rank": 66
+      },
+      {
+        "name": "Balanced",
+        "rank": 56
+      },
+      {
+        "name": "Hidden",
+        "rank": 63
+      }
+    ]
+  },
+  {
+    "name": "Sonia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 8
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 71
+      },
+      {
+        "name": "Underdog",
+        "rank": 29
+      },
+      {
+        "name": "Balanced",
+        "rank": 26
+      },
+      {
+        "name": "Hidden",
+        "rank": 60
+      }
+    ]
+  },
+  {
+    "name": "Maria Teresa",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 75
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 48
+      },
+      {
+        "name": "Underdog",
+        "rank": 70
+      },
+      {
+        "name": "Balanced",
+        "rank": 27
+      },
+      {
+        "name": "Hidden",
+        "rank": 61
+      }
+    ]
+  },
+  {
+    "name": "Asia",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 43
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 13
+      },
+      {
+        "name": "Underdog",
+        "rank": 12
+      },
+      {
+        "name": "Balanced",
+        "rank": 4
+      },
+      {
+        "name": "Hidden",
+        "rank": 45
+      }
+    ]
+  },
+  {
+    "name": "Monica",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 44
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 37
+      },
+      {
+        "name": "Underdog",
+        "rank": 11
+      },
+      {
+        "name": "Balanced",
+        "rank": 52
+      },
+      {
+        "name": "Hidden",
+        "rank": 53
+      }
+    ]
+  },
+  {
+    "name": "Liliana",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 64
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 72
+      },
+      {
+        "name": "Underdog",
+        "rank": 78
+      },
+      {
+        "name": "Balanced",
+        "rank": 53
+      },
+      {
+        "name": "Hidden",
+        "rank": 41
+      }
+    ]
+  },
+  {
+    "name": "Milena",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 73
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 69
+      },
+      {
+        "name": "Underdog",
+        "rank": 62
+      },
+      {
+        "name": "Balanced",
+        "rank": 22
+      },
+      {
+        "name": "Hidden",
+        "rank": 31
+      }
+    ]
+  },
+  {
+    "name": "Simonetta",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 35
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 71
+      },
+      {
+        "name": "Underdog",
+        "rank": 36
+      },
+      {
+        "name": "Balanced",
+        "rank": 21
+      },
+      {
+        "name": "Hidden",
+        "rank": 7
+      }
+    ]
+  },
+  {
+    "name": "Fiorenza",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 61
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 2
+      },
+      {
+        "name": "Underdog",
+        "rank": 9
+      },
+      {
+        "name": "Balanced",
+        "rank": 80
+      },
+      {
+        "name": "Hidden",
+        "rank": 83
+      }
+    ]
+  },
+  {
+    "name": "Giada",
+    "ranking": [
+      {
+        "name": "King's Game",
+        "rank": 74
+      },
+      {
+        "name": "Oldfashioned",
+        "rank": 70
+      },
+      {
+        "name": "Underdog",
+        "rank": 54
+      },
+      {
+        "name": "Balanced",
+        "rank": 12
+      },
+      {
+        "name": "Hidden",
+        "rank": 15
+      }
+    ]
+  }
+]

@@ -1,5 +1,9 @@
 <template>
   <div class="wrapper">
+    <radar-chart
+      :labels="chartData.labels"
+      :datasets="reversedDatasets"
+    ></radar-chart>
     <div class="tab-grid">
       <div class="tabs">
         <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
@@ -85,12 +89,14 @@ import Grid from '@/components/Grid.vue'
 import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
+import RadarChart from '@/components/RadarChart.vue'
 
 export default {
   name: 'user',
   components: {
     Grid,
-    ClipLoader
+    ClipLoader,
+    RadarChart
   },
   data () {
     return {
@@ -99,12 +105,34 @@ export default {
       gridColumns: ['match', 'bet', 'outcome', 'superbet', 'score'],
       loading: true,
       size: "32px",
-      color: "#3EABDC"
+      color: "#3EABDC",
+      userCount: 100, // remove this (mock)
+      chartData: {
+        labels: [
+          "King's Game",
+          "Oldfashioned",
+          "Underdog",
+          "Balanced",
+          "Hidden"
+        ],
+        datasets: [
+          {
+            data: [
+              Math.round(Math.random() * 100),
+              Math.round(Math.random() * 100),
+              Math.round(Math.random() * 100),
+              Math.round(Math.random() * 100),
+              Math.round(Math.random() * 100),
+            ]
+          },
+        ]
+      }
     }
   },
   props: ['id'],
   mounted () {
     this.loadUserData()
+    // this.renderChart(this.ranks, {})
   },
   computed: {
     ...mapGetters([
@@ -113,6 +141,9 @@ export default {
     ]),
     matchDate () {
       return new Date(this.match.date).toLocaleString()
+    },
+    reversedDatasets() {
+      return [{data: this.chartData.datasets[0].data.map(value => this.userCount + 1 - value)}]
     },
     gridData () {
 

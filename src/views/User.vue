@@ -1,6 +1,19 @@
 <template>
   <div class="wrapper">
+    <!-- <ul class="ranking">
+      <li v-for="ranking in userWithAchievements.achievements" class="ranking__item">
+        <div class="ranking__title">{{ ranking.name }}</div>
+        <rank-progress-bar
+          :rank="ranking.rank"
+          :maxRank="allUsers.length"
+          :switchLayout="switchLayout"
+          class="ranking__progress-bar"
+        />
+        <div class="ranking__rank">{{ ranking.rank }}.</div>
+      </li>
+    </ul> -->
     <radar-chart
+      v-if="userWithAchievements && userWithAchievements.achievements"
       :labels="chartData.labels"
       :datasets="reversedDatasets"
     ></radar-chart>
@@ -90,47 +103,31 @@ import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 import RadarChart from '@/components/RadarChart.vue'
+// import RankProgressBar from '@/components/RankProgressBar.vue'
 
 export default {
   name: 'user',
   components: {
     Grid,
     ClipLoader,
-    RadarChart
+    RadarChart,
+    // RankProgressBar
   },
   data () {
     return {
       user: {},
+      userWithAchievements: {},
+      // switchLayout: true,
       interval: null,
       gridColumns: ['match', 'bet', 'outcome', 'superbet', 'score'],
       loading: true,
       size: "32px",
       color: "#3EABDC",
-      userCount: 100, // remove this (mock)
-      chartData: {
-        labels: [
-          "King's Game",
-          "Oldfashioned",
-          "Underdog",
-          "Balanced",
-          "Hidden"
-        ],
-        datasets: [
-          {
-            data: [
-              Math.round(Math.random() * 100),
-              Math.round(Math.random() * 100),
-              Math.round(Math.random() * 100),
-              Math.round(Math.random() * 100),
-              Math.round(Math.random() * 100),
-            ]
-          },
-        ]
-      }
+      userCount: 100
     }
   },
   props: {
-    id: Number
+    id: String
   },
   mounted () {
     this.loadUserData()
@@ -146,6 +143,29 @@ export default {
     },
     reversedDatasets() {
       return [{data: this.chartData.datasets[0].data.map(value => this.userCount + 1 - value)}]
+    },
+    chartData () {
+      return {
+        labels: [
+          "King's Game",
+          "Oldfashioned",
+          "Underdog",
+          "Balanced",
+          "Hidden"
+        ],
+        datasets: [
+          {
+            backgroundColor: 'rgba(205, 90, 100, .5)',
+            data: [
+              this.userWithAchievements.achievements.expert.rank || 0,
+              this.userWithAchievements.achievements.gambler.rank || 0,
+              this.userWithAchievements.achievements.hattrick.rank || 0,
+              this.userWithAchievements.achievements.hustler.rank || 0,
+              this.userWithAchievements.achievements.secret.rank || 0,
+            ],
+          }
+        ]
+      }
     },
     gridData () {
 
@@ -177,10 +197,14 @@ export default {
         this.user = response.data
         // this.user.achievements.secret = {rank: 1, score: 10} MOCK DATA
 
-        this.user.avatar = this.allUsers.find(user => user.user_id === this.user.user_id).avatar
+        setInterval(() => {
+          this.user.avatar = this.allUsers.find(user => user.user_id === this.user.user_id).avatar
+          this.userWithAchievements = this.allUsers.find(user => user.user_id === this.user.user_id)
 
-        this.setLoadingInterval();
-        this.loading = false
+          this.setLoadingInterval();
+          this.loading = false
+
+        }, 1000)
 
       }, (err) => {
         console.log(err)

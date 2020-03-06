@@ -31,7 +31,6 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 import ResultPreview from '@/components/ResultPreview.vue'
-import RankChart from '@/components/RankChart.vue'
 import RankProgressBar from '@/components/RankProgressBar.vue'
 
 export default {
@@ -75,7 +74,6 @@ export default {
   components: {
     ClipLoader,
     ResultPreview,
-    RankChart,
     RankProgressBar,
   },
   mounted () {

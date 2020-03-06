@@ -1,4 +1,5 @@
 <script>
+  import Chart from 'chart.js'
   import { Radar } from 'vue-chartjs'
 
   export default {
@@ -12,6 +13,14 @@
       this.renderChart({
         labels: this.labels,
         datasets: this.datasets
+      },
+      {
+        tooltips: {
+          enabled: false
+        },
+        legend: {
+          display: false
+        }
       })
     }
   }

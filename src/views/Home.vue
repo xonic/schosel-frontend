@@ -29,9 +29,9 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
-import ResultPreview from '@/components/ResultPreview.vue'
-import RankProgressBar from '@/components/RankProgressBar.vue'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
+import ResultPreview from '@/components/ResultPreview'
+import RankProgressBar from '@/components/RankProgressBar'
 
 export default {
   name: 'home',

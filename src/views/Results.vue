@@ -1,13 +1,22 @@
 <template>
   <div class="results">
     <h1>Results</h1>
-   </div>
+    <ul v-if="liveMatches.length || playedMatches.length">
+      <li v-for="match in liveMatches">
+        <result-preview :match="match" />
+      </li>
+      <li v-for="match in playedMatches">
+        <result-preview :match="match" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { mapGetters } from 'vuex'
-import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
+import ResultPreview from '@/components/ResultPreview'
 
 export default {
   name: 'matches',
@@ -15,12 +24,12 @@ export default {
     ...mapGetters([
       'playedMatches',
       'liveMatches',
-      'upcomingMatches',
       'loading'
     ])
   },
   components: {
-    ClipLoader
+    ClipLoader,
+    ResultPreview
   }
 }
 </script>

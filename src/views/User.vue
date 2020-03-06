@@ -197,14 +197,11 @@ export default {
         this.user = response.data
         // this.user.achievements.secret = {rank: 1, score: 10} MOCK DATA
 
-        setInterval(() => {
-          this.user.avatar = this.allUsers.find(user => user.user_id === this.user.user_id).avatar
-          this.userWithAchievements = this.allUsers.find(user => user.user_id === this.user.user_id)
+        this.user.avatar = this.allUsers.find(user => user.user_id === this.user.user_id).avatar
+        this.userWithAchievements = this.allUsers.find(user => user.user_id === this.user.user_id)
 
-          this.setLoadingInterval();
-          this.loading = false
-
-        }, 1000)
+        this.setLoadingInterval();
+        this.loading = false
 
       }, (err) => {
         console.log(err)

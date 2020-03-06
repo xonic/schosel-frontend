@@ -17,8 +17,28 @@
           <span v-if="sortKey === 'superbet' && sortDirection === 'asc'"> &uarr;</span>
           <span v-if="sortKey === 'superbet' && sortDirection === 'des'"> &darr;</span>
         </th>
-        <th @click="sort('score')">
-          Score
+        <th @click="sort('kings-game')">
+          King's Game
+          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+        </th>
+        <th @click="sort('oldfashioned')">
+          Oldfashioned
+          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+        </th>
+        <th @click="sort('underdog')">
+          Underdog
+          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+        </th>
+        <th @click="sort('balanced')">
+          Balanced
+          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+        </th>
+        <th @click="sort('secret')">
+          Secret
           <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
           <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
         </th>
@@ -67,7 +87,7 @@
     },
     data () {
       return {
-        sortKey: 'score',
+        sortKey: 'kings-game',
         sortDirection: 'des'
       }
     },

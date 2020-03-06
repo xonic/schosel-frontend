@@ -24,28 +24,28 @@
         </th>
         <th @click="sort('kings-game')">
           King's Game
-          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+          <span v-if="sortKey === 'kings-game' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'kings-game' && sortDirection === 'des'"> &darr;</span>
         </th>
         <th @click="sort('oldfashioned')">
           Oldfashioned
-          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+          <span v-if="sortKey === 'oldfashioned' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'oldfashioned' && sortDirection === 'des'"> &darr;</span>
         </th>
         <th @click="sort('underdog')">
           Underdog
-          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+          <span v-if="sortKey === 'underdog' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'underdog' && sortDirection === 'des'"> &darr;</span>
         </th>
         <th @click="sort('balanced')">
           Balanced
-          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+          <span v-if="sortKey === 'balanced' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'balanced' && sortDirection === 'des'"> &darr;</span>
         </th>
         <th @click="sort('secret')">
           Secret
-          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+          <span v-if="sortKey === 'secret' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'secret' && sortDirection === 'des'"> &darr;</span>
         </th>
       </tr>
     </thead>
@@ -105,12 +105,28 @@
         return this.data.sort((a, b) => {
           // Check what key to sort by
           switch(this.sortKey) {
+            case 'id':
+              if(this.sortDirection === 'asc') {
+                return a.id > b.id
+              }
+              else {
+                return a.id < b.id
+              }
+            break
             case 'bet':
               if(this.sortDirection === 'asc') {
                 return a.bet > b.bet
               }
               else {
                 return a.bet < b.bet
+              }
+            break
+            case 'outcome':
+              if(this.sortDirection === 'asc') {
+                return a.outcome > b.outcome
+              }
+              else {
+                return a.outcome < b.outcome
               }
             break
             case 'superbet':
@@ -121,31 +137,20 @@
                 return a.superbet < b.superbet
               }
             break
-            case 'date':
-              if(this.sortDirection === 'asc') {
-                return a.date > b.date
-              }
-              else {
-                return a.date < b.date
-              }
-            break
-            case 'score':
+            case 'kings-game':
               if(this.sortDirection === 'asc') {
                 return a.score > b.score
               }
               else {
                 return a.score < b.score
               }
-            case 'outcome':
+            default:
               if(this.sortDirection === 'asc') {
-                return a.outcome > b.outcome
+                return a.id > b.id
               }
               else {
-                return a.outcome < b.outcome
+                return a.id < b.id
               }
-            break
-            default:
-
             break
           }
         })

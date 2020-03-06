@@ -89,7 +89,12 @@
               }
             break
             default:
-
+              if(this.sortDirection === 'asc') {
+                return a.rank > b.rank
+              }
+              else {
+                return a.rank < b.rank
+              }
             break
           }
         })

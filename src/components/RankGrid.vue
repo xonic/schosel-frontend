@@ -28,7 +28,7 @@
         </td>
         <td>
           <router-link :to="{ name: 'user', params: { id: `${user.id}` } }">
-            <img :src="user.avatar" style="width: 32px; border-radius: 999em; margin-right:12px;">
+            <avatar :src="user.avatar" />
             {{ user.name }}
           </router-link>
         </td>
@@ -43,10 +43,15 @@
 </template>
 
 <script>
+  import Avatar from '@/components/Avatar'
+
   export default {
     name: "rank-grid",
     props: {
       data: Array,
+    },
+    components: {
+      Avatar
     },
     data () {
       return {

@@ -39,7 +39,7 @@
             {{ loggedInUser.name }}
           </div>
           <popover :items="userMenuItems">
-            <img class="avatar avatar--small" :src="loggedInUser.avatar"/>
+            <avatar :src="loggedInUser.avatar" />
           </popover>
         </div>
       </div>
@@ -52,10 +52,12 @@
   import { mapGetters } from 'vuex'
   import { HTTP } from './http-constants'
   import Popover from '@/components/Popover.vue'
+  import Avatar from '@/components/Avatar.vue'
 
   export default {
     components: {
-      Popover
+      Popover,
+      Avatar
     },
     data () {
       return {

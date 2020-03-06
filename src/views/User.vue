@@ -26,7 +26,7 @@
         <div class="hero hero--14">
           <transition name="hero" appear>
             <div>
-              <img class="avatar avatar--medium" :src="user.avatar" />
+              <avatar :src="user.avatar" />
               <h1 class="hero__heading">{{ user.name }}</h1>
               <div class="hero__info" v-if="user.rank">Rank {{ user.rank }}.</div>
               <div class="hero__info">{{ user.points || "0" }} pts</div>
@@ -103,6 +103,7 @@ import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 import RadarChart from '@/components/RadarChart.vue'
+import Avatar from '@/components/Avatar.vue'
 // import RankProgressBar from '@/components/RankProgressBar.vue'
 
 export default {
@@ -111,6 +112,7 @@ export default {
     Grid,
     ClipLoader,
     RadarChart,
+    Avatar,
     // RankProgressBar
   },
   data () {

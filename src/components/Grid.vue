@@ -18,7 +18,7 @@
          :key="key.id">
          <router-link :to="{ name: linkToComponent, params: { id: entry[idKey] } }" v-if="hasLinks">
            <div v-if="key === 'name'">
-             <img class="avatar avatar--small" :src="entry['avatar']" />
+             <avatar :src="entry['avatar']" />
              <span class="name" style="margin-left:16px;">{{ entry[key] }}</span>
            </div>
            <div v-else>
@@ -41,6 +41,7 @@
 
 <script>
 import SuperBet from '@/components/SuperBet'
+import Avatar from '@/components/Avatar'
 
 export default {
   props: {
@@ -52,7 +53,8 @@ export default {
     idKey: String
   },
   components: {
-    SuperBet
+    SuperBet,
+    Avatar
   },
   data: function () {
     var sortOrders = {}

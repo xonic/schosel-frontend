@@ -76,7 +76,7 @@ export default {
     ClipLoader,
     ResultPreview,
     RankChart,
-    RankProgressBar
+    RankProgressBar,
   },
   mounted () {
     let self = this

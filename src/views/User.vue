@@ -129,7 +129,9 @@ export default {
       }
     }
   },
-  props: ['id'],
+  props: {
+    id: Number
+  },
   mounted () {
     this.loadUserData()
     // this.renderChart(this.ranks, {})

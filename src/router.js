@@ -39,6 +39,7 @@ const router =  new Router({
       path: '/',
       name: 'home',
       component: Home,
+      redirect: '/kings-game',
       meta: {
         requiresAuth: true
       },

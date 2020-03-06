@@ -22,16 +22,11 @@
              <span class="name" style="margin-left:16px;">{{ entry[key] }}</span>
            </div>
            <div v-else>
-             <div v-if="key === 'superbet' && entry[key] === 'correct'">
-               <super-bet :correct="true" />
+             <div v-if="key === 'superbet'">
+               <super-bet :correct="entry[key] === 'correct' ? true : false" />
              </div>
              <div v-else>
-               <div v-if="key === 'superbet' && entry[key] === 'wrong'">
-                 <super-bet :correct="false" />
-               </div>
-               <div v-else>
-                 {{ entry[key] }}
-               </div>
+              {{ entry[key] }}
              </div>
            </div>
           </router-link>

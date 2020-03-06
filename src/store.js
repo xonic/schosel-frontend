@@ -80,7 +80,7 @@ export default new Vuex.Store({
           localStorage.setItem('authenticated', true)
 
           // Redirect to requested URL or default to matches
-          authData.redirect ? router.push({ path: authData.redirect }) : router.push('matches')
+          authData.redirect ? router.push({ path: authData.redirect }) : router.push('/')
         })
         .catch(error => console.log(error))
     },

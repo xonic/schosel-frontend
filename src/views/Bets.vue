@@ -1,7 +1,7 @@
 <template>
   <div class="bets">
     <h1>Bets</h1>
-    <div class="champion-bet">
+    <div class="champion-bet" v-if="upcomingMatches.length">
       <label for="champion-bet" class="label">Champion bet</label>
       <select id="champion-bet" class="select"
         v-model="status.user.champion.team_id"
@@ -13,13 +13,13 @@
       </select>
       <div v-else>{{ championBet() }}</div>
     </div>
-    <div>
+    <div v-if="upcomingMatches.length">
       <div class="label">{{ remainingSuperbets }} <span v-if="remainingSuperbets === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
       <transition-group name="star" appear>
         <super-bet v-bind:key="i" v-for="i in remainingSuperbets" :correct="true" />
       </transition-group>
     </div>
-    <ul>
+    <ul v-if="upcomingMatches.length">
       <li v-for="match in upcomingMatches">
         <input :id="match.match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet(match.match_id).outcome" @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)">
         <label class="match__label match__label--radio" :for="match.match_id + '-home'">{{ match.team1_name }}</label>
@@ -40,6 +40,9 @@
         </span>
       </li>
     </ul>
+    <div v-else>
+      Sorry, no more matches to bet on.
+    </div>
   </div>
 </template>
 

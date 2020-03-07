@@ -11,13 +11,15 @@
     <ul class="ranking">
       <li v-for="ranking in rankings" class="ranking__item">
         <router-link :to="{ name: ranking.routeName }">
-          <div class="ranking__title">{{ ranking.name }}</div>
-          <rank-progress-bar
-            :rank="ranking.rank"
-            :maxRank="allUsers.length"
-            :switchLayout="switchLayout"
-            class="ranking__progress-bar"
-          />
+          <div class="ranking__bar">
+            <div class="ranking__title">{{ ranking.name }}</div>
+            <rank-progress-bar
+              :rank="ranking.rank"
+              :maxRank="allUsers.length"
+              :switchLayout="switchLayout"
+              class="ranking__progress-bar"
+            />
+          </div>
           <div class="ranking__rank">{{ ranking.rank }}.</div>
         </router-link>
       </li>

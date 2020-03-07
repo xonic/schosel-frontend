@@ -17,12 +17,12 @@
                 Home
               </router-link>
             </li>
-            <li class="nav__item">
+            <li class="nav__item" v-if="upcomingMatches.length">
               <router-link class="nav__link" :to="{ name: 'bets' }">
                 Bets
               </router-link>
             </li>
-            <li class="nav__item">
+            <li class="nav__item" v-if="liveMatches.length || playedMatches.length">
               <router-link class="nav__link" :to="{ name: 'results' }">
                 Results
               </router-link>
@@ -94,7 +94,10 @@
       ...mapGetters([
         'loggedInUser',
         'rewards',
-        'authenticated'
+        'authenticated',
+        'upcomingMatches',
+        'liveMatches',
+        'playedMatches',
       ])
     }
   }

@@ -1,23 +1,4 @@
 
-.rank-chart {
-  display: flex;
-}
-
-.rank-chart__item {
-  // transform: rotateZ(90deg);
-}
-
-.rank-chart__title {
-  margin-left: $space-75;
-  line-height: $space-75;
-  transform: rotateZ(-150deg);
-  writing-mode: vertical-lr;
-}
-
-.rank-chart__img {
-  width: $space-75;
-}
-
 .ranking {
   display: flex;
 }
@@ -31,12 +12,26 @@
 }
 
 .ranking__title {
+  margin-bottom: 12px;
   writing-mode: vertical-lr;
   transform: rotateZ(-180deg);
 }
 
+.ranking__bar {
+  display: flex;
+}
+
 .ranking__progress-bar {
   max-width: $space-75;
+}
+
+.rank-progress-bar {
+  display: block;
+}
+
+.ranking__rank {
+  margin-top: 12px;
+  text-align: right;
 }
 
 @media (min-width: 800px) {
@@ -50,7 +45,12 @@
     margin-left: 0;
   }
 
+  .ranking__bar {
+    display: block;
+  }
+
   .ranking__title {
+    margin-bottom: 0;
     writing-mode: unset;
     transform: rotateZ(0);
   }
@@ -62,5 +62,10 @@
       max-height: $space-50;
       transform: rotateZ(180deg);
     }
+  }
+
+  .ranking__rank {
+    margin-top: 0;
+    text-align: left;
   }
 }

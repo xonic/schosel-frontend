@@ -1,10 +1,10 @@
 <template>
   <div class="bets">
     <h1>Bets</h1>
-    <div class="champion-bet" v-if="loggedInUser">
+    <div class="champion-bet">
       <label for="champion-bet" class="label">Champion bet</label>
       <select id="champion-bet" class="select"
-        v-model="loggedInUser.champion_id"
+        v-model="status.user.champion.team_id"
         @change="postChampion()"
         v-if="champion_editable">
         <option disabled value="">Please select one</option>
@@ -16,36 +16,37 @@
     <div>
       <div class="label">{{ remainingSuperbets }} <span v-if="remainingSuperbets === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
       <transition-group name="star" appear>
-        <svg v-bind:key="i" v-for="i in remainingSuperbets" class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/>
-        </svg>
+        <super-bet v-bind:key="i" v-for="i in remainingSuperbets" :correct="true" />
       </transition-group>
     </div>
-    <div>
-      <div class="grid-matches" v-if="upcomingMatches.length">
-        <div v-for="matchDay in upcomingMatchDays" class="list">
-          <h4 class="list__header"><span>{{ matchDate(matchDay.date) }}</span><span>{{ matchDay.matches[0].stage }}</span></h4>
-          <ul class="list__items">
-            <li
-              is="match-item"
-              v-for="upcomingMatch in matchDay.matches"
-              v-bind="upcomingMatch"
-              v-on:is-saving="setSaving()"
-              v-on:stopped-saving="stopSaving()"
-              v-on:is-error="stopSavingWithError()"
-              class="list__item">
-            </li>
-          </ul>
-        </div>
-      </div>
-      <h2 v-else class="blankslate">No more upcoming matches</h2>
-    </div>
+    <ul>
+      <li v-for="match in upcomingMatches">
+        <input :id="match.match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet(match.match_id).outcome" @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)">
+        <label class="match__label match__label--radio" :for="match.match_id + '-home'">{{ match.team1_name }}</label>
+
+
+        <input class="match__input" type="radio" :id="match.match_id + '-draw'" value="X" v-model="ownBet(match.match_id).outcome" @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)">
+        <label class="match__label match__label--radio" :for="match.match_id + '-draw'">Draw</label>
+
+
+        <input class="match__input" type="radio" :id="match.match_id + '-away'" value="2" v-model="ownBet(match.match_id).outcome" @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)">
+        <label class="match__label match__label--radio" :for="match.match_id + '-away'">{{ match.team2_name }}</label>
+
+        <span v-if="remainingSuperbets || ownBet(match.match_id).supertip">
+          <input class="match__input" type="checkbox" :id="match.match_id + '-supertip'" v-model="ownBet(match.match_id).supertip" @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)">
+          <label class="match__label" :for="match.match_id + '-supertip'">
+            <super-bet :correct="ownBet(match.match_id).supertip" />
+          </label>
+        </span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { mapGetters } from 'vuex'
+import { HTTP } from '../http-constants'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 import SuperBet from '@/components/SuperBet'
 
@@ -68,11 +69,11 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'upcomingMatchDays',
       'upcomingMatches',
-      'loading',
+      // 'loading',
       'loggedInUser',
-      'status'
+      'status',
+      'ownBets'
     ]),
     remainingSuperbets () {
       return this.maxSuperbets - this.loggedInUser.visible_supertips
@@ -81,13 +82,16 @@ export default {
   mounted () {
   },
   methods: {
+    ownBet(match_id) {
+      return this.ownBets.find(bet => bet.match.match_id === match_id)
+    },
     matchDate: date => {
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(date).toLocaleString('en-GB', options)
     },
     postChampion() {
       this.isSaving = true
-      this.$ga.event(this.loggedInUser.name, "champion_bet")
+      // this.$ga.event(this.loggedInUser.name, "champion_bet")
 
       HTTP('/champion', {
         method: "post",
@@ -110,6 +114,32 @@ export default {
           this.isError = false
           this.isSaving = false
         }, 3000)
+      })
+    },
+    postBet(match_id, outcome, supertip) {
+      if(!match_id || !outcome) {
+        return
+      }
+
+      this.$emit("is-saving")
+      // this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
+
+      HTTP('/bets/' + match_id, {
+        method: "post",
+        withCredentials: true,
+        data: {
+          outcome: outcome,
+          supertip: supertip
+        }
+      })
+      .then(response => {
+
+        this.$store.dispatch('LOAD_STATUS')
+        this.$emit("stopped-saving")
+      })
+      .catch(e => {
+
+        this.$emit("is-error")
       })
     },
     setSaving() {

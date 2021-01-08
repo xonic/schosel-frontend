@@ -29,7 +29,7 @@ export default new Vuex.Store({
       hattrick: 0,
       secret: 0
     },
-    avatarUrl: 'https://api.adorable.io/avatars/400/'
+    avatarUrl: 'https://api.hello-avatar.com/adorables/400/'
   },
   actions: {
     REGISTER: function ({commit, dispatch}, userData) {

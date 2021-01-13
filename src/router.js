@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Match from './views/Match.vue'
 import Matches from './views/Matches.vue'
 import Score from './views/Score.vue'
 import Stats from './views/Stats.vue'
@@ -10,6 +11,7 @@ import SignUp from './views/SignUp.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -40,6 +42,11 @@ export default new Router({
       path: '/sign-up',
       name: 'sign-up',
       component: SignUp
+    },
+    {
+      path: '/match/:id',
+      name: 'match',
+      component: Match
     }
   ]
 })

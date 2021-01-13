@@ -68,8 +68,8 @@ export default {
     }
   },
   methods: {
-    setGrid: function(gridData) {
-      gridData.forEach(function(el, i){
+    setGrid: function(rawGridData) {
+      rawGridData.forEach(function(el, i){
 
         // Calculate score for each player
         var currentScore = this.match.outcome === el.outcome ? el.points : 0.00

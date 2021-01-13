@@ -25,9 +25,18 @@
 
       <tab name='Upcoming' v-if='upcomingMatches.length'>
         <h1>Upcoming</h1>
+        <div v-if="loggedInUser">
+          <select v-model="loggedInUser.champion_id">
+            <option disabled value="">Please select one</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+          </select>
+          <span>Selected: {{ loggedInUser.champion_id }}</span>
+        </div>
         <div class="legend">
-          <div class="">
-            Remaining super bets
+          <div v-if="loggedInUser">
+            Remaining super bets: {{ 4 - loggedInUser.visible_supertips }}
           </div>
           <div class="">
             Explain how odds work
@@ -69,7 +78,8 @@ export default {
     ...mapGetters([
       'playedMatches',
       'liveMatches',
-      'upcomingMatches'
+      'upcomingMatches',
+      'loggedInUser'
     ])
   },
   components: {

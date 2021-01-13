@@ -57,7 +57,7 @@ export default new Vuex.Store({
     SET_MATCHES: (state, { matches }) => {
 
       // TODO: remove this (manipulates some matches to be live & scheduled)
-      for(var i=matches.length-1; i>=matches.length-6; i--) {
+      for(var i=matches.length-1; i>=20; i--) {
         matches[i].status = "scheduled"
       }
       for(var i=matches.length-7; i>=matches.length-8; i--) {
@@ -98,7 +98,7 @@ export default new Vuex.Store({
     },
     liveMatches: state => {
 
-      // Filter matches that live
+      // Filter matches that are live
       var live = state.matches.filter(match => match.status === "live")
 
       // Add own bets to each live match
@@ -116,7 +116,23 @@ export default new Vuex.Store({
       return live;
     },
     upcomingMatches: state => {
-      return state.matches.filter(match => match.status === "scheduled")
+
+      // Filter matches that are upcomingg
+      var upcoming = state.matches.filter(match => match.status === "scheduled")
+
+      // Add own bets to each upcoming match
+      if(upcoming && state.ownBets) {
+        upcoming.forEach(function(match){
+          var ownBet = state.ownBets.find(function(bet){
+            return bet.match.match_id === match.match_id
+          }, this)
+
+          match.ownBet = ownBet
+          match.supertip = ownBet.supertip
+        }, this)
+      }
+
+      return upcoming
     },
     allUsers: state => {
       return state.users

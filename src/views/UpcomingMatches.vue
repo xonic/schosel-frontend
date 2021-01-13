@@ -151,7 +151,7 @@ export default {
     },
     setSaving() {
 
-      this.isSaving += 1
+      if (!this.saveError) this.isSaving += 1
       this.saveSuccess = false
       this.saveError = false
     },
@@ -171,9 +171,9 @@ export default {
         this.saveSuccess = false
         this.saveError = true
 
-        setTimeout(() => {
-          this.isSaving -= 1
-        }, 5000)
+        // setTimeout(() => {
+        //   this.isSaving -= 1
+        // }, 5000)
       }, 2000)
 
     },

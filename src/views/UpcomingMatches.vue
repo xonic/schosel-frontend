@@ -160,12 +160,7 @@ export default {
 
     },
     championBet() {
-      if(!this.loggedInUser.champion_id) return "-"
-      var champion = this.status.teams.find((el) => {
-        return el.team_id === this.loggedInUser.champion_id
-      })
-
-      return champion.name
+      return this.loggedInUser.champion.name || "-"
     }
   }
 }

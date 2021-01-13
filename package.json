@@ -27,7 +27,7 @@
   },
   "vue": {
     "lintOnSave": false,
-    "baseUrl": "/worlds2018/static/"
+    "publicPath": "/worlds2018/static/"
   },
   "babel": {
     "presets": [

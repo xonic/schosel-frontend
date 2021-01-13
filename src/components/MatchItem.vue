@@ -60,23 +60,11 @@
       <div class="match-item__time">{{ matchTime }} h</div>
       <div v-if="odds && ownBet" class="match-item__bet">
         <input class="match__input" type="radio" :id="match_id + '-home'" value="1" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label match__label--radio" :for="match_id + '-home'">Home&nbsp;
-          <div class="odds-estimation" v-bind:class="[odds['1']]">
-            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M9 8v4H3V8H0l6-8 6 8H9z" fill="#5FB100" fill-rule="evenodd"/></svg>
-          </div>
-        </label>
+        <label class="match__label match__label--radio" :for="match_id + '-home'">Home</label>
         <input class="match__input" type="radio" :id="match_id + '-draw'" value="X" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label match__label--radio" :for="match_id + '-draw'">Draw&nbsp;
-          <div class="odds-estimation" v-bind:class="[odds['X']]">
-            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M9 8v4H3V8H0l6-8 6 8H9z" fill="#5FB100" fill-rule="evenodd"/></svg>
-          </div>
-        </label>
+        <label class="match__label match__label--radio" :for="match_id + '-draw'">Draw</label>
         <input class="match__input" type="radio" :id="match_id + '-away'" value="2" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label match__label--radio" :for="match_id + '-away'">Away&nbsp;
-          <div class="odds-estimation" v-bind:class="[odds['2']]">
-            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M9 8v4H3V8H0l6-8 6 8H9z" fill="#5FB100" fill-rule="evenodd"/></svg>
-          </div>
-        </label>
+        <label class="match__label match__label--radio" :for="match_id + '-away'">Away</label>
         <input class="match__input" type="checkbox" :id="match_id + '-supertip'" v-model="ownBet.supertip" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
         <label class="match__label" :for="match_id + '-supertip'">
           <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>

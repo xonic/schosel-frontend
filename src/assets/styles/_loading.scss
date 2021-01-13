@@ -8,25 +8,25 @@
 .msg--save {
   display: inline-block;
   position: fixed;
-  bottom: 5vh;
-  left: 50%;
+  bottom: $space-50;
+  right: $space-25;
+  z-index: 801;
   width: 100px;
-  margin: 0 0 0 -50px;
   padding: $space-25 $space-50;
   background: white;
   border-radius: 4px;
-  box-shadow: 0 10px 20px rgba(0,0,0,.08),
-              0 4px 8px rgba(0,0,0,.1),
-              0 2px 4px rgba(0,0,0,.1);
+  // box-shadow: 0 10px 20px rgba(0,0,0,.08),
+  //             0 4px 8px rgba(0,0,0,.1),
+  //             0 2px 4px rgba(0,0,0,.1);
   font-size: 1.5rem;
   color: $gray-100;
   text-align: center;
   text-transform: uppercase;
-  transform: translateY(20vh);
+  transform: translateX(80vw);
   transition: transform .3s ease-out;
 
   .isSaving & {
-    transform: translateY(0);
+    transform: translateX(0);
     transition: transform .3s ease-in;
   }
 

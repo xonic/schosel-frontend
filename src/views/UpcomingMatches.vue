@@ -17,10 +17,17 @@
         </select>
         <div v-else>{{ championBet() }}</div>
       </div>
-      <div class="legend">
-        <div v-if="loggedInUser">
-          <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg> <span class="label">
-            {{ this.maxSuperbets - loggedInUser.visible_supertips }} <span v-if="this.maxSuperbets - loggedInUser.visible_supertips === 1">Superbet</span><span v-else>Superbets</span> remaining</span>
+        <div class="legend">
+          <div class="wrapper">
+            <div class="tab-grid">
+              <div></div>
+              <div v-if="loggedInUser">
+                <div class="label">{{ remainingSuperbets() }} <span v-if="remainingSuperbets() === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
+                <svg v-for="i in remainingSuperbets()" class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/>
+                </svg>
+              </div>
+            </div>
         </div>
       </div>
       <div class="grid-matches" v-if="upcomingMatches.length">
@@ -140,6 +147,9 @@ export default {
       })
 
       return champion.name
+    },
+    remainingSuperbets () {
+      return this.maxSuperbets - this.loggedInUser.visible_supertips
     }
   }
 }

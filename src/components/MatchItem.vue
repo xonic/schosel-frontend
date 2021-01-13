@@ -128,14 +128,16 @@ export default {
   methods: {
     postBet(match_id, outcome, supertip) {
       if(!match_id || !outcome) {
-        console.log("Missing match_id or outcome")
+        // console.log("Missing match_id or outcome")
         return
       }
-      console.log({
-        match_id: match_id,
-        outcome: outcome,
-        supertip: supertip
-      })
+      // console.log({
+      //   match_id: match_id,
+      //   outcome: outcome,
+      //   supertip: supertip
+      // })
+
+      this.$emit("is-saving")
 
       HTTP('/bets/' + match_id, {
         method: "post",
@@ -146,11 +148,15 @@ export default {
         }
       })
       .then(response => {
-        console.log("match bet saved")
+        // console.log("match bet saved")
         this.$store.dispatch('LOAD_STATUS')
+
+        this.$emit("stopped-saving")
       })
       .catch(e => {
         console.log(e)
+
+        this.$emit("stopped-saving")
       })
     }
   }

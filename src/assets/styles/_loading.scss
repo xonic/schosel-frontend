@@ -4,3 +4,76 @@
   align-items: center;
   height: calc(100vh - 6rem);
 }
+
+.saving {
+  display: inline-block;
+  position: fixed;
+  bottom: $space-25;
+  left: 50%;
+  width: 100px;
+  margin: 0 0 0 -50px;
+  padding: $space-25 $space-50;
+  background: $white;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08),
+              0 4px 8px rgba(0,0,0,.1),
+              0 2px 4px rgba(0,0,0,.1);
+  font-size: 1.5rem;
+  color: $gray-100;
+  text-transform: uppercase;
+  transform: translateY(20vh);
+  transition: transform .3s ease-out;
+
+  .isSaving & {
+    transform: translateY(0);
+    transition: transform .3s ease-in;
+  }
+}
+
+.ellipsis-1 {
+  animation: ellipsis1 .5s infinite;
+}
+
+.ellipsis-2 {
+  animation: ellipsis2 .5s infinite;
+}
+
+.ellipsis-3 {
+  animation: ellipsis3 .5s infinite;
+}
+
+@keyframes ellipsis1 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ellipsis2 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ellipsis3 {
+  0% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,8 +1,8 @@
 <template>
   <div class="score">
     <h1>Score</h1>
-    <div>271.43 pts</div>
-    <div>2. place</div>
+    <div v-if='loggedInUser'>{{ loggedInUser.points.toFixed(2) }} pts</div>
+    <div v-if='loggedInUserRank'>{{ loggedInUserRank }}. rank</div>
     <div class="">
       <h2>Achievements</h2>
       <ul>
@@ -47,36 +47,36 @@ export default {
   name: 'score',
   computed: {
     ...mapGetters([
-      'allUsers'
-    ]),
-    sortedArray: function() {
-      function compare(a, b) {
-        if (a.name < b.name)
-          return -1;
-        if (a.name > b.name)
-          return 1;
-        return 0;
-      }
-
-      return this.arrays.sort(compare);
-    }
+      'allUsers',
+      'loggedInUser'
+    ])
   },
   components: {
     Grid
   },
   data: function () {
     return {
-      gridColumns: ['rank', 'name', 'difference', 'points'],
+      loggedInUserRank: 0,
+      gridColumns: ['rank', 'name', 'difference', 'score'],
       gridData: undefined
     }
   },
   mounted () {
     this.$store.dispatch('LOAD_USERS')
     this.gridData = this.allUsers
+
     this.gridData.forEach(function(el, i){
       el.rank = i + 1;
-      el.points = el.points.toFixed(2)
-    })
+      el.score = el.points.toFixed(2)
+
+      el.difference = (el.points - this.loggedInUser.points).toFixed(2)
+
+      if(el.difference == 0.00) el.difference = "-"
+
+      if (el.user_id === this.loggedInUser.user_id) {
+        this.loggedInUserRank = el.rank
+      }
+    }, this)
   }
 }
 </script>

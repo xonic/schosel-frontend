@@ -6,40 +6,44 @@
       </div>
       <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
       <div v-if='!loading' class="tabs-details">
-        <div class='match-item match-item--live' v-if='this.match'>
-          <div class="match-item__time">
-            {{ match.matchDate }}
-          </div>
-          <div class="match-item__teams">
-            {{ match.team1_name }} &mdash; {{ match.team2_name }}
-          </div>
-          <div class="match-item__goals">
-            <span v-if="match.team1_goals">{{ match.team1_goals }}</span><span v-else>0</span> : <span v-if="match.team2_goals">{{ match.team2_goals }}</span><span v-else>0</span>
-          </div>
-          <span v-if="ownBet" v-bind:class="[ownBet.outcome === match.outcome ? 'has-scored' : '']" class="match-item__bet">
-            {{ (ownBet.points).toFixed(2) }} pts
-            <span class="match-item__supertip" v-if="ownBet.supertip">
-              <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+        <transition name="hero" appear>
+          <div class='match-item match-item--live' v-if='this.match'>
+            <div class="match-item__time">
+              {{ match.matchDate }}
+            </div>
+            <div class="match-item__teams">
+              {{ match.team1_name }} &mdash; {{ match.team2_name }}
+            </div>
+            <div class="match-item__goals">
+              <span v-if="match.team1_goals">{{ match.team1_goals }}</span><span v-else>0</span> : <span v-if="match.team2_goals">{{ match.team2_goals }}</span><span v-else>0</span>
+            </div>
+            <span v-if="ownBet" v-bind:class="[ownBet.outcome === match.outcome ? 'has-scored' : '']" class="match-item__bet">
+              {{ (ownBet.points).toFixed(2) }} pts
+              <span class="match-item__supertip" v-if="ownBet.supertip">
+                <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+              </span>
             </span>
-          </span>
-          <div class="match-item__odds" v-if='match.odds && ownBet'>
-            <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
-              Home&nbsp;{{ odds["1"].toFixed(2) }}
-            </div>
-            <div v-bind:class="[ownBet.outcome == 'X' ? 'has-bet' : '']" class="match-item__odds__draw">
-              Draw&nbsp;{{ odds["X"].toFixed(2) }}
-            </div>
-            <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
-              Away&nbsp;{{ odds["2"].toFixed(2) }}
+            <div class="match-item__odds" v-if='match.odds && ownBet'>
+              <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
+                Home&nbsp;{{ odds["1"].toFixed(2) }}
+              </div>
+              <div v-bind:class="[ownBet.outcome == 'X' ? 'has-bet' : '']" class="match-item__odds__draw">
+                Draw&nbsp;{{ odds["X"].toFixed(2) }}
+              </div>
+              <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
+                Away&nbsp;{{ odds["2"].toFixed(2) }}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="list__items">
-          <grid
-            :data="gridData"
-            :columns="gridColumns">
-          </grid>
-        </div>
+        </transition>
+        <transition name="content" appear>
+          <div class="list__items">
+            <grid
+              :data="gridData"
+              :columns="gridColumns">
+            </grid>
+          </div>
+        </transition>
       </div>
     </div>
   </div>

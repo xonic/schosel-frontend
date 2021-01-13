@@ -1,23 +1,25 @@
 <template>
   <div class="stats">
-    <tabs>
-      <tab name="Players" :selected="true">
-        <h1>Gamblers</h1>
-        <h2>Most bets on highest odds</h2>
-        <grid
-          :data="gridData"
-          :columns="gridColumns">
-        </grid>
-      </tab>
+    <div class="wrapper">
+      <tabs>
+        <tab name="Players" :selected="true">
+          <h1>Gamblers</h1>
+          <h2>Most bets on highest odds</h2>
+          <grid
+            :data="gridData"
+            :columns="gridColumns">
+          </grid>
+        </tab>
 
-      <tab name="Teams">
-        <h1>Teams</h1>
-      </tab>
+        <tab name="Teams">
+          <h1>Teams</h1>
+        </tab>
 
-      <tab name="Matches">
-        <h1>Matches</h1>
-      </tab>
-    </tabs>
+        <tab name="Matches">
+          <h1>Matches</h1>
+        </tab>
+      </tabs>
+    </div>
   </div>
 </template>
 

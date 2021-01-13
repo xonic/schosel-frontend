@@ -1,6 +1,12 @@
 @import 'reset';
 @import 'variables';
+@import 'grid';
+@import 'header';
+@import 'tabs';
 
+* {
+  box-sizing: border-box;
+}
 
 html {
   font-size: 62.5%;
@@ -9,6 +15,11 @@ html {
 body {
   font-family: $base-font;
   font-size: $base-font-size;
+  line-height: 1.6;
+}
+
+img, svg {
+  max-width: 100%;
 }
 
 a {

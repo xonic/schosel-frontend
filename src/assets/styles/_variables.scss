@@ -8,7 +8,19 @@
 //  = COLORS
 //  ---------------------------------------------------------------------------
 
-    $blue-100: #3EABDC;
+    $white:        #fff;
+    $black:        #000;
+
+    $gray-100:     #9B9B9B;
+
+    $blue-20:      #00495A;
+    $blue-30:      #005278;
+    $blue-100:     #3EABDC;
+    $blue-120:     #007CB6;
+    $blue-130:     #00B3DC;
+
+    $yellow-80:    #AA7200;
+    $yellow-100:   #D48E00;
 
 
 //  = TYPOGRAPHY
@@ -16,3 +28,18 @@
 
     $base-font: 'PT Sans Narrow', sans-serif;
     $base-font-size: 2rem;
+    $base-font-weight: 400;
+    $bold-font-weight: 700;
+
+
+//  = LAYOUT
+//  ---------------------------------------------------------------------------
+
+    $max-page-width: 128rem;
+
+    $space-10: .4rem;
+    $space-25: .8rem;
+    $space-35: 1.2rem;
+    $space-50: 1.6rem;
+    $space-75: 2.4rem;
+    $space-100: 3.2rem;

@@ -1,0 +1,8 @@
+.wrapper {
+  margin: 0 auto;
+  max-width: 74.4rem;
+
+  @media (min-width: 1440px) {
+    max-width: 128rem;
+  }
+}

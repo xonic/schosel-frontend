@@ -9,66 +9,64 @@
           </div>
         </transition>
       </div>
-      <transition name="content" appear>
-        <div class="island">
-          <grid
-            :data="gridData"
-            :columns="gridColumns"
-            v-if="allUsers.length">
-          </grid>
-        </div>
-      </transition>
+      <clip-loader :loading="loading.users" :color="loading.color" :size="loading.size"></clip-loader>
+      <div v-if="!loading.users">
+        <transition name="content" appear>
+          <div class="island">
+            <grid
+              :data="gridData"
+              :columns="gridColumns"
+              v-if="allUsers.length">
+            </grid>
+          </div>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 import Grid from '@/components/Grid.vue'
-import Tabs from '@/components/Tabs.vue'
-import Tab from '@/components/Tab.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'gambler',
   components: {
     Grid,
-    Tabs,
-    Tab
+    ClipLoader
   },
   computed: {
     ...mapGetters([
       'allUsers',
-      'loggedInUser'
-    ])
-  },
-  data: function () {
-    return {
-      searchQuery: '',
-      gridColumns: ['rank', 'name', 'team_name', 'score'],
-      gridData: []
-    }
-  },
-  methods: {
-    getGridData: function() {
+      'loggedInUser',
+      'loading'
+    ]),
+    gridData: function() {
 
       if(this.allUsers.length > 0) {
-        this.gridData = []
-        var self = this
+        var gridData = []
+
         this.allUsers.forEach((user) => {
 
-          self.gridData.push({
+          gridData.push({
             rank: user.achievements.expert.rank,
             name: user.name,
             team_name: user.achievements.expert.team_name,
-            score: user.achievements.expert.score.toFixed(2),
+            score: user.achievements.expert.score.toFixed(2)
           })
         })
       }
+      return gridData.sort((a, b) => {
+        return a.rank - b.rank
+      });
     }
   },
-  mounted () {
-    this.getGridData();
+  data: function () {
+    return {
+      gridColumns: ['rank', 'name', 'team_name', 'score'],
+    }
   }
 }
 </script>

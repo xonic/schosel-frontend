@@ -113,7 +113,9 @@ export default {
         })
       })
 
-      return gridData;
+      return gridData.sort((a, b) => {
+        return b.match_id - a.match_id
+      })
     }
   },
   methods: {
@@ -132,7 +134,7 @@ export default {
       {
         this.interval = setInterval( () => {
           this.loadUserData()
-        }, 60000);
+        }, 10000);
       }
     }
   },

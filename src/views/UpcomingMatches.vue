@@ -109,7 +109,7 @@ export default {
         }, 3000)
       })
       .catch(e => {
-        console.log(this.loggedInUser.champion_id)
+        // console.log(this.loggedInUser.champion_id)
         console.log(e)
 
         setTimeout(() => {

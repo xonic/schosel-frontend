@@ -1,6 +1,6 @@
 <template>
   <li>
-    <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: match_id, ownBet: ownBet, odds: odds } }" class="list__link">
+    <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: match_id, odds: odds } }" class="list__link">
       <div class="match-item match-item--played" v-if="status === 'over'">
         <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
         <div class="match-item__goals">

@@ -16,7 +16,7 @@
           <div class="match-item__goals">
             <span v-if="match.team1_goals">{{ match.team1_goals }}</span><span v-else>0</span> : <span v-if="match.team2_goals">{{ match.team2_goals }}</span><span v-else>0</span>
           </div>
-          <span v-if="ownBet" v-bind:class="[ownBet.outcome === ownBet.match.outcome ? 'has-scored' : '']" class="match-item__bet">
+          <span v-if="ownBet" v-bind:class="[ownBet.outcome === match.outcome ? 'has-scored' : '']" class="match-item__bet">
             {{ (ownBet.points).toFixed(2) }} pts
             <span class="match-item__supertip" v-if="ownBet.supertip">
               <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
@@ -64,28 +64,39 @@ export default {
       gridData: [],
       loading: true,
       size: "32px",
-      color: "#3EABDC"
+      color: "#3EABDC",
+      ownBet: null
     }
   },
-  props: ['id', 'ownBet', 'odds'],
+  props: ['id', 'odds'],
   mounted () {
     this.loadMatchData()
   },
   computed: {
+    ...mapGetters([
+      'ownBets'
+    ]),
     matchDate: function() {
       return new Date(this.match.date).toLocaleString()
     }
   },
   methods: {
     loadMatchData: function() {
+      if(this.ownBets)
+      {
+        this.ownBet = this.ownBets.find((el) => {
+          return el.match.match_id === this.id
+        })
+        console.log(this.ownBet)
+      }
       HTTP.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
         this.match = response.data
         this.setGrid(response.data.bets)
         this.loading = false
-        // TODO: check how to properly poll data without polluting global space with intervals
-        // if(this.match.status === 'live') {
-          // this.setLoadingInterval()
-        // }
+
+        if(this.match.status === 'live') {
+          this.setLoadingInterval()
+        }
       }, (err) => {
         console.log(err)
       })
@@ -95,10 +106,11 @@ export default {
       {
         this.interval = setInterval( () => {
           this.loadMatchData()
-        }, 5000);
+        }, 10000);
       }
     },
     setGrid: function(rawGridData) {
+      this.gridData = []
       rawGridData.forEach(function(el, i){
 
         // Calculate score for each player
@@ -117,6 +129,9 @@ export default {
         })
       }, this)
     }
+  },
+  beforeDestroy () {
+    clearInterval(this.interval)
   }
 }
 </script>

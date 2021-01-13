@@ -2,8 +2,12 @@
   <div class="hattrick">
     <div class="wrapper">
       <div class="hero hero--10">
-        <h1 class="hero__heading">Hattrick</h1>
-        <div class="hero__info">Most points from 3+ consecutive correct bets</div>
+        <transition name="hero" appear>
+          <div>
+            <h1 class="hero__heading">Hattrick</h1>
+            <div class="hero__info">Most points from 3+ consecutive correct bets</div>
+          </div>
+        </transition>
       </div>
       <div class="island">
         <grid

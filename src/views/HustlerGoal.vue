@@ -2,8 +2,12 @@
   <div class="hustler">
     <div class="wrapper">
       <div class="hero hero--12">
-        <h1 class="hero__heading">Hustler</h1>
-        <div class="hero__info">Most points from superbets</div>
+        <transition name="hero" appear>
+          <div>
+            <h1 class="hero__heading">Hustler</h1>
+            <div class="hero__info">Most points from superbets</div>
+          </div>
+        </transition>
       </div>
       <div class="island">
         <grid

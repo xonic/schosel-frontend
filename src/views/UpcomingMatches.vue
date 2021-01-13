@@ -2,9 +2,13 @@
   <div class="matches" v-bind:class="[maxSuperbets - loggedInUser.visible_supertips <= 0 ? 'no-superbets-left' : '']">
     <div class="wrapper" v-bind:class="{ isSaving: isSaving }">
       <div class="hero hero--9">
-        <h1 class="hero__heading">Upcoming</h1>
-        <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
-      </div>
+        <transition name="hero" appear>
+          <div>
+            <h1 class="hero__heading">Upcoming</h1>
+            <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
+          </div>
+        </transition>
+        </div>
       <div class="champion-bet" v-if="loggedInUser">
         <label for="champion-bet" class="label">Champion bet</label>
         <select id="champion-bet" class="select"
@@ -17,19 +21,23 @@
         </select>
         <div v-else>{{ championBet() }}</div>
       </div>
-        <div class="legend">
+      <transition name="legend" appear>
+        <div class="legend" v-if="loggedInUser">
           <div class="wrapper">
             <div class="tab-grid">
               <div v-if="upcomingMatches.length < 48"></div>
-              <div v-if="loggedInUser">
+              <div>
                 <div class="label">{{ remainingSuperbets() }} <span v-if="remainingSuperbets() === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
-                <svg v-for="i in remainingSuperbets()" class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/>
-                </svg>
+                <transition-group name="star" appear>
+                  <svg v-bind:key="i" v-for="i in remainingSuperbets()" class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/>
+                  </svg>
+                </transition-group>
               </div>
             </div>
+          </div>
         </div>
-      </div>
+      </transition>
       <div class="grid-matches" v-if="upcomingMatches.length">
         <div v-for="matchDay in upcomingMatchDays" class="list">
           <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
@@ -155,3 +163,61 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.legend-enter {
+  transform: translateY(100%);
+}
+
+.legend-enter-active {
+  transition: transform .2s .2s ease-out;
+}
+
+.legend-enter-to {
+  transform: translateY(0);
+}
+
+.legend-leave {
+  transform: translateY(0);
+}
+
+.legend-leave-active {
+  transition: transform .2s ease-in;
+  transform: translateY(100%);
+}
+
+.legend-leave-to {
+  transform: translateY(100%);
+}
+
+.star-enter {
+  opacity: 0;
+  transform: translateY(-100%) rotateZ(-60deg);
+}
+
+.star-enter-active {
+  transition: all .2s ease-in;
+}
+
+.star-enter-to {
+  transform: translateY(0);
+}
+
+.star-leave {
+  transform: translateY(0);
+}
+
+.star-leave-active {
+  transition: all .2s ease-in;
+  opacity: 0;
+  transform: translateY(100%) rotateZ(30deg);
+}
+
+.star-leave-to {
+  transform: translateY(100%) rotateZ(30deg);
+}
+
+
+
+</style>

@@ -2,8 +2,12 @@
   <div class="score">
     <div class="wrapper">
       <div class="hero hero--2">
-        <h1 class="hero__heading">Score</h1>
-        <div class="hero__info" v-if='loggedInUser'>{{ loggedInUser.points.toFixed(2) }} pts</div>
+        <transition name="hero" appear>
+          <div>
+            <h1 class="hero__heading">Score</h1>
+            <div class="hero__info" v-if='loggedInUser'>{{ loggedInUser.points.toFixed(2) }} pts</div>
+          </div>
+        </transition>
       </div>
       <clip-loader :loading="loading.users" :color="loading.color" :size="loading.size"></clip-loader>
       <div v-if="!loading.users">

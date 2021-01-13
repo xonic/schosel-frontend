@@ -2,8 +2,12 @@
   <div class="secret">
     <div class="wrapper">
       <div class="hero hero--13">
-        <h1 class="hero__heading">Secret Goal</h1>
-        <div class="hero__info">To be revealed after the tournament</div>
+        <transition name="hero" appear>
+          <div>
+            <h1 class="hero__heading">Secret Goal</h1>
+            <div class="hero__info">To be revealed after the tournament</div>
+          </div>
+        </transition>
       </div>
       <div class="island">
         <grid

@@ -20,6 +20,9 @@ export default new Vuex.Store({
   actions: {
     LOAD_STATUS: function ({ commit }) {
       HTTP.get('/status', { withCredentials: true }).then((response) => {
+        if(response.headers["content-type"] !== "application/json") {
+          window.location.href = 'https://www.schosel.net/worlds2018/login';
+        }
         commit('SET_STATUS', { status: response.data })
       }, (err) => {
         console.log(err)
@@ -27,6 +30,9 @@ export default new Vuex.Store({
     },
     LOAD_MATCHES: function ({ commit }) {
       HTTP.get('/matches', { withCredentials: true }).then((response) => {
+        if(response.headers["content-type"] !== "application/json") {
+          window.location.href = 'https://www.schosel.net/worlds2018/login';
+        }
         commit('SET_MATCHES', { matches: response.data })
       }, (err) => {
         console.log(err)
@@ -34,6 +40,9 @@ export default new Vuex.Store({
     },
     LOAD_USERS: function ({ commit }) {
       HTTP.get('/users', { withCredentials: true }).then((response) => {
+        if(response.headers["content-type"] !== "application/json") {
+          window.location.href = 'https://www.schosel.net/worlds2018/login';
+        }
         commit('SET_USERS', { users: response.data })
       }, (err) => {
         console.log(err)
@@ -41,6 +50,9 @@ export default new Vuex.Store({
     },
     LOAD_USER: function ({ commit }) {
       HTTP.get('/user', { withCredentials: true }).then((response) => {
+        if(response.headers["content-type"] !== "application/json") {
+          window.location.href = 'https://www.schosel.net/worlds2018/login';
+        }
         commit('SET_USER', { user: response.data })
       }, (err) => {
         console.log(err)
@@ -48,6 +60,9 @@ export default new Vuex.Store({
     },
     LOAD_OWN_BETS: function ({ commit }) {
       HTTP.get('/bets', { withCredentials: true }).then((response) => {
+        if(response.headers["content-type"] !== "application/json") {
+          window.location.href = 'https://www.schosel.net/worlds2018/login';
+        }
         commit('SET_OWN_BETS', { ownBets: response.data })
       }, (err) => {
         console.log(err)

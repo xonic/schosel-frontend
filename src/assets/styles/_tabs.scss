@@ -46,6 +46,10 @@
   }
 }
 
+.tab__link--tight {
+  padding: 0 $space-25;  
+}
+
 .tab__link-meta {
   font-size: 80%;
   font-weight: $base-font-weight;

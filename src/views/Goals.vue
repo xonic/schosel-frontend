@@ -6,19 +6,19 @@
          <div class="tabs">
            <ul class="tab__items wrapper">
              <li>
-               <router-link :to="{ name: 'players' }" class="tab__link">Gambler</router-link>
+               <router-link :to="{ name: 'gambler' }" class="tab__link tab__link--tight">Gambler</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'teams' }" class="tab__link">Hustler</router-link>
+               <router-link :to="{ name: 'hustler' }" class="tab__link tab__link--tight">Hustler</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'match-stats' }" class="tab__link">Expert</router-link>
+               <router-link :to="{ name: 'expert' }" class="tab__link tab__link--tight">Expert</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'match-stats' }" class="tab__link">Hattrick</router-link>
+               <router-link :to="{ name: 'hattrick' }" class="tab__link tab__link--tight">Hattrick</router-link>
              </li>
              <li>
-               <router-link :to="{ name: 'match-stats' }" class="tab__link">Secret</router-link>
+               <router-link :to="{ name: 'secret' }" class="tab__link tab__link--tight">Secret</router-link>
              </li>
            </ul>
          </div>
@@ -36,7 +36,7 @@ import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
 export default {
-  name: 'stats',
+  name: 'goals',
   computed: {
     ...mapGetters([
       'loading'

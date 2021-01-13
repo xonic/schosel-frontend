@@ -7,7 +7,7 @@
       </div>
       <clip-loader :loading="loading.users" :color="loading.color" :size="loading.size"></clip-loader>
       <div v-if="!loading.users">
-        <div v-if="allUsers && allUsers.length">
+        <div class="island" v-if="allUsers && allUsers.length">
           <!-- <h2>Achievements</h2>
           <ul>
             <li>

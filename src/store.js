@@ -56,19 +56,40 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_STATUS: (state, { status }) => {
+      console.log(status)
+
+      //TODO: remove this
+      // status.user.achievements = {}
+      //
+      // status.user.achievements.gambler = {}
+      // status.user.achievements.hustler = {}
+      // status.user.achievements.expert = {}
+      // status.user.achievements.hattrick = {}
+      // status.user.achievements.secret = {}
+      //
+      // status.user.achievements.gambler.rank = 1
+      // status.user.achievements.gambler.score = 1000
+      //
+      // status.user.achievements.hustler.rank = 1
+      // status.user.achievements.hustler.score = 1000
+      // status.user.achievements.hustler.times_correct = 2
+      //
+      // status.user.achievements.expert.rank = 1
+      // status.user.achievements.expert.score = 1000
+      // status.user.achievements.expert.team_name = 'Russia'
+      //
+      // status.user.achievements.hattrick.rank = 1
+      // status.user.achievements.hattrick.score = 1000
+      //
+      // status.user.achievements.secret.rank = 1
+
       state.status = status
       state.loadInfo.status = false
     },
     SET_MATCHES: (state, { matches }) => {
 
       // TODO: remove this (manipulates some matches to be live & scheduled)
-      // for(var i=0; i<=matches.length - 1; i++) {
-      //   matches[i].status = "over"
-      //   matches[i].odds = new Array();
-      //   matches[i].odds["1"] = 1.53403
-      //   matches[i].odds["X"] = 4.28292
-      //   matches[i].odds["2"] = 9.10101
-      // }
+      // for(var i=<
       // for(var i=4; i<= 5; i++) {
       //   matches[i].status = "live"
       //   matches[i].odds = new Array();
@@ -82,10 +103,41 @@ export default new Vuex.Store({
       state.matches = matches
     },
     SET_USERS: (state, { users }) => {
+
+      // TODO: Remove this
+      // users.forEach((user, i) => {
+      //   user.achievements = {}
+      //
+      //   user.achievements.gambler = {}
+      //   user.achievements.hustler = {}
+      //   user.achievements.expert = {}
+      //   user.achievements.hattrick = {}
+      //   user.achievements.secret = {}
+      //
+      //   user.achievements.gambler.rank = i + 1
+      //   user.achievements.gambler.score = (1000 - i) / (i + 1)
+      //
+      //   user.achievements.hustler.rank = i + 1
+      //   user.achievements.hustler.score = (1000 - i) / (i + 1)
+      //   user.achievements.hustler.times_correct = users.length - i
+      //
+      //   user.achievements.expert.rank = i + 1
+      //   user.achievements.expert.score = (1000 - i) / (i + 1)
+      //   user.achievements.expert.team_name = 'Russia'
+      //
+      //   user.achievements.hattrick.rank = i + 1
+      //   user.achievements.hattrick.score = (1000 - i) / (i + 1)
+      //
+      //   user.achievements.secret.rank = i + 1
+      //
+      //   console.log(user)
+      // })
+
       state.loadInfo.users = false
       state.users = users
     },
     SET_USER: (state, { user }) => {
+
       state.user = user
     },
     SET_OWN_BETS: (state, { ownBets }) => {
@@ -273,7 +325,9 @@ export default new Vuex.Store({
 
       // Get rank of logged in user
       if(state.users && state.status.user) {
-        state.status.user.rank = state.users.map(function(e) { return e.user_id; }).indexOf(state.status.user.user_id) + 1;
+        state.status.user.rank = state.users.map(function(e) {
+          return e.user_id;
+        }).indexOf(state.status.user.user_id) + 1;
       }
       return state.status.user
     },

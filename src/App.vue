@@ -24,7 +24,14 @@
                 </div> Score
               </router-link>
             </li>
-            <!-- <li class="nav__item">
+            <li class="nav__item" v-if="loggedInUser && loggedInUser.achievements">
+              <router-link class="nav__link" to="/goals">
+                <div class="nav__img">
+                  <svg viewBox="0 0 14 16" width="14" height="16" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" fill-rule="evenodd"><circle cx="7" cy="6" r="6"/><path d="M11.724 11.166l1.596 2.763-.043.025-2.685-.759-.694 2.71-.042.024-1.743-3.017a6.977 6.977 0 0 0 3.611-1.746zm-9.657-.2a6.985 6.985 0 0 0 3.526 1.893l-1.773 3.07-.043-.024-.685-2.705-2.694.754-.042-.025 1.71-2.963z"/></g></svg>
+                </div> Goals
+              </router-link>
+            </li>
+            <!-- <li class="nav__item" v-if="loggedInUser && loggedInUser.achievements">
               <router-link class="nav__link" to="/stats">
                 <div class="nav__img">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><path d="M0 15h6v9H0zM9 9h6v15H9zM18 0h6v24h-6z"/></g></svg>

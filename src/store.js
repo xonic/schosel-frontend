@@ -31,7 +31,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    login ({commit}, authData) {
+    LOGIN: function ({commit, dispatch}, authData) {
 
       HTTP.post('/login', {
         email: authData.email,
@@ -39,24 +39,50 @@ export default new Vuex.Store({
         remember: true
       })
         .then(res => {
+
+          // Load all other stuff
+          dispatch('LOAD_STATUS')
+          dispatch('LOAD_MATCHES')
+          dispatch('LOAD_OWN_BETS')
+          dispatch('LOAD_USERS')
+
           commit('SET_AUTHENTICATED', { authenticated: true })
+
+          // Remember across page loads
+          localStorage.setItem('authenticated', true)
 
           // Redirect to requested URL or default to matches
           authData.redirect ? router.push({ path: authData.redirect }) : router.push('matches')
         })
         .catch(error => console.log(error))
     },
-    logout ({commit}) {
+    TRY_AUTO_LOGIN: function ({commit, dispatch}) {
+      const auth = localStorage.getItem('authenticated')
+
+      if(auth) {
+        commit('SET_AUTHENTICATED', { authenticated: auth })
+
+        // Load all other stuff
+        dispatch('LOAD_STATUS')
+        dispatch('LOAD_MATCHES')
+        dispatch('LOAD_OWN_BETS')
+        dispatch('LOAD_USERS')
+      }
+
+    },
+    LOGOUT: function ({commit}) {
       HTTP.post('/logout')
         .then(res => {
-          // console.log(res)
+          commit('SET_STATUS', { status: {} })
+          commit('SET_USERS', { users: [] })
           commit('SET_AUTHENTICATED', { authenticated: false })
+          localStorage.removeItem('authenticated')
           router.push('login')
         })
         .catch(error => console.log(error))
     },
     LOAD_STATUS: function ({ commit }) {
-      console.log('LOAD_STATUS called')
+      // console.log('LOAD_STATUS called')
       HTTP.get('/status').then((response) => {
         if(response.headers["content-type"] !== "application/json") {
           window.location.href = 'https://www.schosel.net/worlds2018/login';
@@ -67,7 +93,7 @@ export default new Vuex.Store({
       })
     },
     LOAD_MATCHES: function ({ commit }) {
-      console.log('LOAD_MATCHES called')
+      // console.log('LOAD_MATCHES called')
       HTTP.get('/matches').then((response) => {
         if(response.headers["content-type"] !== "application/json") {
           window.location.href = 'https://www.schosel.net/worlds2018/login';
@@ -78,7 +104,7 @@ export default new Vuex.Store({
       })
     },
     LOAD_USERS: function ({ commit }) {
-      console.log('LOAD_USERS called')
+      // console.log('LOAD_USERS called')
       HTTP.get('/users').then((response) => {
         if(response.headers["content-type"] !== "application/json") {
           window.location.href = 'https://www.schosel.net/worlds2018/login';
@@ -89,7 +115,7 @@ export default new Vuex.Store({
       })
     },
     LOAD_USER: function ({ commit }) {
-      console.log('LOAD_USER called')
+      // console.log('LOAD_USER called')
       HTTP.get('/user').then((response) => {
         if(response.headers["content-type"] !== "application/json") {
           window.location.href = 'https://www.schosel.net/worlds2018/login';
@@ -100,7 +126,7 @@ export default new Vuex.Store({
       })
     },
     LOAD_OWN_BETS: function ({ commit }) {
-      console.log('LOAD_OWN_BETS called')
+      // console.log('LOAD_OWN_BETS called')
       HTTP.get('/bets').then((response) => {
         if(response.headers["content-type"] !== "application/json") {
           window.location.href = 'https://www.schosel.net/worlds2018/login';
@@ -128,7 +154,6 @@ export default new Vuex.Store({
         if(status.user.achievements.expert.rank === 1) extras.push("Expert")
         if(status.user.achievements.hattrick.rank === 1) extras.push("Hattrick")
         if(status.user.achievements.secret && status.user.achievements.secret.rank === 1) extras.push("Secret")
-        // console.log(status.user)
 
         extras.length ? status.user.extras = extras.join(", ") : status.user.extras = "-"
       }
@@ -153,6 +178,12 @@ export default new Vuex.Store({
       state.matches = matches
     },
     SET_USERS: (state, { users }) => {
+
+      // On logout reset rewards
+      if(!users.length) {
+        state.rewards = {}
+        return
+      }
 
       // Check who is leading which goals to show in score board
       if(users && users[0].achievements) {

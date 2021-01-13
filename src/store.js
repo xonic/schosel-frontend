@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     status: {},
-    users: {},
+    users: [],
     matches: [],
     bets: {},
     teams: {}
@@ -19,12 +19,22 @@ export default new Vuex.Store({
       }, (err) => {
         console.log(err)
       })
+    },
+    LOAD_USERS: function ({ commit }) {
+      axios.get('http://localhost:5000/api/v1/users', {withCredentials: true}).then((response) => {
+        commit('SET_USERS', { users: response.data })
+      }, (err) => {
+        console.log(err)
+      })
     }
   },
   mutations: {
     SET_MATCHES: (state, { matches }) => {
       state.matches = matches
-      console.log("state.matches", state.matches)
+    },
+    SET_USERS: (state, { users }) => {
+      state.users = users
+      console.log("state.users", state.users)
     }
   },
   getters: {
@@ -36,6 +46,9 @@ export default new Vuex.Store({
     },
     upcomingMatches: state => {
       return state.matches.filter(match => match.status === "scheduled")
+    },
+    allUsers: state => {
+      return state.users
     }
   }
 })

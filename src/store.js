@@ -362,11 +362,29 @@ export default new Vuex.Store({
     },
     allUsers: state => {
 
-      state.users.sort(function(a,b) {
-        return b.points - a.points;
-      });
+      if (state.users.length) {
+        // Set rank values for achievements
+        for (var goal in state.users[0].achievements) {
 
-      state.users.forEach(function(el, i){
+          // Sort by goal
+          state.users.sort((a, b) => {
+            return b.achievements[goal].score - a.achievements[goal].score
+          })
+
+          // Set rank value
+          state.users.forEach((el, i) => {
+            el.achievements[goal].rank = i + 1
+          })
+        }
+      }
+
+      // Sort by main score
+      state.users.sort((a,b) => {
+        return b.points - a.points;
+      })
+
+      // Set main score rank
+      state.users.forEach((el, i) => {
 
         // Set rank column value
         el.rank = i + 1;
@@ -374,11 +392,7 @@ export default new Vuex.Store({
         // Beautify score
         el.score = el.points.toFixed(2)
 
-        // Calculate difference of logged in player score to other players score
-        el.difference = (el.points - state.status.user.points).toFixed(2)
-        if(el.difference == 0.00) el.difference = "-"
-
-      }, this)
+      })
 
       return state.users
     },

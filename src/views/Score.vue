@@ -5,7 +5,7 @@
         <transition name="hero" appear>
           <div>
             <h1 class="hero__heading">Score</h1>
-            <div class="hero__info" v-if='loggedInUser'>{{ loggedInUser.points.toFixed(2) }} pts</div>
+            <div class="hero__info" v-if='loggedInUser && loggedInUser.points'>{{ loggedInUser.points.toFixed(2) }} pts</div>
           </div>
         </transition>
       </div>
@@ -47,7 +47,7 @@ export default {
     gridData () {
       if(this.allUsers) {
         this.allUsers.forEach((el) => {
-          el.points = el.points.toFixed(2)
+          el.points = parseFloat(el.points).toFixed(2)
         })
         return this.allUsers
       }

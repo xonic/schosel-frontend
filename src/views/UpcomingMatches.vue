@@ -1,5 +1,5 @@
 <template>
-  <div class="matches">
+  <div class="matches"  v-bind:class="[maxSuperbets - loggedInUser.visible_supertips <= 0 ? 'no-superbets-left' : '']">
     <div class="wrapper">
       <div class="hero hero--9">
         <h1 class="hero__heading">Upcoming</h1>
@@ -11,14 +11,10 @@
           <option v-for="team in status.teams"
                   v-bind:value="team.team_id">{{ team.name }}</option>
         </select>
-        <span>Selected: {{ loggedInUser.champion_id }}</span>
       </div>
       <div class="legend">
         <div v-if="loggedInUser">
           Remaining super bets: {{ maxSuperbets - loggedInUser.visible_supertips }}
-        </div>
-        <div class="">
-          Explain how odds work
         </div>
       </div>
       <div class="grid-matches" v-if="upcomingMatches.length">
@@ -69,7 +65,7 @@ export default {
   methods: {
     matchDate: function(date) {
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(date).toLocaleString('de-DE', options)
+      return new Date(date).toLocaleString('en-GB', options)
     },
     postChampion () {
       HTTP('/champion', {
@@ -80,7 +76,7 @@ export default {
         }
       })
       .then(response => {
-        console.log("saved")
+        console.log("champion bet saved")
       })
       .catch(e => {
         console.log(this.loggedInUser.champion_id)

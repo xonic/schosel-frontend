@@ -10,6 +10,5 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 
 export const HTTP = axios.create(
   {
-    baseURL: baseURL,
-    withCredentials: true
+    baseURL: baseURL
   })

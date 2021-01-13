@@ -77,7 +77,7 @@ export default {
       playedMatches: [],
       liveMatches: [
         {
-          "url": "/matches/4",
+          "match_id": "y",
           "date": "2018-04-23T18:30:00.000Z",
           "status": "live",
           "result": "X",
@@ -89,12 +89,16 @@ export default {
           "team2_goals": "1",
           "stage": "Round of 16",
           "bets": "/matches/4/bets",
-          "odds": [13.3, 23.2, 5.0]
+          "odds": {
+            "1": 13.3,
+            "X": 23.2,
+            "2": 5.0
+          }
         }
       ],
       upcomingMatches: [
         {
-            "url": "/matches/3",
+            "match_id": "x",
             "date": "2018-07-23T18:30:00.000Z",
             "status": "scheduled",
             "team1_name": "South Georgia and the South Sandwich Islands",
@@ -102,7 +106,11 @@ export default {
             "team2_name": "Burkina Faso",
             "team2_iso": "BFA",
             "stage": "Group Stage",
-            "odds": ["medium", "high", "low"]
+            "odds": {
+              "1": "medium",
+              "X": "high",
+              "2": "low"
+            }
         }
       ],
       matches: []
@@ -136,9 +144,11 @@ export default {
   },
   mounted () {
     // Get all matches from server
-    axios.get('https://www.schosel.net/worlds2018/api/v1/matches')
+    axios.get('http://localhost:5000/api/v1/matches', {withCredentials: true})
       .then(response => {
-        this.acceptMatches(response)
+        this.acceptMatches(response);
+        this.$store.commit('setMatches', response);
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);

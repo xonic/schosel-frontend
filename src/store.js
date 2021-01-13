@@ -280,6 +280,9 @@ export default new Vuex.Store({
     },
     loading: state => {
       return state.loadInfo
+    },
+    status: state => {
+      return state.status
     }
   }
 })

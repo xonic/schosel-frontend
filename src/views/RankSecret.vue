@@ -1,6 +1,6 @@
 <template>
   <div class="score">
-    <h1>Hidden</h1>
+    <h1>Secret</h1>
     <rank-grid :data="rankedUsers" />
   </div>
 </template>
@@ -10,7 +10,7 @@
   import RankGrid from '@/components/RankGrid'
 
   export default {
-    name: 'kings-game',
+    name: 'secret',
     data () {
       return {
 

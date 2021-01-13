@@ -13,7 +13,9 @@ import KingsGame from './views/RankKingsGame.vue'
 import Oldfashioned from './views/RankOldfashioned.vue'
 import Underdog from './views/RankUnderdog.vue'
 import Balanced from './views/RankBalanced.vue'
-import Hidden from './views/RankHidden.vue'
+import Secret from './views/RankSecret.vue'
+import Scores from './views/Scores.vue'
+import Users from './views/Users.vue'
 import User from './views/User.vue'
 import Profile from './views/Profile.vue'
 import store from './store'
@@ -38,52 +40,9 @@ const router =  new Router({
       path: '/',
       name: 'home',
       component: Home,
-      redirect: '/kings-game',
       meta: {
         requiresAuth: true
       },
-      children: [
-        {
-          path: '/kings-game',
-          name: 'kingsgame',
-          component: KingsGame,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/oldfashioned',
-          name: 'oldfashioned',
-          component: Oldfashioned,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/underdog',
-          name: 'underdog',
-          component: Underdog,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/balanced',
-          name: 'balanced',
-          component: Balanced,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/hidden',
-          name: 'hidden',
-          component: Hidden,
-          meta: {
-            requiresAuth: true
-          }
-        },
-      ]
     },
     {
       path: '/bets',
@@ -102,7 +61,7 @@ const router =  new Router({
       },
     },
     {
-      path: '/result/:id',
+      path: '/results/:id',
       name: 'result',
       component: Result,
       props: true,
@@ -127,7 +86,65 @@ const router =  new Router({
       }
     },
     {
-      path: '/user/:id',
+      path: '/scores',
+      name: 'scores',
+      component: Scores,
+      props: true,
+      meta: {
+        requiresAuth: true
+      },
+    },
+    {
+      path: '/scores/kings-game',
+      name: 'kings-game',
+      component: KingsGame,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/scores/oldfashioned',
+      name: 'oldfashioned',
+      component: Oldfashioned,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/scores/underdog',
+      name: 'underdog',
+      component: Underdog,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/scores/balanced',
+      name: 'balanced',
+      component: Balanced,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/scores/secret',
+      name: 'secret',
+      component: Secret,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: Users,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/users/:id',
       name: 'user',
       component: User,
       props: true,

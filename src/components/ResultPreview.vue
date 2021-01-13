@@ -1,5 +1,5 @@
 <template>
-  <router-link class="result-preview" :to="{ path: `/result/${match.match_id}` }">
+  <router-link class="result-preview" :to="{ path: `/results/${match.match_id}` }">
     <div class="result-preview__live" v-if="match.status === 'live'">
       LIVE
     </div>

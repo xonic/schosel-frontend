@@ -1,0 +1,37 @@
+<template>
+  <nav class="nav">
+    <ul class="nav__items">
+      <li class="nav__item">
+        <router-link class="nav__link" :to="{ name: 'home' }">
+          Home
+        </router-link>
+      </li>
+      <li class="nav__item">
+        <router-link class="nav__link" :to="{ name: 'bets' }">
+          Bets
+        </router-link>
+      </li>
+      <li class="nav__item">
+        <router-link class="nav__link" :to="{ name: 'results' }">
+          Matches
+        </router-link>
+      </li>
+      <li class="nav__item">
+        <router-link class="nav__link" :to="{ name: 'scores' }">
+          Scores
+        </router-link>
+      </li>
+      <li class="nav__item">
+        <router-link class="nav__link" :to="{ name: 'users' }">
+          Users
+        </router-link>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<script>
+  export default {
+    name: 'nav-main'
+  }
+</script>

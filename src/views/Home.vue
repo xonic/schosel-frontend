@@ -42,7 +42,7 @@ export default {
       rankings: [
         {
           name: "King's Game",
-          routeName: 'kingsgame',
+          routeName: 'kings-game',
           rank: 1,
           points: 180.4278
         },
@@ -65,8 +65,8 @@ export default {
           points: 34.2528
         },
         {
-          name: "Hidden",
-          routeName: 'hidden',
+          name: "Secret",
+          routeName: 'secret',
           rank: 23,
         },
       ],

@@ -10,30 +10,7 @@
             <span class="logo__tournament">EM 2020</span>
           </router-link>
         </div>
-        <nav v-if="authenticated" class="nav">
-          <ul class="nav__items">
-            <li class="nav__item">
-              <router-link class="nav__link" :to="{ name: 'home' }">
-                Home
-              </router-link>
-            </li>
-            <li class="nav__item" v-if="upcomingMatches.length">
-              <router-link class="nav__link" :to="{ name: 'bets' }">
-                Bets
-              </router-link>
-            </li>
-            <li class="nav__item" v-if="liveMatches.length || playedMatches.length">
-              <router-link class="nav__link" :to="{ name: 'results' }">
-                Results
-              </router-link>
-            </li>
-            <!-- <li class="nav__item">
-              <router-link class="nav__link" :to="{ name: 'scores' }">
-                Scores
-              </router-link>
-            </li> -->
-          </ul>
-        </nav>
+        <nav-main v-if="authenticated" />
         <div v-if="loggedInUser" class="player-info">
           <div v-if='loggedInUser.name' class="player-info__name">
             {{ loggedInUser.name }}
@@ -51,11 +28,13 @@
 <script>
   import { mapGetters } from 'vuex'
   import { HTTP } from './http-constants'
+  import NavMain from '@/components/NavMain.vue'
   import Popover from '@/components/Popover.vue'
   import Avatar from '@/components/Avatar.vue'
 
   export default {
     components: {
+      NavMain,
       Popover,
       Avatar
     },

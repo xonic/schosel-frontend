@@ -100,6 +100,7 @@ export default {
     },
     postChampion () {
       this.isSaving = true
+      this.$ga.event(this.loggedInUser.name, "champion_bet")
 
       HTTP('/champion', {
         method: "post",

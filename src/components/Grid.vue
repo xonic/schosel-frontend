@@ -16,7 +16,12 @@
        :key="entry.id">
        <td v-for="key in columns"
          :key="key.id">
-         {{entry[key]}}
+         <router-link :to="{ name: linkToComponent, params: { id: entry[idKey] } }" v-if="hasLinks">
+           {{ entry[key] }}
+          </router-link>
+          <span v-else>
+            {{ entry[key] }}
+          </span>
        </td>
      </tr>
    </tbody>
@@ -28,7 +33,10 @@ export default {
   props: {
     data: Array,
     columns: Array,
-    filterKey: String
+    filterKey: String,
+    hasLinks: Boolean,
+    linkToComponent: String,
+    idKey: String
   },
   data: function () {
     var sortOrders = {}

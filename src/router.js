@@ -114,6 +114,12 @@ export default new Router({
     //   ]
     // },
     {
+      path: '/matches/:id',
+      name: 'match',
+      component: Match,
+      props: true
+    },
+    {
       path: '/users/:id',
       name: 'user',
       component: User,

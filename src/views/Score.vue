@@ -42,7 +42,10 @@
               <h2>Ranking</h2> -->
               <grid
                 :data="allUsers"
-                :columns="gridColumns">
+                :columns="gridColumns"
+                :hasLinks="true"
+                :linkToComponent="'user'"
+                :idKey="'user_id'">
               </grid>
             </div>
             <h2 v-else class="blankslate">There is no score ranking yet</h2>

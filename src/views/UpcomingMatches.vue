@@ -22,7 +22,7 @@
           Explain how odds work
         </div>
       </div>
-      <div class="grid-matches">
+      <div class="grid-matches" v-if="upcomingMatches.length">
         <div v-for="matchDay in upcomingMatchDays" class="list">
           <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
           <ul class="list__items">
@@ -35,6 +35,7 @@
           </ul>
         </div>
       </div>
+      <h1 v-else>No more upcoming matches</h1>
     </div>
   </div>
 </template>
@@ -50,9 +51,6 @@ export default {
   name: 'matches',
   computed: {
     ...mapGetters([
-      'playedMatches',
-      'playedMatchDays',
-      'liveMatches',
       'upcomingMatches',
       'upcomingMatchDays',
       'loggedInUser',

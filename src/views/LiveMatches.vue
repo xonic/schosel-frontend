@@ -1,13 +1,14 @@
 <template>
   <div class="matches">
     <div class="wrapper">
-      <ul class="list__items flex-matches">
+      <ul class="list__items flex-matches" v-if="liveMatches.length">
         <li
         is="match-item"
         v-for="liveMatch in liveMatches"
         v-bind="liveMatch">
           </li>
         </ul>
+        <h1 v-else>No matches currently being played</h1>
     </div>
   </div>
 </template>
@@ -23,11 +24,7 @@ export default {
   name: 'matches',
   computed: {
     ...mapGetters([
-      'playedMatches',
-      'playedMatchDays',
       'liveMatches',
-      'upcomingMatches',
-      'upcomingMatchDays',
       'loggedInUser',
       'loading'
     ])

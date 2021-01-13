@@ -132,6 +132,7 @@ export default {
 
       HTTP('/bets/' + match_id, {
         method: "post",
+        withCredentials: true,
         data: {
           outcome: outcome,
           supertip: supertip

@@ -1,0 +1,71 @@
+
+.ranking {
+  display: flex;
+}
+
+.ranking__item {
+  display: flex;
+
+  & + .ranking__item {
+    margin-left: 2vw;
+  }
+}
+
+.ranking__title {
+  margin-bottom: 12px;
+  writing-mode: vertical-lr;
+  transform: rotateZ(-180deg);
+}
+
+.ranking__bar {
+  display: flex;
+}
+
+.ranking__progress-bar {
+  max-width: $space-75;
+}
+
+.rank-progress-bar {
+  display: block;
+}
+
+.ranking__rank {
+  margin-top: 12px;
+  text-align: right;
+}
+
+@media (min-width: 800px) {
+
+  .ranking,
+  .ranking__item {
+    display: block;
+  }
+
+  .ranking__item + .ranking__item {
+    margin-left: 0;
+  }
+
+  .ranking__bar {
+    display: block;
+  }
+
+  .ranking__title {
+    margin-bottom: 0;
+    writing-mode: unset;
+    transform: rotateZ(0);
+  }
+
+  .ranking__progress-bar {
+    max-width: none;
+
+    svg {
+      max-height: $space-50;
+      transform: rotateZ(180deg);
+    }
+  }
+
+  .ranking__rank {
+    margin-top: 0;
+    text-align: left;
+  }
+}

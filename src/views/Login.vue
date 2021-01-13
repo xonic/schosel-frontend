@@ -18,7 +18,7 @@
                   v-model="password">
         </div>
         <div class="submit">
-          <button type="submit">Submit</button>
+          <button type="submit">Login</button>
           <router-link :to="{ name: 'register' }">Register</router-link>
         </div>
       </form>
@@ -27,8 +27,6 @@
 </template>
 
 <script>
-  // @ is an alias to /src
-  // import Grid from '@/components/Grid.vue'
 
   export default {
     name: 'login',

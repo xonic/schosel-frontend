@@ -1,29 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Match from './views/Match.vue'
-import User from './views/User.vue'
-import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-import Matches from './views/Matches.vue'
-import PlayedMatches from './views/PlayedMatches.vue'
-import LiveMatches from './views/LiveMatches.vue'
-import UpcomingMatches from './views/UpcomingMatches.vue'
-import Score from './views/Score.vue'
-// import Teams from './views/Teams.vue'
-import Stats from './views/Stats.vue'
-import PlayerStats from './views/PlayerStats.vue'
-import TeamStats from './views/TeamStats.vue'
-import MatchStats from './views/MatchStats.vue'
-import Goals from './views/Goals.vue'
-import TheSchosel from './views/TheSchosel.vue'
-import GamblerGoal from './views/GamblerGoal.vue'
-import HustlerGoal from './views/HustlerGoal.vue'
-import ExpertGoal from './views/ExpertGoal.vue'
-import HattrickGoal from './views/HattrickGoal.vue'
-import SecretGoal from './views/SecretGoal.vue'
-import Rules from './views/Rules.vue'
-import Profile from './views/Profile.vue'
+import Login from './views/Login.vue'
+import ResetPassword from './views/ResetPassword.vue'
 import Logout from './views/Logout.vue'
+import Rules from './views/Rules.vue'
+import Home from './views/Home.vue'
+import Bets from './views/Bets.vue'
+import Results from './views/Results.vue'
+import Result from './views/Result.vue'
+import KingsGame from './views/RankKingsGame.vue'
+import Oldfashioned from './views/RankOldfashioned.vue'
+import Underdog from './views/RankUnderdog.vue'
+import Balanced from './views/RankBalanced.vue'
+import Hidden from './views/RankHidden.vue'
+import User from './views/User.vue'
+import Profile from './views/Profile.vue'
 import store from './store'
 
 Vue.use(Router)
@@ -45,112 +37,78 @@ const router =  new Router({
     {
       path: '/',
       name: 'home',
-      redirect: '/matches',
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/stats',
-      name: 'stats',
-      component: Stats,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/matches',
-      name: 'matches',
-      component: Matches,
-      redirect: '/matches/live',
+      component: Home,
+      redirect: '/kings-game',
       meta: {
         requiresAuth: true
       },
       children: [
         {
-          name: 'played',
-          path: 'played',
-          component: PlayedMatches,
+          path: '/kings-game',
+          name: 'kingsgame',
+          component: KingsGame,
           meta: {
             requiresAuth: true
           }
         },
         {
-          name: 'live',
-          path: 'live',
-          component: LiveMatches,
+          path: '/oldfashioned',
+          name: 'oldfashioned',
+          component: Oldfashioned,
           meta: {
             requiresAuth: true
           }
         },
         {
-          name: 'upcoming',
-          path: 'upcoming',
-          component: UpcomingMatches,
+          path: '/underdog',
+          name: 'underdog',
+          component: Underdog,
           meta: {
             requiresAuth: true
           }
-        }
+        },
+        {
+          path: '/balanced',
+          name: 'balanced',
+          component: Balanced,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/hidden',
+          name: 'hidden',
+          component: Hidden,
+          meta: {
+            requiresAuth: true
+          }
+        },
       ]
     },
     {
-      path: '/score',
-      name: 'score',
-      component: Score,
-      redirect: '/score/schosel',
+      path: '/bets',
+      name: 'bets',
+      component: Bets,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/results',
+      name: 'results',
+      component: Results,
       meta: {
         requiresAuth: true
       },
-      children: [
-        {
-          name: 'schosel',
-          path: 'schosel',
-          component: TheSchosel,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'gambler',
-          path: 'gambler',
-          component: GamblerGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'hustler',
-          path: 'hustler',
-          component: HustlerGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'hattrick',
-          path: 'hattrick',
-          component: HattrickGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'secret',
-          path: 'secret',
-          component: SecretGoal,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          name: 'expert',
-          path: 'expert',
-          component: ExpertGoal,
-          meta: {
-            requiresAuth: true
-          }
-        }
-      ]
+    },
+    {
+      path: '/result/:id',
+      name: 'result',
+      component: Result,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/rules',
@@ -169,16 +127,7 @@ const router =  new Router({
       }
     },
     {
-      path: '/matches/:id',
-      name: 'match',
-      component: Match,
-      props: true,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/users/:id',
+      path: '/user/:id',
       name: 'user',
       component: User,
       props: true,

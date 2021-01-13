@@ -10,26 +10,36 @@
             <span class="logo__tournament">EM 2020</span>
           </router-link>
         </div>
-        <nav class="nav">
+        <nav v-if="authenticated" class="nav">
           <ul class="nav__items">
             <li class="nav__item">
-              <router-link v-if="authenticated" class="nav__link" to="/matches">
-                Matches
+              <router-link class="nav__link" :to="{ name: 'home' }">
+                Home
               </router-link>
             </li>
-            <li class="nav__item">
-              <router-link v-if="authenticated" class="nav__link" to="/score">
-                Score
+            <li class="nav__item" v-if="upcomingMatches.length">
+              <router-link class="nav__link" :to="{ name: 'bets' }">
+                Bets
               </router-link>
             </li>
+            <li class="nav__item" v-if="liveMatches.length || playedMatches.length">
+              <router-link class="nav__link" :to="{ name: 'results' }">
+                Results
+              </router-link>
+            </li>
+            <!-- <li class="nav__item">
+              <router-link class="nav__link" :to="{ name: 'scores' }">
+                Scores
+              </router-link>
+            </li> -->
           </ul>
         </nav>
-        <div v-if="authenticated && loggedInUser" class="player-info">
+        <div v-if="loggedInUser" class="player-info">
           <div v-if='loggedInUser.name' class="player-info__name">
             {{ loggedInUser.name }}
           </div>
           <popover :items="userMenuItems">
-            <img class="avatar avatar--small" :src="loggedInUser.avatar"/>
+            <avatar :src="loggedInUser.avatar" />
           </popover>
         </div>
       </div>
@@ -42,10 +52,12 @@
   import { mapGetters } from 'vuex'
   import { HTTP } from './http-constants'
   import Popover from '@/components/Popover.vue'
+  import Avatar from '@/components/Avatar.vue'
 
   export default {
     components: {
-      Popover
+      Popover,
+      Avatar
     },
     data () {
       return {
@@ -82,14 +94,11 @@
       ...mapGetters([
         'loggedInUser',
         'rewards',
-        'authenticated'
+        'authenticated',
+        'upcomingMatches',
+        'liveMatches',
+        'playedMatches',
       ])
-    },
-    methods: {
-      toggleMorePopover: function(event) {
-        if(event) event.preventDefault()
-        this.showMorePopover = !this.showMorePopover
-      }
     }
   }
 </script>

@@ -38,8 +38,7 @@
         </transition>
         <transition name="content" appear>
           <div class="list__items">
-            <grid :data="gridData" :columns="gridColumns" :hasLinks="true" :linkToComponent="'user'" :idKey="'user_id'">
-            </grid>
+            <result-grid :data="bets" />
           </div>
         </transition>
       </div>
@@ -49,28 +48,21 @@
 
 <script>
   // @ is an alias to /src
-  import Grid from '@/components/Grid.vue'
-  import {
-    HTTP
-  }
-  from '../http-constants'
-  import {
-    mapGetters
-  }
-  from 'vuex'
+  import ResultGrid from '@/components/ResultGrid'
+  import { HTTP } from '../http-constants'
+  import { mapGetters } from 'vuex'
   import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
   export default {
     name: 'match',
     components: {
-      Grid,
-      ClipLoader
+      ClipLoader,
+      ResultGrid
     },
     data() {
       return {
         match: {},
         interval: null,
-        gridColumns: ['name', 'bet', 'superbet', 'score'],
         loading: true,
         size: "32px",
         color: "#3EABDC",
@@ -89,23 +81,16 @@
         matchDate: function() {
           return new Date(this.match.date).toLocaleString()
         },
-        gridData() {
-
-          var gridData = []
-
-          this.match.bets.forEach((bet, i) => {
-            gridData.push({
-              user_id: bet.user.user_id,
+        bets() {
+          return this.match.bets.map(bet => {
+            return {
+              id: bet.user.user_id,
               avatar: this.allUsers.find(user => user.user_id === bet.user.user_id).avatar,
               name: bet.user.name,
               bet: bet.outcome == 1 ? this.match.team1_name : bet.outcome == 2 ? this.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
-              superbet: bet.supertip ? (bet.points ? "correct" : "wrong") : "",
+              superbet: bet.supertip,
               score: bet.points ? bet.points.toFixed(2) : 0
-            })
-          })
-
-          return gridData.sort((a, b) => {
-            return b.score - a.score
+            }
           })
         }
     },

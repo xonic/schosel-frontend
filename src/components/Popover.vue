@@ -27,7 +27,7 @@
 </script>
 
 <style>
-
+/*
   .popover {
     position: relative;
   }
@@ -73,5 +73,5 @@
   .fade-leave-to {
     opacity: 0;
     transform: translateY(-4px);
-  }
+  } */
 </style>

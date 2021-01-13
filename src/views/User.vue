@@ -1,5 +1,22 @@
 <template>
   <div class="wrapper">
+    <!-- <ul class="ranking">
+      <li v-for="ranking in userWithAchievements.achievements" class="ranking__item">
+        <div class="ranking__title">{{ ranking.name }}</div>
+        <rank-progress-bar
+          :rank="ranking.rank"
+          :maxRank="allUsers.length"
+          :switchLayout="switchLayout"
+          class="ranking__progress-bar"
+        />
+        <div class="ranking__rank">{{ ranking.rank }}.</div>
+      </li>
+    </ul> -->
+    <radar-chart
+      v-if="userWithAchievements && userWithAchievements.achievements"
+      :labels="chartData.labels"
+      :datasets="reversedDatasets"
+    ></radar-chart>
     <div class="tab-grid">
       <div class="tabs">
         <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
@@ -9,7 +26,7 @@
         <div class="hero hero--14">
           <transition name="hero" appear>
             <div>
-              <img class="avatar avatar--medium" :src="user.avatar" />
+              <avatar :src="user.avatar" />
               <h1 class="hero__heading">{{ user.name }}</h1>
               <div class="hero__info" v-if="user.rank">Rank {{ user.rank }}.</div>
               <div class="hero__info">{{ user.points || "0" }} pts</div>
@@ -62,14 +79,8 @@
               </div>
             </div>
 
-            <div class="list__items" v-if="gridData.length">
-              <grid
-                :data="gridData"
-                :columns="gridColumns"
-                :hasLinks="true"
-                :linkToComponent="'match'"
-                :idKey="'match_id'">
-              </grid>
+            <div class="list__items" v-if="bets.length">
+              <bet-grid :data="bets" />
             </div>
             <h2 v-else class="blankslate">There are no bets yet</h2>
           </div>
@@ -81,30 +92,40 @@
 
 <script>
 // @ is an alias to /src
-import Grid from '@/components/Grid.vue'
+import BetGrid from '@/components/BetGrid.vue'
 import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
+import RadarChart from '@/components/RadarChart.vue'
+import Avatar from '@/components/Avatar.vue'
+// import RankProgressBar from '@/components/RankProgressBar.vue'
 
 export default {
   name: 'user',
   components: {
-    Grid,
-    ClipLoader
+    BetGrid,
+    ClipLoader,
+    RadarChart,
+    Avatar,
   },
   data () {
     return {
       user: {},
+      userWithAchievements: {},
+      // switchLayout: true,
       interval: null,
-      gridColumns: ['match', 'bet', 'outcome', 'superbet', 'score'],
       loading: true,
       size: "32px",
-      color: "#3EABDC"
+      color: "#3EABDC",
+      userCount: 100
     }
   },
-  props: ['id'],
+  props: {
+    id: String
+  },
   mounted () {
     this.loadUserData()
+    // this.renderChart(this.ranks, {})
   },
   computed: {
     ...mapGetters([
@@ -114,27 +135,46 @@ export default {
     matchDate () {
       return new Date(this.match.date).toLocaleString()
     },
-    gridData () {
-
-      var gridData = []
-
-      this.user.bets.forEach((bet, i) => {
-        gridData.push({
-          match_id: bet.match.match_id,
-          match: bet.match.team1_name + " vs. " + bet.match.team2_name,
-          bet: bet.outcome == 1 ? bet.match.team1_name : bet.outcome == 2 ? bet.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
-          outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
-          superbet: bet.supertip ? (bet.points ? "correct" : "wrong") : "",
-          score: bet.points ? bet.points.toFixed(2) : 0
-        })
-      })
-
-      return gridData.sort((a, b) => {
-        return b.match_id - a.match_id
-      })
+    reversedDatasets() {
+      return [{data: this.chartData.datasets[0].data.map(value => this.userCount + 1 - value)}]
+    },
+    chartData () {
+      return {
+        labels: [
+          "King's Game",
+          "Oldfashioned",
+          "Underdog",
+          "Balanced",
+          "Hidden"
+        ],
+        datasets: [
+          {
+            backgroundColor: 'rgba(205, 90, 100, .5)',
+            data: [
+              this.userWithAchievements.achievements.expert.rank || 0,
+              this.userWithAchievements.achievements.gambler.rank || 0,
+              this.userWithAchievements.achievements.hattrick.rank || 0,
+              this.userWithAchievements.achievements.hustler.rank || 0,
+              this.userWithAchievements.achievements.secret.rank || 0,
+            ],
+          }
+        ]
+      }
     },
     remainingSuperbets () {
       return 8 - this.user.visible_supertips
+    },
+    bets () {
+      return this.user.bets.map(bet => {
+        return {
+          id: bet.match.match_id,
+          match: bet.match.team1_name + " vs. " + bet.match.team2_name,
+          bet: bet.outcome == 1 ? bet.match.team1_name : bet.outcome == 2 ? bet.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
+          outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
+          superbet: bet.supertip,
+          score: bet.points ? bet.points.toFixed(2) : 0
+        }
+      })
     }
   },
   methods: {
@@ -145,6 +185,7 @@ export default {
         // this.user.achievements.secret = {rank: 1, score: 10} MOCK DATA
 
         this.user.avatar = this.allUsers.find(user => user.user_id === this.user.user_id).avatar
+        this.userWithAchievements = this.allUsers.find(user => user.user_id === this.user.user_id)
 
         this.setLoadingInterval();
         this.loading = false

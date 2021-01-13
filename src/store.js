@@ -80,7 +80,7 @@ export default new Vuex.Store({
           localStorage.setItem('authenticated', true)
 
           // Redirect to requested URL or default to matches
-          authData.redirect ? router.push({ path: authData.redirect }) : router.push('matches')
+          authData.redirect ? router.push({ path: authData.redirect }) : router.push('/')
         })
         .catch(error => console.log(error))
     },
@@ -171,11 +171,13 @@ export default new Vuex.Store({
     },
     SET_STATUS: (state, { status }) => {
 
+      // console.log(status.user)
 
       // Check if logged in user is leading any goals
       if(status.user && status.user.achievements) {
         // status.user.achievements.secret = {rank: 2} MOCK DATA
         var extras = []
+
 
         if(status.user.achievements.gambler.rank === 1) extras.push("Gambler")
         if(status.user.achievements.hustler.rank === 1) extras.push("Hustler")
@@ -196,19 +198,23 @@ export default new Vuex.Store({
     SET_MATCHES: (state, { matches }) => {
 
       // TODO: remove this (manipulates some matches to be live & scheduled)
-      for(var i=0; i<10; i++) {
-        matches[i].status = "scheduled"
-      }
-      for(var i=11; i<= 12; i++) {
-        matches[i].status = "live"
-        matches[i].odds = new Array();
-        matches[i].odds["1"] = 1.53403
-        matches[i].odds["X"] = 4.28292
-        matches[i].odds["2"] = 9.10101
-        var d = new Date();
-        matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
-      }
-      state.loadInfo.matches = false
+      // for(var i=0; i<10; i++) {
+      //   matches[i].status = "scheduled"
+      // }
+      // for(var i=11; i<= 11; i++) {
+      //   matches[i].status = "live"
+      //   matches[i].odds = {};
+      //   matches[i].odds["1"] = 1.53403
+      //   matches[i].odds["X"] = 4.28292
+      //   matches[i].odds["2"] = 9.10101
+      //   matches[i].superbet = true
+      //   var d = new Date();
+      //   matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
+      // }
+
+      // console.log(matches)
+      matches.find(match => match.match_id === 64).status = 'scheduled'
+      // state.loadInfo.matches = false
       state.matches = matches
     },
     SET_USERS: (state, { users }) => {

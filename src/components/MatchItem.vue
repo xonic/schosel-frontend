@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { HTTP } from '../http-constants'
 
 export default {
   data () {
@@ -130,13 +130,12 @@ export default {
       console.log(supertip)
       console.log("----------")
 
-      axios('/bets/' + match_id, {
+      HTTP('/bets/' + match_id, {
         method: "post",
         data: {
           outcome: outcome,
           supertip: supertip
-        },
-        withCredentials: true
+        }
       })
       .then(response => {
         console.log("saved")

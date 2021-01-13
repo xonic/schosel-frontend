@@ -1,0 +1,17 @@
+@import 'reset';
+@import 'variables';
+
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $base-font;
+  font-size: $base-font-size;
+}
+
+a {
+  color: $blue-100;
+  text-decoration: none;
+}

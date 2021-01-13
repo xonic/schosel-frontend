@@ -1,7 +1,7 @@
 <template>
   <div class='matches'>
-    <tabs v-if='hasUpcomingMatches ? (hasPlayedMatches || hasLiveMatches) : (hasPlayedMatches && hasLiveMatches)'>
-      <tab name='Played' v-if='hasPlayedMatches' :selected='true'>
+    <tabs v-if='upcomingMatches.length ? (playedMatches.length || liveMatches.length) : (playedMatches.length && liveMatches.length)'>
+      <tab name='Played' v-if='playedMatches.length' :selected='true'>
         <h1>Played</h1>
         <ul>
           <li
@@ -12,7 +12,7 @@
         </ul>
       </tab>
 
-      <tab name='Now Playing' v-if='hasLiveMatches'>
+      <tab name='Now Playing' v-if='liveMatches.length'>
         <h1>Now Playing</h1>
         <ul>
           <li
@@ -23,7 +23,7 @@
         </ul>
       </tab>
 
-      <tab name='Upcoming' v-if='hasUpcomingMatches'>
+      <tab name='Upcoming' v-if='upcomingMatches.length'>
         <h1>Upcoming</h1>
         <div class="legend">
           <div class="">
@@ -61,98 +61,24 @@ import Tabs from '@/components/Tabs.vue'
 import Tab from '@/components/Tab.vue'
 import MatchItem from '@/components/MatchItem.vue'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'matches',
+  computed: {
+    ...mapGetters([
+      'playedMatches',
+      'liveMatches',
+      'upcomingMatches'
+    ])
+  },
   components: {
     Tabs,
     Tab,
     MatchItem
   },
-  data () {
-    return {
-      hasPlayedMatches: false,
-      hasLiveMatches: true,
-      hasUpcomingMatches: true,
-      playedMatches: [],
-      liveMatches: [
-        {
-          "match_id": "y",
-          "date": "2018-04-23T18:30:00.000Z",
-          "status": "live",
-          "result": "X",
-          "team1_name": "South Georgia and the South Sandwich Islands",
-          "team1_iso": "SGS",
-          "team1_goals": "1",
-          "team2_name": "Burkina Faso",
-          "team2_iso": "BFA",
-          "team2_goals": "1",
-          "stage": "Round of 16",
-          "bets": "/matches/4/bets",
-          "odds": {
-            "1": 13.3,
-            "X": 23.2,
-            "2": 5.0
-          }
-        }
-      ],
-      upcomingMatches: [
-        {
-            "match_id": "x",
-            "date": "2018-07-23T18:30:00.000Z",
-            "status": "scheduled",
-            "team1_name": "South Georgia and the South Sandwich Islands",
-            "team1_iso": "SGS",
-            "team2_name": "Burkina Faso",
-            "team2_iso": "BFA",
-            "stage": "Group Stage",
-            "odds": {
-              "1": "medium",
-              "X": "high",
-              "2": "low"
-            }
-        }
-      ],
-      matches: []
-    }
-  },
-  methods: {
-    acceptMatches(response) {
-      console.log(response);
-      this.matches = response.data
-      this.splitMatchesByStatus()
-    },
-    splitMatchesByStatus() {
-
-      // Check if we have played/live/upcoming matches
-      // and split the matches into separate Arrays
-      for (var match in this.matches) {
-        if (this.matches[match].status === 'over') {
-          this.hasPlayedMatches = true
-          this.playedMatches.push(this.matches[match])
-        }
-        if (this.matches[match].status === 'live') {
-          this.hasLiveMatches = true
-          this.liveMatches.push(this.matches[match])
-        }
-        if (this.matches[match].status === 'scheduled') {
-          this.hasUpcomingMatches = true
-          this.upcomingMatches.push(this.matches[match])
-        }
-      }
-    }
-  },
   mounted () {
-    // Get all matches from server
-    axios.get('http://localhost:5000/api/v1/matches', {withCredentials: true})
-      .then(response => {
-        this.acceptMatches(response);
-        this.$store.commit('setMatches', response);
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    this.$store.dispatch('LOAD_MATCHES')
   }
 }
 </script>

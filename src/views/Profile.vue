@@ -1,7 +1,11 @@
 <template>
   <div id="profile" class="profile">
     <h1>Profile</h1>
+<<<<<<< HEAD
     <div class="profile-form">
+=======
+    <div v-if="loggedInUser" class="profile-form">
+>>>>>>> style
       <form @submit.prevent="onSubmit">
         <div class="input">
           <label for="firstName">First Name</label>
@@ -43,7 +47,11 @@
       return {
         error: null,
 <<<<<<< HEAD
+<<<<<<< HEAD
         email: ''
+=======
+        email: 'TODO: Implement this'
+>>>>>>> style
 =======
         email: 'TODO: Implement this'
 >>>>>>> style
@@ -67,9 +75,15 @@
       }
     },
     mounted () {
+<<<<<<< HEAD
       setTimeout(() => {
         this.email = this.allUsers.find(user => user.user_id === this.loggedInUser.user_id).email
       }, 300)
+=======
+      // setTimeout(() => {
+      //   this.email = this.allUsers.find(user => user.user_id === this.loggedInUser.user_id).email
+      // }, 3000)
+>>>>>>> style
     },
     methods: {
       onSubmit () {

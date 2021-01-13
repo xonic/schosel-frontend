@@ -5,11 +5,7 @@
     </div>
     <header class="header">
       <div class="wrapper header__grid">
-        <div class="logo">
-          <router-link :to="{ name: 'home' }">Schosel
-            <span class="logo__tournament">EM 2020</span>
-          </router-link>
-        </div>
+        <logo />
         <nav-main v-if="authenticated" />
         <div v-if="loggedInUser" class="player-info">
           <div v-if='loggedInUser.name' class="player-info__name">
@@ -28,12 +24,14 @@
 <script>
   import { mapGetters } from 'vuex'
   import { HTTP } from './http-constants'
+  import Logo from '@/components/Logo.vue'
   import NavMain from '@/components/NavMain.vue'
   import Popover from '@/components/Popover.vue'
   import Avatar from '@/components/Avatar.vue'
 
   export default {
     components: {
+      Logo,
       NavMain,
       Popover,
       Avatar

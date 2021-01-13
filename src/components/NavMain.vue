@@ -1,11 +1,6 @@
 <template>
-  <nav class="nav">
+  <nav class="nav nav--main">
     <ul class="nav__items">
-      <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'home' }">
-          Home
-        </router-link>
-      </li>
       <li class="nav__item">
         <router-link class="nav__link" :to="{ name: 'bets' }">
           Bets

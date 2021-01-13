@@ -25,7 +25,8 @@
     "vue-template-compiler": "^2.5.13"
   },
   "vue": {
-    "lintOnSave": false
+    "lintOnSave": false,
+    "baseUrl": "/worlds2018/static/"
   },
   "babel": {
     "presets": [

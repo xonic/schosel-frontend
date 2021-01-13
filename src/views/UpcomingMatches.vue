@@ -29,9 +29,9 @@
             <div class="tab-grid">
               <div v-if="upcomingMatches.length < 48"></div>
               <div>
-                <div class="label">{{ remainingSuperbets() }} <span v-if="remainingSuperbets() === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
+                <div class="label">{{ remainingSuperbets }} <span v-if="remainingSuperbets === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
                 <transition-group name="star" appear>
-                  <svg v-bind:key="i" v-for="i in remainingSuperbets()" class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg">
+                  <svg v-bind:key="i" v-for="i in remainingSuperbets" class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/>
                   </svg>
                 </transition-group>
@@ -101,7 +101,10 @@ export default {
       'loggedInUser',
       'loading',
       'status'
-    ])
+    ]),
+    remainingSuperbets () {
+      return this.maxSuperbets - this.loggedInUser.visible_supertips
+    }
   },
   components: {
     MatchItem,
@@ -162,9 +165,6 @@ export default {
       })
 
       return champion.name
-    },
-    remainingSuperbets () {
-      return this.maxSuperbets - this.loggedInUser.visible_supertips
     }
   }
 }

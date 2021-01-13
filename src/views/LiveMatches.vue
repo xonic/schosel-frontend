@@ -40,11 +40,10 @@ export default {
     }
   },
   mounted () {
-    // if(!this.playedMatches.length) {
-    //   console.log("zero matches")
-    //   console.log(this.$root.$router)
-    //   this.$root.$router.go("upcoming")
-    // }
+    // Navigate to played matches if no matches currently live
+    if(!this.liveMatches.length) {
+      this.$router.push("played")
+    }
   }
 }
 </script>

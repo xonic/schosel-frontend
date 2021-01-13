@@ -1,7 +1,7 @@
 <template>
   <div class="score">
     <div class="wrapper">
-      <div class="hero hero--9">
+      <div class="hero hero--2">
         <h1 class="hero__heading">Score</h1>
         <div class="hero__info" v-if='loggedInUser'>{{ loggedInUser.points.toFixed(2) }} pts</div>
       </div>

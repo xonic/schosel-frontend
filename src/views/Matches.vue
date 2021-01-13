@@ -2,16 +2,16 @@
   <div class="matches">
     <clip-loader :loading="loading.matches" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
     <div v-if='!loading.status' class='wrapper'>
-      <div class="tab-grid">
+      <div class="tab-grid" v-if="playedMatches.length ? (upcomingMatches.length || liveMatches.length) : (upcomingMatches.length && liveMatches.length)">
          <div class="tabs">
            <ul class="tab__items wrapper">
-             <li>
+             <li v-if="playedMatches.length">
                <router-link :to="{ name: 'played' }" class="tab__link">Played</router-link>
              </li>
-             <li>
+             <li v-if="liveMatches.length">
                <router-link :to="{ name: 'live' }" class="tab__link">Live</router-link>
              </li>
-             <li>
+             <li v-if="upcomingMatches.length">
                <router-link :to="{ name: 'upcoming' }" class="tab__link">Upcoming</router-link>
              </li>
            </ul>
@@ -19,6 +19,9 @@
          <div class="tabs-details">
            <router-view />
          </div>
+       </div>
+       <div class="wrapper" v-else>
+         <router-view />
        </div>
      </div>
    </div>
@@ -33,6 +36,9 @@ export default {
   name: 'matches',
   computed: {
     ...mapGetters([
+      'playedMatches',
+      'liveMatches',
+      'upcomingMatches',
       'loading'
     ])
   },

@@ -30,6 +30,10 @@
     transition: transform .3s ease-in;
   }
 
+  .no-superbets-left & {
+    bottom: 0;
+  }
+
   .saved {
     display: none;
   }

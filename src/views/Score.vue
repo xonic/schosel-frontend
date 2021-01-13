@@ -66,7 +66,7 @@ export default {
   },
   data () {
     return {
-      gridColumns: ['rank', 'name', 'difference', 'score'],
+      gridColumns: ['rank', 'name', 'goals', 'score'],
       gridData: undefined
     }
   },

@@ -55,6 +55,7 @@
                   <div class="score-card score-card--secret">
                     <h2 class="score-card__title">Secret</h2>
                     <p class="score-card__score">{{ user.achievements.secret.rank }}.</p>
+                    <p class="score-card__rank">{{ user.achievements.secret.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
                   </div>
                 </router-link>
               </div>
@@ -139,6 +140,7 @@ export default {
 
       HTTP.get('/users/' + this.id, {withCredentials: true}).then((response) => {
         this.user = response.data
+        // this.user.achievements.secret = {rank: 1, score: 10} MOCK DATA
 
         this.setLoadingInterval();
         this.loading = false

@@ -10,7 +10,11 @@
           <transition name="hero" appear>
             <div>
               <h1 class="hero__heading">{{ user.name }}</h1>
-              <div class="hero__info">{{ user.points }} pts</div>
+              <div class="hero__info">{{ user.points || "0" }} pts</div>
+              <div class="hero__info">{{ user.bets.length || "0" }} bets placed</div>
+              <div class="hero__info" v-if="user.points && user.bets.length">Avg. {{ (user.points / user.bets.length).toFixed(2) }} pts per bet</div>
+              <div class="hero__info" v-if="remainingSuperbets === 1">{{ remainingSuperbets }} superbet left</div>
+              <div class="hero__info" v-else>{{ remainingSuperbets }} superbets left</div>
             </div>
           </transition>
         </div>
@@ -75,7 +79,7 @@ import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
 export default {
-  name: 'match',
+  name: 'user',
   components: {
     Grid,
     ClipLoader
@@ -116,6 +120,9 @@ export default {
       return gridData.sort((a, b) => {
         return b.match_id - a.match_id
       })
+    },
+    remainingSuperbets () {
+      return 8 - this.user.visible_supertips
     }
   },
   methods: {

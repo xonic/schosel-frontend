@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="!loggedInUser.paid" class="not-paid">
+    <div v-if="loggedInUser && !loggedInUser.paid" class="not-paid">
       You have not paid yet.
     </div>
     <header class="header">

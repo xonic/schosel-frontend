@@ -2,7 +2,7 @@
   <div class="matches">
     <clip-loader :loading="loading.matches" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
     <div v-if='!loading.status' class='wrapper'>
-      <div class="tab-grid" v-if="playedMatches.length ? (upcomingMatches.length || liveMatches.length) : (upcomingMatches.length && liveMatches.length)">
+      <div class="tab-grid" v-if="playedMatches.length || liveMatches.length">
          <div class="tabs">
            <ul class="tab__items wrapper">
              <li v-if="playedMatches.length">
@@ -11,7 +11,7 @@
              <li v-if="liveMatches.length">
                <router-link :to="{ name: 'live' }" class="tab__link">Live</router-link>
              </li>
-             <li v-if="upcomingMatches.length">
+             <li>
                <router-link :to="{ name: 'upcoming' }" class="tab__link">Upcoming</router-link>
              </li>
            </ul>

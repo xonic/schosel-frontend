@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" class="external-pages">
     <h1>Login</h1>
     <div class="login-form">
       <form @submit.prevent="onSubmit">

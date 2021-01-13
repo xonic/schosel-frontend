@@ -56,6 +56,7 @@ export default {
           gridData.push({
             user_id: user.user_id,
             rank: user.achievements.secret.rank,
+            avatar: user.avatar,
             score: user.achievements.secret.score,
             name: user.name,
           })

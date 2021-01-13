@@ -68,7 +68,7 @@
   text-transform: uppercase;
   color: $white;
 
-  &.router-link-exact-active {
+  &.router-link-active {
     color: $blue-100;
 
     svg g {
@@ -84,7 +84,7 @@
     svg g {
       fill: $black;
 
-      .router-link-exact-active & {
+      .router-link-active {
         fill: $blue-100;
       }
     }

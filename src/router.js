@@ -13,6 +13,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'home',
+      redirect: '/matches'
+    },
+    {
+      path: '/matches',
       name: 'matches',
       component: Matches
     },
@@ -32,7 +37,7 @@ export default new Router({
       component: Help
     },
     {
-      path: '/match/:id',
+      path: '/matches/:id',
       name: 'match',
       component: Match,
       props: true

@@ -5,6 +5,7 @@ import Score from './views/Score.vue'
 import Stats from './views/Stats.vue'
 import Account from './views/Account.vue'
 import Help from './views/Help.vue'
+import SignUp from './views/SignUp.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/account',
       name: 'account',
       component: Account
+    },
+    {
+      path: '/sign-up',
+      name: 'sign-up',
+      component: SignUp
     }
   ]
 })

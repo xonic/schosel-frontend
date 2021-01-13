@@ -87,6 +87,7 @@ export default {
 
         // Calculate score for each player
         var currentScore = this.match.outcome === el.outcome ? el.points : 0.00
+
         if(el.supertip && currentScore) {
           currentScore *= 2
         }

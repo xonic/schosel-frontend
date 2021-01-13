@@ -1,8 +1,26 @@
 .wrapper {
   margin: 0 auto;
-  max-width: 74.4rem;
+  max-width: 144rem;
+
+  @media (min-width: 768px) {
+    padding: 0 $space-100;
+
+    .wrapper { padding: 0; }
+  }
 
   @media (min-width: 1440px) {
     max-width: 128rem;
+  }
+}
+
+.grid-matches {
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: $space-100 * 2;
+
+    .list {
+      margin-bottom: $space-100 * 3;
+    }
   }
 }

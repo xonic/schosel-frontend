@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="dataGrid">
    <thead>
      <tr>
        <th v-for="key in columns"

@@ -34,10 +34,12 @@
             </div>
           </div>
         </div>
-        <grid
-          :data="gridData"
-          :columns="gridColumns">
-        </grid>
+        <div class="list__items">
+          <grid
+            :data="gridData"
+            :columns="gridColumns">
+          </grid>
+        </div>
       </div>
     </div>
   </div>

@@ -9,8 +9,9 @@
 
 export default {
   name: 'match',
-  props: {
-    match: {}
+  mounted () {
+    console.warn("TODO: fetch match data from https://www.schosel.net/worlds2018/api/v1" + this.$route.fullPath)
+    console.warn("TODO: fetch bet data from https://www.schosel.net/worlds2018/api/v1" + this.$route.fullPath + "/bets")
   }
 }
 </script>

@@ -77,7 +77,7 @@ export default {
   },
   data () {
     return {
-      gridColumns: ['rank', 'name', 'goals', 'score'],
+      gridColumns: ['rank', 'name', 'extras', 'score'],
       gridData: undefined
     }
   }

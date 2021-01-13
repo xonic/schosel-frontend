@@ -86,15 +86,16 @@ export default new Vuex.Store({
 
       // Check if logged in user is leading any goals
       if(status.user && status.user.achievements) {
-        var goals = []
+        var extras = []
 
-        if(status.user.achievements.gambler.rank === 1) goals.push("Gambler")
-        if(status.user.achievements.hustler.rank === 1) goals.push("Hustler")
-        if(status.user.achievements.expert.rank === 1) goals.push("Expert")
-        if(status.user.achievements.hattrick.rank === 1) goals.push("Hattrick")
-        // if(status.user.achievements.secret.rank === 1) goals.push("Secret")
+        if(status.user.achievements.gambler.rank === 1) extras.push("Gambler")
+        if(status.user.achievements.hustler.rank === 1) extras.push("Hustler")
+        if(status.user.achievements.expert.rank === 1) extras.push("Expert")
+        if(status.user.achievements.hattrick.rank === 1) extras.push("Hattrick")
+        if(status.user.achievements.secret && status.user.achievements.secret.rank === 1) extras.push("Secret")
+        console.log(status.user)
 
-        status.user.goals = goals.join(", ")
+        extras.length ? status.user.extras = extras.join(", ") : status.user.extras = "-"
       }
 
       state.status = status
@@ -156,18 +157,18 @@ export default new Vuex.Store({
       // Check who is leading which goals to show in score board
       if(users && users[0].achievements) {
         users.forEach((user) => {
-          var goals = []
+          var extras = []
 
-          user.achievements.gambler.rank === 1 ? goals.push("Gambler") :
-          user.achievements.hustler.rank === 1 ? goals.push("Hustler") :
-          user.achievements.expert.rank === 1 ? goals.push("Expert") :
-          user.achievements.hattrick.rank === 1 ? goals.push("Hattrick") :
-          // user.achievements.secret.rank === 1 ? goals.push("Secret") :
-
-          goals.length ? user.goals = goals.join(", ") : user.goals = "-"
+          if(user.achievements.gambler.rank == 1) extras.push("Gambler")
+          if(user.achievements.hustler.rank == 1) extras.push("Hustler") 
+          if(user.achievements.expert.rank == 1) extras.push("Expert")
+          if(user.achievements.hattrick.rank == 1) extras.push("Hattrick")
+          if(user.achievements.secret && user.achievements.secret.rank == 1) extras.push("Secret")
+console.log(extras)
+          extras.length ? user.extras = extras.join(", ") : user.extras = "-"
         })
       }
-
+      console.log(users[0])
       state.users = users
       state.loadInfo.users = false
     },

@@ -10,7 +10,7 @@
           <div class="match-item__time">{{ matchTime }} h</div>
           <div class="match-item__odds">
             <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
-              Home&nbsp;{{ odds["1"].toFixed(2) }}
+              {{ team1_name }}&nbsp;{{ odds["1"].toFixed(2) }}
               <span v-if="ownBet.supertip && ownBet.outcome == '1'">
                 <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
               </span>
@@ -22,7 +22,7 @@
               </span>
             </div>
             <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
-              Away&nbsp;{{ odds["2"].toFixed(2) }}
+              {{ team2_name }}&nbsp;{{ odds["2"].toFixed(2) }}
               <span v-if="ownBet.supertip && ownBet.outcome == '2'">
                 <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
               </span>
@@ -48,13 +48,13 @@
         </span>
         <div class="match-item__odds" v-if="odds && ownBet">
           <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
-            Home&nbsp;{{ odds["1"].toFixed(2) }}
+            {{ team1_name }}&nbsp;{{ odds["1"].toFixed(2) }}
           </div>
           <div v-bind:class="[ownBet.outcome == 'X' ? 'has-bet' : '']" class="match-item__odds__draw">
             Draw&nbsp;{{ odds["X"].toFixed(2) }}
           </div>
           <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
-            Away&nbsp;{{ odds["2"].toFixed(2) }}
+            {{ team2_name }}&nbsp;{{ odds["2"].toFixed(2) }}
           </div>
         </div>
       </div>

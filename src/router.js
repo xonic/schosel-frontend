@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Match from './views/Match.vue'
 import User from './views/User.vue'
+import Login from './views/Login.vue'
 import Matches from './views/Matches.vue'
 import PlayedMatches from './views/PlayedMatches.vue'
 import LiveMatches from './views/LiveMatches.vue'
@@ -25,6 +26,11 @@ export default new Router({
   base: "/worlds2018/static/",
   // mode: 'history',
   routes: [
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
     {
       path: '/',
       name: 'home',

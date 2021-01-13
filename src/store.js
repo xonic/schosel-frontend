@@ -28,9 +28,37 @@ export default new Vuex.Store({
       hustler: 0,
       hattrick: 0,
       secret: 0
-    }
+    },
+    avatarUrl: 'https://api.adorable.io/avatars/400/'
   },
   actions: {
+    REGISTER: function ({commit, dispatch}, userData) {
+
+      HTTP.post('/register', {
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
+        password: userData.password
+      })
+        .then(res => {
+
+          console.log(res)
+          // // Load all other stuff
+          // dispatch('LOAD_STATUS')
+          // dispatch('LOAD_MATCHES')
+          // dispatch('LOAD_OWN_BETS')
+          // dispatch('LOAD_USERS')
+          //
+          // commit('SET_AUTHENTICATED', { authenticated: true })
+          //
+          // // Remember across page loads
+          // localStorage.setItem('authenticated', true)
+          //
+          // // Redirect to requested URL or default to matches
+          // authData.redirect ? router.push({ path: authData.redirect }) : router.push('matches')
+        })
+        .catch(error => console.log(error))
+    },
     LOGIN: function ({commit, dispatch}, authData) {
 
       HTTP.post('/login', {
@@ -205,6 +233,9 @@ export default new Vuex.Store({
           // user.achievements.secret = {} MOCK DATA
           // user.achievements.secret.rank = tmp MOCK DATA
           // user.achievements.secret.score = 10 MOCK DATA
+
+          // Store Avatar URL
+          user.avatar = state.avatarUrl + user.name
 
           var extras = []
 
@@ -466,6 +497,9 @@ export default new Vuex.Store({
     },
     authenticated: state => {
       return state.authenticated
+    },
+    avatarUrl: state => {
+      return state.avatarUrl
     }
   }
 })

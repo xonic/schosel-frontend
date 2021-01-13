@@ -13,7 +13,7 @@
           <div>
             <div class="grid-matches" v-if="playedMatches.length">
               <div v-for="matchDay in playedMatchDays" class="list">
-                <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
+                <h4 class="list__header"><span>{{ matchDate(matchDay.date) }}</span><span>{{ matchDay.matches[0].stage }}</span></h4>
                 <ul class="list__items">
                   <li
                   is="match-item"

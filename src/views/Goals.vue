@@ -1,5 +1,5 @@
 <template>
-  <div class="stats">
+  <div class="goals">
     <clip-loader :loading="loading.matches" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
     <div v-if='!loading.status' class='wrapper'>
       <div class="tab-grid">
@@ -17,7 +17,7 @@
              <li>
                <router-link :to="{ name: 'hattrick' }" class="tab__link tab__link--tight">Hattrick</router-link>
              </li>
-             <li v-if="loggedInUser.achievements.secret">
+             <li>
                <router-link :to="{ name: 'secret' }" class="tab__link tab__link--tight">Secret</router-link>
              </li>
            </ul>

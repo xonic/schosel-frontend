@@ -1,10 +1,10 @@
 <template>
-  <div class="gambler">
+  <div class="oldfashioned">
     <div class="wrapper">
       <div class="hero hero--6">
         <transition name="hero" appear>
           <div>
-            <h1 class="hero__heading">Gambler</h1>
+            <h1 class="hero__heading">The Oldfashioned</h1>
             <div class="hero__info">Most correct bets on highest odds</div>
           </div>
         </transition>
@@ -56,6 +56,7 @@ export default {
           gridData.push({
             user_id: user.user_id,
             rank: user.achievements.gambler.rank,
+            avatar: user.avatar,
             name: user.name,
             score: user.achievements.gambler.score.toFixed(2)
           })

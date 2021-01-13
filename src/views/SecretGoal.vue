@@ -4,7 +4,7 @@
       <div class="hero hero--13">
         <transition name="hero" appear>
           <div>
-            <h1 class="hero__heading">Secret Goal</h1>
+            <h1 class="hero__heading">The Hidden</h1>
             <div class="hero__info"></div>
           </div>
         </transition>
@@ -56,6 +56,7 @@ export default {
           gridData.push({
             user_id: user.user_id,
             rank: user.achievements.secret.rank,
+            avatar: user.avatar,
             score: user.achievements.secret.score,
             name: user.name,
           })

@@ -1,117 +1,105 @@
 
 .header {
-  background: linear-gradient(to left, $blue-30, $blue-20);
-
-  @media (min-width: 800px) {
-    background: $white;
-    box-shadow: 0 0 500px rgba(0,0,0,.2);
-  }
+  position: relative;
+  // background: linear-gradient(to left, $blue-30, $blue-20);
+  //
+  // @media (min-width: 800px) {
+  //   background: $white;
+  //   box-shadow: 0 0 500px rgba(0,0,0,.2);
+  // }
 }
 
 .header__grid {
-  @media (min-width: 800px) {
     display: flex;
-    height: 6rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
     > * {
       flex: 1 0 auto;
     }
-  }
-}
 
-.logo,
-.player-info {
-  display: none;
-
-  @media (min-width: 800px) {
-    display: flex;
-  }
+    @media (min-width: 768px) {
+      flex-wrap: nowrap;
+      align-items: baseline;
+    }
 }
 
 .logo {
-  flex: 0 0 auto;
-  margin-right: $space-75;
-  align-items: center;
-  font-size: 2rem;
+  flex: 1 0 100%;
+  padding: $space-100 0;
+  font-family: 'snicker';
+  font-size: 4.8rem;
   font-weight: $bold-font-weight;
-  color: $yellow-80;
-  text-transform: uppercase;
+  line-height: 1;
+  color: $neon-cyan;
+  text-align: center;
 
-  @media (min-width: 1024px) {
-    display: flex;
-    margin-right: $space-75 * 2;
+  @media (min-width: 768px) {
+    flex: 0 0 auto;
+    margin-right: $space-100;
+    text-align: left;
   }
 }
 
 .logo__tournament {
-  font-weight: $base-font-weight;
-  color: $yellow-100;
+  display: block;
+  font-family: 'unitext';
+  font-weight: $bold-font-weight;
+  font-size: 1.6rem;
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    display: inline;
+  }
 }
 
 .nav {
-  margin: 0 $space-50;
-  padding: $space-25 0 0;
-  @media (min-width: 800px) {
-    display: flex;
-    align-items: center;
+  margin: 0 0 $space-50;
+
+  @media (min-width: 768px) {
     margin: 0;
-    padding: 0;
   }
 }
 
 .nav__items {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
 }
 
-.nav__item {
-
-  @media (min-width: 800px) {
-    margin-right: $space-100;
-  }
+.nav__item:first-child {
+  margin-right: $space-50;
 }
 
 .nav__link {
-  font-size: 1rem;
+  display: flex;
+
+  padding: $space-10 $space-50;
+  border-radius: 999em;
+  font-size: 1.6rem;
   font-weight: $bold-font-weight;
-  line-height: 1.2;
-  text-transform: uppercase;
+  line-height: 2;
   color: $white;
 
   &.router-link-active {
-    color: $blue-100;
-
-    svg g,
-    svg path {
-      fill: $blue-100;
-    }
+    background: rgba(0,0,0,.5);
   }
 
   @media (min-width: 800px) {
-    font-size: 15px;
-    line-height: $space-75;
-    color: $black;
-
-    svg g,
-    svg path {
-      fill: $black;
-
-      .router-link-active {
-        fill: $blue-100;
-      }
-    }
+    // font-size: 15px;
+    // line-height: $space-75;
   }
 }
 
 .nav__img {
-  display: flex;
-  align-items: center;
-  margin: 0 auto -#{$space-10};
-  width: $space-75;
-  height: $space-75;
+  margin-right: $space-25;
 
   svg {
-    width: $space-75;
-    height: $space-75;
+    width: $space-50;
+    height: $space-50;
   }
 
   @media (min-width: 800px) {
@@ -128,19 +116,25 @@
 }
 
 .player-info {
-  justify-content: flex-end;
-  align-items: center;
-  font-size: 1.5rem;
+  position: absolute;
+  top: $space-100;
+  right: $space-50;
+  font-size: 1.6rem;
   font-weight: $bold-font-weight;
-  color: $black;
-  text-transform: uppercase;
+
+  @media (min-width: 768px) {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 
-.player-info__score {
-  margin-right: $space-35;}
+.player-info__name {
+  display: none;
 
-.player-info__label {
-  margin-right: $space-10;
-  font-weight: $base-font-weight;
-  color: $gray-100;
+  @media (min-width: 768px) {
+    display: block;
+    margin-right: $space-35;
+  }
 }

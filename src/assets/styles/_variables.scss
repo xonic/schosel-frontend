@@ -36,11 +36,21 @@
     $yellow-80:    #AA7200;
     $yellow-100:   #D48E00;
 
+    $body-bg: hsl(95, 5%, 15%);
+
+    $neon-blue: #1AA0FF;
+    $neon-purple: #CE69FF;
+    $neon-magenta: #FF31AA;
+    $neon-red: #FF3737;
+    $neon-orange: #FF881A;
+    $neon-yellow: #FFCD1A;
+    $neon-cyan: #30FFCF;
+
 
 //  = TYPOGRAPHY
 //  ---------------------------------------------------------------------------
 
-    $base-font: 'PT Sans Narrow', sans-serif;
+    $base-font: 'unitext', sans-serif; // unitext, snicker, arboria
     $base-font-size: 2rem;
     $base-font-weight: 400;
     $bold-font-weight: 700;

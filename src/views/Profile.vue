@@ -1,5 +1,5 @@
 <template>
-  <div id="profile">
+  <div id="profile" class="profile">
     <h1>Profile</h1>
     <div class="profile-form">
       <form @submit.prevent="onSubmit">
@@ -42,7 +42,11 @@
     data () {
       return {
         error: null,
+<<<<<<< HEAD
         email: ''
+=======
+        email: 'TODO: Implement this'
+>>>>>>> style
       }
     },
     computed: {

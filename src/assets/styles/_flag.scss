@@ -1,0 +1,13 @@
+
+.flag {
+  clip-path: circle(35% at 50% 50%);
+  border: 2px solid $white;
+}
+
+.flag--small {
+  height: $space-100;
+}
+
+.avatar--medium {
+  width: $space-100 * 4;
+}

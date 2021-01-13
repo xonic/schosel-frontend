@@ -29,7 +29,7 @@ export default new Vuex.Store({
       hattrick: 0,
       secret: 0
     },
-    avatarUrl: 'https://api.adorable.io/avatars/400/'
+    avatarUrl: 'https://api.hello-avatar.com/adorables/400/'
   },
   actions: {
     REGISTER: function ({commit, dispatch}, userData) {
@@ -186,22 +186,28 @@ export default new Vuex.Store({
         extras.length ? status.user.extras = extras.join(", ") : status.user.extras = "-"
       }
 
+      if(status.user) {
+        status.user['avatar'] = state.avatarUrl + status.user.name
+      }
+
       state.status = status
       state.loadInfo.status = false
     },
     SET_MATCHES: (state, { matches }) => {
 
       // TODO: remove this (manipulates some matches to be live & scheduled)
-      // for(var i=<
-      // for(var i=4; i<= 5; i++) {
-      //   matches[i].status = "live"
-      //   matches[i].odds = new Array();
-      //   matches[i].odds["1"] = 1.53403
-      //   matches[i].odds["X"] = 4.28292
-      //   matches[i].odds["2"] = 9.10101
-      //   var d = new Date();
-      //   matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
-      // }
+      for(var i=0; i<10; i++) {
+        matches[i].status = "scheduled"
+      }
+      for(var i=11; i<= 12; i++) {
+        matches[i].status = "live"
+        matches[i].odds = new Array();
+        matches[i].odds["1"] = 1.53403
+        matches[i].odds["X"] = 4.28292
+        matches[i].odds["2"] = 9.10101
+        var d = new Date();
+        matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
+      }
       state.loadInfo.matches = false
       state.matches = matches
     },
@@ -481,6 +487,7 @@ export default new Vuex.Store({
           return e.user_id;
         }).indexOf(state.status.user.user_id) + 1;
       }
+
       return state.status.user
     },
     ownBets: state => {

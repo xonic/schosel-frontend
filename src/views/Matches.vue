@@ -1,7 +1,7 @@
 <template>
   <div class="matches">
     <clip-loader :loading="loading.matches" :color="'#3EABDC'" :size="'64px'">#</clip-loader>
-    <div v-if='!loading.status' class='matches'>
+    <div v-if='!loading.status' class='wrapper'>
       <tabs v-if='upcomingMatchDays.length ? (playedMatchDays.length || liveMatches.length) : (playedMatchDays.length && liveMatches.length)'>
         <tab name='Played' v-if='playedMatchDays.length' :selected='true'>
           <div class="wrapper">

@@ -24,22 +24,32 @@
                 </div> Score
               </router-link>
             </li>
-            <li class="nav__item">
+            <!-- <li class="nav__item">
               <router-link class="nav__link" to="/stats">
                 <div class="nav__img">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><path d="M0 15h6v9H0zM9 9h6v15H9zM18 0h6v24h-6z"/></g></svg>
                 </div> Stats
               </router-link>
-            </li>
-            <li class="nav__item">
-              <router-link class="nav__link" to="/help">
+            </li> -->
+            <li class="nav__item popover-container">
+              <a class="nav__link" href @click="toggleMorePopover">
                 <div class="nav__img">
                   <svg viewBox="0 -12 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><circle cx="3" cy="3" r="3"/><circle cx="12" cy="3" r="3"/><circle cx="21" cy="3" r="3"/></g></svg>
                 </div> More
-              </router-link>
-            </li>
-            <li class="nav__item">
-              <a href="../../about" @click="goToAbout()">Rules</a>
+              </a>
+              <div class="popover" v-if="showMorePopover">
+                <ul>
+                  <li>
+                    <a href="../about">Rules</a>
+                  </li>
+                  <li>
+                    <a href="../account">My&nbsp;Account</a>
+                  </li>
+                  <li>
+                    <a href="../logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
             </li>
           </ul>
         </nav>
@@ -63,6 +73,11 @@
   import { HTTP } from './http-constants'
 
   export default {
+    data () {
+      return {
+        showMorePopover: false
+      }
+    },
     mounted () {
       this.$store.dispatch('LOAD_MATCHES')
       this.$store.dispatch('LOAD_STATUS')
@@ -79,8 +94,9 @@
       ])
     },
     methods: {
-      goToAbout() {
-        window.location.href = '../about'
+      toggleMorePopover: function(event) {
+        if(event) event.preventDefault()
+        this.showMorePopover = !this.showMorePopover
       }
     }
   }

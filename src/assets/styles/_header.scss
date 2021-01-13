@@ -33,7 +33,7 @@
   align-items: center;
   font-size: 2rem;
   font-weight: $bold-font-weight;
-  // color: $yellow-80;
+  color: $neon-cyan;
   text-transform: uppercase;
 
   @media (min-width: 1024px) {
@@ -71,6 +71,8 @@
 }
 
 .nav__link {
+  padding: $space-10 $space-50;
+  border-radius: 999em;
   font-size: 1rem;
   font-weight: $bold-font-weight;
   line-height: 1.2;
@@ -79,6 +81,7 @@
 
   &.router-link-active {
     // color: $blue-100;
+    background: rgba(0,0,0,.5);
 
     svg g,
     svg path {

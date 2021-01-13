@@ -25,7 +25,6 @@
 
 <script>
 export default {
-
   props: {
     data: Array,
     columns: Array,

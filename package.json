@@ -23,7 +23,7 @@
     "vue-template-compiler": "^2.5.13"
   },
   "vue": {
-    "lintOnSave": true
+    "lintOnSave": false
   },
   "babel": {
     "presets": [

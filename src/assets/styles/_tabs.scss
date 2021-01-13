@@ -42,6 +42,12 @@
   }
 }
 
+.tab__link--back {
+  margin: 0;
+  padding: $space-25 $space-35;
+  height: auto;
+}
+
 .tab__items {
   display: flex;
   justify-content: space-around;

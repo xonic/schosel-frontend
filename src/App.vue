@@ -38,11 +38,12 @@
           </ul>
         </nav>
         <div class="player-info">
-          <div class="player-info__score">
-            <span class="player-info__label">Score</span> 218.49<!-- TODO: insert score here -->
+          <div v-if='loggedInUser' class="player-info__score">
+            <span v-if="loggedInUser && loggedInUser.points">{{ loggedInUser.points.toFixed(2) }}</span>
+            <span class="player-info__label"> pts</span>
           </div>
           <div class="player-info__rank">
-            <span class="player-info__label">Rank</span> 48.<!-- TODO: insert rank here -->
+            <span class="player-info__label">Rank</span> <span v-if="loggedInUser && loggedInUser.rank">{{ loggedInUser.rank }}</span>.
           </div>
         </div>
       </div>
@@ -52,12 +53,19 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     mounted () {
       this.$store.dispatch('LOAD_MATCHES')
       this.$store.dispatch('LOAD_STATUS')
       this.$store.dispatch('LOAD_OWN_BETS')
       this.$store.dispatch('LOAD_USERS')
+    },
+    computed: {
+      ...mapGetters([
+        'loggedInUser'
+      ])
     }
   }
 </script>

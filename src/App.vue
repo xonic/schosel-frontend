@@ -68,8 +68,8 @@
             route: 'profile'
           },
           {
-            name: 'Rules',
-            route: 'rules'
+            name: 'Help',
+            route: 'help'
           },
           {
             name: 'Logout',

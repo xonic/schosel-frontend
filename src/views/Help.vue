@@ -1,7 +1,12 @@
 <template>
-  <div class="help">
-    <div class="wrapper">
-      <h1>Help</h1>
-    </div>
+  <div id="help" class="help">
+    <h1>Help</h1>
   </div>
 </template>
+
+<script>
+
+  export default {
+    name: 'help'
+  }
+</script>

@@ -4,7 +4,7 @@ import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import ResetPassword from './views/ResetPassword.vue'
 import Logout from './views/Logout.vue'
-import Rules from './views/Rules.vue'
+import Help from './views/Help.vue'
 import Home from './views/Home.vue'
 import Bets from './views/Bets.vue'
 import Results from './views/Results.vue'
@@ -111,9 +111,9 @@ const router =  new Router({
       }
     },
     {
-      path: '/rules',
-      name: 'rules',
-      component: Rules,
+      path: '/help',
+      name: 'help',
+      component: Help,
       meta: {
         requiresAuth: true
       }

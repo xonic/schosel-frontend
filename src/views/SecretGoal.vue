@@ -1,7 +1,7 @@
 <template>
   <div class="secret">
     <div class="wrapper">
-      <div class="hero hero--6">
+      <div class="hero hero--13">
         <h1 class="hero__heading">Secret Goal</h1>
       </div>
       <div class="island">

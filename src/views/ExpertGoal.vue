@@ -1,7 +1,7 @@
 <template>
   <div class="expert">
     <div class="wrapper">
-      <div class="hero hero--6">
+      <div class="hero hero--11">
         <h1 class="hero__heading">National Expert</h1>
       </div>
       <div class="island">

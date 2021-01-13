@@ -1,7 +1,7 @@
 <template>
   <div class="hattrick">
     <div class="wrapper">
-      <div class="hero hero--6">
+      <div class="hero hero--10">
         <h1 class="hero__heading">Chief Hattrick</h1>
       </div>
       <div class="island">

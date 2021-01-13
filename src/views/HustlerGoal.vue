@@ -1,7 +1,7 @@
 <template>
   <div class="hustler">
     <div class="wrapper">
-      <div class="hero hero--6">
+      <div class="hero hero--12">
         <h1 class="hero__heading">Superbet Hustler</h1>
       </div>
       <div class="island">
@@ -54,7 +54,7 @@ export default {
           self.gridData.push({
             rank: user.achievements.hustler.rank,
             name: user.name,
-            score: user.achievements.hustler.score.toFixed(2),  
+            score: user.achievements.hustler.score.toFixed(2),
             times_correct: user.achievements.hustler.times_correct
           })
         })

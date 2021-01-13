@@ -6,7 +6,8 @@
         <div class="hero__info">{{ upcomingMatches.length }} Matches</div>
       </div>
       <div class="champion-bet" v-if="loggedInUser">
-        <select v-model="loggedInUser.champion_id" @change="postChampion()">
+        <label for="champion-bet" class="label">Champion bet</label>
+        <select id="champion-bet" class="select" v-model="loggedInUser.champion_id" @change="postChampion()">
           <option disabled value="">Please select one</option>
           <option v-for="team in status.teams"
                   v-bind:value="team.team_id">{{ team.name }}</option>

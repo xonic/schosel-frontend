@@ -1,11 +1,11 @@
 
 .header {
-  background: linear-gradient(to left, $blue-30, $blue-20);
-
-  @media (min-width: 800px) {
-    background: $white;
-    box-shadow: 0 0 500px rgba(0,0,0,.2);
-  }
+  // background: linear-gradient(to left, $blue-30, $blue-20);
+  //
+  // @media (min-width: 800px) {
+  //   background: $white;
+  //   box-shadow: 0 0 500px rgba(0,0,0,.2);
+  // }
 }
 
 .header__grid {
@@ -33,7 +33,7 @@
   align-items: center;
   font-size: 2rem;
   font-weight: $bold-font-weight;
-  color: $yellow-80;
+  // color: $yellow-80;
   text-transform: uppercase;
 
   @media (min-width: 1024px) {
@@ -44,7 +44,7 @@
 
 .logo__tournament {
   font-weight: $base-font-weight;
-  color: $yellow-100;
+  // color: $yellow-100;
 }
 
 .nav {
@@ -78,25 +78,25 @@
   color: $white;
 
   &.router-link-active {
-    color: $blue-100;
+    // color: $blue-100;
 
     svg g,
     svg path {
-      fill: $blue-100;
+      // fill: $blue-100;
     }
   }
 
   @media (min-width: 800px) {
     font-size: 15px;
     line-height: $space-75;
-    color: $black;
+    // color: $black;
 
     svg g,
     svg path {
-      fill: $black;
+      // fill: $black;
 
       .router-link-active {
-        fill: $blue-100;
+        // fill: $blue-100;
       }
     }
   }
@@ -132,7 +132,7 @@
   align-items: center;
   font-size: 1.5rem;
   font-weight: $bold-font-weight;
-  color: $black;
+  // color: $black;
   text-transform: uppercase;
 }
 

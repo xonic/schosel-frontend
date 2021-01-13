@@ -44,6 +44,7 @@ export default {
 .popover__link {
   display: block;
   padding: 12px 24px;
+  color: black;
 }
 
 .fade-enter {

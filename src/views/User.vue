@@ -16,7 +16,7 @@
         </div>
         <transition name="content" appear>
           <div>
-            <div class="island">
+            <div class="island" v-if="user.achievements">
 
               <div class="score-card-grid">
                 <div class="score-card score-card--gambler" v-if="user.achievements.gambler">

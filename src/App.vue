@@ -94,7 +94,7 @@
 
       setInterval( () => {
         this.$store.dispatch('LOAD_MATCHES')
-        this.$store.dispatch('LOAD_OWN_BETS')
+        // this.$store.dispatch('LOAD_OWN_BETS')
       }, 10000);
     },
     computed: {

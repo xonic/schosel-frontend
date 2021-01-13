@@ -3,14 +3,17 @@
     <tabs v-if='hasUpcomingMatches ? (hasPlayedMatches || hasLiveMatches) : (hasPlayedMatches && hasLiveMatches)'>
       <tab name='Played' v-if='hasPlayedMatches'>
         <h1>Played</h1>
+        <list :items='playedMatches'></list>
       </tab>
 
       <tab name='Now Playing' :selected='true' v-if='hasLiveMatches'>
         <h1>Now Playing</h1>
+        <list :items='liveMatches'></list>
       </tab>
 
       <tab name='Upcoming' v-if='hasUpcomingMatches'>
         <h1>Upcoming</h1>
+        <list :items='upcomingMatches'></list>
       </tab>
     </tabs>
   </div>
@@ -20,18 +23,23 @@
 // @ is an alias to /src
 import Tabs from '@/components/Tabs.vue'
 import Tab from '@/components/Tab.vue'
+import List from '@/components/List.vue'
 
 export default {
   name: 'matches',
   components: {
     Tabs,
-    Tab
+    Tab,
+    List
   },
   data () {
     return {
       hasPlayedMatches: false,
       hasLiveMatches: false,
       hasUpcomingMatches: false,
+      playedMatches: [],
+      liveMatches: [],
+      upcomingMatches: [],
       matches: [
         {
           'url': '/matches/3',
@@ -78,15 +86,20 @@ export default {
     }
   },
   mounted () {
+    // Check if we have played/live/upcoming matches
+    // and split the matches into separate Arrays
     for (var match in this.matches) {
       if (this.matches[match].status === 'over') {
         this.hasPlayedMatches = true
+        this.playedMatches.push(this.matches[match])
       }
       if (this.matches[match].status === 'live') {
         this.hasLiveMatches = true
+        this.liveMatches.push(this.matches[match])
       }
       if (this.matches[match].status === 'scheduled') {
         this.hasUpcomingMatches = true
+        this.upcomingMatches.push(this.matches[match])
       }
     }
   }

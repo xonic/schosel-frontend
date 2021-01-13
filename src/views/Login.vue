@@ -43,8 +43,7 @@
           email: this.email,
           password: this.password,
         }
-        console.log(formData)
-        this.$store.dispatch('login', {email: formData.email, password: formData.password})
+        this.$store.dispatch('login', {email: formData.email, password: formData.password, redirect: this.$route.query.redirect })
       }
     }
   }

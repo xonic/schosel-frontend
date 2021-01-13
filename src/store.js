@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { HTTP } from './http-constants'
+import router from './router'
 
 Vue.use(Vuex)
 
@@ -31,14 +32,26 @@ export default new Vuex.Store({
   },
   actions: {
     login ({commit}, authData) {
+
       HTTP.post('/login', {
         email: authData.email,
         password: authData.password,
-        remember: false
+        remember: true
       })
         .then(res => {
-          // console.log(res)
           commit('SET_AUTHENTICATED', { authenticated: true })
+
+          // Redirect to requested URL or default to matches
+          authData.redirect ? router.push({ path: authData.redirect }) : router.push('matches')
+        })
+        .catch(error => console.log(error))
+    },
+    logout ({commit}) {
+      HTTP.post('/logout')
+        .then(res => {
+          // console.log(res)
+          commit('SET_AUTHENTICATED', { authenticated: false })
+          router.push('login')
         })
         .catch(error => console.log(error))
     },

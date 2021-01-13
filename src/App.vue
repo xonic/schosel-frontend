@@ -6,7 +6,7 @@
     <header class="header">
       <div class="wrapper header__grid">
         <div class="logo">
-          Schosel <span class="logo__tournament">WM 2018</span>
+          <router-link :to="{ name: 'home' }">Schosel <span class="logo__tournament">WM 2018</span></router-link>
         </div>
         <nav class="nav">
           <ul class="nav__items">
@@ -31,33 +31,26 @@
                 </div> Extras
               </router-link>
             </li>
-            <!-- <li class="nav__item" v-if="loggedInUser && loggedInUser.achievements">
-              <router-link class="nav__link" to="/stats">
-                <div class="nav__img">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><path d="M0 15h6v9H0zM9 9h6v15H9zM18 0h6v24h-6z"/></g></svg>
-                </div> Stats
-              </router-link>
-            </li> -->
             <li class="nav__item">
-              <a class="nav__link" href="../about">
+              <router-link class="nav__link" v-if="authenticated" :to="{ name: 'rules' }">
                 <div class="nav__img">
                   <svg viewBox="0 0 24 24" width="24" height="21" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" fill-rule="nonzero"><path d="M23.782 14.617a.817.817 0 0 0-.819-.817h-3.38L19.5 3.19a3 3 0 0 0-3-2.973H3.217a3 3 0 0 0-3 3V16.61a3.9 3.9 0 0 0 3.9 3.927h15.9a3.9 3.9 0 0 0 3.765-3.927v-1.992zM4.117 18.9a2.265 2.265 0 0 1-2.263-2.265V3.219c0-.753.612-1.364 1.365-1.363h13.254c.753 0 1.364.611 1.364 1.364l.08 10.608H7.228a.817.817 0 0 0-.817.82v1.99A2.265 2.265 0 0 1 4.117 18.9zm18.029-2.265a2.265 2.265 0 0 1-2.265 2.265H7.311a3.86 3.86 0 0 0 .735-2.265v-1.2h14.1v1.2z"/><path d="M4.037 3.79h6.409v1.637h-6.41V3.791zm0 3.274H15.9V8.7H4.036V7.064zm0 3.272H15.9v1.637H4.036v-1.637z"/></g></svg>
                 </div> Rules
-              </a>
+              </router-link>
             </li>
             <li class="nav__item">
-              <a v-if="authenticated" href="../profile" class="nav__link">
+              <router-link class="nav__link" v-if="authenticated" :to="{ name: 'profile' }">
                 <div class="nav__img">
                   <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12zm0-11.078a4.616 4.616 0 1 0 .166-9.229 4.616 4.616 0 0 0-.166 9.23zm-8.685 4.343A10.147 10.147 0 0 0 12 22.155a10.147 10.147 0 0 0 8.685-4.89.459.459 0 0 0-.098-.228c-1.138-1.423-2.94-2.268-5.356-2.268H8.769c-2.417 0-4.218.845-5.355 2.268a.459.459 0 0 0-.099.228z" fill="#fff" fill-rule="evenodd"/></svg>
-                </div>&nbsp;Account
-              </a>
+                </div>&nbsp;Profile
+              </router-link>
             </li>
             <li class="nav__item">
-              <a v-if="authenticated" href="../logout" class="nav__link">
+              <router-link class="nav__link" v-if="authenticated" :to="{ name: 'logout' }">
                 <div class="nav__img">
                   <svg viewBox="0 0 24 24" width="24" height="21" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" fill-rule="nonzero"><path d="M13.07 18.365H2.74V2.505h10.33v5.738h2.504V0H.234v20.87h15.34v-8.244H13.07z"/><path d="M18.991 11.687l-1.826 1.826 1.774 1.774 3.965-3.965.861-.887-.86-.887-3.966-3.965-1.774 1.774 1.826 1.826h-8.426v2.504z"/></g></svg>
                 </div> Logout
-              </a>
+              </router-link>
             </li>
           </ul>
         </nav>

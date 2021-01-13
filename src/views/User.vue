@@ -128,32 +128,12 @@ export default {
       })
     },
     setLoadingInterval: function() {
-      // if(!this.interval)
-      // {
-      //   this.interval = setInterval( () => {
-      //     this.loadUserData()
-      //   }, 10000);
-      // }
-    },
-    setGrid: function(rawGridData) {
-      this.gridData = []
-      rawGridData.forEach(function(el, i){
-
-        // Calculate score for each player
-        var currentScore = this.match.outcome === el.outcome ? el.points : 0.00
-
-        // Set grid data
-        this.gridData.push({
-          player: el.user.name,
-          bet: el.outcome || "-",
-          score: currentScore.toFixed(2)
-        })
-
-        // Sort grid by score
-        this.gridData.sort(function(obj1, obj2){
-          return obj2.score - obj1.score
-        })
-      }, this)
+      if(!this.interval)
+      {
+        this.interval = setInterval( () => {
+          this.loadUserData()
+        }, 10000);
+      }
     }
   },
   beforeDestroy () {

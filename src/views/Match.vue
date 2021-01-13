@@ -69,8 +69,7 @@ export default {
     return {
       match: {},
       interval: null,
-      gridColumns: ['player', 'bet', 'score'],
-      gridData: [],
+      gridColumns: ['player', 'bet', 'superbet', 'score'],
       loading: true,
       size: "32px",
       color: "#3EABDC",
@@ -87,6 +86,24 @@ export default {
     ]),
     matchDate: function() {
       return new Date(this.match.date).toLocaleString()
+    },
+    gridData () {
+
+      var gridData = []
+
+      this.match.bets.forEach((bet, i) => {
+        gridData.push({
+          user_id: bet.user.user_id,
+          player: bet.user.name,
+          bet: bet.outcome == 1 ? this.match.team1_name : bet.outcome == 2 ? this.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
+          superbet: bet.supertip ? "Yes" : "-",
+          score: bet.points ? bet.points.toFixed(2) : "-"
+        })
+      })
+
+      return gridData.sort((a, b) => {
+        return b.score - a.score
+      })
     }
   },
   methods: {
@@ -100,7 +117,6 @@ export default {
       }
       HTTP.get('/matches/' + this.id, {withCredentials: true}).then((response) => {
         this.match = response.data
-        this.setGrid(response.data.bets)
         this.loading = false
 
         if(this.match.status === 'live') {
@@ -111,34 +127,12 @@ export default {
       })
     },
     setLoadingInterval: function() {
-      // if(!this.interval)
-      // {
-      //   this.interval = setInterval( () => {
-      //     this.loadMatchData()
-      //   }, 10000);
-      // }
-    },
-    setGrid: function(rawGridData) {
-      this.gridData = []
-      // console.log(rawGridData)
-      rawGridData.forEach((el, i) => {
-
-        // Calculate score for each player
-        var currentScore = this.match.outcome === el.outcome ? el.points : 0.00
-
-        // Set grid data
-        this.gridData.push({
-          user_id: el.user.user_id,
-          player: el.user.name,
-          bet: el.outcome == 1 ? this.match.team1_name : el.outcome == 2 ? this.match.team2_name : el.outcome == "X" ? "Draw" : "-",
-          score: currentScore.toFixed(2)
-        })
-
-        // Sort grid by score
-        this.gridData.sort(function(obj1, obj2){
-          return obj2.score - obj1.score
-        })
-      }, this)
+      if(!this.interval)
+      {
+        this.interval = setInterval( () => {
+          this.loadMatchData()
+        }, 10000);
+      }
     }
   },
   beforeDestroy () {

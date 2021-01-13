@@ -7,7 +7,7 @@
       </div>
       <clip-loader :loading="loading.users" :color="loading.color" :size="loading.size"></clip-loader>
       <div v-if="!loading.users">
-        <div class="">
+        <div v-if="allUsers && allUsers.length">
           <h2>Achievements</h2>
           <ul>
             <li>
@@ -39,6 +39,7 @@
             :columns="gridColumns">
           </grid>
         </div>
+        <h2 v-else class="blankslate">There is no score ranking yet</h2>
       </div>
     </div>
   </div>

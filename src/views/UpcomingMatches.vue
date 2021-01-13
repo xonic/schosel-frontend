@@ -34,7 +34,7 @@
           </ul>
         </div>
       </div>
-      <h1 v-else>No more upcoming matches</h1>
+      <h2 v-else class="blankslate">No more upcoming matches</h2>
       <div class="msg--save" v-bind:class="{ saveSuccess: saveSuccess }">
         <div class="saving">
           Saving <span class="ellipsis ellipsis-1">.</span> <span class="ellipsis ellipsis-2">.</span> <span class="ellipsis ellipsis-3">.</span>

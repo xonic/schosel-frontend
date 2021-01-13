@@ -2,10 +2,10 @@
   <div class="hattrick">
     <div class="wrapper">
       <div class="hero hero--10">
-        <h1 class="hero__heading">Chief Hattrick</h1>
+        <h1 class="hero__heading">Hattrick</h1>
+        <div class="hero__info">Most points from 3+ consecutive correct bets</div>
       </div>
       <div class="island">
-        <h2>Most points from 3+ consecutive correct bets.</h2>
         <grid
           :data="gridData"
           :columns="gridColumns"

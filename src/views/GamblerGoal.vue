@@ -3,9 +3,9 @@
     <div class="wrapper">
       <div class="hero hero--6">
         <h1 class="hero__heading">Gambler</h1>
+        <div class="hero__info">Most correct bets on highest odds</div>
       </div>
       <div class="island">
-        <h2>Most points from high odd bets.</h2>
         <grid
           :data="gridData"
           :columns="gridColumns"

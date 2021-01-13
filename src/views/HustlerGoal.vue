@@ -2,10 +2,10 @@
   <div class="hustler">
     <div class="wrapper">
       <div class="hero hero--12">
-        <h1 class="hero__heading">Superbet Hustler</h1>
+        <h1 class="hero__heading">Hustler</h1>
+        <div class="hero__info">Most points from superbets</div>
       </div>
       <div class="island">
-        <h2>Most points from superbets.</h2>
         <grid
           :data="gridData"
           :columns="gridColumns"

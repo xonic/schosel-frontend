@@ -2,10 +2,10 @@
   <div class="expert">
     <div class="wrapper">
       <div class="hero hero--11">
-        <h1 class="hero__heading">National Expert</h1>
+        <h1 class="hero__heading">Expert</h1>
+        <div class="hero__info">Most correct bets for one nation</div>
       </div>
       <div class="island">
-        <h2>Most correct bets for one team.</h2>
         <grid
           :data="gridData"
           :columns="gridColumns"

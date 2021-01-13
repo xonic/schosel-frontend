@@ -159,7 +159,7 @@ export default new Vuex.Store({
 
       state.rewards.first = state.rewards.total * (0.5 / first)
       state.rewards.second = state.rewards.total * (0.2 / second)
-      state.rewards.third = state.rewards.total * (0.2 / third)
+      state.rewards.third = state.rewards.total * (0.1 / third)
       state.rewards.gambler = state.rewards.total * (0.04 / gambler)
       state.rewards.hustler = state.rewards.total * (0.04 / hustler)
       state.rewards.expert = state.rewards.total * (0.04 / expert)
@@ -347,6 +347,8 @@ export default new Vuex.Store({
 
         el.reward = 0
         if(el.rank == 1) el.reward += state.rewards.first
+        if(el.rank == 2) el.reward += state.rewards.second
+        if(el.rank == 3) el.reward += state.rewards.third
         if(el.achievements.gambler.rank == 1) el.reward += state.rewards.gambler
         if(el.achievements.hustler.rank == 1) el.reward += state.rewards.hustler
         if(el.achievements.expert.rank == 1) el.reward += state.rewards.expert

@@ -15,7 +15,9 @@
 <script>
   export default {
     mounted () {
+      this.$store.dispatch('LOAD_MATCHES')
       this.$store.dispatch('LOAD_STATUS')
+      this.$store.dispatch('LOAD_OWN_BETS')
     }
   }
 </script>

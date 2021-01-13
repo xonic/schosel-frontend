@@ -46,7 +46,8 @@ export default new Router({
     {
       path: '/match/:id',
       name: 'match',
-      component: Match
+      component: Match,
+      props: true
     }
   ]
 })

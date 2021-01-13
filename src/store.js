@@ -269,7 +269,9 @@ export default new Vuex.Store({
       }
 
       return playedMatchDays.sort((a, b) => {
-        return b.match_id - a.match_id
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.date) - new Date(a.date)
       })
     },
     liveMatches: state => {

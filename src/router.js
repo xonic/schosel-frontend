@@ -58,10 +58,10 @@ export default new Router({
       component: Score
     },
     {
-      path: '/goals',
-      name: 'goals',
+      path: '/extras',
+      name: 'extras',
       component: Goals,
-      redirect: '/goals/gambler',
+      redirect: '/extras/gambler',
       children: [
         {
           name: 'gambler',

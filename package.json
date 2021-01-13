@@ -14,12 +14,8 @@
     "vue-chartjs": "^3.5.0",
     "vue-router": "^3.0.1",
     "vue-spinner": "^1.0.3",
-<<<<<<< HEAD
-    "vuex": "^3.0.1"
-=======
     "vuex": "^3.0.1",
     "vue-analytics": "^5.12.2"
->>>>>>> style
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-alpha.5",
@@ -27,13 +23,10 @@
     "@vue/cli-service": "^4.2.3",
     "@vue/eslint-config-standard": "^3.0.0-alpha.5",
     "axios": "^0.19.0",
-<<<<<<< HEAD
     "eslint": "^6.8.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-=======
->>>>>>> style
     "lint-staged": "^6.0.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^6.0.6",

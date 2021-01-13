@@ -72,11 +72,39 @@ export default {
   data () {
     return {
       hasPlayedMatches: false,
-      hasLiveMatches: false,
-      hasUpcomingMatches: false,
+      hasLiveMatches: true,
+      hasUpcomingMatches: true,
       playedMatches: [],
-      liveMatches: [],
-      upcomingMatches: [],
+      liveMatches: [
+        {
+          "url": "/matches/4",
+          "date": "2018-04-23T18:30:00.000Z",
+          "status": "live",
+          "result": "X",
+          "team1_name": "South Georgia and the South Sandwich Islands",
+          "team1_iso": "SGS",
+          "team1_goals": "1",
+          "team2_name": "Burkina Faso",
+          "team2_iso": "BFA",
+          "team2_goals": "1",
+          "stage": "Round of 16",
+          "bets": "/matches/4/bets",
+          "odds": [13.3, 23.2, 5.0]
+        }
+      ],
+      upcomingMatches: [
+        {
+            "url": "/matches/3",
+            "date": "2018-07-23T18:30:00.000Z",
+            "status": "scheduled",
+            "team1_name": "South Georgia and the South Sandwich Islands",
+            "team1_iso": "SGS",
+            "team2_name": "Burkina Faso",
+            "team2_iso": "BFA",
+            "stage": "Group Stage",
+            "odds": ["medium", "high", "low"]
+        }
+      ],
       matches: []
     }
   },

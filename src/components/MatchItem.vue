@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'match', params: { id: matchId } }">
+  <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: matchId } }">
     <div class="match match--played" v-if="status === 'over'">
       <div>{{ matchDate }}</div>
       <div>{{ team1_name }} — {{ team2_name }}</div>

@@ -57,7 +57,7 @@ export default {
             user_id: user.user_id,
             rank: user.achievements.expert.rank,
             name: user.name,
-            team_name: user.achievements.expert.team_name,
+            team_name: user.achievements.expert.team.name,
             score: user.achievements.expert.score.toFixed(2)
           })
         })

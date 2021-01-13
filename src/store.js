@@ -19,35 +19,35 @@ export default new Vuex.Store({
   },
   actions: {
     LOAD_STATUS: function ({ commit }) {
-      axios.get('http://localhost:5000/api/v1/status', {withCredentials: true}).then((response) => {
+      axios.get('/status', {withCredentials: true}).then((response) => {
         commit('SET_STATUS', { status: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_MATCHES: function ({ commit }) {
-      axios.get('http://localhost:5000/api/v1/matches', {withCredentials: true}).then((response) => {
+      axios.get('/matches', {withCredentials: true}).then((response) => {
         commit('SET_MATCHES', { matches: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_USERS: function ({ commit }) {
-      axios.get('http://localhost:5000/api/v1/users', {withCredentials: true}).then((response) => {
+      axios.get('/users', {withCredentials: true}).then((response) => {
         commit('SET_USERS', { users: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_USER: function ({ commit }) {
-      axios.get('http://localhost:5000/api/v1/user', {withCredentials: true}).then((response) => {
+      axios.get('/user', {withCredentials: true}).then((response) => {
         commit('SET_USER', { user: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     LOAD_OWN_BETS: function ({ commit }) {
-      axios.get('http://localhost:5000/api/v1/bets', {withCredentials: true}).then((response) => {
+      axios.get('/bets', {withCredentials: true}).then((response) => {
         commit('SET_OWN_BETS', { ownBets: response.data })
       }, (err) => {
         console.log(err)

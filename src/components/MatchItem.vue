@@ -128,7 +128,7 @@ export default {
       console.log(supertip)
       console.log("----------")
 
-      axios('http://localhost:5000/api/v1/bets/' + match_id, {
+      axios('/bets/' + match_id, {
         method: "post",
         data: {
           outcome: outcome,

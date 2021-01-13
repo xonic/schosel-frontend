@@ -54,9 +54,11 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import axios from 'axios'
 
   export default {
     mounted () {
+      axios.defaults.baseURL = 'http://localhost:5000/api/v1';
       this.$store.dispatch('LOAD_MATCHES')
       this.$store.dispatch('LOAD_STATUS')
       this.$store.dispatch('LOAD_OWN_BETS')

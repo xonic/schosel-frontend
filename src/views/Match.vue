@@ -97,7 +97,7 @@ export default {
           player: bet.user.name,
           bet: bet.outcome == 1 ? this.match.team1_name : bet.outcome == 2 ? this.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
           superbet: bet.supertip ? "Yes" : "-",
-          score: bet.points ? bet.points.toFixed(2) : "-"
+          score: bet.points ? bet.points.toFixed(2) : 0
         })
       })
 

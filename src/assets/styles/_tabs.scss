@@ -25,7 +25,7 @@
   line-height: $space-100;
   color: $white;
 
-  .is-active & {
+  &.router-link-active {
     background: rgba($white, .8);
     color: $blue-30;
   }
@@ -35,7 +35,7 @@
     padding: 0;
     color: $blue-100;
 
-    .is-active & {
+    &.router-link-active {
       background: transparent;
       color: $black;
     }

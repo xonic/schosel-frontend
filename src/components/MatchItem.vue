@@ -1,32 +1,32 @@
 <template>
   <div>
-    <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: match_id } }">
-      <div class="match match--played" v-if="status === 'over'">
-        <div>{{ matchDate }}</div>
-        <div>{{ team1_name }} — {{ team2_name }}</div>
-        <div>{{ team1_goals }}&nbsp;:&nbsp;{{ team2_goals }}</div>
-        <div>Home&nbsp;{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;Draw&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;Away&nbsp;{{ odds["2"].toFixed(2) }}</div>
-        <span v-if="ownBet">
+    <router-link v:if="status !== 'scheduled'" :to="{ name: 'match', params: { id: match_id } }" class="list__link">
+      <div class="match-item match-item--played" v-if="status === 'over'">
+        <div class="match-item__time">{{ matchTime }} h</div>
+        <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
+        <div class="match-item__goals">{{ team1_goals }}&nbsp;:&nbsp;{{ team2_goals }}</div>
+        <div class="match-item__odds">Home&nbsp;{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;Draw&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;Away&nbsp;{{ odds["2"].toFixed(2) }}</div>
+        <span v-if="ownBet" class="match-item__bet">
           {{ (ownBet.points * (ownBet.supertip + 1)).toFixed(2) }}
           <span v-if="ownBet.supertip">*</span>
         </span>
       </div>
-      <div class="match match--live" v-if="status === 'live'">
-        <div>{{ matchDate }}</div>
-        <div>{{ team1_name }} — {{ team2_name }}</div>
-        <div>{{ team1_goals }}&nbsp;:&nbsp;{{ team2_goals }}</div>
-        <div>Home&nbsp;{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;Draw&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;Away&nbsp;{{ odds["2"].toFixed(2) }}</div>
-        <span v-if="ownBet">
+      <div class="match-item match-item--live" v-if="status === 'live'">
+        <div class="match-item__time">{{ matchTime }} h</div>
+        <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
+        <div class="match-item__goals">{{ team1_goals }}&nbsp;:&nbsp;{{ team2_goals }}</div>
+        <div class="match-item__odds">Home&nbsp;{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;Draw&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;Away&nbsp;{{ odds["2"].toFixed(2) }}</div>
+        <span v-if="ownBet" class="match-item__bet">
           {{ (ownBet.points * (ownBet.supertip + 1)).toFixed(2) }}
           <span v-if="ownBet.supertip">*</span>
         </span>
       </div>
     </router-link>
-    <div class="match match--upcoming" v-if="status === 'scheduled'">
-      <div>{{ matchDate }}</div>
-      <div>{{ team1_name }} — {{ team2_name }}</div>
-      <div v-if="odds && ownBet">
-        <div>{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;{{ odds["2"].toFixed(2) }}</div>
+    <div class="match-item match-item<--upcoming" v-if="status === 'scheduled'">
+      <div class="match-item__time">{{ matchTime }} h</div>
+      <div class="match-item__teams">{{ team1_name }} — {{ team2_name }}</div>
+      <div v-if="odds && ownBet" class="match-item__bet">
+        <div class="match-item__odds">{{ odds["1"].toFixed(2) }}&nbsp;|&nbsp;{{ odds["X"].toFixed(2) }}&nbsp;|&nbsp;{{ odds["2"].toFixed(2) }}</div>
         <input type="radio" :id="match_id + '-home'" value="1" v-model="ownBet.outcome" @change="postBet()">
         <label :for="match_id + '-home'">Home&nbsp;{{ odds["1"].toFixed(2) }}</label>
         <input type="radio" :id="match_id + '-draw'" value="X" v-model="ownBet.outcome" @change="postBet()">
@@ -66,6 +66,9 @@ export default {
   computed: {
     matchDate: function() {
       return new Date(this.date).toLocaleString()
+    },
+    matchTime: function() {
+      return new Date(this.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
     }
   },
   methods: {

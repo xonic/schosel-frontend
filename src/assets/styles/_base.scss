@@ -4,6 +4,7 @@
 @import 'header';
 @import 'tabs';
 @import 'list';
+@import 'match-item';
 
 * {
   box-sizing: border-box;
@@ -26,4 +27,10 @@ img, svg {
 a {
   color: $blue-100;
   text-decoration: none;
+}
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both;
 }

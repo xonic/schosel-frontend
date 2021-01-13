@@ -1,0 +1,28 @@
+.match-item {
+  @extend .cf;
+}
+
+.match-item__time,
+.match-item__odds,
+.match-item__bet {
+  font-size: 1.5rem;
+}
+
+.match-item__teams,
+.match-item__odds {
+  float: left;
+}
+
+.match-item__goals,
+.match-item__bet {
+  float: right;
+}
+
+.match-item__odds {
+  color: $gray-100;
+  text-transform: uppercase;
+}
+
+.match-item__bet {
+  font-weight: $bold-font-weight;
+}

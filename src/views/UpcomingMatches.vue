@@ -20,7 +20,7 @@
         <div class="legend">
           <div class="wrapper">
             <div class="tab-grid">
-              <div></div>
+              <div v-if="upcomingMatches.length < 48"></div>
               <div v-if="loggedInUser">
                 <div class="label">{{ remainingSuperbets() }} <span v-if="remainingSuperbets() === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
                 <svg v-for="i in remainingSuperbets()" class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg">

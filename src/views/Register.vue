@@ -5,31 +5,19 @@
       <form @submit.prevent="onSubmit">
         <div class="input">
           <label for="firstName">First Name</label>
-          <input
-                  type="text"
-                  id="firstName"
-                  v-model="firstName">
+          <input type="text" id="firstName" v-model="firstName">
         </div>
         <div class="input">
           <label for="lastName">Last Name</label>
-          <input
-                  type="text"
-                  id="lastName"
-                  v-model="lastName">
+          <input type="text" id="lastName" v-model="lastName">
         </div>
         <div class="input">
           <label for="email">Email</label>
-          <input
-                  type="email"
-                  id="email"
-                  v-model="email">
+          <input type="email" id="email" v-model="email">
         </div>
         <div class="input">
           <label for="password">Password</label>
-          <input
-                  type="password"
-                  id="password"
-                  v-model="password">
+          <input type="password" id="password" v-model="password">
         </div>
         <div class="submit">
           <button type="submit">Submit</button>
@@ -48,7 +36,7 @@
 
   export default {
     name: 'register',
-    data () {
+    data() {
       return {
         error: null,
         firstName: '',
@@ -58,15 +46,15 @@
       }
     },
     computed: {
-      avatar () {
-        if(!this.firstName.length && !this.lastName.length) return
+      avatar() {
+        if (!this.firstName.length && !this.lastName.length) return
         return store.state.avatarUrl + this.firstName + " " + this.lastName
       }
     },
     methods: {
-      onSubmit () {
+      onSubmit() {
 
-        if(!this.firstName || !this.lastName || !this.email || !this.password) {
+        if (!this.firstName || !this.lastName || !this.email || !this.password) {
           this.error = 'Please fill all fields.'
           return
         }

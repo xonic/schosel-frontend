@@ -138,6 +138,7 @@ export default {
       // })
 
       this.$emit("is-saving")
+      this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
 
       HTTP('/bets/' + match_id, {
         method: "post",
@@ -150,7 +151,6 @@ export default {
       .then(response => {
         // console.log("match bet saved")
         this.$store.dispatch('LOAD_STATUS')
-        this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
 
         this.$emit("stopped-saving")
       })

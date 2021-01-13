@@ -7,10 +7,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     status: {},
+    user: {},
     users: [],
     matches: [],
     ownBets: undefined,
-    teams: {}
+    loadInfo: {
+      status: true,
+      matches: true,
+      users: true
+    }
   },
   actions: {
     LOAD_STATUS: function ({ commit }) {
@@ -52,7 +57,7 @@ export default new Vuex.Store({
   mutations: {
     SET_STATUS: (state, { status }) => {
       state.status = status
-      console.log("state.status", state.status)
+      state.loadInfo.status = false
     },
     SET_MATCHES: (state, { matches }) => {
 
@@ -63,10 +68,11 @@ export default new Vuex.Store({
       for(var i=matches.length-7; i>=matches.length-8; i--) {
         matches[i].status = "live"
       }
-
+      state.loadInfo.matches = false
       state.matches = matches
     },
     SET_USERS: (state, { users }) => {
+      state.loadInfo.users = false
       state.users = users
     },
     SET_USER: (state, { user }) => {
@@ -232,6 +238,20 @@ export default new Vuex.Store({
       return upcomingMatchDays
     },
     allUsers: state => {
+      state.users.forEach(function(el, i){
+
+        // Set rank column value
+        el.rank = i + 1;
+
+        // Beautify score
+        el.score = el.points.toFixed(2)
+
+        // Calculate difference of logged in player score to other players score
+        el.difference = (el.points - state.status.user.points).toFixed(2)
+        if(el.difference == 0.00) el.difference = "-"
+        
+      }, this)
+
       return state.users
     },
     loggedInUser: state => {
@@ -239,6 +259,9 @@ export default new Vuex.Store({
     },
     ownBets: state => {
       return state.ownBets
+    },
+    loading: state => {
+      return state.loadInfo
     }
   }
 })

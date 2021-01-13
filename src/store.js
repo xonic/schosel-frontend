@@ -72,33 +72,6 @@ export default new Vuex.Store({
   mutations: {
     SET_STATUS: (state, { status }) => {
 
-      //TODO: remove this
-      // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-      //   status.user.achievements = {}
-      //
-      //   status.user.achievements.gambler = {}
-      //   status.user.achievements.hustler = {}
-      //   status.user.achievements.expert = {}
-      //   status.user.achievements.hattrick = {}
-      //   status.user.achievements.secret = {}
-      //
-      //   status.user.achievements.gambler.rank = 1
-      //   status.user.achievements.gambler.score = 1000
-      //
-      //   status.user.achievements.hustler.rank = 1
-      //   status.user.achievements.hustler.score = 1000
-      //   status.user.achievements.hustler.times_correct = 2
-      //
-      //   status.user.achievements.expert.rank = 1
-      //   status.user.achievements.expert.score = 1000
-      //   status.user.achievements.expert.team_name = 'Russia'
-      //
-      //   status.user.achievements.hattrick.rank = 1
-      //   status.user.achievements.hattrick.score = 1000
-      //
-      //   status.user.achievements.secret.rank = 1
-      // }
-
       // Check if logged in user is leading any goals
       if(status.user && status.user.achievements) {
         var extras = []
@@ -134,41 +107,6 @@ export default new Vuex.Store({
     },
     SET_USERS: (state, { users }) => {
 
-      // TODO: Remove this
-      // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-      //   users.forEach((user, i) => {
-      //     user.achievements = {}
-      //
-      //     user.achievements.gambler = {}
-      //     user.achievements.hustler = {}
-      //     user.achievements.expert = {}
-      //     user.achievements.hattrick = {}
-      //     user.achievements.secret = {}
-      //
-      //     if(i === 0) {
-      //       user.goals = "Gambler, Hustler, Expert, Hattrick, Secret"
-      //     }
-      //
-      //     user.achievements.gambler.rank = i + 1
-      //     user.achievements.gambler.score = (1000 - i) / (i + 1)
-      //
-      //     user.achievements.hustler.rank = i + 1
-      //     user.achievements.hustler.score = (1000 - i) / (i + 1)
-      //     user.achievements.hustler.times_correct = users.length - i
-      //
-      //     user.achievements.expert.rank = i + 1
-      //     user.achievements.expert.score = (1000 - i) / (i + 1)
-      //     user.achievements.expert.team_name = 'Russia'
-      //
-      //     user.achievements.hattrick.rank = i + 1
-      //     user.achievements.hattrick.score = (1000 - i) / (i + 1)
-      //
-      //     user.achievements.secret.rank = i + 1
-      //
-      //     console.log(user)
-      //   })
-      // }
-
       // Check who is leading which goals to show in score board
       if(users && users[0].achievements) {
         users.forEach((user) => {
@@ -179,11 +117,11 @@ export default new Vuex.Store({
           if(user.achievements.expert.rank == 1) extras.push("Expert")
           if(user.achievements.hattrick.rank == 1) extras.push("Hattrick")
           if(user.achievements.secret && user.achievements.secret.rank == 1) extras.push("Secret")
-// console.log(extras)
+
           extras.length ? user.extras = extras.join(", ") : user.extras = "-"
         })
       }
-      // console.log(users[0])
+
       state.users = users
       state.loadInfo.users = false
     },
@@ -361,38 +299,6 @@ export default new Vuex.Store({
       return upcomingMatchDays
     },
     allUsers: state => {
-
-      if (state.users.length) {
-        // Set rank values for achievements
-        for (var goal in state.users[0].achievements) {
-
-          // Sort by goal
-          state.users.sort((a, b) => {
-            return b.achievements[goal].score - a.achievements[goal].score
-          })
-
-          // Set rank value
-          state.users.forEach((el, i) => {
-            el.achievements[goal].rank = i + 1
-          })
-        }
-      }
-
-      // Sort by main score
-      state.users.sort((a,b) => {
-        return b.points - a.points;
-      })
-
-      // Set main score rank
-      state.users.forEach((el, i) => {
-
-        // Set rank column value
-        el.rank = i + 1;
-
-        // Beautify score
-        el.score = el.points.toFixed(2)
-
-      })
 
       return state.users
     },

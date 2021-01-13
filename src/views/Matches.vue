@@ -73,7 +73,7 @@
             <h1>Played</h1>
             <div v-for="matchDay in playedMatchDays" class="list">
               <h4 class="list__header">{{ matchDate(matchDay.date) }}</h4>
-              <ul>
+              <ul class="list__items">
                 <li
                   is="match-item"
                   v-for="playedMatch in matchDay.matches"

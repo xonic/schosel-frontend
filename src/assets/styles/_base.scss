@@ -76,6 +76,7 @@ a {
   font-weight: $bold-font-weight;
   text-align: center;
   text-transform: uppercase;
+  z-index: 900;
 
   & + .header {
     margin-top: 5.6rem;

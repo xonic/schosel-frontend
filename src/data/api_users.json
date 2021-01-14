@@ -45,7 +45,15 @@
                   }
                ],
                "supertip":false
-            }
+            },
+            "stage":"Group phase",
+            "status":"over",
+            "team1_goals":2,
+            "team1_iso":"bel",
+            "team1_name":"Belgium",
+            "team2_goals":0,
+            "team2_iso":"fra",
+            "team2_name":"France"
          }
       ],
       "reward":48720,

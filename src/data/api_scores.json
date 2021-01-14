@@ -1,0 +1,32 @@
+[
+  {
+     "challenge_id":1,
+     "name":"King's Game",
+     "description":"Most correct bets with odds",
+     "users":[
+       {
+         "admin":true,
+         "avatar":"path/to/local/avatar_img.png",
+         "logged_in":false,
+         "name":"Tom N.",
+         "paid":true,
+         "user_id":1
+       }
+     ]
+  },
+  {
+     "challenge_id":2,
+     "name":"Oldfashioned",
+     "description":"Most correct bets without odds",
+     "users":[
+       {
+         "admin":true,
+         "avatar":"path/to/local/avatar_img.png",
+         "logged_in":false,
+         "name":"Tom N.",
+         "paid":true,
+         "user_id":1
+       }
+     ]
+  }
+]

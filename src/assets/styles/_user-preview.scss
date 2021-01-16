@@ -9,16 +9,16 @@
   padding: $space-50 0;
   border-top: 1px solid $gray-12;
   border-bottom: 0;
+
+  &:hover {
+    background: $gray-12;
+  }
 }
 
 .user-preview__avatar,
 .user-preview__chevron {
   flex: 1 0 auto;
-  margin-right: $space-50;
-}
-
-.user-preview__avatar {
-  margin-right: $space-50;
+  margin: 0 $space-25;
 }
 
 .user-preview__chevron {
@@ -26,7 +26,6 @@
   flex-direction: column;
   justify-content: center;
   align-self: stretch;
-  margin-left: $space-50;
 }
 
 .user-preview__rank {

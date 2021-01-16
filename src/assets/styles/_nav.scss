@@ -8,8 +8,13 @@
 .nav__link{
   display: block;
   line-height: $space-100;
+  border-color: transparent;
 
-  &:not(.router-link-exact-active) {
-    border-color: transparent;
+  &:hover {
+    border-color: $orange-100;
+  }
+
+  &.router-link-exact-active {
+    border-color: $yellow-100;
   }
 }

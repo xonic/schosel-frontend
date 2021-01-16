@@ -29,7 +29,14 @@ export default new Vuex.Store({
       hattrick: 0,
       secret: 0
     },
-    avatarUrl: 'https://api.hello-avatar.com/adorables/400/'
+    avatarUrl: 'https://api.hello-avatar.com/adorables/400/',
+    iconPaths: [
+      "i--1.svg",
+      "i--2.svg",
+      "i--3.svg",
+      "i--4.svg",
+      "i--5.svg"
+    ]
   },
   actions: {
     REGISTER: function ({commit, dispatch}, userData) {
@@ -467,23 +474,333 @@ export default new Vuex.Store({
     },
     allUsers: state => {
 
-      state.users.forEach((el, i) => {
+      // state.users.forEach((el, i) => {
+      //
+      //   el.reward = 0
+      //   if(el.rank == 1) el.reward += state.rewards.first
+      //   if(el.rank == 2) el.reward += state.rewards.second
+      //   if(el.rank == 3) el.reward += state.rewards.third
+      //   if(el.achievements.gambler.rank == 1) el.reward += state.rewards.gambler
+      //   if(el.achievements.hustler.rank == 1) el.reward += state.rewards.hustler
+      //   if(el.achievements.expert.rank == 1) el.reward += state.rewards.expert
+      //   if(el.achievements.hattrick.rank == 1) el.reward += state.rewards.hattrick
+      //   if(el.achievements.secret && el.achievements.secret.rank == 1) el.reward += state.rewards.secret
+      //
+      //   el.reward ? el.reward = (el.reward / 100).toFixed(2) + "€" : el.reward = "-"
+      //
+      // })
 
-        el.reward = 0
-        if(el.rank == 1) el.reward += state.rewards.first
-        if(el.rank == 2) el.reward += state.rewards.second
-        if(el.rank == 3) el.reward += state.rewards.third
-        if(el.achievements.gambler.rank == 1) el.reward += state.rewards.gambler
-        if(el.achievements.hustler.rank == 1) el.reward += state.rewards.hustler
-        if(el.achievements.expert.rank == 1) el.reward += state.rewards.expert
-        if(el.achievements.hattrick.rank == 1) el.reward += state.rewards.hattrick
-        if(el.achievements.secret && el.achievements.secret.rank == 1) el.reward += state.rewards.secret
-
-        el.reward ? el.reward = (el.reward / 100).toFixed(2) + "€" : el.reward = "-"
-
-      })
-
-      return state.users
+      // TODO: remove dummy data
+      return [
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Tom ⭐.",
+          "champion": {
+            "champion": false,
+            "group": "G",
+            "name": "Belgium",
+            "odds": 9.66667,
+            "short_name": "bel",
+            "team_id": 25
+          },
+          "champion_correct": false,
+          "logged_in":false,
+          "name":"Tom N.",
+          "paid":true,
+          "public_bets":[
+            {
+              "date":"2021-07-14T14:00:00Z",
+              "match_id":63,
+              "odds":{
+                "1":2.12195,
+                "2":7.90909,
+                "X":8.7
+              },
+              "outcome":"1",
+              "bet":{
+                "outcome":"1",
+                "points":[
+                  {
+                    "challenge_id":1,
+                    "name":"King's Game",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":2,
+                    "name":"Oldfashioned",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":3,
+                    "name":"Underdog",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":4,
+                    "name":"Balanced",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":5,
+                    "name":"Secret",
+                    "points":49.30432
+                  }
+                ],
+                "supertip":false
+              },
+              "stage":"Group phase",
+              "status":"over",
+              "team1_goals":2,
+              "team1_iso":"bel",
+              "team1_name":"Belgium",
+              "team2_goals":0,
+              "team2_iso":"fra",
+              "team2_name":"France"
+            }
+          ],
+          "reward":48720,
+          "scores":[
+            {
+              "challenge_id":1,
+              "name":"King's Game",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":2,
+              "name":"Oldfashioned",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":3,
+              "name":"Underdog",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":4,
+              "name":"Balanced",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":5,
+              "name":"Secret",
+              "rank":1,
+              "score":49.30432
+            }
+          ],
+          "user_id":3,
+          "visible_supertips": 8
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Georg N.",
+          "champion": {
+            "champion": false,
+            "group": "G",
+            "name": "Belgium",
+            "odds": 9.66667,
+            "short_name": "bel",
+            "team_id": 25
+          },
+          "champion_correct": false,
+          "logged_in":false,
+          "name":"Georg N.",
+          "paid":true,
+          "public_bets":[
+            {
+              "date":"2021-07-14T14:00:00Z",
+              "match_id":63,
+              "odds":{
+                "1":2.12195,
+                "2":7.90909,
+                "X":8.7
+              },
+              "outcome":"1",
+              "bet":{
+                "outcome":"1",
+                "points":[
+                  {
+                    "challenge_id":1,
+                    "name":"King's Game",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":2,
+                    "name":"Oldfashioned",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":3,
+                    "name":"Underdog",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":4,
+                    "name":"Balanced",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":5,
+                    "name":"Secret",
+                    "points":49.30432
+                  }
+                ],
+                "supertip":false
+              },
+              "stage":"Group phase",
+              "status":"over",
+              "team1_goals":2,
+              "team1_iso":"bel",
+              "team1_name":"Belgium",
+              "team2_goals":0,
+              "team2_iso":"fra",
+              "team2_name":"France"
+            }
+          ],
+          "reward":48720,
+          "scores":[
+            {
+              "challenge_id":1,
+              "name":"King's Game",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":2,
+              "name":"Oldfashioned",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":3,
+              "name":"Underdog",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":4,
+              "name":"Balanced",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":5,
+              "name":"Secret",
+              "rank":1,
+              "score":49.30432
+            }
+          ],
+          "user_id":1,
+          "visible_supertips": 8
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Carloz S.",
+          "champion": {
+            "champion": false,
+            "group": "G",
+            "name": "Belgium",
+            "odds": 9.66667,
+            "short_name": "bel",
+            "team_id": 25
+          },
+          "champion_correct": false,
+          "logged_in":false,
+          "name":"Carloz S.",
+          "paid":true,
+          "public_bets":[
+            {
+              "date":"2021-07-14T14:00:00Z",
+              "match_id":63,
+              "odds":{
+                "1":2.12195,
+                "2":7.90909,
+                "X":8.7
+              },
+              "outcome":"1",
+              "bet":{
+                "outcome":"1",
+                "points":[
+                  {
+                    "challenge_id":1,
+                    "name":"King's Game",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":2,
+                    "name":"Oldfashioned",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":3,
+                    "name":"Underdog",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":4,
+                    "name":"Balanced",
+                    "points":49.30432
+                  },
+                  {
+                    "challenge_id":5,
+                    "name":"Secret",
+                    "points":49.30432
+                  }
+                ],
+                "supertip":false
+              },
+              "stage":"Group phase",
+              "status":"over",
+              "team1_goals":2,
+              "team1_iso":"bel",
+              "team1_name":"Belgium",
+              "team2_goals":0,
+              "team2_iso":"fra",
+              "team2_name":"France"
+            }
+          ],
+          "reward":48720,
+          "scores":[
+            {
+              "challenge_id":1,
+              "name":"King's Game",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":2,
+              "name":"Oldfashioned",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":3,
+              "name":"Underdog",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":4,
+              "name":"Balanced",
+              "rank":1,
+              "score":49.30432
+            },
+            {
+              "challenge_id":5,
+              "name":"Secret",
+              "rank":1,
+              "score":49.30432
+            }
+          ],
+          "user_id":4,
+          "visible_supertips": 8
+        },
+      ]
+      //
+      // return state.users
     },
     loggedInUser: state => {
 
@@ -513,6 +830,9 @@ export default new Vuex.Store({
     },
     avatarUrl: state => {
       return state.avatarUrl
+    },
+    iconPaths: state => {
+      return state.iconPaths
     }
   }
 })

@@ -1,32 +1,207 @@
 [
   {
      "challenge_id":1,
+     "challenge_route":"kings-game",
      "name":"King's Game",
      "description":"Most correct bets with odds",
      "users":[
-       {
-         "admin":true,
-         "avatar":"path/to/local/avatar_img.png",
-         "logged_in":false,
-         "name":"Tom N.",
-         "paid":true,
-         "user_id":1
-       }
+        {
+           "admin":true,
+           "avatar":"https://api.hello-avatar.com/adorables/400/Tom ⭐.",
+           "logged_in":true,
+           "name":"Tom N.",
+           "paid":true,
+           "reward":48720,
+           "rank":1,
+           "score":49.30432,
+           "user_id":3
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Georg N.",
+          "logged_in":false,
+          "name":"Georg N.",
+          "paid":true,
+          "reward":48720,
+          "rank":2,
+          "score":47.75839,
+          "user_id":1
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Carloz S.",
+          "logged_in":false,
+          "name":"Carloz S.",
+          "paid":true,
+          "reward":48720,
+          "rank":3,
+          "score":40.56383,
+          "user_id":4
+        }
      ]
   },
   {
      "challenge_id":2,
+     "challenge_route":"oldfashioned",
      "name":"Oldfashioned",
      "description":"Most correct bets without odds",
      "users":[
-       {
-         "admin":true,
-         "avatar":"path/to/local/avatar_img.png",
-         "logged_in":false,
-         "name":"Tom N.",
-         "paid":true,
-         "user_id":1
-       }
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Georg N.",
+          "logged_in":false,
+          "name":"Georg N.",
+          "paid":true,
+          "reward":48720,
+          "rank":24,
+          "score":147.75839,
+          "user_id":1
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Tom ⭐.",
+          "logged_in":true,
+          "name":"Tom N.",
+          "paid":true,
+          "reward":48720,
+          "rank":25,
+          "score":49.30432,
+          "user_id":3
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Carloz S.",
+          "logged_in":false,
+          "name":"Carloz S.",
+          "paid":true,
+          "reward":48720,
+          "rank":26,
+          "score":40.56383,
+          "user_id":4
+        }
+     ]
+  },
+  {
+     "challenge_id":3,
+     "name":"Underdog",
+     "challenge_route":"underdog",
+     "description":"Most correct bets on lowest odds",
+     "users":[
+        {
+           "admin":true,
+           "avatar":"https://api.hello-avatar.com/adorables/400/Tom ⭐.",
+           "logged_in":true,
+           "name":"Tom N.",
+           "paid":true,
+           "reward":48720,
+           "rank":1,
+           "score":49.30432,
+           "user_id":3
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Georg N.",
+          "logged_in":true,
+          "name":"Georg N.",
+          "paid":true,
+          "reward":48720,
+          "rank":2,
+          "score":47.75839,
+          "user_id":1
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Carloz S.",
+          "logged_in":false,
+          "name":"Carloz S.",
+          "paid":true,
+          "reward":48720,
+          "rank":3,
+          "score":40.56383,
+          "user_id":4
+        }
+     ]
+  },
+  {
+     "challenge_id":4,
+     "name":"Balanced",
+     "challenge_route":"balanced",
+     "description":"Most correct bets on draw with odds",
+     "users":[
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Carloz S.",
+          "logged_in":false,
+          "name":"Carloz S.",
+          "paid":true,
+          "reward":48720,
+          "rank":97,
+          "score":400.56383,
+          "user_id":4
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Georg N.",
+          "logged_in":false,
+          "name":"Georg N.",
+          "paid":true,
+          "reward":48720,
+          "rank":98,
+          "score":47.75839,
+          "user_id":1
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Tom ⭐.",
+          "logged_in":true,
+          "name":"Tom N.",
+          "paid":true,
+          "reward":48720,
+          "rank":99,
+          "score":29.30432,
+          "user_id":3
+        }
+     ]
+  },
+  {
+     "challenge_id":5,
+     "name":"Secret",
+     "challenge_route":"secret",
+     "description":"Will be revealed after the tournament",
+     "users":[
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Georg N.",
+          "logged_in":false,
+          "name":"Georg N.",
+          "paid":true,
+          "reward":48720,
+          "rank":66,
+          "score":247.75839,
+          "user_id":1
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Tom ⭐.",
+          "logged_in":true,
+          "name":"Tom N.",
+          "paid":true,
+          "reward":48720,
+          "rank":67,
+          "score":49.30432,
+          "user_id":3
+        },
+        {
+          "admin":true,
+          "avatar":"https://api.hello-avatar.com/adorables/400/Carloz S.",
+          "logged_in":false,
+          "name":"Carloz S.",
+          "paid":true,
+          "reward":48720,
+          "rank":68,
+          "score":40.56383,
+          "user_id":4
+        }
      ]
   }
 ]

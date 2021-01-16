@@ -28,11 +28,11 @@
           return {
             id: user.user_id,
             name: user.name,
-            rank: user.achievements.hattrick.rank,
-            score: user.achievements.hattrick.score,
+            rank: user.scores[2].rank,
+            score: user.scores[2].score,
             avatar: user.avatar
           }
-        })
+        }).sort((a, b) => (a.rank > b.rank) ? 1 : -1)
       }
     },
   }

@@ -2,6 +2,15 @@
    {
       "admin":true,
       "avatar":"path/to/local/avatar_img.png",
+      "champion": {
+        "champion": false,
+        "group": "G",
+        "name": "Belgium",
+        "odds": 9.66667,
+        "short_name": "bel",
+        "team_id": 25
+      },
+      "champion_correct": false,
       "logged_in":false,
       "name":"Tom N.",
       "paid":true,
@@ -89,6 +98,7 @@
             "score":49.30432
          }
       ],
-      "user_id":1
+      "user_id":1,
+      "visible_supertips": 8
    }
 ]

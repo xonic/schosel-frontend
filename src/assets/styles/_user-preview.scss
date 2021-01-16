@@ -1,0 +1,58 @@
+
+.user-preview,
+.user-preview__ranks {
+  display: flex;
+  align-items: center;
+}
+
+.user-preview {
+  padding: $space-50 0;
+  border-top: 1px solid $gray-12;
+  border-bottom: 0;
+}
+
+.user-preview__avatar,
+.user-preview__chevron {
+  flex: 1 0 auto;
+  margin-right: $space-50;
+}
+
+.user-preview__avatar {
+  margin-right: $space-50;
+}
+
+.user-preview__chevron {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  margin-left: $space-50;
+}
+
+.user-preview__rank {
+  margin-right: $space-50;
+
+  &:nth-child(1) {
+    color: $cyan-100;
+  }
+
+  &:nth-child(2) {
+    color: $blue-100;
+  }
+
+  &:nth-child(3) {
+    color: $purple-100;
+  }
+
+  &:nth-child(4) {
+    color: $magenta-100;
+  }
+
+  &:nth-child(5) {
+    color: $orange-100;
+  }
+}
+
+.user-preview__icon {
+  width: $space-50;
+}

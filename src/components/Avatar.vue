@@ -1,12 +1,13 @@
 <template>
-  <img :src="src" style="width: 32px; border-radius: 999em; margin-right:12px;">
+  <img :src="src" :class="size ? 'avatar ' + 'avatar--' + size : 'avatar'">
 </template>
 
 <script>
   export default {
     name: "avatar",
     props: {
-      src: String
+      src: String,
+      size: String
     }
   }
 </script>

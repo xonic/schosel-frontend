@@ -1,14 +1,22 @@
 
 .avatar {
-  display: inline-block;
+  display: block;
+  width: $space-75;
   border-radius: 999em;
-  vertical-align: middle;
+}
+
+.avatar--tiny {
+  width: $space-35;
 }
 
 .avatar--small {
-  width: $space-100;
+  width: $space-50;
 }
 
-.avatar--medium {
-  width: $space-100 * 4;
+.avatar--large {
+  width: $space-125;
+}
+
+.avatar--xlarge {
+  width: $space-150;
 }

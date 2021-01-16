@@ -8,11 +8,12 @@
 @import 'logo';
 @import 'nav';
 @import 'player-menu';
+@import 'user-preview';
 // @import 'tabs';
 // @import 'list';
 // @import 'hero';
 // @import 'match-item';
-// @import 'avatar';
+@import 'avatar';
 // @import 'flag';
 @import 'rank-chart';
 
@@ -100,8 +101,12 @@ h3, .h3 {
   color: $green-100;
 }
 
+.main {
+  padding: $space-100 0;
+}
+
 .wrapper {
   position: relative;
-  max-width: 72rem;
+  max-width: 36rem;
   margin: 0 auto;
 }

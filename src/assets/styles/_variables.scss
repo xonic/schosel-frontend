@@ -11,49 +11,36 @@
     $white:        #fff;
     $black:        #000;
 
-    $gray-10:      #F5F5F5;
-    $gray-25:      #D8D8D8;
-    $gray-100:     #9B9B9B;
+    $gray-10:      #2D292E;
+    $gray-12:      #3A353B;
+    $gray-14:      #625964;
+    $gray-20:      #C0BEC1;
 
-    $green-50:     #407D00;
-    $green-100:    #5FB100;
-    $green-150:    #F2FEE6;
+    $cyan-100:     #66FFDB;
+    $blue-100:     #63BEFF;
+    $purple-100:   #CBA6FF;
+    $magenta-100:  #FF96CB;
+    $red-100:      #FF5757;
+    $orange-100:   #FFA24D;
+    $yellow-100:   #FFD84D;
+    $green-100:    #97FF88;
 
-    $blue-20:      #00495A;
-    $blue-30:      #005278;
-    $blue-100:     #3EABDC;
-    $blue-120:     #007CB6;
-    $blue-130:     #00B3DC;
-    $blue-140:     #D5EBF2;
-    $blue-150:     #E6F7FF;
-
-    $orange-100:   #F3A200;
-
-    $red-50:      #950404;
-    $red-100:      #FF5E48;
-    $red-150:      #FFE4E4;
-
-    $yellow-80:    #AA7200;
-    $yellow-100:   #D48E00;
-
-    $body-bg: hsl(95, 5%, 15%);
-
-    $neon-blue: #1AA0FF;
-    $neon-purple: #CE69FF;
-    $neon-magenta: #FF31AA;
-    $neon-red: #FF3737;
-    $neon-orange: #FF881A;
-    $neon-yellow: #FFCD1A;
-    $neon-cyan: #30FFCF;
+    $body-bg:      $gray-10;
 
 
 //  = TYPOGRAPHY
 //  ---------------------------------------------------------------------------
 
-    $base-font: 'unitext', sans-serif; // unitext, snicker, arboria
-    $base-font-size: 2rem;
+    $base-font: 'Grandstander', sans-serif; // unitext, snicker, arboria
+    $base-font-size: 1.6rem;
     $base-font-weight: 400;
     $bold-font-weight: 700;
+
+    $h1Size: 3.125rem;
+    $h2Size: 2.5rem;
+    $h3Size: 2rem;
+    $textSmallSize: 1.28rem;
+    $textTinySize: 1.024rem;
 
 
 //  = LAYOUT
@@ -67,3 +54,4 @@
     $space-50: 1.6rem;
     $space-75: 2.4rem;
     $space-100: 3.2rem;
+    $space-125: 4.8rem;

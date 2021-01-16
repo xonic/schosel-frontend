@@ -1,140 +1,16 @@
 
 .header {
-  position: relative;
-  // background: linear-gradient(to left, $blue-30, $blue-20);
-  //
-  // @media (min-width: 800px) {
-  //   background: $white;
-  //   box-shadow: 0 0 500px rgba(0,0,0,.2);
-  // }
-}
+  padding: $space-35 $space-35 0;
+  background: $gray-10;
+  box-shadow: 0 4px 4px rgba($black, .25);
 
-.header__grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-    > * {
-      flex: 1 0 auto;
-    }
-
-    @media (min-width: 768px) {
-      flex-wrap: nowrap;
-      align-items: baseline;
-    }
-}
-
-.logo {
-  flex: 1 0 100%;
-  padding: $space-100 0;
-  font-family: 'snicker';
-  font-size: 4.8rem;
-  font-weight: $bold-font-weight;
-  line-height: 1;
-  color: $neon-cyan;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    flex: 0 0 auto;
-    margin-right: $space-100;
-    text-align: left;
-  }
-}
-
-.logo__tournament {
-  display: block;
-  font-family: 'unitext';
-  font-weight: $bold-font-weight;
-  font-size: 1.6rem;
-  line-height: 1;
-
-  @media (min-width: 768px) {
-    display: inline;
-  }
-}
-
-.nav {
-  margin: 0 0 $space-50;
-
-  @media (min-width: 768px) {
-    margin: 0;
-  }
-}
-
-.nav__items {
-  display: flex;
-  justify-content: center;
-
-  @media (min-width: 768px) {
-    justify-content: flex-start;
-  }
-}
-
-.nav__item:first-child {
-  margin-right: $space-50;
-}
-
-.nav__link {
-  display: flex;
-
-  padding: $space-10 $space-50;
-  border-radius: 999em;
-  font-size: 1.6rem;
-  font-weight: $bold-font-weight;
-  line-height: 2;
-  color: $white;
-
-  &.router-link-active {
-    background: rgba(0,0,0,.5);
+  .wrapper {
+    max-width: 36rem;
   }
 
-  @media (min-width: 800px) {
-    // font-size: 15px;
-    // line-height: $space-75;
-  }
-}
-
-.nav__img {
-  margin-right: $space-25;
-
-  svg {
-    width: $space-50;
-    height: $space-50;
-  }
-
-  @media (min-width: 800px) {
-    display: inline;
-
-    svg {
-      margin-top: -#{$space-10};
-      margin-right: $space-25;
-      width: $space-50;
-      height: $space-50;
-      vertical-align: middle;
-    }
-  }
-}
-
-.player-info {
-  position: absolute;
-  top: $space-100;
-  right: $space-50;
-  font-size: 1.6rem;
-  font-weight: $bold-font-weight;
-
-  @media (min-width: 768px) {
-    position: static;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-}
-
-.player-info__name {
-  display: none;
-
-  @media (min-width: 768px) {
+  .logo {
     display: block;
-    margin-right: $space-35;
+    margin-bottom: $space-25;
+    border-bottom: 0;
   }
 }

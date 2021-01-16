@@ -1,12 +1,9 @@
 <template>
   <header class="header">
-    <div class="wrapper header__grid">
+    <div class="wrapper">
       <logo />
       <nav-main v-if="authenticated" />
-      <div v-if="loggedInUser" class="player-info">
-        <div v-if='loggedInUser.name' class="player-info__name">
-          {{ loggedInUser.name }}
-        </div>
+      <div v-if="loggedInUser" class="player-menu">
         <popover :items="userMenuItems">
           <avatar :src="loggedInUser.avatar" />
         </popover>

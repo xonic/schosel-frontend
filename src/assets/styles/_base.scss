@@ -1,10 +1,13 @@
-// @import 'reset';
+@import 'reset';
 @import 'variables';
 // @import 'app';
 // @import 'loading';
 // @import 'grid';
 // @import 'dataGrid';
-// @import 'header';
+@import 'header';
+@import 'logo';
+@import 'nav';
+@import 'player-menu';
 // @import 'tabs';
 // @import 'list';
 // @import 'hero';
@@ -12,334 +15,93 @@
 // @import 'avatar';
 // @import 'flag';
 @import 'rank-chart';
-//
-// * {
-//   box-sizing: border-box;
-// }
-//
-// html {
-//   font-size: 62.5%;
-//   background: $body-bg;
-// }
-//
-// body {
-//   font-family: $base-font;
-//   font-size: $base-font-size;
-//   line-height: 1.6;
-//   color: $white;
-// }
-//
-// img, svg {
-//   max-width: 100%;
-// }
-//
-// a {
-//   color: inherit;
-//   text-decoration: none;
-//
-//   .schosel & {
-//     color: $neon-blue;
-//   }
-//
-//   .oldfashioned & {
-//     color: $neon-purple;
-//   }
-//
-//   .underdog & {
-//     color: $neon-magenta;
-//   }
-//
-//   .loser & {
-//     color: $neon-red;
-//   }
-//
-//   .balanced & {
-//     color: $neon-orange;
-//   }
-//
-//   .secret & {
-//     color: $neon-yellow;
-//   }
-// }
-//
-// .schosel {
-//   color: $neon-blue;
-//   text-transform: none;
-// }
-//
-// .oldfashioned {
-//   color: $neon-purple;
-//   text-transform: none;
-// }
-//
-// .underdog {
-//   color: $neon-magenta;
-//   text-transform: none;
-// }
-//
-// .loser {
-//   color: $neon-red;
-//   text-transform: none;
-// }
-//
-// .balanced {
-//   color: $neon-orange;
-//   text-transform: none;
-// }
-//
-// .secret {
-//   color: $neon-yellow;
-//   text-transform: none;
-// }
-//
-// h2 {
-//   margin-bottom: $space-100;
-// }
-//
-// .cf:after {
-//   content: "";
-//   display: table;
-//   clear: both;
-// }
-//
-// .champion-bet {
-//   margin-bottom: $space-100;
-//   padding: 0 $space-25;
-// }
-//
-// .legend {
-//   position: fixed;
-//   right: 0;
-//   bottom: 0;
-//   left:0;
-//   z-index: 800;
-//   padding: $space-35 $space-25 $space-25;
-//   background: $white;
-//   box-shadow: 0 -1px 2px rgba(0,0,0,.12);
-//   color: $white;
-//
-//   background: $blue-100;
-//   .isSaving & {
-//   }
-//
-//   svg {
-//     margin-right: $space-25 / 4;
-//   }
-// }
-//
-// .label {
-//   font-size: 1.5rem;
-//   font-weight: $bold-font-weight;
-//   text-transform: uppercase;
-// }
-//
-// .select {
-//   display: block;
-//   position: relative;
-//   margin: 0 0 $space-75;
-//   padding: $space-25 $space-35;
-//   background: url(assets/img/icons/i--triangle-down.png) no-repeat $white;
-//   background-position: calc(100% - 12px) center;
-//   border: 1px solid $gray-25;
-//   border-radius: 4px;
-//   font-family: $base-font;
-//   font-size: $base-font-size;
-//   line-height: 1;
-//   -webkit-appearance: none;
-// }
-//
-// .not-paid {
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   left: 0;
-//   padding: $space-50 $space-75;
-//   background: #F8E71C;
-//   font-size: 1.5rem;
-//   font-weight: $bold-font-weight;
-//   text-align: center;
-//   text-transform: uppercase;
-//   z-index: 900;
-//
-//   & + .header {
-//     margin-top: 5.6rem;
-//   }
-// }
-//
-// .blankslate {
-//   font-size: 2.8rem;
-//   color: $gray-25;
-//   text-align: center;
-// }
-//
-// // .popover-container {
-// //   position: relative;
-// // }
-// //
-// // .popover {
-// //   position: absolute;
-// //   top: 100%;
-// //   right: 0;
-// //   z-index: 800;
-// //   width: 14rem;
-// //   background: $white;
-// //   box-shadow: 0 10px 20px rgba(0,0,0,.08),
-// //               0 4px 8px rgba(0,0,0,.1),
-// //               0 2px 4px rgba(0,0,0,.1);
-// //
-// //   a {
-// //     display: block;
-// //     padding: 0 $space-50 $space-35;
-// //   }
-// //
-// //   li:first-child a {
-// //     padding-top: $space-35;
-// //   }
-// // }
-//
-// .island {
-//   padding: 0 $space-25;
-// }
-//
-// .hero-enter {
-//   opacity: 0;
-//   transform: translateY(5px);
-// }
-//
-// .hero-enter-active {
-//   transition: all .25s ease-out;
-// }
-//
-// .hero-enter-to {
-//   transform: translateY(0);
-// }
-//
-// .hero-leave {
-//   transform: translateY(0);
-// }
-//
-// .hero-leave-active {
-//   transition: all .2s ease-in;
-//   opacity: 0;
-//   transform: translateY(5px);
-// }
-//
-// .hero-leave-to {
-//   transform: translateY(5px);
-// }
-//
-// .content-enter {
-//   opacity: 0;
-//   transform: translateY(5px);
-// }
-//
-// .content-enter-active {
-//   transition: all .25s .15s ease-out;
-// }
-//
-// .content-enter-to {
-//   transform: translateY(0);
-// }
-//
-// .content-leave {
-//   transform: translateY(0);
-// }
-//
-// .content-leave-active {
-//   transition: all .2s .1s ease-in;
-//   opacity: 0;
-//   transform: translateY(5px);
-// }
-//
-// .content-leave-to {
-//   transform: translateY(5px);
-// }
-//
-// .tabs-enter {
-//   opacity: 0;
-//   transform: translateX(-5px);
-// }
-//
-// .tabs-enter-active {
-//   transition: all .25s .15s ease-out;
-// }
-//
-// .tabs-enter-to {
-//   transform: translateX(0);
-// }
-//
-// .tabs-leave {
-//   transform: translateX(0);
-// }
-//
-// .tabs-leave-active {
-//   transition: all .2s .1s ease-in;
-//   opacity: 0;
-//   transform: translateX(-5px);
-// }
-//
-// .tabs-leave-to {
-//   transform: translateX(-5px);
-// }
-//
-// .score-card-grid {
-//   display: grid;
-//   grid-template-columns: repeat( auto-fit, minmax(150px, 1fr));
-//   grid-gap: $space-25;
-//   margin-bottom: $space-100;
-// }
-//
-// $gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.3));
-//
-// .score-card {
-//   margin: 0;
-//   padding: $space-25 $space-35;
-//   box-shadow: 0 2px 4px rgba(0,0,0,.1);
-//   background-size: cover;
-//   border-radius: 4px;
-//   color: $white;
-//   text-shadow: 0 1px 1px rgba(0,0,0,.3);
-// }
-//
-// .score-card__label {
-//   font-size: 60%;
-// }
-//
-// .score-card--gambler {
-//   background-image: $gradient-overlay, url('assets/img/hero-6.jpg');
-// }
-//
-// .score-card--hustler {
-//   background-image: url('assets/img/hero-12.jpg');
-// }
-//
-// .score-card--expert {
-//   background-image: $gradient-overlay, url('assets/img/hero-11.jpg');
-// }
-//
-// .score-card--hattrick {
-//   background-image: $gradient-overlay, url('assets/img/hero-10.jpg');
-// }
-//
-// .score-card--secret {
-//   background-image: url('assets/img/hero-9.jpg');
-// }
-//
-// .score-card__title,
-// .score-card__rank {
-//   margin: 0;
-//   font-size: 1.5rem;
-//   text-transform: uppercase;
-//   font-weight: $bold-font-weight;
-//   text-align: center;
-// }
-//
-// .score-card__score {
-//   font-size: 4.8rem;
-//   font-weight: $bold-font-weight;
-//   text-align: center;
-// }
-//
-// .main {
-//   padding-bottom: 6rem;
-// }
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(57.5% + .25vw);
+  background: $body-bg;
+}
+
+body {
+  font-family: $base-font;
+  font-size: $base-font-size;
+  line-height: 1.5;
+  color: $white;
+}
+
+img, svg {
+  max-width: 100%;
+}
+
+a {
+  border-bottom: 2px solid $yellow-100;
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+h1, .h1 {
+  font-size: $h1Size;
+}
+
+h2, .h2 {
+  font-size: $h2Size;
+}
+
+h3, .h3 {
+  font-size: $h3Size;
+}
+
+.text--small {
+  font-size: $textSmallSize;
+}
+
+.text--tiny {
+  font-size: $textTinySize;
+}
+
+.text--cyan {
+  color: $cyan-100;
+}
+
+.text--blue {
+  color: $blue-100;
+}
+
+.text--purple {
+  color: $purple-100;
+}
+
+.text--magenta {
+  color: $magenta-100;
+}
+
+.text--red {
+  color: $red-100;
+}
+
+.text--orange {
+  color: $orange-100;
+}
+
+.text--yellow {
+  color: $yellow-100;
+}
+
+.text--green {
+  color: $green-100;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 72rem;
+  margin: 0 auto;
+}

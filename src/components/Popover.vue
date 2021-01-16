@@ -27,7 +27,7 @@
 </script>
 
 <style>
-/*
+
   .popover {
     position: relative;
   }
@@ -37,13 +37,14 @@
     top: 100%;
     right: 0;
     background: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,.2);
+    box-shadow: 0 8px 16px rgba(0,0,0,.25);
     border-radius: 12px;
   }
 
   .popover__link {
     display: block;
     padding: 12px 24px;
+    border-bottom: 0;
     color: black;
   }
 
@@ -73,5 +74,5 @@
   .fade-leave-to {
     opacity: 0;
     transform: translateY(-4px);
-  } */
+  }
 </style>

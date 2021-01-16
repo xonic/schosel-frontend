@@ -1,0 +1,15 @@
+
+
+.nav__items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__link{
+  display: block;
+  line-height: $space-100;
+
+  &:not(.router-link-exact-active) {
+    border-bottom: 0;
+  }
+}

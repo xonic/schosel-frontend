@@ -3,11 +3,25 @@
   position: absolute;
   top: $space-25;
   right: 0;
-  border-radius: 999em;
-  border: 2px solid transparent;
+  // max-width: $space-125;
+  text-align: center;
 
-  &:hover {
+  .avatar {
+    display: inline-block;
+    border: 2px solid transparent;
+    border-radius: 999em;
+  }
+
+  &:hover .avatar {
     border-color: $orange-100;
     cursor: pointer;
   }
 }
+
+// .player-menu__name {
+//   font-size: $textTinySize;
+//   color: $gray-20;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }

@@ -6,6 +6,9 @@
       <div v-if="loggedInUser" class="player-menu">
         <popover :items="userMenuItems">
           <avatar :src="loggedInUser.avatar" />
+          <!-- <div class="player-menu__name">
+            {{ loggedInUser.name }}
+          </div> -->
         </popover>
       </div>
     </div>

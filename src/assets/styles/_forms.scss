@@ -4,7 +4,8 @@
 }
 
 .to-login,
-.to-register {
+.to-register,
+.to-reset {
   margin: -$space-25 0 $space-100;
   font-size: $textSmallSize;
   font-weight: $base-font-weight;
@@ -14,6 +15,11 @@
   a {
     color: $yellow-100;
   }
+}
+
+.to-reset {
+  display: inline;
+  margin: 0 0 0 $space-75;
 }
 
 input {

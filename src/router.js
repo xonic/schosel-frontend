@@ -37,6 +37,11 @@ const router =  new Router({
       component: Register
     },
     {
+      path: '/reset',
+      name: 'reset',
+      component: ResetPassword
+    },
+    {
       path: '/',
       name: 'home',
       component: Home,

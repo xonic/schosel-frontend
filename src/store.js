@@ -13,6 +13,7 @@ export default new Vuex.Store({
     // TODO: Remove dummy data
     // users: [],
     users: require('./data/api_users.json'),
+    errors: [],
     matches: [],
     ownBets: undefined,
     loadInfo: {
@@ -93,7 +94,9 @@ export default new Vuex.Store({
           // Redirect to requested URL or default to matches
           authData.redirect ? router.push({ path: authData.redirect }) : router.push('/')
         })
-        .catch(error => console.log(error))
+        .catch(errors => {
+          commit('SET_ERRORS', { errors: errors.response.data.errors })
+        })
     },
     TRY_AUTO_LOGIN: function ({commit, dispatch}) {
       const auth = localStorage.getItem('authenticated')
@@ -179,6 +182,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    SET_ERRORS: (state, { errors }) => {
+      state.errors = errors
+    },
     SET_AUTHENTICATED: (state, { authenticated }) => {
       state.authenticated = authenticated
     },
@@ -532,6 +538,9 @@ export default new Vuex.Store({
     },
     scores: state => {
       return state.scores
+    },
+    errors: state => {
+      return state.errors
     },
     scoreKingsGame: state => {
       return state.scoreKingsGame

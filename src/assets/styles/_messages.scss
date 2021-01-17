@@ -1,0 +1,30 @@
+
+
+.msg {
+  margin-bottom: $space-50;
+  padding: $space-35 $space-50;
+  border: 1px solid $gray-20;
+  border-radius: 4px;
+  background: $gray-12;
+  text-align: center;
+}
+
+.msg--info {
+  border-color: $blue-100;
+  color: $blue-100;
+}
+
+.msg--success {
+  border-color: $green-100;
+  color: $green-100;
+}
+
+.msg--warning {
+  border-color: $orange-100;
+  color: $orange-100;
+}
+
+.msg--error {
+  border-color: $red-100;
+  color: $red-100;
+}

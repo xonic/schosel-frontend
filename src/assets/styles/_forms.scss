@@ -56,7 +56,7 @@ input {
   margin-bottom: $space-25;
   padding: $space-50 $space-75;
   background: $gray-14;
-  border: 0;
+  border: 2px solid transparent;
   border-radius: 4px;
   font-family: inherit;
   font-size: inherit;
@@ -71,4 +71,11 @@ input {
 .btn--primary {
   background: $yellow-100;
   color: $gray-10;
+
+  &:focus {
+    outline: 0;
+    box-shadow:
+      0 4px 8px rgba(0,0,0,.25),
+      0 8px 16px rgba(0,0,0,.25);
+  }
 }

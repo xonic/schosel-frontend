@@ -8,6 +8,11 @@
         No account yet?
         <router-link :to="{ name: 'register' }">Register now!</router-link>
       </div>
+      <ul v-if="errors" class="errors">
+        <li v-for="error in errors">
+          <message :msg="error" type="error" />
+        </li>
+      </ul>
       <div class="login-form">
         <form @submit.prevent="onSubmit">
           <div class="input">
@@ -39,6 +44,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import Message from '@/components/Message.vue'
 
   export default {
     name: 'login',
@@ -47,6 +54,14 @@
         email: '',
         password: ''
       }
+    },
+    components: {
+      Message
+    },
+    computed: {
+      ...mapGetters([
+        'errors'
+      ])
     },
     methods: {
       onSubmit () {

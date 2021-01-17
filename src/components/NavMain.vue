@@ -7,7 +7,7 @@
         </router-link>
       </li>
       <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'results' }">
+        <router-link class="nav__link" :to="{ name: 'matches' }">
           Matches
         </router-link>
       </li>

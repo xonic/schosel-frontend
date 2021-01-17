@@ -5,6 +5,12 @@
   border-radius: 999em;
 }
 
+.logo__avatar {
+  display: inline;
+  width: 2.7rem;
+  margin: 0 0.3rem;
+}
+
 .avatar--tiny {
   width: $space-35;
 }

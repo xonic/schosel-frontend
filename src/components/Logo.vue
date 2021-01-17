@@ -4,7 +4,8 @@
       <span class="text--cyan">S</span>
       <span class="text--blue">c</span>
       <span class="text--purple">h</span>
-      <span class="text--magenta">o</span>
+      <avatar v-if="loggedInUser" :src="loggedInUser.avatar + Math.random()" class="logo__avatar" />
+      <span v-else class="text--magenta">o</span>
       <span class="text--red">s</span>
       <span class="text--orange">e</span>
       <span class="text--yellow">l</span>
@@ -14,7 +15,18 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import Avatar from '@/components/Avatar.vue'
+
   export default {
-    name: 'logo'
+    name: 'logo',
+    components: {
+      Avatar
+    },
+    computed: {
+      ...mapGetters([
+        'loggedInUser'
+      ])
+    }
   }
 </script>

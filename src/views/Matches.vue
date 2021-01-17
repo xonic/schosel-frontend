@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="wrapper">
-      <h1 class="h2 main__title">Results</h1>
+      <h1 class="h2 main__title">Matches</h1>
       <ul v-if="liveMatches.length || playedMatches.length">
         <li v-for="match in liveMatches">
           <result-preview :match="match" />

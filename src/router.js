@@ -7,8 +7,8 @@ import Logout from './views/Logout.vue'
 import Help from './views/Help.vue'
 import Home from './views/Home.vue'
 import Bets from './views/Bets.vue'
-import Results from './views/Results.vue'
-import Result from './views/Result.vue'
+import Matches from './views/Matches.vue'
+import Match from './views/Match.vue'
 import KingsGame from './views/RankKingsGame.vue'
 import Oldfashioned from './views/RankOldfashioned.vue'
 import Underdog from './views/RankUnderdog.vue'
@@ -53,17 +53,17 @@ const router =  new Router({
       }
     },
     {
-      path: '/results',
-      name: 'results',
-      component: Results,
+      path: '/matches',
+      name: 'matches',
+      component: Matches,
       meta: {
         requiresAuth: true
       },
     },
     {
-      path: '/results/:id',
-      name: 'result',
-      component: Result,
+      path: '/matches/:id',
+      name: 'match',
+      component: Match,
       props: true,
       meta: {
         requiresAuth: true

@@ -50,30 +50,30 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="result in sortedData">
+      <tr v-for="match in sortedData">
         <td>
-          <router-link :to="{ name: 'result', params: { id: `${result.id}` } }">
-            {{ result.match }}
+          <router-link :to="{ name: 'match', params: { id: `${match.id}` } }">
+            {{ match.match }}
           </router-link>
         </td>
         <td>
-          <router-link :to="{ name: 'result', params: { id: `${result.id}` } }">
-            {{ result.bet }}
+          <router-link :to="{ name: 'match', params: { id: `${match.id}` } }">
+            {{ match.bet }}
           </router-link>
         </td>
         <td>
-          <router-link :to="{ name: 'result', params: { id: `${result.id}` } }">
-            {{ result.outcome }}
+          <router-link :to="{ name: 'match', params: { id: `${match.id}` } }">
+            {{ match.outcome }}
           </router-link>
         </td>
         <td>
-          <router-link :to="{ name: 'result', params: { id: `${result.id}` } }">
-            <super-bet v-if="result.superbet" :correct="result.score ? true : false" />
+          <router-link :to="{ name: 'match', params: { id: `${match.id}` } }">
+            <super-bet v-if="match.superbet" :correct="match.score ? true : false" />
           </router-link>
         </td>
         <td>
-          <router-link :to="{ name: 'result', params: { id: `${result.id}` } }">
-            {{ result.score }}
+          <router-link :to="{ name: 'match', params: { id: `${match.id}` } }">
+            {{ match.score }}
           </router-link>
         </td>
       </tr>
@@ -86,7 +86,7 @@
   import SuperBet from '@/components/SuperBet'
 
   export default {
-    name: "result-grid",
+    name: "match-grid",
     props: {
       data: Array,
     },

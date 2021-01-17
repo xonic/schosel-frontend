@@ -11,7 +11,7 @@
             <div class="user-preview__body">
               <div class="user-preview__name">
                 {{ user.name }}
-                <span v-if="user.user_id === loggedInUser.user_id" class="text--small text--gray-20">(You)</span>
+                <span v-if="loggedInUser && user.user_id === loggedInUser.user_id" class="text--small text--gray-20">(You)</span>
               </div>
               <ul class="user-preview__ranks">
                 <li v-for="(score, index) in user.scores" class="user-preview__rank">

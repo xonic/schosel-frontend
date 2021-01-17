@@ -1,90 +1,92 @@
 <template>
-  <div class="bets">
-    <h1>Bets</h1>
-    <div class="champion-bet" v-if="upcomingMatches.length">
-      <label for="champion-bet" class="label">Champion bet</label>
-      <select id="champion-bet" class="select" v-model="status.user.champion.team_id" @change="postChampion()" v-if="champion_editable">
-        <option disabled value="">Please select one</option>
-        <option v-for="team in status.teams" v-bind:value="team.team_id">{{ team.name }}</option>
-      </select>
-      <div v-else>{{ championBet() }}</div>
-    </div>
-    <div v-if="upcomingMatches.length">
-      <div class="label">{{ remainingSuperbets }} <span v-if="remainingSuperbets === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
-      <transition-group name="star" appear>
-        <super-bet v-bind:key="i" v-for="i in remainingSuperbets" :correct="true" />
-      </transition-group>
-    </div>
-    <ul v-if="upcomingMatches.length">
-      <li v-for="match in upcomingMatches">
-        <input
-          :id="match.match_id + '-home'"
-          class="match__input"
-          type="radio"
-          value="1"
-          v-model="ownBet(match.match_id).outcome"
-          @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)"
-        >
-        <label
-          class="match__label match__label--radio"
-          :for="match.match_id + '-home'"
-        >
-          {{ match.team1_name }}
-        </label>
-
-
-        <input
-          class="match__input"
-          type="radio"
-          :id="match.match_id + '-draw'"
-          value="X"
-          v-model="ownBet(match.match_id).outcome"
-          @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)"
-        >
-        <label
-          class="match__label match__label--radio"
-          :for="match.match_id + '-draw'"
-        >
-          Draw
-        </label>
-
-
-        <input
-          class="match__input"
-          type="radio"
-          :id="match.match_id + '-away'"
-          value="2"
-          v-model="ownBet(match.match_id).outcome"
-          @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)"
-        >
-        <label
-          class="match__label match__label--radio"
-          :for="match.match_id + '-away'"
-        >
-          {{ match.team2_name }}
-        </label>
-
-        <span v-if="remainingSuperbets || ownBet(match.match_id).supertip">
+  <main>
+    <div class="wrapper">
+      <h1 class="h2 main__title">Bets</h1>
+      <div class="champion-bet" v-if="upcomingMatches.length">
+        <label for="champion-bet" class="label">Champion bet</label>
+        <select id="champion-bet" class="select" v-model="status.user.champion.team_id" @change="postChampion()" v-if="champion_editable">
+          <option disabled value="">Please select one</option>
+          <option v-for="team in status.teams" v-bind:value="team.team_id">{{ team.name }}</option>
+        </select>
+        <div v-else>{{ championBet() }}</div>
+      </div>
+      <div v-if="upcomingMatches.length">
+        <div class="label">{{ remainingSuperbets }} <span v-if="remainingSuperbets === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
+        <transition-group name="star" appear>
+          <super-bet v-bind:key="i" v-for="i in remainingSuperbets" :correct="true" />
+        </transition-group>
+      </div>
+      <ul v-if="upcomingMatches.length">
+        <li v-for="match in upcomingMatches">
           <input
+            :id="match.match_id + '-home'"
             class="match__input"
-            type="checkbox"
-            :id="match.match_id + '-supertip'"
-            v-model="ownBet(match.match_id).supertip"
+            type="radio"
+            value="1"
+            v-model="ownBet(match.match_id).outcome"
             @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)"
           >
           <label
-            class="match__label"
-            :for="match.match_id + '-supertip'"
+            class="match__label match__label--radio"
+            :for="match.match_id + '-home'"
           >
-            <super-bet :correct="ownBet(match.match_id).supertip" />
+            {{ match.team1_name }}
           </label>
-        </span>
-      </li>
-    </ul>
-    <div v-else>
-      Sorry, no more matches to bet on.
+
+
+          <input
+            class="match__input"
+            type="radio"
+            :id="match.match_id + '-draw'"
+            value="X"
+            v-model="ownBet(match.match_id).outcome"
+            @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)"
+          >
+          <label
+            class="match__label match__label--radio"
+            :for="match.match_id + '-draw'"
+          >
+            Draw
+          </label>
+
+
+          <input
+            class="match__input"
+            type="radio"
+            :id="match.match_id + '-away'"
+            value="2"
+            v-model="ownBet(match.match_id).outcome"
+            @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)"
+          >
+          <label
+            class="match__label match__label--radio"
+            :for="match.match_id + '-away'"
+          >
+            {{ match.team2_name }}
+          </label>
+
+          <span v-if="remainingSuperbets || ownBet(match.match_id).supertip">
+            <input
+              class="match__input"
+              type="checkbox"
+              :id="match.match_id + '-supertip'"
+              v-model="ownBet(match.match_id).supertip"
+              @change="postBet(match.match_id, ownBet(match.match_id).outcome, ownBet(match.match_id).supertip)"
+            >
+            <label
+              class="match__label"
+              :for="match.match_id + '-supertip'"
+            >
+              <super-bet :correct="ownBet(match.match_id).supertip" />
+            </label>
+          </span>
+        </li>
+      </ul>
+      <div v-else>
+        Sorry, no more matches to bet on.
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

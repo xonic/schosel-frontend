@@ -1,93 +1,95 @@
 <template>
-  <div class="wrapper">
-    <!-- <ul class="ranking">
-      <li v-for="ranking in userWithAchievements.achievements" class="ranking__item">
-        <div class="ranking__title">{{ ranking.name }}</div>
-        <rank-progress-bar
-          :rank="ranking.rank"
-          :maxRank="allUsers.length"
-          :switchLayout="switchLayout"
-          class="ranking__progress-bar"
-        />
-        <div class="ranking__rank">{{ ranking.rank }}.</div>
-      </li>
-    </ul> -->
-    <radar-chart
-      v-if="userWithAchievements && userWithAchievements.achievements"
-      :labels="chartData.labels"
-      :datasets="reversedDatasets"
-    ></radar-chart>
-    <div class="tab-grid">
-      <div class="tabs">
-        <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
-      </div>
-      <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
-      <div v-if='!loading' class="tabs-details">
-        <div class="hero hero--14">
-          <transition name="hero" appear>
+  <main>
+    <div class="wrapper">
+      <!-- <ul class="ranking">
+        <li v-for="ranking in userWithAchievements.achievements" class="ranking__item">
+          <div class="ranking__title">{{ ranking.name }}</div>
+          <rank-progress-bar
+            :rank="ranking.rank"
+            :maxRank="allUsers.length"
+            :switchLayout="switchLayout"
+            class="ranking__progress-bar"
+          />
+          <div class="ranking__rank">{{ ranking.rank }}.</div>
+        </li>
+      </ul> -->
+      <radar-chart
+        v-if="userWithAchievements && userWithAchievements.achievements"
+        :labels="chartData.labels"
+        :datasets="reversedDatasets"
+      ></radar-chart>
+      <div class="tab-grid">
+        <!-- <div class="tabs">
+          <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
+        </div> -->
+        <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
+        <div v-if='!loading' class="tabs-details">
+          <div class="hero hero--14">
+            <transition name="hero" appear>
+              <div>
+                <avatar :src="user.avatar" />
+                <h1 class="h2 main__title">{{ user.name }}</h1>
+                <div class="hero__info" v-if="user.rank">Rank {{ user.rank }}.</div>
+                <div class="hero__info">{{ user.points || "0" }} pts</div>
+                <div class="hero__info">{{ user.bets.length || "0" }} bets placed</div>
+                <div class="hero__info" v-if="user.points && user.bets.length">Avg. {{ (user.points / user.bets.length).toFixed(2) }} pts per bet</div>
+                <div class="hero__info" v-if="user.champion.name && user.champion.odds">Champion Bet: {{ user.champion.name }},  {{ user.champion.odds }} pts</div>
+              </div>
+            </transition>
+          </div>
+          <transition name="content" appear>
             <div>
-              <avatar :src="user.avatar" />
-              <h1 class="hero__heading">{{ user.name }}</h1>
-              <div class="hero__info" v-if="user.rank">Rank {{ user.rank }}.</div>
-              <div class="hero__info">{{ user.points || "0" }} pts</div>
-              <div class="hero__info">{{ user.bets.length || "0" }} bets placed</div>
-              <div class="hero__info" v-if="user.points && user.bets.length">Avg. {{ (user.points / user.bets.length).toFixed(2) }} pts per bet</div>
-              <div class="hero__info" v-if="user.champion.name && user.champion.odds">Champion Bet: {{ user.champion.name }},  {{ user.champion.odds }} pts</div>
+              <div class="island" v-if="user.achievements">
+
+                <div class="score-card-grid">
+                  <router-link :to="{ name: 'gambler' }" v-if="user.achievements.gambler">
+                    <div class="score-card score-card--gambler">
+                      <h2 class="score-card__title">Gambler</h2>
+                      <p class="score-card__score">{{ user.achievements.gambler.rank }}.</p>
+                      <p class="score-card__rank">{{ user.achievements.gambler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                    </div>
+                  </router-link>
+                  <router-link :to="{ name: 'hustler' }" v-if="user.achievements.hustler">
+                    <div class="score-card score-card--hustler">
+                      <h2 class="score-card__title">Hustler</h2>
+                      <p class="score-card__score">{{ user.achievements.hustler.rank }}.</p>
+                      <p class="score-card__rank">{{ user.achievements.hustler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                    </div>
+                  </router-link>
+                  <router-link :to="{ name: 'expert' }" v-if="user.achievements.expert">
+                    <div class="score-card score-card--expert">
+                      <h2 class="score-card__title">Expert</h2>
+                      <p class="score-card__score">{{ user.achievements.expert.rank }}.</p>
+                      <p class="score-card__rank">{{ user.achievements.expert.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                    </div>
+                  </router-link>
+                  <router-link :to="{ name: 'hattrick' }" v-if="user.achievements.hattrick">
+                    <div class="score-card score-card--hattrick">
+                      <h2 class="score-card__title">Hattrick</h2>
+                      <p class="score-card__score">{{ user.achievements.hattrick.rank }}.</p>
+                      <p class="score-card__rank">{{ user.achievements.hattrick.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                    </div>
+                  </router-link>
+                  <router-link :to="{ name: 'secret' }" v-if="user.achievements.secret">
+                    <div class="score-card score-card--secret">
+                      <h2 class="score-card__title">Secret</h2>
+                      <p class="score-card__score">{{ user.achievements.secret.rank }}.</p>
+                      <p class="score-card__rank">{{ user.achievements.secret.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
+                    </div>
+                  </router-link>
+                </div>
+              </div>
+
+              <div class="list__items" v-if="bets.length">
+                <bet-grid :data="bets" />
+              </div>
+              <h2 v-else class="blankslate">There are no bets yet</h2>
             </div>
           </transition>
         </div>
-        <transition name="content" appear>
-          <div>
-            <div class="island" v-if="user.achievements">
-
-              <div class="score-card-grid">
-                <router-link :to="{ name: 'gambler' }" v-if="user.achievements.gambler">
-                  <div class="score-card score-card--gambler">
-                    <h2 class="score-card__title">Gambler</h2>
-                    <p class="score-card__score">{{ user.achievements.gambler.rank }}.</p>
-                    <p class="score-card__rank">{{ user.achievements.gambler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                  </div>
-                </router-link>
-                <router-link :to="{ name: 'hustler' }" v-if="user.achievements.hustler">
-                  <div class="score-card score-card--hustler">
-                    <h2 class="score-card__title">Hustler</h2>
-                    <p class="score-card__score">{{ user.achievements.hustler.rank }}.</p>
-                    <p class="score-card__rank">{{ user.achievements.hustler.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                  </div>
-                </router-link>
-                <router-link :to="{ name: 'expert' }" v-if="user.achievements.expert">
-                  <div class="score-card score-card--expert">
-                    <h2 class="score-card__title">Expert</h2>
-                    <p class="score-card__score">{{ user.achievements.expert.rank }}.</p>
-                    <p class="score-card__rank">{{ user.achievements.expert.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                  </div>
-                </router-link>
-                <router-link :to="{ name: 'hattrick' }" v-if="user.achievements.hattrick">
-                  <div class="score-card score-card--hattrick">
-                    <h2 class="score-card__title">Hattrick</h2>
-                    <p class="score-card__score">{{ user.achievements.hattrick.rank }}.</p>
-                    <p class="score-card__rank">{{ user.achievements.hattrick.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                  </div>
-                </router-link>
-                <router-link :to="{ name: 'secret' }" v-if="user.achievements.secret">
-                  <div class="score-card score-card--secret">
-                    <h2 class="score-card__title">Secret</h2>
-                    <p class="score-card__score">{{ user.achievements.secret.rank }}.</p>
-                    <p class="score-card__rank">{{ user.achievements.secret.score.toFixed(2) }}<span class="score-card__label"> Points</span></p>
-                  </div>
-                </router-link>
-              </div>
-            </div>
-
-            <div class="list__items" v-if="bets.length">
-              <bet-grid :data="bets" />
-            </div>
-            <h2 v-else class="blankslate">There are no bets yet</h2>
-          </div>
-        </transition>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

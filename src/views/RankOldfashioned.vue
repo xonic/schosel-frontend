@@ -1,8 +1,10 @@
 <template>
-  <div class="score">
-    <h1>Oldfashioned</h1>
-    <rank-grid :data="rankedUsers" />
-  </div>
+  <main>
+    <div class="wrapper">
+      <h1 class="h2 main__title">Oldfashioned</h1>
+      <rank-grid :data="rankedUsers" />
+    </div>
+  </main>
 </template>
 
 <script>

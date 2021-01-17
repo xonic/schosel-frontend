@@ -1,15 +1,17 @@
 <template>
-  <div class="results">
-    <h1>Results</h1>
-    <ul v-if="liveMatches.length || playedMatches.length">
-      <li v-for="match in liveMatches">
-        <result-preview :match="match" />
-      </li>
-      <li v-for="match in playedMatches">
-        <result-preview :match="match" />
-      </li>
-    </ul>
-  </div>
+  <main>
+    <div class="wrapper">
+      <h1 class="h2 main__title">Results</h1>
+      <ul v-if="liveMatches.length || playedMatches.length">
+        <li v-for="match in liveMatches">
+          <result-preview :match="match" />
+        </li>
+        <li v-for="match in playedMatches">
+          <result-preview :match="match" />
+        </li>
+      </ul>
+    </div>
+  </main>
 </template>
 
 <script>

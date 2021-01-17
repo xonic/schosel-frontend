@@ -1,6 +1,12 @@
 <template>
   <div class="wrapper">
-    <div class="tab-grid">
+    <h1 class="h2 main__title">Match</h1>
+    <ul v-if="allUsers.length">
+      <li v-for="user in allUsers">
+        <user-preview :user="user" type="score" />
+      </li>
+    </ul>
+    <!-- <div class="tab-grid">
       <div class="tabs">
         <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
       </div>
@@ -42,13 +48,14 @@
           </div>
         </transition>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
   // @ is an alias to /src
   import ResultGrid from '@/components/ResultGrid'
+  import UserPreview from '@/components/UserPreview.vue'
   import { HTTP } from '../http-constants'
   import { mapGetters } from 'vuex'
   import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
@@ -57,7 +64,8 @@
     name: 'match',
     components: {
       ClipLoader,
-      ResultGrid
+      ResultGrid,
+      UserPreview
     },
     data() {
       return {
@@ -71,60 +79,60 @@
     },
     props: ['id'],
     mounted() {
-      this.loadMatchData()
+      // this.loadMatchData()
     },
     computed: {
       ...mapGetters([
           'allUsers',
           'ownBets'
         ]),
-        matchDate: function() {
-          return new Date(this.match.date).toLocaleString()
-        },
-        bets() {
-          return this.match.bets.map(bet => {
-            return {
-              id: bet.user.user_id,
-              avatar: this.allUsers.find(user => user.user_id === bet.user.user_id).avatar,
-              name: bet.user.name,
-              bet: bet.outcome == 1 ? this.match.team1_name : bet.outcome == 2 ? this.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
-              superbet: bet.supertip,
-              score: bet.points ? bet.points.toFixed(2) : 0
-            }
-          })
-        }
+        // matchDate: function() {
+        //   return new Date(this.match.date).toLocaleString()
+        // },
+        // bets() {
+        //   return this.match.bets.map(bet => {
+        //     return {
+        //       id: bet.user.user_id,
+        //       avatar: this.allUsers.find(user => user.user_id === bet.user.user_id).avatar,
+        //       name: bet.user.name,
+        //       bet: bet.outcome == 1 ? this.match.team1_name : bet.outcome == 2 ? this.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
+        //       superbet: bet.supertip,
+        //       score: bet.points ? bet.points.toFixed(2) : 0
+        //     }
+        //   })
+        // }
     },
     methods: {
-      loadMatchData: function() {
-        if (this.ownBets) {
-          this.ownBet = this.ownBets.find((el) => {
-              return el.match.match_id === this.id
-            })
-            // console.log(this.ownBet)
-        }
-        HTTP.get('/matches/' + this.id, {
-          withCredentials: true
-        }).then((response) => {
-          this.match = response.data
-          this.loading = false
-
-          if (this.match.status === 'live') {
-            this.setLoadingInterval()
-          }
-        }, (err) => {
-          console.log(err)
-        })
-      },
-      setLoadingInterval: function() {
-        if (!this.interval) {
-          this.interval = setInterval(() => {
-            this.loadMatchData()
-          }, 10000);
-        }
-      }
+      // loadMatchData: function() {
+      //   if (this.ownBets) {
+      //     this.ownBet = this.ownBets.find((el) => {
+      //         return el.match.match_id === this.id
+      //       })
+      //       // console.log(this.ownBet)
+      //   }
+      //   HTTP.get('/matches/' + this.id, {
+      //     withCredentials: true
+      //   }).then((response) => {
+      //     this.match = response.data
+      //     this.loading = false
+      //
+      //     if (this.match.status === 'live') {
+      //       this.setLoadingInterval()
+      //     }
+      //   }, (err) => {
+      //     console.log(err)
+      //   })
+      // },
+      // setLoadingInterval: function() {
+      //   if (!this.interval) {
+      //     this.interval = setInterval(() => {
+      //       this.loadMatchData()
+      //     }, 10000);
+      //   }
+      // }
     },
     beforeDestroy() {
-      clearInterval(this.interval)
+      // clearInterval(this.interval)
     }
   }
 </script>

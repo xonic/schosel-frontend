@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="tab-grid">
+    <!-- <div class="tab-grid">
       <div class="tabs">
         <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
       </div>
@@ -43,7 +43,7 @@
           </div>
         </transition>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -79,67 +79,48 @@
     },
     props: ['id'],
     mounted() {
-      this.loadMatchData()
+      // this.loadMatchData()
     },
     computed: {
       ...mapGetters([
           'allUsers',
           'ownBets'
         ]),
-        matchDate: function() {
-          return new Date(this.match.date).toLocaleString()
-        },
-        gridData() {
-
-          var gridData = []
-
-          this.match.bets.forEach((bet, i) => {
-            gridData.push({
-              user_id: bet.user.user_id,
-              avatar: this.allUsers.find(user => user.user_id === bet.user.user_id).avatar,
-              name: bet.user.name,
-              bet: bet.outcome == 1 ? this.match.team1_name : bet.outcome == 2 ? this.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
-              superbet: bet.supertip ? (bet.points ? "correct" : "wrong") : "",
-              score: bet.points ? bet.points.toFixed(2) : 0
-            })
-          })
-
-          return gridData.sort((a, b) => {
-            return b.score - a.score
-          })
-        }
+        // matchDate: function() {
+        //   return new Date(this.match.date).toLocaleString()
+        // },
     },
     methods: {
-      loadMatchData: function() {
-        if (this.ownBets) {
-          this.ownBet = this.ownBets.find((el) => {
-              return el.match.match_id === this.id
-            })
-            // console.log(this.ownBet)
-        }
-        HTTP.get('/matches/' + this.id, {
-          withCredentials: true
-        }).then((response) => {
-          this.match = response.data
-          this.loading = false
-
-          if (this.match.status === 'live') {
-            this.setLoadingInterval()
-          }
-        }, (err) => {
-          console.log(err)
-        })
-      },
-      setLoadingInterval: function() {
-        if (!this.interval) {
-          this.interval = setInterval(() => {
-            this.loadMatchData()
-          }, 10000);
-        }
-      }
+      // loadMatchData: function() {
+      //   if (this.ownBets) {
+      //     this.ownBet = this.ownBets.find((el) => {
+      //         return el.match.match_id === this.id
+      //       })
+      //       // console.log(this.ownBet)
+      //   }
+      //   HTTP.get('/matches/' + this.id, {
+      //     withCredentials: true
+      //   }).then((response) => {
+      //     this.match = response.data
+      //     this.loading = false
+      //
+      //     if (this.match.status === 'live') {
+      //       this.setLoadingInterval()
+      //     }
+      //   }, (err) => {
+      //     console.log(err)
+      //   })
+      // },
+      // setLoadingInterval: function() {
+      //   if (!this.interval) {
+      //     this.interval = setInterval(() => {
+      //       this.loadMatchData()
+      //     }, 10000);
+      //   }
+      // }
     },
     beforeDestroy() {
-      clearInterval(this.interval)
+      // clearInterval(this.interval)
     }
   }
 </script>

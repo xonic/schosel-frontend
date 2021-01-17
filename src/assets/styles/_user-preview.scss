@@ -15,9 +15,13 @@
   }
 }
 
+.user-preview__ranks {
+  justify-content: space-between;
+}
+
 .user-preview__avatar,
 .user-preview__chevron {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   margin: 0 $space-25;
 }
 
@@ -29,7 +33,9 @@
 }
 
 .user-preview__rank {
-  margin-right: $space-50;
+  margin-right: $space-35;
+  font-size: $textSmallSize;
+  text-align: center;
 
   &:nth-child(1) {
     color: $cyan-100;
@@ -53,5 +59,6 @@
 }
 
 .user-preview__icon {
-  width: $space-50;
+  width: $space-75;
+  vertical-align: middle;
 }

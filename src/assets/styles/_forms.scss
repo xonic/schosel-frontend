@@ -1,0 +1,64 @@
+
+.external-page {
+  padding: 0 $space-25;
+}
+
+.to-login,
+.to-register {
+  margin: -$space-25 0 $space-100;
+  font-size: $textSmallSize;
+  font-weight: $base-font-weight;
+  color: $gray-20;
+  text-align: center;
+
+  a {
+    color: $yellow-100;
+  }
+}
+
+input {
+  width: 100%;
+  margin-bottom: $space-25;
+  padding: $space-50 $space-50;
+  background: $gray-12;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: inherit;
+  color: $white;
+
+  &:focus {
+    background: $gray-14;
+    outline: 0;
+  }
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $gray-20;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $gray-20;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $gray-20;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: $gray-20;
+}
+
+.btn {
+  margin-bottom: $space-25;
+  padding: $space-50 $space-50;
+  background: $gray-14;
+  border: 0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $bold-font-weight;
+  color: $white;
+}
+
+.btn--primary {
+  background: $yellow-100;
+  color: $gray-10;
+}

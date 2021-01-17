@@ -1,33 +1,40 @@
 <template>
-  <div id="register" class="external-pages">
-    <h1>Register</h1>
-    <div class="register-form">
-      <form @submit.prevent="onSubmit">
-        <div class="input">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" v-model="firstName">
-        </div>
-        <div class="input">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" v-model="lastName">
-        </div>
-        <div class="input">
-          <label for="email">Email</label>
-          <input type="email" id="email" v-model="email">
-        </div>
-        <div class="input">
-          <label for="password">Password</label>
-          <input type="password" id="password" v-model="password">
-        </div>
-        <div class="submit">
-          <button type="submit">Submit</button>
-          <router-link :to="{ name: 'login' }">Login</router-link>
-          <p v-if="error">{{ error }}</p>
-        </div>
-        <img :src="avatar" />
-      </form>
+  <main>
+    <div id="register" class="external-page">
+      <h1 class="h2 main__title">
+        Register
+      </h1>
+      <div class="to-login">
+        Already have an account?
+        <router-link :to="{ name: 'login' }">Login now!</router-link>
+      </div>
+      <div class="register-form">
+        <form @submit.prevent="onSubmit">
+          <div class="input">
+            <!-- <label for="firstName">First Name</label> -->
+            <input type="text" id="firstName" v-model="firstName" placeholder="First Name">
+          </div>
+          <div class="input">
+            <!-- <label for="lastName">Last Name</label> -->
+            <input type="text" id="lastName" v-model="lastName" placeholder="Last Name">
+          </div>
+          <div class="input">
+            <!-- <label for="email">Email</label> -->
+            <input type="email" id="email" v-model="email" placeholder="Email">
+          </div>
+          <div class="input">
+            <!-- <label for="password">Password</label> -->
+            <input type="password" id="password" v-model="password" placeholder="Password">
+          </div>
+          <div class="submit">
+            <button class="btn btn--primary" type="submit">Submit</button>
+            <p v-if="error">{{ error }}</p>
+          </div>
+          <img :src="avatar" />
+        </form>
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

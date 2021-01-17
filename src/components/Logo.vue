@@ -4,8 +4,8 @@
       <span class="text--cyan">S</span>
       <span class="text--blue">c</span>
       <span class="text--purple">h</span>
-      <avatar v-if="loggedInUser" :src="loggedInUser.avatar + Math.random()" class="logo__avatar" />
-      <span v-else class="text--magenta">o</span>
+      <avatar :src="avatarUrl + Math.random()" class="logo__avatar" />
+      <!-- <span v-else class="text--magenta">o</span> -->
       <span class="text--red">s</span>
       <span class="text--orange">e</span>
       <span class="text--yellow">l</span>
@@ -25,7 +25,7 @@
     },
     computed: {
       ...mapGetters([
-        'loggedInUser'
+        'avatarUrl'
       ])
     }
   }

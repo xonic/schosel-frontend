@@ -1,37 +1,36 @@
 <template>
-  <div id="profile" class="profile">
-    <h1>Profile</h1>
-    <div v-if="loggedInUser" class="profile-form">
-      <form @submit.prevent="onSubmit">
-        <div class="input">
-          <label for="firstName">First Name</label>
-          <input
-                  type="text"
-                  id="firstName"
-                  v-model="firstName">
-        </div>
-        <div class="input">
-          <label for="lastName">Last Name</label>
-          <input
-                  type="text"
-                  id="lastName"
-                  v-model="lastName">
-        </div>
-        <div class="input">
-          <label for="email">Email</label>
-          <input
-                  type="email"
-                  id="email"
-                  v-model="email">
-        </div>
-        <div class="submit">
-          <button type="submit">Save</button>
-          <p v-if="error">{{ error }}</p>
-        </div>
-        <img :src="avatar" />
-      </form>
+  <main>
+    <div id="profile" class="wrapper">
+      <h1 class="h2 main__title">Profile</h1>
+      <div v-if="loggedInUser" class="profile-form">
+        <form @submit.prevent="onSubmit">
+          <div class="avatar-selection">
+            <div class="avatar-selection__inputs">
+              <div class="input">
+                <input type="text" id="firstName" v-model="firstName" placeholder="First Name">
+              </div>
+              <div class="input">
+                <input type="text" id="lastName" v-model="lastName" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="avatar-selection__avatar">
+              <img :src="avatar" size="large" />
+            </div>
+          </div>
+          <div class="input">
+            <input
+                    type="email"
+                    id="email"
+                    v-model="email"
+                     placeholder="Email">
+          </div>
+          <div class="submit">
+            <button class="btn btn--primary" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

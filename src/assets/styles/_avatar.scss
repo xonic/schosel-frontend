@@ -26,3 +26,30 @@
   width: 2.6rem;
   margin: 0 0.3rem;
 }
+
+.avatar-selection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $space-25;
+}
+
+.avatar-selection__inputs {
+
+  :last-child > input {
+    margin-bottom: 0;
+  }
+}
+
+.avatar-selection__avatar {
+  margin: 0 auto;
+  width: $space-150;
+  height: $space-150;
+  background: $gray-12;
+  border-radius: 999em;
+  overflow: hidden;
+
+  .avatar {
+    width: 100%;
+  }
+}

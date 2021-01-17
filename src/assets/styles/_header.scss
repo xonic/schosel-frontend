@@ -1,8 +1,10 @@
 
 .header {
+  position: relative;
   padding: $space-35 $space-35 0;
   background: $gray-10;
-  box-shadow: 0 4px 4px rgba($black, .25);
+  box-shadow: 0 2px 2px rgba($black, .25);
+  z-index: 100;
 
   .wrapper {
     max-width: 36rem;

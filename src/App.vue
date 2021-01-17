@@ -5,6 +5,20 @@
     </div>
     <schosel-header />
     <router-view class="main"/>
+    <footer class="footer">
+      <div class="wrapper">
+        <div class="footer__title">
+          <span class="text--cyan">S</span>
+          <span class="text--blue">c</span>
+          <span class="text--purple">h</span>
+          <span class="text--magenta">o</span>
+          <span class="text--red">s</span>
+          <span class="text--orange">e</span>
+          <span class="text--yellow">l</span>
+        </div>
+        <div class="footer__slogan">Nice to win. OK to lose.</div>
+      </div>
+    </footer>
   </div>
 </template>
 

@@ -101,7 +101,7 @@
         {
           "admin":true,
           "avatar":"https://api.hello-avatar.com/adorables/400/Georg N.",
-          "logged_in":true,
+          "logged_in":false,
           "name":"Georg N.",
           "paid":true,
           "reward":48720,

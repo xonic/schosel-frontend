@@ -1,0 +1,80 @@
+
+.score-preview {
+  display: block;
+  padding: $space-50 0;
+  border-top: 1px solid $gray-12;
+  border-bottom: 0;
+
+  &:hover {
+    background: $gray-12;
+  }
+}
+
+.score-preview__header {
+  display: flex;
+  align-items: center;
+}
+
+.score-preview__icon {
+  align-self: flex-start;
+  width: $space-75;
+  margin-right: $space-35;
+}
+
+.score-preview__icon,
+.score-preview__chevron {
+  margin: 0 $space-25;
+}
+
+.score-preview__title {
+  margin-right: auto;
+}
+
+.score-preview__name {
+  font-weight: $bold-font-weight;
+
+  .kings-game & {
+    color: $cyan-100;
+  }
+
+  .oldfashioned & {
+    color: $blue-100;
+  }
+
+  .underdog & {
+    color: $purple-100;
+  }
+
+  .balanced & {
+    color: $magenta-100;
+  }
+
+  .secret & {
+    color: $orange-100;
+  }
+}
+
+.score-preview__description,
+.score-preview__users {
+  font-size: $textSmallSize;
+  font-weight: $base-font-weight;
+  color: $gray-20;
+}
+
+.score-preview__user--current {
+  color: $white;
+}
+
+.score-preview__users {
+  padding: $space-25 $space-25 0;
+}
+
+.score-preview__user {
+  display: grid;
+  grid-template-columns: $space-100 $space-75 auto auto;
+}
+
+
+.score-preview__score {
+  text-align: right;
+}

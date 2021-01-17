@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header :class="loggedInUser ? 'header' : 'header header--external'">
     <div class="wrapper">
       <logo />
       <nav-main v-if="authenticated" />

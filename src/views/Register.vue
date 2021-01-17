@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div id="register" class="external-page">
+    <div id="register" class="wrapper external-page">
       <h1 class="h2 main__title">
         Register
       </h1>

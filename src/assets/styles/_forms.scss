@@ -48,7 +48,7 @@ input {
 
 .btn {
   margin-bottom: $space-25;
-  padding: $space-50 $space-50;
+  padding: $space-50 $space-75;
   background: $gray-14;
   border: 0;
   border-radius: 4px;
@@ -56,6 +56,10 @@ input {
   font-size: inherit;
   font-weight: $bold-font-weight;
   color: $white;
+
+  .submit & {
+    margin-top: $space-50;
+  }
 }
 
 .btn--primary {

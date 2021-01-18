@@ -13,7 +13,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ScorePreview from '@/components/ScorePreview.vue'
+import ScorePreview from '@/components/ScorePreview'
 
 export default {
   name: 'scores',

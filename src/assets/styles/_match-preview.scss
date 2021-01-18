@@ -1,0 +1,52 @@
+
+.match-preview {
+  display: block;
+  padding: $space-50 0;
+  border-top: 1px solid $gray-12;
+  border-bottom: 0;
+
+  &:hover {
+    background: $gray-12;
+  }
+}
+
+.match-preview__info {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  text-align: center;
+}
+
+.match-preview__team {
+  align-self: flex-end;
+}
+
+.match-preview__live,
+.match-preview__over,
+.match-preview__draw {
+  font-size: $textSmallSize;
+  color: $gray-20;
+}
+
+.match-preview__live {
+  color: $red-100;
+}
+
+.match-preview__goals {
+  margin-bottom: -$space-25;
+  font-size: $h1Size;
+  font-weight: $bold-font-weight;
+}
+
+.match-preview__flag .flag {
+  margin: 0 auto;
+}
+
+.match-preview__odds {
+  font-size: $textTinySize;
+  color: $gray-20;
+}
+
+.match-preview__name--is-bet,
+.match-preview__odds--is-correct-bet {
+  color: $yellow-100;
+}

@@ -9,9 +9,11 @@
 @import 'logo';
 @import 'nav';
 @import 'player-menu';
-@import 'user-preview';
+@import 'match-preview';
 @import 'score-preview';
+@import 'user-preview';
 @import 'messages';
+@import 'flag';
 // @import 'tabs';
 // @import 'list';
 // @import 'hero';
@@ -106,6 +108,19 @@ h3, .h3 {
 
 .text--gray-20 {
   color: $gray-20;
+}
+
+.is-live {
+  animation: 1.25s ease-in-out alternate infinite pulsate ;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .5;
+  }
 }
 
 .main {

@@ -1,38 +1,45 @@
 <template>
-  <div class="home">
-    <ul v-if="liveMatches.length || playedMatches.length">
-      <li v-for="match in liveMatches">
-        <result-preview :match="match" />
-      </li>
-      <li v-for="match in recentlyPlayed">
-        <result-preview :match="match" />
-      </li>
-    </ul>
-    <ul class="ranking">
-      <li v-for="ranking in rankings" class="ranking__item">
-        <router-link :to="{ name: ranking.routeName }">
-          <div class="ranking__bar">
-            <div class="ranking__title">{{ ranking.name }}</div>
-            <rank-progress-bar
-              :rank="ranking.rank"
-              :maxRank="allUsers.length"
-              :switchLayout="switchLayout"
-              class="ranking__progress-bar"
-            />
-          </div>
-          <div class="ranking__rank">{{ ranking.rank }}.</div>
-        </router-link>
-      </li>
-    </ul>
-    <router-view />
-  </div>
+  <main>
+    <div class="wrapper">
+      <ul>
+        <li><h1 class="h2 main__title">Live matches</h1></li>
+        <li><h1 class="h2 main__title">Last match day</h1></li>
+        <li><h1 class="h2 main__title">Next match day</h1></li>
+      </ul>
+      <!-- <ul v-if="liveMatches.length || playedMatches.length">
+        <li v-for="match in liveMatches">
+          <match-preview :match="match" />
+        </li>
+        <li v-for="match in recentlyPlayed">
+          <match-preview :match="match" />
+        </li>
+      </ul>
+      <ul class="ranking">
+        <li v-for="ranking in rankings" class="ranking__item">
+          <router-link :to="{ name: ranking.routeName }">
+            <div class="ranking__bar">
+              <div class="ranking__title">{{ ranking.name }}</div>
+              <rank-progress-bar
+                :rank="ranking.rank"
+                :maxRank="allUsers.length"
+                :switchLayout="switchLayout"
+                class="ranking__progress-bar"
+              />
+            </div>
+            <div class="ranking__rank">{{ ranking.rank }}.</div>
+          </router-link>
+        </li>
+      </ul>
+      <router-view /> -->
+    </div>
+  </main>
 </template>
 
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
-import ResultPreview from '@/components/ResultPreview'
+import MatchPreview from '@/components/MatchPreview'
 import RankProgressBar from '@/components/RankProgressBar'
 
 export default {
@@ -75,7 +82,7 @@ export default {
   },
   components: {
     ClipLoader,
-    ResultPreview,
+    MatchPreview,
     RankProgressBar,
   },
   mounted () {

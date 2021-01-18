@@ -1,13 +1,74 @@
 
 .flag {
-  clip-path: circle(35% at 50% 50%);
-  border: 2px solid $white;
+  width: $space-100;
+  height: $space-100;
+  border: 2px solid $gray-12;
+  border-radius: 999em;
+  background: $gray-10;
+  background-size: cover;
+  background-position: center;
+}
+
+.flag--is-bet {
+  border-color: $yellow-100;
 }
 
 .flag--small {
-  height: $space-100;
+  height: $space-50;
 }
 
 .avatar--medium {
-  width: $space-100 * 4;
+  width: $space-75;
+}
+
+.avatar--large {
+  width: $space-125;
+}
+
+.flag--aut {
+  background-image: url('assets/img/flags/at.svg');
+}
+
+.flag--bel {
+  background-image: url('assets/img/flags/bel.svg');
+}
+
+.flag--den {
+  background-image: url('assets/img/flags/den.svg');
+}
+
+.flag--eng {
+  background-image: url('assets/img/flags/eng.svg');
+}
+
+.flag--fra {
+  background-image: url('assets/img/flags/fra.svg');
+}
+
+.flag--ger {
+  background-image: url('assets/img/flags/ger.svg');
+}
+
+.flag--pol {
+  background-image: url('assets/img/flags/pol.svg');
+}
+
+.flag--por {
+  background-image: url('assets/img/flags/por.svg');
+}
+
+.flag--rus {
+  background-image: url('assets/img/flags/rus.svg');
+}
+
+.flag--spa {
+  background-image: url('assets/img/flags/spa.svg');
+}
+
+.flag--swe {
+  background-image: url('assets/img/flags/swe.svg');
+}
+
+.flag--swi {
+  background-image: url('assets/img/flags/swi.svg');
 }

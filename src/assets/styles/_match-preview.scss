@@ -33,13 +33,17 @@
 }
 
 .match-preview__goals {
-  margin-bottom: -$space-25;
   font-size: $h1Size;
   font-weight: $bold-font-weight;
 }
 
-.match-preview__flag .flag {
-  margin: 0 auto;
+.match-preview__flag {
+
+  margin-bottom: $space-25;
+
+  .flag {
+    margin: 0 auto;
+  }
 }
 
 .match-preview__odds {

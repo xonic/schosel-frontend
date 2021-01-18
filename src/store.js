@@ -14,7 +14,8 @@ export default new Vuex.Store({
     // users: [],
     users: require('./data/api_users.json'),
     errors: [],
-    matches: [],
+    // matches: [],
+    matches: require('./data/api_matches.json'),
     ownBets: undefined,
     loadInfo: {
       status: true,
@@ -136,14 +137,15 @@ export default new Vuex.Store({
     },
     LOAD_MATCHES: function ({ commit }) {
       // console.log('LOAD_MATCHES called')
-      HTTP.get('/matches').then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_MATCHES', { matches: response.data })
-      }, (err) => {
-        console.log(err)
-      })
+      //
+      // HTTP.get('/matches').then((response) => {
+      //   if(response.headers["content-type"] !== "application/json") {
+      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
+      //   }
+      //   commit('SET_MATCHES', { matches: response.data })
+      // }, (err) => {
+      //   console.log(err)
+      // })
     },
     LOAD_USERS: function ({ commit }) {
       // console.log('LOAD_USERS called')
@@ -320,26 +322,29 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    matches: state => {
+      return state.matches
+    },
     playedMatches: state => {
 
       // Filter matches that are over
-      var played = state.matches.filter(match => match.status === "over")
+      // var played = state.matches.filter(match => match.status === "over")
 
       // Add own bets to each played match
-      if(played && state.ownBets) {
-        played.forEach(function(match){
-          var ownBet = state.ownBets.find(function(bet){
-            return bet.match.match_id === match.match_id
-          }, this)
+      // if(played && state.ownBets) {
+      //   played.forEach(function(match){
+      //     var ownBet = state.ownBets.find(function(bet){
+      //       return bet.match.match_id === match.match_id
+      //     }, this)
+      //
+      //     match.ownBet = ownBet
+      //     match.supertip = ownBet.supertip
+      //   }, this)
+      // }
 
-          match.ownBet = ownBet
-          match.supertip = ownBet.supertip
-        }, this)
-      }
-
-      return played.sort((a, b) => {
-        return b.match_id - a.match_id
-      })
+      // return played.sort((a, b) => {
+      //   return b.match_id - a.match_id
+      // })
     },
     playedMatchDays: state => {
 
@@ -401,21 +406,21 @@ export default new Vuex.Store({
     liveMatches: state => {
 
       // Filter matches that are live
-      var live = state.matches.filter(match => match.status === "live")
+      // var live = state.matches.filter(match => match.status === "live")
 
       // Add own bets to each live match
-      if(live && state.ownBets) {
-        live.forEach(function(match){
-          var ownBet = state.ownBets.find(function(bet){
-            return bet.match.match_id === match.match_id
-          }, this)
+      // if(live && state.ownBets) {
+      //   live.forEach(function(match){
+      //     var ownBet = state.ownBets.find(function(bet){
+      //       return bet.match.match_id === match.match_id
+      //     }, this)
+      //
+      //     match.ownBet = ownBet
+      //     match.supertip = ownBet.supertip
+      //   }, this)
+      // }
 
-          match.ownBet = ownBet
-          match.supertip = ownBet.supertip
-        }, this)
-      }
-
-      return live;
+      // return live;
     },
     upcomingMatches: state => {
 

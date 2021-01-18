@@ -3,13 +3,13 @@
     <div class="wrapper">
       <h1 class="h2 main__title">Bets</h1>
       <h2 class="h3">Champion</h2>
-      <div class="champion-bet" v-if="upcomingMatches.length">
+      <!-- <div class="champion-bet" v-if="upcomingMatches.length">
         <label for="champion-bet" class="label">Champion bet</label>
         <select id="champion-bet" class="select" v-model="status.user.champion.team_id" @change="postChampion()" v-if="champion_editable">
           <option disabled value="">Please select one</option>
           <option v-for="team in status.teams" v-bind:value="team.team_id">{{ team.name }}</option>
         </select>
-        <div v-else>{{ championBet() }}</div>
+        <div v-else>{{ championBet() }}</div> -->
       </div>
       <h2 class="h3">Matches</h2>
       <nav class="nav nav--main">
@@ -36,7 +36,7 @@
           </li>
         </ul>
       </nav>
-      <div v-if="upcomingMatches.length">
+      <!-- <div v-if="upcomingMatches.length">
         <div class="label">{{ remainingSuperbets }} <span v-if="remainingSuperbets === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
         <transition-group name="star" appear>
           <super-bet v-bind:key="i" v-for="i in remainingSuperbets" :correct="true" />
@@ -110,7 +110,7 @@
       </ul>
       <div v-else>
         Sorry, no more matches to bet on.
-      </div>
+      </div> -->
     </div>
   </main>
 </template>
@@ -147,11 +147,11 @@
     },
     computed: {
       ...mapGetters([
-          'upcomingMatches',
+          // 'upcomingMatches',
           // 'loading',
-          'loggedInUser',
-          'status',
-          'ownBets'
+          // 'loggedInUser',
+          // 'status',
+          // 'ownBets'
         ]),
         remainingSuperbets() {
           return this.maxSuperbets - this.loggedInUser.visible_supertips

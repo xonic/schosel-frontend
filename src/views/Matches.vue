@@ -2,11 +2,11 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">Matches</h1>
-      <ul v-if="liveMatches.length || playedMatches.length">
-        <li v-for="match in liveMatches">
+      <ul v-if="matches">
+        <li v-for="match in matches.live">
           <match-preview :match="match" />
         </li>
-        <li v-for="match in playedMatches">
+        <li v-for="match in matches.over">
           <match-preview :match="match" />
         </li>
       </ul>
@@ -24,9 +24,7 @@ export default {
   name: 'matches',
   computed: {
     ...mapGetters([
-      'playedMatches',
-      'liveMatches',
-      'loading'
+      'matches'
     ])
   },
   components: {

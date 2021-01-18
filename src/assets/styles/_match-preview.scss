@@ -13,6 +13,7 @@
 .match-preview__info {
   display: grid;
   grid-template-columns: 1fr max-content 1fr;
+  margin-bottom: $space-35;
   text-align: center;
 }
 
@@ -49,4 +50,56 @@
 .match-preview__name--is-bet,
 .match-preview__odds--is-correct-bet {
   color: $yellow-100;
+}
+
+.match-preview__scores {
+  display: flex;
+  // justify-content: space-around;
+  font-size: $textSmallSize;
+}
+
+.match-preview__score {
+  margin-right: $space-50;
+
+  &:first-child {
+    margin-left: auto;
+  }
+
+  &:last-child {
+    margin-right: auto;
+  }
+}
+
+.match-preview__score--kings-game {
+  color: $cyan-100;
+}
+
+.match-preview__score--oldfashioned {
+  color: $blue-100;
+}
+
+.match-preview__score--underdog {
+  color: $purple-100;
+}
+
+.match-preview__score--balanced {
+  color: $magenta-100;
+}
+
+.match-preview__score--secret {
+  color: $orange-100;
+}
+
+.match-preview__score--zero {
+  color: $gray-14;
+
+  .match-preview__icon {
+    opacity: .35;
+    filter: grayscale(1);
+  }
+}
+
+.match-preview__icon {
+  width: $space-50;
+  vertical-align: middle;
 }

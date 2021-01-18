@@ -3,6 +3,10 @@
 .user-preview__ranks {
   display: flex;
   align-items: center;
+
+  .avatar {
+    margin: 0 auto;
+  }
 }
 
 .user-preview {
@@ -59,6 +63,6 @@
 }
 
 .user-preview__icon {
-  width: $space-75;
+  width: $space-50;
   vertical-align: middle;
 }

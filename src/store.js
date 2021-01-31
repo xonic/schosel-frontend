@@ -131,10 +131,10 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    LOAD_MATCHES: function ({ commit }) {
+    async LOAD_MATCHES ({ commit }) {
       // console.log('LOAD_MATCHES called')
 
-      HTTP.get('/matches').then((response) => {
+      await HTTP.get('/matches').then((response) => {
         if(response.headers["content-type"] !== "application/json") {
           window.location.href = 'https://www.schosel.net/worlds2018/login';
         }

@@ -66,3 +66,12 @@
   width: $space-50;
   vertical-align: middle;
 }
+
+.user-preview__rank--zero {
+  color: $gray-14!important;
+
+  .user-preview__icon {
+    opacity: .35;
+    filter: grayscale(1);
+  }
+}

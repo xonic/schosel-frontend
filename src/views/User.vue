@@ -50,6 +50,7 @@ export default {
       this.$store
       .dispatch('LOAD_USERS')
       .then((response) => {
+        debugger
         this.user = this.allUsers.find(user => user.user_id === parseInt(this.id, 10))
       })
     }

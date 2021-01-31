@@ -4,10 +4,10 @@
       <h1 class="h2 main__title">Matches</h1>
       <ul v-if="matches">
         <li v-for="match in matches.live">
-          <match-preview :match="match" />
+          <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
         </li>
         <li v-for="match in matches.over">
-          <match-preview :match="match" />
+          <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
         </li>
       </ul>
     </div>
@@ -24,12 +24,22 @@ export default {
   name: 'matches',
   computed: {
     ...mapGetters([
-      'matches'
+      'matches',
+      'loggedInUser'
     ])
   },
   components: {
     ClipLoader,
     MatchPreview
+  },
+  methods: {
+    betForMatch(match) {
+      if(this.loggedInUser && this.loggedInUser.private_bets) {
+        let userBet = this.loggedInUser.private_bets.find((bet) => bet.match_id === match.match_id)
+
+        return userBet && userBet.bet ? userBet.bet : null
+      }
+    },
   }
 }
 </script>

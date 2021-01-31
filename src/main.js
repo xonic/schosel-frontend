@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import analytics from 'vue-analytics'
+import VueApexCharts from 'vue-apexcharts'
 
 Vue.config.productionTip = false
 
@@ -15,6 +16,9 @@ Vue.config.productionTip = false
 //     sendHitTask: process.env.NODE_ENV === 'production'
 //   }
 // })
+
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
 
 new Vue({
   router,

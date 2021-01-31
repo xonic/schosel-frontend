@@ -3,11 +3,18 @@
     <div class="wrapper">
       <avatar :src="user.avatar" size="xlarge" />
       <h1 class="h2 main__title">{{ user.name }}</h1>
-      <radar-chart
-        v-if="this.user.scores"
-        :labels="chartData.labels"
-        :datasets="reversedDatasets"
-      ></radar-chart>
+      <apexchart
+        v-if="this.user && this.user.scores"
+        type="radar"
+        :options="chartOptions"
+        :series="reversedDatasets">
+      </apexchart>
+
+      <ul v-if="matches.over && matches.over.length">
+        <li v-for="match in matches.over">
+          <match-preview :match="match" />
+        </li>
+      </ul>
     </div>
   </main>
 </template>
@@ -17,15 +24,13 @@
 // import BetGrid from '@/components/BetGrid'
 import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
-import RadarChart from '@/components/RadarChart'
 import Avatar from '@/components/Avatar'
-// import RankProgressBar from '@/components/RankProgressBar'
+import MatchPreview from '@/components/MatchPreview'
 
 export default {
   name: 'user',
   components: {
-    // BetGrid,
-    RadarChart,
+    MatchPreview,
     Avatar,
   },
   data () {
@@ -57,26 +62,94 @@ export default {
   computed: {
     ...mapGetters([
       'status',
-      'allUsers'
+      'allUsers',
+      'matches'
     ]),
     // matchDate () {
     //   return new Date(this.match.date).toLocaleString()
     // },
     reversedDatasets() {
-      return [{data: this.chartData.datasets[0].data.map(value => this.allUsers.length + 1 - value)}]
+      return [{
+        name: 'Points',
+        data: this.chartOptions.datasets[0].data.map(value => this.allUsers.length + 1 - value)
+      }]
     },
-    chartData () {
+    chartOptions () {
       return {
-        labels: [
-          `King's Game - ${this.user.scores.find(score => score.name === 'KINGS_GAME').rank}.`,
-          `Oldfashioned - ${this.user.scores.find(score => score.name === 'OLDFASHIONED').rank}.`,
-          `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
-          `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
-          `Secret - ${this.user.scores.find(score => score.name === 'SECRET').rank}.`
-        ],
+        chart: {
+          id: 'vuechart-example',
+          background: 'transparent',
+          sparkline: {
+            // enabled: true
+          },
+          toolbar: {
+            show: false
+          }
+        },
+        theme: {
+          mode: 'dark'
+        },
+        grid: {
+          borderColor: '#625964'
+        },
+        markers: {
+          colors: [
+            '#FFD84D'
+          ],
+        },
+        fill: {
+          colors: [
+            '#FFD84D'
+          ],
+        },
+        stroke: {
+          colors: [
+            '#FFD84D'
+          ],
+        },
+        xaxis: {
+          categories: [
+            `Kings - ${this.user.scores.find(score => score.name === 'KINGS_GAME').rank}.`,
+            `Oldfashioned - ${this.user.scores.find(score => score.name === 'OLDFASHIONED').rank}.`,
+            `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
+            `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
+            `Secret - ${this.user.scores.find(score => score.name === 'SECRET').rank}.`
+            // `King's Game - ${this.user.scores.find(score => score.name === 'KINGS_GAME').rank}.`,
+            // `Oldfashioned - ${this.user.scores.find(score => score.name === 'OLDFASHIONED').rank}.`,
+            // `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
+            // `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
+            // `Secret - ${this.user.scores.find(score => score.name === 'SECRET').rank}.`
+          ],
+          labels: {
+            style: {
+              colors: [
+                '#66FFDB',
+                '#63BEFF',
+                '#CBA6FF',
+                '#FF96CB',
+                '#FFA24D'
+              ],
+              fontSize: '1rem'
+            }
+          }
+        },
+        // $gray-10:      #2D292E;
+        // $gray-12:      #3A353B;
+        // $gray-14:      #625964;
+        // $gray-20:      #C0BEC1;
+        //
+        // $cyan-100:     #66FFDB;
+        // $blue-100:     #63BEFF;
+        // $purple-100:   #CBA6FF;
+        // $magenta-100:  #FF96CB;
+        // $red-100:      #FF5757;
+        // $orange-100:   #FFA24D;
+        // $yellow-100:   #FFD84D;
+        // $green-100:    #97FF88;
+        //
+        // $body-bg:      $gray-10;
         datasets: [
           {
-            // backgroundColor: 'rgba(205, 90, 100, .5)',
             data: [
               this.user.scores.find(score => score.name === 'KINGS_GAME').rank || 0,
               this.user.scores.find(score => score.name === 'OLDFASHIONED').rank || 0,

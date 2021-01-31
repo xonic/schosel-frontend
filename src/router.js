@@ -7,6 +7,7 @@ import Logout from './views/Logout.vue'
 import Help from './views/Help.vue'
 import Home from './views/Home.vue'
 import Bets from './views/Bets.vue'
+import BetList from './views/BetList.vue'
 import Matches from './views/Matches.vue'
 import Match from './views/Match.vue'
 import KingsGame from './views/RankKingsGame.vue'
@@ -52,6 +53,38 @@ const router =  new Router({
     {
       path: '/bets',
       name: 'bets',
+      component: Bets,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/bets/today',
+      name: 'bets-today',
+      component: BetList,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/bets/tomorrow',
+      name: 'bets-tomorrow',
+      component: Bets,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/bets/this-week',
+      name: 'bets-this-week',
+      component: Bets,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/bets/later',
+      name: 'bets-later',
       component: Bets,
       meta: {
         requiresAuth: true

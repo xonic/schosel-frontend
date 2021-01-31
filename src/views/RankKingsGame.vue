@@ -2,7 +2,7 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">King's Game</h1>
-      <rank-grid :data="rankedUsers" />
+      <rank-grid :data="rankedUsers" class="rank-grid" />
     </div>
   </main>
 </template>

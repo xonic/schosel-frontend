@@ -41,8 +41,7 @@ export default new Vuex.Store({
       "i--4.svg",
       "i--5.svg"
     ],
-    scores: require('./data/api_scores.json'),
-    // scoreKingsGame: require('./data/api_score_kings_game.json')
+    scores: require('./data/api_scores.json')
   },
   actions: {
     REGISTER: function ({commit, dispatch}, userData) {
@@ -137,28 +136,27 @@ export default new Vuex.Store({
     },
     LOAD_MATCHES: function ({ commit }) {
       // console.log('LOAD_MATCHES called')
-      //
-      // HTTP.get('/matches').then((response) => {
-      //   if(response.headers["content-type"] !== "application/json") {
-      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
-      //   }
-      //   commit('SET_MATCHES', { matches: response.data })
-      // }, (err) => {
-      //   console.log(err)
-      // })
+
+      HTTP.get('/matches').then((response) => {
+        if(response.headers["content-type"] !== "application/json") {
+          window.location.href = 'https://www.schosel.net/worlds2018/login';
+        }
+        commit('SET_MATCHES', { matches: response.data })
+      }, (err) => {
+        console.log(err)
+      })
     },
     LOAD_USERS: function ({ commit }) {
       // console.log('LOAD_USERS called')
 
-      // TODO: re-enable API call
-      // HTTP.get('/users').then((response) => {
-      //   if(response.headers["content-type"] !== "application/json") {
-      //     window.location.href = 'https://www.schosel.net/worlds2018/login';
-      //   }
-      //   commit('SET_USERS', { users: response.data })
-      // }, (err) => {
-      //   console.log(err)
-      // })
+      HTTP.get('/users').then((response) => {
+        if(response.headers["content-type"] !== "application/json") {
+          window.location.href = 'https://www.schosel.net/worlds2018/login';
+        }
+        commit('SET_USERS', { users: response.data })
+      }, (err) => {
+        console.log(err)
+      })
     },
     LOAD_USER: function ({ commit }) {
       // console.log('LOAD_USER called')
@@ -172,15 +170,16 @@ export default new Vuex.Store({
       })
     },
     LOAD_OWN_BETS: function ({ commit }) {
+      // TODO: Delete LOAD_OWN_BETS
       // console.log('LOAD_OWN_BETS called')
-      HTTP.get('/bets').then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_OWN_BETS', { ownBets: response.data })
-      }, (err) => {
-        console.log(err)
-      })
+    //   HTTP.get('/bets').then((response) => {
+    //     if(response.headers["content-type"] !== "application/json") {
+    //       window.location.href = 'https://www.schosel.net/worlds2018/login';
+    //     }
+    //     commit('SET_OWN_BETS', { ownBets: response.data })
+    //   }, (err) => {
+    //     console.log(err)
+    //   })
     }
   },
   mutations: {
@@ -192,7 +191,7 @@ export default new Vuex.Store({
     },
     SET_STATUS: (state, { status }) => {
 
-      // console.log(status.user)
+      console.log('status', status)
 
       // Check if logged in user is leading any goals
       if(status.user && status.user.achievements) {
@@ -233,8 +232,13 @@ export default new Vuex.Store({
       //   matches[i].date = new Date(d.setMinutes(d.getMinutes() - 10))
       // }
 
-      // console.log(matches)
-      matches.find(match => match.match_id === 64).status = 'scheduled'
+      // TODO: remove this (manipulates some matches to be live & scheduled)
+      matches.over.find(match => match.match_id === 64).status = 'scheduled'
+      matches.scheduled = matches.over.splice(matches.over.findIndex(match => match.match_id === 64), 1)
+
+      matches.over.find(match => match.match_id === 63).status = 'live'
+      matches.live = matches.over.splice(matches.over.findIndex(match => match.match_id === 63), 1)
+      console.log('matches', matches)
       // state.loadInfo.matches = false
       state.matches = matches
     },
@@ -312,6 +316,8 @@ export default new Vuex.Store({
 
       state.users = users
       state.loadInfo.users = false
+
+      console.log('users', users)
     },
     SET_USER: (state, { user }) => {
 

@@ -52,7 +52,7 @@
     computed: {
       ...mapGetters([
         'loggedInUser',
-        'authenticated',
+        'authenticated'
       ])
     },
   }

@@ -15,27 +15,28 @@
       <nav class="nav nav--main">
         <ul class="nav__items">
           <li class="nav__item">
-            <router-link class="nav__link" :to="{ name: 'bets' }">
+            <router-link class="nav__link" :to="{ name: 'bets-today' }">
               Today
             </router-link>
           </li>
           <li class="nav__item">
-            <router-link class="nav__link" :to="{ name: 'bets' }">
+            <router-link class="nav__link" :to="{ name: 'bets-tomorrow' }">
               Tomorrow
             </router-link>
           </li>
           <li class="nav__item">
-            <router-link class="nav__link" :to="{ name: 'bets' }">
+            <router-link class="nav__link" :to="{ name: 'bets-this-week' }">
               This week
             </router-link>
           </li>
           <li class="nav__item">
-            <router-link class="nav__link" :to="{ name: 'bets' }">
+            <router-link class="nav__link" :to="{ name: 'bets-later' }">
               Later
             </router-link>
           </li>
         </ul>
       </nav>
+      <router-view/>
       <!-- <div v-if="upcomingMatches.length">
         <div class="label">{{ remainingSuperbets }} <span v-if="remainingSuperbets === 1">Superbet</span><span v-else>Superbets</span> remaining</div>
         <transition-group name="star" appear>

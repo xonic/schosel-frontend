@@ -98,7 +98,7 @@
   "over":[
     {
       "date":"2021-07-14T14:00:00Z",
-      "match_id":62,
+      "match_id":63,
       "private_bet":{
         "outcome":"1",
         "points":[
@@ -189,12 +189,200 @@
           }
         }
       ]
+    },
+    {
+      "date":"2021-07-14T14:00:00Z",
+      "match_id":64,
+      "private_bet":{
+        "outcome":"1",
+        "points":[
+          {
+             "challenge_id":1,
+             "challenge_route":"kings-game",
+             "name":"King's Game",
+             "points":4.39194
+          },
+          {
+             "challenge_id":2,
+             "name":"Oldfashioned",
+             "challenge_route":"oldfashioned",
+             "points":1.00000
+          },
+          {
+             "challenge_id":3,
+             "challenge_route":"underdog",
+             "name":"Underdog",
+             "points":0
+          },
+          {
+             "challenge_id":4,
+             "challenge_route":"balanced",
+             "name":"Balanced",
+             "points":0
+          },
+          {
+             "challenge_id":5,
+             "challenge_route":"secret",
+             "name":"Secret",
+             "points":1.00000
+          }
+        ],
+        "supertip":false
+      },
+      "odds":{
+        "1":4.39344,
+        "X":0.39344,
+        "2":3.39344
+      },
+      "outcome":"1",
+      "stage":"Group phase",
+      "status":"over",
+      "team1_goals":1,
+      "team1_iso":"swe",
+      "team1_name":"Sweden",
+      "team2_goals":0,
+      "team2_iso":"eng",
+      "team2_name":"England",
+      "users":[
+        {
+          "admin":true,
+          "avatar":"path/to/local/avatar_img.png",
+          "logged_in":false,
+          "name":"Tom N.",
+          "paid":true,
+          "public_bet":{
+            "outcome":"1",
+            "points":[
+              {
+                 "challenge_id":1,
+                 "name":"King's Game",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":2,
+                 "name":"Oldfashioned",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":3,
+                 "name":"Underdog",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":4,
+                 "name":"Balanced",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":5,
+                 "name":"Secret",
+                 "points":49.30432
+              }
+            ],
+            "supertip":false
+          }
+        }
+      ]
+    },
+    {
+      "date":"2021-07-14T14:00:00Z",
+      "match_id":65,
+      "private_bet":{
+        "outcome":"1",
+        "points":[
+          {
+             "challenge_id":1,
+             "challenge_route":"kings-game",
+             "name":"King's Game",
+             "points":4.39194
+          },
+          {
+             "challenge_id":2,
+             "name":"Oldfashioned",
+             "challenge_route":"oldfashioned",
+             "points":1.00000
+          },
+          {
+             "challenge_id":3,
+             "challenge_route":"underdog",
+             "name":"Underdog",
+             "points":0
+          },
+          {
+             "challenge_id":4,
+             "challenge_route":"balanced",
+             "name":"Balanced",
+             "points":0
+          },
+          {
+             "challenge_id":5,
+             "challenge_route":"secret",
+             "name":"Secret",
+             "points":1.00000
+          }
+        ],
+        "supertip":false
+      },
+      "odds":{
+        "1":4.39344,
+        "X":0.39344,
+        "2":3.39344
+      },
+      "outcome":"1",
+      "stage":"Group phase",
+      "status":"over",
+      "team1_goals":1,
+      "team1_iso":"swi",
+      "team1_name":"Switzerland",
+      "team2_goals":0,
+      "team2_iso":"rus",
+      "team2_name":"Russia",
+      "users":[
+        {
+          "admin":true,
+          "avatar":"path/to/local/avatar_img.png",
+          "logged_in":false,
+          "name":"Tom N.",
+          "paid":true,
+          "public_bet":{
+            "outcome":"1",
+            "points":[
+              {
+                 "challenge_id":1,
+                 "name":"King's Game",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":2,
+                 "name":"Oldfashioned",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":3,
+                 "name":"Underdog",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":4,
+                 "name":"Balanced",
+                 "points":49.30432
+              },
+              {
+                 "challenge_id":5,
+                 "name":"Secret",
+                 "points":49.30432
+              }
+            ],
+            "supertip":false
+          }
+        }
+      ]
     }
   ],
   "scheduled":[
     {
       "date":"2021-07-14T14:00:00Z",
-      "match_id":63,
+      "match_id":67,
       "private_bet":{
         "outcome":"1",
         "supertip":false

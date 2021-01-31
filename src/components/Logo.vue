@@ -10,7 +10,7 @@
       <span class="text--orange">e</span>
       <span class="text--yellow">l</span>
     </h1>
-    <h2 class="logo__tournament">Euro 2021<span v-if="true" class="is-live text--red text--small"> Now live!</span></h2>
+    <h2 class="logo__tournament">Euro 2021<span v-if="matches.live.length" class="is-live text--red text--small"> Now live!</span></h2>
   </router-link>
 </template>
 
@@ -25,7 +25,8 @@
     },
     computed: {
       ...mapGetters([
-        'avatarUrl'
+        'avatarUrl',
+        'matches'
       ])
     }
   }

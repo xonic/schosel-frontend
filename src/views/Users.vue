@@ -3,8 +3,11 @@
     <div class="wrapper">
       <h1 class="h2 main__title">Users</h1>
       <ul v-if="allUsers.length">
+        <li v-if="loggedInUser">
+          <user-preview :user="loggedInUser" />
+        </li>
         <li v-for="user in allUsers">
-          <user-preview :user="user" />
+          <user-preview v-if="user.user_id !== loggedInUser.user_id" :user="user" />
         </li>
       </ul>
     </div>

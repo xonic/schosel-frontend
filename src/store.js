@@ -10,12 +10,9 @@ export default new Vuex.Store({
     authenticated: false,
     status: {},
     user: {},
-    // TODO: Remove dummy data
-    // users: [],
-    users: require('./data/api_users.json'),
+    users: [],
     errors: [],
-    // matches: [],
-    matches: require('./data/api_matches.json'),
+    matches: [],
     ownBets: undefined,
     loadInfo: {
       status: true,
@@ -146,10 +143,10 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    LOAD_USERS: function ({ commit }) {
+    async LOAD_USERS ({ commit }) {
       // console.log('LOAD_USERS called')
 
-      HTTP.get('/users').then((response) => {
+      await HTTP.get('/users').then((response) => {
         if(response.headers["content-type"] !== "application/json") {
           window.location.href = 'https://www.schosel.net/worlds2018/login';
         }
@@ -157,17 +154,10 @@ export default new Vuex.Store({
       }, (err) => {
         console.log(err)
       })
-    },
-    LOAD_USER: function ({ commit }) {
-      // console.log('LOAD_USER called')
-      HTTP.get('/user').then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
-        commit('SET_USER', { user: response.data })
-      }, (err) => {
-        console.log(err)
-      })
+
+      // let response = await HTTP.get('/users')
+      // commit('SET_USERS', { users: response.data })
+
     },
     LOAD_OWN_BETS: function ({ commit }) {
       // TODO: Delete LOAD_OWN_BETS
@@ -317,11 +307,7 @@ export default new Vuex.Store({
       state.users = users
       state.loadInfo.users = false
 
-      console.log('users', users)
-    },
-    SET_USER: (state, { user }) => {
-
-      state.user = user
+      // console.log('users', users)
     },
     SET_OWN_BETS: (state, { ownBets }) => {
       state.ownBets = ownBets

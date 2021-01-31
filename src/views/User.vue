@@ -4,47 +4,19 @@
       <avatar :src="user.avatar" size="xlarge" />
       <h1 class="h2 main__title">{{ user.name }}</h1>
       <radar-chart
-        v-if="userWithAchievements && userWithAchievements.achievements"
+        v-if="this.user.scores"
         :labels="chartData.labels"
         :datasets="reversedDatasets"
       ></radar-chart>
-      <div class="tab-grid">
-        <!-- <div class="tabs">
-          <a class="tab__link tab__link--back" href="javascript:history.go(-1)">&lt; Back</a>
-        </div> -->
-        <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
-        <div v-if='!loading' class="tabs-details">
-          <div class="hero hero--14">
-            <transition name="hero" appear>
-              <div>
-                <div class="hero__info" v-if="user.rank">Rank {{ user.rank }}.</div>
-                <div class="hero__info">{{ user.points || "0" }} pts</div>
-                <div class="hero__info">{{ user.bets.length || "0" }} bets placed</div>
-                <div class="hero__info" v-if="user.points && user.bets.length">Avg. {{ (user.points / user.bets.length).toFixed(2) }} pts per bet</div>
-                <div class="hero__info" v-if="user.champion.name && user.champion.odds">Champion Bet: {{ user.champion.name }},  {{ user.champion.odds }} pts</div>
-              </div>
-            </transition>
-          </div>
-          <!-- <transition name="content" appear>
-            <div>
-              <div class="list__items" v-if="bets.length">
-                <bet-grid :data="bets" />
-              </div>
-              <h2 v-else class="blankslate">There are no bets yet</h2>
-            </div>
-          </transition> -->
-        </div>
-      </div>
     </div>
   </main>
 </template>
 
 <script>
 // @ is an alias to /src
-import BetGrid from '@/components/BetGrid'
+// import BetGrid from '@/components/BetGrid'
 import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
-import ClipLoader from 'vue-spinner/src/ClipLoader'
 import RadarChart from '@/components/RadarChart'
 import Avatar from '@/components/Avatar'
 // import RankProgressBar from '@/components/RankProgressBar'
@@ -52,108 +24,85 @@ import Avatar from '@/components/Avatar'
 export default {
   name: 'user',
   components: {
-    BetGrid,
-    ClipLoader,
+    // BetGrid,
     RadarChart,
     Avatar,
   },
   data () {
     return {
-      user: {},
-      userWithAchievements: {},
-      // switchLayout: true,
-      interval: null,
-      loading: true,
-      size: "32px",
-      color: "#3EABDC",
-      userCount: 100
+      user: {}
     }
   },
   props: {
     id: String
   },
   mounted () {
-    this.loadUserData()
-    // this.renderChart(this.ranks, {})
+
+    // Set current user
+    // If allUsers hasn't been loaded from server,
+    // do an async dispatch first
+    if(!this.allUsers.length) {
+      this.$store
+      .dispatch('LOAD_USERS')
+      .then((response) => {
+        this.user = this.allUsers.find(user => user.user_id === parseInt(this.id, 10))
+      })
+    }
+    // Else it has already loaded and current user
+    // still needs to be found and set
+    else {
+      this.user = this.allUsers.find(user => user.user_id === parseInt(this.id, 10))
+    }
   },
   computed: {
     ...mapGetters([
       'status',
       'allUsers'
     ]),
-    matchDate () {
-      return new Date(this.match.date).toLocaleString()
-    },
+    // matchDate () {
+    //   return new Date(this.match.date).toLocaleString()
+    // },
     reversedDatasets() {
-      return [{data: this.chartData.datasets[0].data.map(value => this.userCount + 1 - value)}]
+      return [{data: this.chartData.datasets[0].data.map(value => this.allUsers.length + 1 - value)}]
     },
     chartData () {
       return {
         labels: [
-          "King's Game",
-          "Oldfashioned",
-          "Underdog",
-          "Balanced",
-          "Hidden"
+          `King's Game - ${this.user.scores.find(score => score.name === 'KINGS_GAME').rank}.`,
+          `Oldfashioned - ${this.user.scores.find(score => score.name === 'OLDFASHIONED').rank}.`,
+          `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
+          `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
+          `Secret - ${this.user.scores.find(score => score.name === 'SECRET').rank}.`
         ],
         datasets: [
           {
-            backgroundColor: 'rgba(205, 90, 100, .5)',
+            // backgroundColor: 'rgba(205, 90, 100, .5)',
             data: [
-              this.userWithAchievements.achievements.expert.rank || 0,
-              this.userWithAchievements.achievements.gambler.rank || 0,
-              this.userWithAchievements.achievements.hattrick.rank || 0,
-              this.userWithAchievements.achievements.hustler.rank || 0,
-              this.userWithAchievements.achievements.secret.rank || 0,
+              this.user.scores.find(score => score.name === 'KINGS_GAME').rank || 0,
+              this.user.scores.find(score => score.name === 'OLDFASHIONED').rank || 0,
+              this.user.scores.find(score => score.name === 'UNDERDOG').rank || 0,
+              this.user.scores.find(score => score.name === 'BALANCED').rank || 0,
+              this.user.scores.find(score => score.name === 'SECRET').rank || 0,
             ],
           }
         ]
       }
     },
-    remainingSuperbets () {
-      return 8 - this.user.visible_supertips
-    },
-    bets () {
-      return this.user.bets.map(bet => {
-        return {
-          id: bet.match.match_id,
-          match: bet.match.team1_name + " vs. " + bet.match.team2_name,
-          bet: bet.outcome == 1 ? bet.match.team1_name : bet.outcome == 2 ? bet.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
-          outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
-          superbet: bet.supertip,
-          score: bet.points ? bet.points.toFixed(2) : 0
-        }
-      })
-    }
-  },
-  methods: {
-    loadUserData: function() {
-
-      HTTP.get('/users/' + this.id, {withCredentials: true}).then((response) => {
-        this.user = response.data
-        // this.user.achievements.secret = {rank: 1, score: 10} MOCK DATA
-
-        this.user.avatar = this.allUsers.find(user => user.user_id === this.user.user_id).avatar
-        this.userWithAchievements = this.allUsers.find(user => user.user_id === this.user.user_id)
-
-        this.setLoadingInterval();
-        this.loading = false
-
-      }, (err) => {
-        console.log(err)
-      })
-    },
-    setLoadingInterval: function() {
-      if(!this.interval)
-      {
-        this.interval = setInterval( () => {
-          this.loadUserData()
-        }, 10000);
-      }
-    }
-  },
-  beforeDestroy () {
-    clearInterval(this.interval)
+    // remainingSuperbets () {
+    //   return 8 - this.user.visible_supertips
+    // },
+    // bets () {
+    //   return this.user.bets.map(bet => {
+    //     return {
+    //       id: bet.match.match_id,
+    //       match: bet.match.team1_name + " vs. " + bet.match.team2_name,
+    //       bet: bet.outcome == 1 ? bet.match.team1_name : bet.outcome == 2 ? bet.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
+    //       outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
+    //       superbet: bet.supertip,
+    //       score: bet.points ? bet.points.toFixed(2) : 0
+    //     }
+    //   })
+    // }
   }
 }
 </script>

@@ -10,9 +10,10 @@
         :series="reversedDatasets">
       </apexchart>
 
+      <h2 class="h3 main__title">Bets</h2>
       <ul v-if="matches.over && matches.over.length">
         <li v-for="match in matches.over">
-          <match-preview :match="match" />
+          <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
         </li>
       </ul>
     </div>
@@ -21,7 +22,6 @@
 
 <script>
 // @ is an alias to /src
-// import BetGrid from '@/components/BetGrid'
 import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import Avatar from '@/components/Avatar'
@@ -65,9 +65,6 @@ export default {
       'allUsers',
       'matches'
     ]),
-    // matchDate () {
-    //   return new Date(this.match.date).toLocaleString()
-    // },
     reversedDatasets() {
       return [{
         name: 'Points',
@@ -77,20 +74,14 @@ export default {
     chartOptions () {
       return {
         chart: {
-          id: 'vuechart-example',
+          id: 'rank-chart',
           background: 'transparent',
-          sparkline: {
-            // enabled: true
-          },
           toolbar: {
             show: false
           }
         },
         theme: {
           mode: 'dark'
-        },
-        grid: {
-          borderColor: '#625964'
         },
         markers: {
           colors: [
@@ -107,6 +98,17 @@ export default {
             '#FFD84D'
           ],
         },
+        plotOptions: {
+          radar: {
+            polygons: {
+              connectorColors: '#3A353B',
+              strokeColors: '#3A353B',
+              fill: {
+                  colors: ['transparent']
+              }
+            }
+          }
+        },
         xaxis: {
           categories: [
             `Kings - ${this.user.scores.find(score => score.name === 'KINGS_GAME').rank}.`,
@@ -114,13 +116,9 @@ export default {
             `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
             `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
             `Secret - ${this.user.scores.find(score => score.name === 'SECRET').rank}.`
-            // `King's Game - ${this.user.scores.find(score => score.name === 'KINGS_GAME').rank}.`,
-            // `Oldfashioned - ${this.user.scores.find(score => score.name === 'OLDFASHIONED').rank}.`,
-            // `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
-            // `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
-            // `Secret - ${this.user.scores.find(score => score.name === 'SECRET').rank}.`
           ],
           labels: {
+            trim: true,
             style: {
               colors: [
                 '#66FFDB',
@@ -129,25 +127,13 @@ export default {
                 '#FF96CB',
                 '#FFA24D'
               ],
-              fontSize: '1rem'
+              fontSize: '.9rem'
             }
-          }
+          },
         },
-        // $gray-10:      #2D292E;
-        // $gray-12:      #3A353B;
-        // $gray-14:      #625964;
-        // $gray-20:      #C0BEC1;
-        //
-        // $cyan-100:     #66FFDB;
-        // $blue-100:     #63BEFF;
-        // $purple-100:   #CBA6FF;
-        // $magenta-100:  #FF96CB;
-        // $red-100:      #FF5757;
-        // $orange-100:   #FFA24D;
-        // $yellow-100:   #FFD84D;
-        // $green-100:    #97FF88;
-        //
-        // $body-bg:      $gray-10;
+        yaxis: {
+          show: false
+        },
         datasets: [
           {
             data: [
@@ -176,6 +162,15 @@ export default {
     //     }
     //   })
     // }
+  },
+  methods: {
+    betForMatch(match) {
+      if(this.user && this.user.public_bets) {
+        let userBet = this.user.public_bets.find((bet) => bet.match_id === match.match_id)
+
+        return userBet && userBet.bet ? userBet.bet : null
+      }
+    },
   }
 }
 </script>

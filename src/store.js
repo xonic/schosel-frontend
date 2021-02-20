@@ -38,7 +38,7 @@ export default new Vuex.Store({
       "i--4.svg",
       "i--5.svg"
     ],
-    scores: require('./data/api_scores.json')
+    scores: []
   },
   actions: {
     REGISTER: function ({commit, dispatch}, userData) {
@@ -512,6 +512,7 @@ export default new Vuex.Store({
 
       return state.status.user
     },
+
     ownBets: state => {
       return state.ownBets
     },
@@ -534,13 +535,49 @@ export default new Vuex.Store({
       return state.iconPaths
     },
     scores: state => {
-      return state.scores
+
+      let scores = [
+        {
+          challenge_id: 1,
+          challenge_route: 'kings-game',
+          description: 'Most correct bets with odds',
+          name: "King's Game",
+          users: state.users.slice().sort((a, b) => a.scores[0].rank < b.scores[0].rank ? -1 : 1)
+        },
+        {
+          challenge_id: 2,
+          challenge_route: 'oldfashioned',
+          description: 'Most correct bets without odds',
+          name: "Oldfashioned",
+          users: state.users.slice().sort((a, b) => a.scores[1].rank < b.scores[1].rank ? -1 : 1)
+        },
+        {
+          challenge_id: 3,
+          challenge_route: 'underdog',
+          description: 'Most correct bets on lowest odds',
+          name: "Underdog",
+          users: state.users.slice().sort((a, b) => a.scores[2].rank < b.scores[2].rank ? -1 : 1)
+        },
+        {
+          challenge_id: 4,
+          challenge_route: 'balanced',
+          description: 'Most correct bets on draw with odds',
+          name: "Balanced",
+          users: state.users.slice().sort((a, b) => a.scores[3].rank < b.scores[3].rank ? -1 : 1)
+        },
+        {
+          challenge_id: 5,
+          challenge_route: 'secret',
+          description: 'Will be revealed after the tournament',
+          name: "Secret",
+          users: state.users.slice().sort((a, b) => a.scores[4].rank < b.scores[4].rank ? -1 : 1)
+        }
+      ]
+
+      return scores
     },
     errors: state => {
       return state.errors
-    },
-    scoreKingsGame: state => {
-      return state.scoreKingsGame
     }
   }
 })

@@ -16,20 +16,20 @@
       </div>
     </div>
     <ul class="score-preview__users">
-      <li v-for="user in score.users"
-        :class="user.logged_in ? 'score-preview__user score-preview__user--current' : 'score-preview__user'">
-        <div class="score-preview__rank">
-          {{ user.rank }}.
+      <li v-if="score && score.users" v-for="(user, i) in score.users"
+        :class="i === 1 ? 'score-preview__user score-preview__user--current' : 'score-preview__user'">
+        <div v-if="user && user.scores" class="score-preview__rank">
+          {{ user.scores[challengeId].rank }}.
         </div>
-        <div class="score-preview__avatar">
+        <div v-if="user && user.avatar" class="score-preview__avatar">
           <avatar :src="user.avatar" size="tiny" />
         </div>
-        <div class="score-preview__user-name">
+        <div v-if="user && user.name" class="score-preview__user-name">
           {{ user.name }}
-          <span v-if="user.logged_in" class="text--gray-20 text--tiny">(You)</span>
+          <span v-if="i === 1" class="text--gray-20 text--tiny">(You)</span>
         </div>
-        <div class="score-preview__score">
-          {{ user.score.toFixed(2) }} pts
+        <div v-if="user && user.scores" class="score-preview__score">
+          {{ user.scores[challengeId].points.toFixed(2) }} pts
         </div>
       </li>
     </ul>
@@ -43,14 +43,16 @@
   export default {
     name: 'score-preview',
     props: {
-      score: Object
+      score: Object,
+      challengeId: Number
     },
     components: {
       Avatar
     },
     computed: {
       ...mapGetters([
-        'iconPaths'
+        'iconPaths',
+        'loggedInUser'
       ])
     },
     methods: {

@@ -2,7 +2,7 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">Secret</h1>
-      <rank-grid :data="rankedUsers" />
+      <rank-grid :data="secretScore" />
     </div>
   </main>
 </template>
@@ -13,29 +13,13 @@
 
   export default {
     name: 'secret',
-    data () {
-      return {
-
-      }
-    },
     components: {
       RankGrid
     },
     computed: {
       ...mapGetters([
-        'allUsers'
-      ]),
-      rankedUsers() {
-        return this.allUsers.map(user => {
-          return {
-            id: user.user_id,
-            name: user.name,
-            rank: user.scores[4].rank,
-            score: user.scores[4].score,
-            avatar: user.avatar
-          }
-        }).sort((a, b) => (a.rank > b.rank) ? 1 : -1)
-      }
-    },
+        'secretScore'
+      ])
+    }
   }
 </script>

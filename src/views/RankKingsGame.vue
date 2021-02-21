@@ -2,7 +2,7 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">King's Game</h1>
-      <rank-grid :data="rankedUsers" class="rank-grid" />
+      <rank-grid :data="kingsScore" />
     </div>
   </main>
 </template>
@@ -13,29 +13,13 @@
 
   export default {
     name: 'kings-game',
-    data () {
-      return {
-
-      }
-    },
     components: {
       RankGrid
     },
     computed: {
       ...mapGetters([
-        'allUsers'
-      ]),
-      rankedUsers() {
-        return this.allUsers.map(user => {
-          return {
-            id: user.user_id,
-            name: user.name,
-            rank: user.scores[0].rank,
-            score: user.scores[0].score,
-            avatar: user.avatar
-          }
-        }).sort((a, b) => (a.rank > b.rank) ? 1 : -1)
-      }
-    },
+        'kingsScore'
+      ])
+    }
   }
 </script>

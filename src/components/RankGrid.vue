@@ -1,40 +1,40 @@
 <template>
-  <table>
-    <thead>
+  <table class="rank-grid">
+    <thead class="rank-grid__head">
       <tr>
-        <th @click="sort('rank')">
+        <th @click="sort('rank')" class="rank-grid__td">
           Rank
-          <span v-if="sortKey === 'rank' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'rank' && sortDirection === 'des'"> &darr;</span>
+          <!-- <span v-if="sortKey === 'rank' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'rank' && sortDirection === 'des'"> &darr;</span> -->
         </th>
-        <th @click="sort('name')">
+        <th @click="sort('name')" class="rank-grid__td">
           Name
-          <span v-if="sortKey === 'name' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'name' && sortDirection === 'des'"> &darr;</span>
+          <!-- <span v-if="sortKey === 'name' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'name' && sortDirection === 'des'"> &darr;</span> -->
         </th>
-        <th @click="sort('score')">
+        <th @click="sort('score')" class="rank-grid__td">
           Score
-          <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span>
+          <!-- <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
+          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span> -->
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="user in sortedData">
-        <td>
-          <router-link :to="{ name: 'user', params: { id: `${user.id}` } }">
+      <tr v-for="user in sortedData" class="rank-grid__row">
+        <td class="rank-grid__td">
+          <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }">
             {{ user.rank }}
           </router-link>
         </td>
-        <td>
-          <router-link :to="{ name: 'user', params: { id: `${user.id}` } }">
-            <avatar :src="user.avatar" />
-            {{ user.name }}
+        <td class="rank-grid__td">
+          <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }" :class="`rank-grid__name-col`">
+            <avatar :src="user.avatar" class="rank-grid__avatar" />
+            <div class="rank-grid__name">{{ user.name }}</div>
           </router-link>
         </td>
-        <td>
-          <router-link :to="{ name: 'user', params: { id: `${user.id}` } }">
-            {{ user.score }}
+        <td class="rank-grid__td">
+          <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }">
+            {{ user.points.toFixed(2) }}
           </router-link>
         </td>
       </tr>
@@ -48,7 +48,7 @@
   export default {
     name: "rank-grid",
     props: {
-      data: Array,
+      data: Array
     },
     components: {
       Avatar

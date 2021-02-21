@@ -1,3 +1,29 @@
 .rank-grid {
   width: 100%;
+
+  a {
+    border-bottom: transparent;
+  }
+}
+
+.rank-grid__row {
+  border-bottom: 1px solid $gray-12;
+
+  &:hover {
+    background: $gray-12;
+  }
+}
+
+.rank-grid__td {
+  padding: $space-25;
+  vertical-align: middle;
+}
+
+.rank-grid__name-col {
+  display: flex;
+  align-items: center;
+}
+
+.rank-grid__name {
+  margin-left: $space-35;
 }

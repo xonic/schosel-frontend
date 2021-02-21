@@ -45,18 +45,57 @@ export default {
 
         this.scores.forEach((score, i) => {
 
-          this.filteredScores.push(
-            {
-              ...this.scores[i],
-              users: [
+          // Get the index of logged in user in scores Array
+          // This index is used to determine previous and next
+          // players in score rank
+          let loggedInUserIndex = this.scores[i].users.findIndex(user => user.user_id === this.loggedInUser.user_id)
 
-                this.scores[i].users.find(user => user.scores[i].rank === this.loggedInUser.scores[i].rank - 1),
-                this.loggedInUser,
-                this.scores[i].users.find(user => user.scores[i].rank === this.loggedInUser.scores[i].rank + 1)
-              ]
-            }
-          )
+          // Logged in user is ranked first,
+          // add the following two players in rank
+          if (loggedInUserIndex === 0) {
+            this.filteredScores.push(
+              {
+                ...this.scores[i],
+                users: [
 
+                  this.loggedInUser,
+                  this.scores[i].users[loggedInUserIndex + 1],
+                  this.scores[i].users[loggedInUserIndex + 2]
+                ]
+              }
+            )
+          }
+          // Logged in user is ranked last,
+          // add the previous two players in rank
+          else if(loggedInUserIndex === this.scores[i].users.length - 1)
+          {
+            this.filteredScores.push(
+              {
+                ...this.scores[i],
+                users: [
+
+                  this.scores[i].users[loggedInUserIndex - 2],
+                  this.scores[i].users[loggedInUserIndex - 1],
+                  this.loggedInUser
+                ]
+              }
+            )
+          }
+          // Logged in user is ranked somewhere in between,
+          // add preceeding and succeding player in rank
+          else {
+            this.filteredScores.push(
+              {
+                ...this.scores[i],
+                users: [
+
+                  this.scores[i].users[loggedInUserIndex - 1],
+                  this.loggedInUser,
+                  this.scores[i].users[loggedInUserIndex + 1]
+                ]
+              }
+            )
+          }
         })
       })
     }
@@ -67,18 +106,57 @@ export default {
 
       this.scores.forEach((score, i) => {
 
-        this.filteredScores.push(
-          {
-            ...this.scores[i],
-            users: [
+        // Get the index of logged in user in scores Array
+        // This index is used to determine previous and next
+        // players in score rank
+        let loggedInUserIndex = this.scores[i].users.findIndex(user => user.user_id === this.loggedInUser.user_id)
 
-              this.scores[i].users.find(user => user.scores[i].rank === this.loggedInUser.scores[i].rank - 1),
-              this.loggedInUser,
-              this.scores[i].users.find(user => user.scores[i].rank === this.loggedInUser.scores[i].rank + 1)
-            ]
-          }
-        )
+        // Logged in user is ranked first,
+        // add the following two players in rank
+        if (loggedInUserIndex === 0) {
+          this.filteredScores.push(
+            {
+              ...this.scores[i],
+              users: [
 
+                this.loggedInUser,
+                this.scores[i].users[loggedInUserIndex + 1],
+                this.scores[i].users[loggedInUserIndex + 2]
+              ]
+            }
+          )
+        }
+        // Logged in user is ranked last,
+        // add the previous two players in rank
+        else if(loggedInUserIndex === this.scores[i].users.length - 1)
+        {
+          this.filteredScores.push(
+            {
+              ...this.scores[i],
+              users: [
+
+                this.scores[i].users[loggedInUserIndex - 2],
+                this.scores[i].users[loggedInUserIndex - 1],
+                this.loggedInUser
+              ]
+            }
+          )
+        }
+        // Logged in user is ranked somewhere in between,
+        // add preceeding and succeding player in rank
+        else {
+          this.filteredScores.push(
+            {
+              ...this.scores[i],
+              users: [
+
+                this.scores[i].users[loggedInUserIndex - 1],
+                this.loggedInUser,
+                this.scores[i].users[loggedInUserIndex + 1]
+              ]
+            }
+          )
+        }
       })
     }
 

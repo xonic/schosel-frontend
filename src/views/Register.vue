@@ -74,6 +74,7 @@
           email: this.email,
           password: this.password,
         }
+        this.$store.dispatch('SET_ERRORS', { errors: [] })
         this.$store.dispatch('REGISTER', formData)
       }
     }

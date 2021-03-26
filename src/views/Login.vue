@@ -10,9 +10,14 @@
       </div>
       <ul v-if="errors" class="errors">
         <li v-for="error in errors">
-          <message :msg="error" type="error" />
+          <message type="error">
+            {{ error }}
+          </message>
         </li>
       </ul>
+      <message v-if="this.$route.query.registered" type="success">
+        Alright, you're registered
+      </message>
       <div class="login-form">
         <form @submit.prevent="onSubmit">
           <div class="input">

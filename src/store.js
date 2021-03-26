@@ -86,6 +86,8 @@ export default new Vuex.Store({
           //
           // // Redirect to requested URL or default to matches
           // authData.redirect ? router.push({ path: authData.redirect }) : router.push('matches')
+          router.push({ name: 'login', query: { registered: "true" } })
+
         })
         .catch(error => console.log(error))
     },

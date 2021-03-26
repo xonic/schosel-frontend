@@ -1,7 +1,9 @@
 <template>
   <main>
     <div class="wrapper">
-      <avatar :src="user.avatar" size="xlarge" />
+      <div class="user__avatar">
+        <avatar :src="user.avatar" size="xlarge" />
+      </div>
       <h1 class="h2 main__title">{{ user.name }}</h1>
       <apexchart
         v-if="this.user && this.user.scores"
@@ -16,6 +18,9 @@
           <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
         </li>
       </ul>
+      <div v-else class="blankslate">
+        <div class="blankslate__text">No public bets available</div>
+      </div>
     </div>
   </main>
 </template>
@@ -63,7 +68,8 @@ export default {
     ...mapGetters([
       'status',
       'allUsers',
-      'matches'
+      'matches',
+      'avatarUrl'
     ]),
     reversedDatasets() {
       return [{

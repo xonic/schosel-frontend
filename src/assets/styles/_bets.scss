@@ -1,0 +1,68 @@
+
+.champion-bet {
+  margin-bottom: $space-100;
+  text-align: center;
+}
+
+.bet {
+  padding: $space-50 0;
+  border-bottom: 1px solid $gray-12;
+}
+
+.match__input {
+  display: none;
+}
+
+.bet__date,
+.bet__outcome {
+  font-size: $textSmallSize;
+}
+
+.bet__outcome--is-bet {
+  color: $yellow-100;
+}
+
+.bet__date,
+.bet__vs {
+  color: $gray-20;
+}
+
+.bet__date,
+.bet__teams,
+.bet__outcome {
+  text-align: center;
+}
+
+.bet__teams, {
+  margin-bottom: $space-50;
+  font-size: $h3Size;
+}
+
+.bet__form {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bet__flag,
+.bet__superbet {
+  margin-bottom: $space-25;
+}
+
+.bet__flag .flag {
+  margin: 0 auto;
+}
+
+.bet__superbet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $space-100;
+  height: $space-100;
+  margin-right: auto;
+  margin-left: auto;
+
+  svg {
+    transform-origin: center;
+    transform: scale(1.5);
+  }
+}

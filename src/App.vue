@@ -39,7 +39,6 @@
       setInterval( () => {
         if(!this.$store.authenticated) return
         this.$store.dispatch('LOAD_MATCHES')
-        this.$store.dispatch('LOAD_OWN_BETS')
         this.$store.dispatch('LOAD_USERS')
       }, 10000);
     },

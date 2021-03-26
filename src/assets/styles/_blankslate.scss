@@ -1,0 +1,12 @@
+.blankslate {
+  text-align: center;
+  color: $gray-20;
+}
+
+.blankslate__avatar {
+  margin: $space-100 0;
+
+  img {
+    margin: 0 auto;
+  }
+}

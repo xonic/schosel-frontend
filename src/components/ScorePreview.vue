@@ -15,7 +15,7 @@
         <img src="../assets/img/icons/i--chevron-right.svg" />
       </div>
     </div>
-    <ul class="score-preview__users">
+    <ul v-if="(liveMatches && liveMatches.length) || (overMatches && overMatches.length)" class="score-preview__users">
       <li v-if="score && score.users" v-for="(user, i) in score.users"
         :class="i === 1 ? 'score-preview__user score-preview__user--current' : 'score-preview__user'">
         <div v-if="user && user.scores" class="score-preview__rank">
@@ -52,7 +52,9 @@
     computed: {
       ...mapGetters([
         'iconPaths',
-        'loggedInUser'
+        'loggedInUser',
+        'liveMatches',
+        'overMatches'
       ])
     },
     methods: {

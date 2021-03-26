@@ -10,10 +10,12 @@
 @import 'logo';
 @import 'nav';
 @import 'player-menu';
+@import 'bets';
 @import 'match-preview';
 @import 'score-preview';
 @import 'user-preview';
 @import 'messages';
+@import 'blankslate';
 @import 'flag';
 // @import 'tabs';
 // @import 'list';
@@ -129,7 +131,8 @@ h3, .h3 {
   background: $body-bg;
 }
 
-.main__title {
+.main__title,
+.main__subtitle {
   margin-bottom: $space-50;
   text-align: center;
 }

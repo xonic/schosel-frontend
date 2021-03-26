@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'playedMatches',
+      'overMatches',
       'liveMatches',
       'loggedInUser',
       'loading',
@@ -102,7 +102,7 @@ export default {
     ]),
     recentlyPlayed () {
       // Sort played matches most recent first
-      let recentFirst = this.playedMatches.sort((a,b) => { return a.date < b.date }).slice()
+      let recentFirst = this.overMatches.sort((a,b) => { return a.date < b.date }).slice()
 
       // Depending on the current number of live matches, return 0 - 3 played matches
       const mostRecent = recentFirst.splice(0, 3 - this.liveMatches.length)

@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="app">
-    <div v-if="loggedInUser && !loggedInUser.paid" class="not-paid">
-      You have not paid yet.
-    </div>
+    <message v-if="loggedInUser && !loggedInUser.paid" type="error" position="floating">
+      Hey, where's the money?!
+    </message>
     <schosel-header />
     <router-view class="main"/>
     <footer class="footer">
@@ -25,11 +25,13 @@
 <script>
   import { mapGetters } from 'vuex'
   import { HTTP } from './http-constants'
-  import SchoselHeader from '@/components/Header.vue'
+  import SchoselHeader from '@/components/Header'
+  import Message from '@/components/Message'
 
   export default {
     components: {
-      SchoselHeader
+      SchoselHeader,
+      Message
     },
     created () {
       this.$store.dispatch('TRY_AUTO_LOGIN')
@@ -44,7 +46,7 @@
     },
     computed: {
       ...mapGetters([
-        'loggedInUser',
+        'loggedInUser'
       ])
     },
   }

@@ -1,6 +1,6 @@
 <template>
-  <div :class="type ? `msg msg--${type}` : 'msg'">
-    {{ msg }}
+  <div :class="`msg msg--${type} msg--${position}`">
+    <slot></slot>
   </div>
 </template>
 
@@ -8,8 +8,8 @@
   export default {
     name: 'message',
     props: {
-      msg: String,
-      type: String
+      type: String,
+      position: String
     }
   }
 </script>

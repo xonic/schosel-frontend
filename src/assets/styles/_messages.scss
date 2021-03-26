@@ -3,7 +3,7 @@
 .msg {
   margin-bottom: $space-50;
   padding: $space-35 $space-50;
-  border: 1px solid $gray-20;
+  border: 2px solid $gray-20;
   border-radius: 4px;
   background: $gray-12;
   text-align: center;
@@ -27,4 +27,13 @@
 .msg--error {
   border-color: $red-100;
   color: $red-100;
+}
+
+.msg--floating {
+  position: fixed;
+  right: $space-100;
+  bottom: $space-50;
+  left: $space-100;
+  z-index: 900;
+  box-shadow: 0 10px 20px rgba(0,0,0,.3);
 }

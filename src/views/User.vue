@@ -117,11 +117,11 @@ export default {
         },
         xaxis: {
           categories: [
-            `Kings - ${this.user.scores.find(score => score.name === 'KINGS_GAME').rank}.`,
-            `Oldfashioned - ${this.user.scores.find(score => score.name === 'OLDFASHIONED').rank}.`,
+            `The Schosel - ${this.user.scores.find(score => score.name === 'SCHOSEL').rank}.`,
+            `Loser - ${this.user.scores.find(score => score.name === 'LOSER').rank}.`,
             `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
             `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
-            `Secret - ${this.user.scores.find(score => score.name === 'SECRET').rank}.`
+            `Secret - ${this.user.scores.find(score => score.name === 'COMEBACK').rank}.`
           ],
           labels: {
             trim: true,
@@ -143,11 +143,11 @@ export default {
         datasets: [
           {
             data: [
-              this.user.scores.find(score => score.name === 'KINGS_GAME').rank || 0,
-              this.user.scores.find(score => score.name === 'OLDFASHIONED').rank || 0,
+              this.user.scores.find(score => score.name === 'SCHOSEL').rank || 0,
+              this.user.scores.find(score => score.name === 'LOSER').rank || 0,
               this.user.scores.find(score => score.name === 'UNDERDOG').rank || 0,
               this.user.scores.find(score => score.name === 'BALANCED').rank || 0,
-              this.user.scores.find(score => score.name === 'SECRET').rank || 0,
+              this.user.scores.find(score => score.name === 'COMEBACK').rank || 0,
             ],
           }
         ]

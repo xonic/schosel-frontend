@@ -32,20 +32,20 @@ export default new Vuex.Store({
     scoreMeta: [
       {
         challenge_id: 1,
-        challenge_route: 'kings-game',
+        challenge_route: 'schosel',
         description: 'Most correct bets with odds',
-        name: "King's Game"
+        name: "Schosel"
       },
       {
         challenge_id: 2,
-        challenge_route: 'oldfashioned',
-        description: 'Most correct bets without odds',
-        name: "Oldfashioned"
+        challenge_route: 'loser',
+        description: 'Most wrong bets with odds',
+        name: "Loser"
       },
       {
         challenge_id: 3,
         challenge_route: 'underdog',
-        description: 'Most correct bets on lowest odds',
+        description: 'Most correct bets on highest odds',
         name: "Underdog"
       },
       {
@@ -354,6 +354,7 @@ export default new Vuex.Store({
     },
 
     oldfashionedScore: state => {
+
       return state.users.map(user => {
         return {
           ...user,
@@ -371,6 +372,7 @@ export default new Vuex.Store({
     },
 
     underdogScore: state => {
+
       return state.users.map(user => {
         return {
           ...user,
@@ -388,6 +390,7 @@ export default new Vuex.Store({
     },
 
     balancedScore: state => {
+
       return state.users.map(user => {
         return {
           ...user,
@@ -405,6 +408,7 @@ export default new Vuex.Store({
     },
 
     secretScore: state => {
+
       return state.users.map(user => {
         return {
           ...user,

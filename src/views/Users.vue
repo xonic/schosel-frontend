@@ -10,6 +10,13 @@
           <user-preview v-if="user.user_id !== loggedInUser.user_id" :user="user" />
         </li>
       </ul>
+      <div v-else class="blankslate">
+        <div class="blankslate__avatar">
+          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+        </div>
+        <div class="blankslate__text">No users have paid yet</div>
+      </div>
+    </div>
     </div>
   </main>
 </template>
@@ -17,7 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Avatar from '@/components/Avatar.vue'
-import UserPreview from '@/components/UserPreview.vue'
+import UserPreview from '@/components/UserPreview'
 
 export default {
   name: 'users',
@@ -28,7 +35,8 @@ export default {
   computed: {
     ...mapGetters([
       'allUsers',
-      'loggedInUser'
+      'loggedInUser',
+      'avatarUrl'
     ])
   }
 }

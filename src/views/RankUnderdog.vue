@@ -2,7 +2,13 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">Underdog</h1>
-      <rank-grid :data="underdogScore" />
+      <rank-grid v-if="underdogScore.length" :data="underdogScore" />
+      <div v-else class="blankslate">
+        <div class="blankslate__avatar">
+          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+        </div>
+        <div class="blankslate__text">No one scored any points yet</div>
+      </div>
     </div>
   </main>
 </template>
@@ -10,15 +16,18 @@
 <script>
   import { mapGetters } from 'vuex'
   import RankGrid from '@/components/RankGrid'
+  import Avatar from '@/components/Avatar'
 
   export default {
     name: 'underdog',
     components: {
-      RankGrid
+      RankGrid,
+      Avatar
     },
     computed: {
       ...mapGetters([
-        'underdogScore'
+        'underdogScore',
+        'avatarUrl'
       ])
     }
   }

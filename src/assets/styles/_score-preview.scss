@@ -33,11 +33,11 @@
 .score-preview__name {
   font-weight: $bold-font-weight;
 
-  .kings-game & {
+  .schosel & {
     color: $cyan-100;
   }
 
-  .oldfashioned & {
+  .loser & {
     color: $blue-100;
   }
 

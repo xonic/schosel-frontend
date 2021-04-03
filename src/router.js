@@ -133,16 +133,16 @@ const router =  new Router({
       },
     },
     {
-      path: '/scores/kings-game',
-      name: 'kings-game',
+      path: '/scores/schosel',
+      name: 'schosel',
       component: KingsGame,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/scores/oldfashioned',
-      name: 'oldfashioned',
+      path: '/scores/loser',
+      name: 'loser',
       component: Oldfashioned,
       meta: {
         requiresAuth: true

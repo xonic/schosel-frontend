@@ -57,7 +57,7 @@
     computed: {
       avatar() {
         if (!this.firstName.length && !this.lastName.length) return
-        return store.state.avatarUrl + this.firstName + " " + this.lastName
+        return store.state.avatarUrl + this.firstName + " " + this.lastName.substring(0,1) + "."
       }
     },
     methods: {

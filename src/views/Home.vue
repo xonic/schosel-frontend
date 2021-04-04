@@ -1,36 +1,32 @@
 <template>
   <main>
     <div class="wrapper">
-      <ul>
-        <li><h1 class="h2 main__title">Live matches</h1></li>
-        <li><h1 class="h2 main__title">Last match day</h1></li>
-        <li><h1 class="h2 main__title">Next match day</h1></li>
-      </ul>
-      <!-- <ul v-if="liveMatches.length || playedMatches.length">
-        <li v-for="match in liveMatches">
-          <match-preview :match="match" />
-        </li>
-        <li v-for="match in recentlyPlayed">
-          <match-preview :match="match" />
-        </li>
-      </ul>
-      <ul class="ranking">
-        <li v-for="ranking in rankings" class="ranking__item">
-          <router-link :to="{ name: ranking.routeName }">
-            <div class="ranking__bar">
-              <div class="ranking__title">{{ ranking.name }}</div>
-              <rank-progress-bar
-                :rank="ranking.rank"
-                :maxRank="allUsers.length"
-                :switchLayout="switchLayout"
-                class="ranking__progress-bar"
-              />
-            </div>
-            <div class="ranking__rank">{{ ranking.rank }}.</div>
-          </router-link>
-        </li>
-      </ul>
-      <router-view /> -->
+      <div class="home__section" v-if="liveMatches && liveMatches.length">
+        <h1 class="h2 main__title text--red is-live">Live</h1>
+        <ul>
+          <li v-for="match in liveMatches" class="match">
+            <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
+          </li>
+        </ul>
+        <!-- <router-link :to="{ name: 'matches' }">View all</router-link> -->
+      </div>
+      <div class="home__section" v-if="lastMatch && lastMatch.length">
+        <h1 class="h2 main__title">Last match</h1>
+        <ul>
+          <li v-for="match in lastMatch" class="match">
+            <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
+          </li>
+        </ul>
+      </div>
+      <div class="home__section" v-if="nextMatch && nextMatch.length">
+        <h1 class="h2 main__title">Next match</h1>
+        <ul>
+          <li v-for="match in nextMatch" class="match">
+            <bet :match="match" />
+          </li>
+        </ul>
+        <!-- <router-link :to="{ name: 'bets' }">View all</router-link> -->
+      </div>
     </div>
   </main>
 </template>
@@ -41,42 +37,12 @@ import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 import MatchPreview from '@/components/MatchPreview'
 import RankProgressBar from '@/components/RankProgressBar'
+import Bet from '@/components/Bet'
 
 export default {
   name: 'home',
   data() {
     return {
-      rankings: [
-        {
-          name: "King's Game",
-          routeName: 'kings-game',
-          rank: 1,
-          points: 180.4278
-        },
-        {
-          name: "Oldfashioned",
-          routeName: 'oldfashioned',
-          rank: 2,
-          points: 30
-        },
-        {
-          name: "Underdog",
-          routeName: 'underdog',
-          rank: 39,
-          points: 89.3043
-        },
-        {
-          name: "Balanced",
-          routeName: 'balanced',
-          rank: 87,
-          points: 34.2528
-        },
-        {
-          name: "Secret",
-          routeName: 'secret',
-          rank: 23,
-        },
-      ],
       switchLayout: false
     }
   },
@@ -84,6 +50,7 @@ export default {
     ClipLoader,
     MatchPreview,
     RankProgressBar,
+    Bet
   },
   mounted () {
     let self = this
@@ -94,8 +61,9 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'overMatches',
+      'lastMatch',
       'liveMatches',
+      'nextMatch',
       'loggedInUser',
       'loading',
       'allUsers'
@@ -116,7 +84,14 @@ export default {
       // Check media query on resize to determine whether
       // progress bars should be rendered vertically or horizontally
       this.switchLayout = window.matchMedia("(min-width: 800px)").matches ? true : false
-    }
+    },
+    betForMatch(match) {
+      if(this.loggedInUser && this.loggedInUser.private_bets) {
+        let userBet = this.loggedInUser.private_bets.find((bet) => bet.match_id === match.match_id)
+
+        return userBet && userBet.bet ? userBet.bet : null
+      }
+    },
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.resizeListener)

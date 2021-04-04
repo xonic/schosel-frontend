@@ -7,12 +7,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    MAX_SUPERTIPS: 8,
     authenticated: false,
     status: {},
     user: {},
     users: [],
     errors: [],
     matches: [],
+    nextMatch: [],
+    lastMatch: [],
     ownBets: undefined,
     loadInfo: {
       status: true,
@@ -272,9 +275,24 @@ export default new Vuex.Store({
     },
     SET_MATCHES: (state, { matches }) => {
 
-      console.log('matches', matches)
       state.loadInfo.matches = false
       state.matches = matches
+      console.log('matches', matches)
+
+      // TODO: remove mock data
+      // state.matches.live = state.matches.over.slice(3,4)
+
+      // TODO: remove mock data
+      // state.matches.scheduled = state.matches.over.slice(2,3)
+
+      // Get last match
+      if (state.matches.over.length) {
+        state.lastMatch =  state.matches.over.slice(0,1)
+      }
+      // Get upcoming match
+      if (state.matches.scheduled.length) {
+        state.nextMatch =  state.matches.scheduled.slice(0,1)
+      }
     },
     SET_USERS: (state, { users }) => {
       users.forEach((user) => user.avatar = state.avatarUrl + user.name )
@@ -283,17 +301,28 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    maxSupertips: state => {
+      return state.MAX_SUPERTIPS
+    },
     matches: state => {
       return state.matches
     },
     overMatches: state => {
       return state.matches.over
     },
+    lastMatch: state => {
+      return state.lastMatch
+    },
     liveMatches: state => {
+
+      if(!state.matches || !state.matches.live) return []
       return state.matches.live
     },
     scheduledMatches: state => {
       return state.matches.scheduled
+    },
+    nextMatch: state => {
+      return state.nextMatch
     },
     allUsers: state => {
       return state.users

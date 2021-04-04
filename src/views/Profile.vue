@@ -35,13 +35,16 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import store from '../store'
 
   export default {
     name: 'profile',
     data () {
       return {
         error: null,
-        email: 'TODO: Implement this'
+        firstName: '',
+        lastName: '',
+        email: '',
       }
     },
     computed: {
@@ -52,36 +55,34 @@
       ]),
       avatar () {
         if(!this.loggedInUser.name.length) return
-        return this.avatarUrl + this.loggedInUser.firstName + " " + this.loggedInUser.lastName
+        return store.state.avatarUrl + this.firstName + " " + this.lastName.substring(0,1) + "."
       },
-      firstName () {
-        return this.loggedInUser.name.split(' ')[0]
-      },
-      lastName () {
-        return this.loggedInUser.name.split(' ')[1]
-      }
     },
     mounted () {
-      // setTimeout(() => {
-      //   this.email = this.allUsers.find(user => user.user_id === this.loggedInUser.user_id).email
-      // }, 3000)
+
+      // Set current user
+      // If allUsers hasn't been loaded from server,
+      // do an async dispatch first
+      if(!this.loggedInUser) {
+        this.$store
+        .dispatch('LOAD_STATUS')
+        .then((response) => {
+          this.firstName = this.loggedInUser.first_name
+          this.lastName = this.loggedInUser.last_name
+          this.email = this.loggedInUser.email
+        })
+      }
+      // Else it has already loaded and current user
+      // still needs to be found and set
+      else {
+        this.firstName = this.loggedInUser.name.split(' ')[0]
+        this.lastName = this.loggedInUser.name.split(' ')[1]
+        this.email = this.loggedInUser.email
+      }
     },
     methods: {
       onSubmit () {
-        console.log(this.allUsers)
 
-        // if(!this.firstName || !this.lastName || !this.email || !this.password) {
-        //   this.error = 'Please fill all fields.'
-        //   return
-        // }
-        //
-        // const formData = {
-        //   firstName: this.firstName,
-        //   lastName: this.lastName,
-        //   email: this.email,
-        //   password: this.password,
-        // }
-        // this.$store.dispatch('REGISTER', formData)
       }
     }
   }

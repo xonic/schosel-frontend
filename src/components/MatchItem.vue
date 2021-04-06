@@ -13,20 +13,20 @@
           <div class="match-item__odds">
             <div v-bind:class="[ownBet.outcome == '1' ? 'has-bet' : '']" class="match-item__odds__home">
               {{ team1_name }}&nbsp;{{ odds["1"].toFixed(2) }}
-              <span v-if="ownBet.supertip && ownBet.outcome == '1'">
-                <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+              <span v-if="ownBet.superbet && ownBet.outcome == '1'">
+                <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-superbet' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
               </span>
             </div>
             <div v-bind:class="[ownBet.outcome == 'X' ? 'has-bet' : '']" class="match-item__odds__draw">
               Draw&nbsp;{{ odds["X"].toFixed(2) }}
-              <span v-if="ownBet.supertip && ownBet.outcome == 'X'">
-                <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+              <span v-if="ownBet.superbet && ownBet.outcome == 'X'">
+                <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-superbet' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
               </span>
             </div>
             <div v-bind:class="[ownBet.outcome == '2' ? 'has-bet' : '']" class="match-item__odds__away">
               {{ team2_name }}&nbsp;{{ odds["2"].toFixed(2) }}
-              <span v-if="ownBet.supertip && ownBet.outcome == '2'">
-                <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+              <span v-if="ownBet.superbet && ownBet.outcome == '2'">
+                <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-superbet' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
               </span>
             </div>
           </div>
@@ -46,8 +46,8 @@
         </div>
         <span v-if="ownBet" v-bind:class="[ownBet.outcome === ownBet.match.outcome ? 'has-scored' : '']" class="match-item__bet">
           {{ (ownBet.points).toFixed(2) }} pts
-          <span class="match-item__supertip" v-if="ownBet.supertip">
-            <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-supertip' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+          <span class="match-item__superbet" v-if="ownBet.superbet">
+            <svg v-bind:class="[ownBet.outcome !== ownBet.match.outcome ? 'failed-superbet' : '']" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
           </span>
         </span>
         <div class="match-item__odds" v-if="odds && ownBet">
@@ -66,27 +66,27 @@
     <div class="match-item" v-if="status === 'scheduled' && ownBet">
       <div class="match__group-time"><!-- TODO: Group A - -->{{ matchTime }}</div>
       <div class="match-item--upcoming">
-        <input :id="match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
+        <input :id="match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.superbet)">
         <label class="match__label match__label--radio" :for="match_id + '-home'">
           <img class="flag flag--small" :src="team1_flag_src">
           {{ team1_name }}
         </label>
 
 
-        <input class="match__input" type="radio" :id="match_id + '-draw'" value="X" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
+        <input class="match__input" type="radio" :id="match_id + '-draw'" value="X" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.superbet)">
         <label class="match__label match__label--radio" :for="match_id + '-draw'">Draw</label>
 
 
-        <input class="match__input" type="radio" :id="match_id + '-away'" value="2" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
+        <input class="match__input" type="radio" :id="match_id + '-away'" value="2" v-model="ownBet.outcome" @change="postBet(match_id, ownBet.outcome, ownBet.superbet)">
         <label class="match__label match__label--radio" :for="match_id + '-away'">
           <img class="flag flag--small" :src="team2_flag_src">
           {{ team2_name }}
         </label>
 
 
-        <input class="match__input" type="checkbox" :id="match_id + '-supertip'" v-model="ownBet.supertip" @change="postBet(match_id, ownBet.outcome, ownBet.supertip)">
-        <label class="match__label" :for="match_id + '-supertip'">
-          <svg class="btn--supertip" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
+        <input class="match__input" type="checkbox" :id="match_id + '-superbet'" v-model="ownBet.superbet" @change="postBet(match_id, ownBet.outcome, ownBet.superbet)">
+        <label class="match__label" :for="match_id + '-superbet'">
+          <svg class="btn--superbet" width="16" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l-4.702 2.472.898-5.236L.392 5.528l5.257-.764L8 0l2.351 4.764 5.257.764-3.804 3.708.898 5.236z" fill="#F8E71C" stroke="#E4D40D" fill-rule="evenodd"/></svg>
         </label>
       </div>
     </div>
@@ -142,7 +142,7 @@ export default {
     }
   },
   methods: {
-    postBet(match_id, outcome, supertip) {
+    postBet(match_id, outcome, superbet) {
       if(!match_id || !outcome) {
         return
       }
@@ -155,7 +155,7 @@ export default {
         withCredentials: true,
         data: {
           outcome: outcome,
-          supertip: supertip
+          superbet: superbet
         }
       })
       .then(response => {

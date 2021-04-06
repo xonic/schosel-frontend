@@ -1,0 +1,22 @@
+
+
+.available-superbets {
+  display: flex;
+  justify-content: center;
+  padding: $space-25 0;
+  background: $gray-10;
+  top: -1px;
+  position: sticky;
+}
+
+.available-superbets__item + .available-superbets__item {
+  margin-left: $space-10;
+}
+
+.superbet--disabled {
+  color: $gray-14!important;
+
+  svg {
+    opacity: .25;
+  }
+}

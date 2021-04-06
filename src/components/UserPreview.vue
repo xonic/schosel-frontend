@@ -14,7 +14,7 @@
           {{ getScore(score, index) }}
         </li>
       </ul>
-      <div v-else class="text--red">
+      <div v-else class="text--red text--small">
         Hasn't paid
       </div>
     </div>

@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    MAX_SUPERTIPS: 8,
+    MAX_SUPERBETS: 8,
     authenticated: false,
     status: {},
     user: {},
@@ -22,7 +22,7 @@ export default new Vuex.Store({
       matches: true,
       users: true
     },
-    avatarUrl: 'https://api.hello-avatar.com/adorables/400/',
+    avatarUrl: 'https://schosel.net/adorables/400/',
     iconPaths: [
       "i--1.svg",
       "i--2.svg",
@@ -270,6 +270,12 @@ export default new Vuex.Store({
         status.user['avatar'] = state.avatarUrl + status.user.name
       }
 
+      if(!status.user.champion || !status.user.champion.team_id) {
+        status.user.champion = {
+          team_id: 'def'
+        }
+      }
+
       state.status = status
       state.loadInfo.status = false
     },
@@ -301,8 +307,8 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    maxSupertips: state => {
-      return state.MAX_SUPERTIPS
+    maxSuperbets: state => {
+      return state.MAX_SUPERBETS
     },
     matches: state => {
       return state.matches

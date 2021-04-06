@@ -4,7 +4,7 @@
       <h1 class="h2 main__title">Bets</h1>
       <h2 class="h3 main__subtitle">Champion</h2>
       <div v-if="status && status.user">
-        <div class="champion-bet" v-if="status.user.champion">
+        <div class="champion-bet">
           <select
             id="champion-bet"
             class="select"
@@ -12,13 +12,16 @@
             @change="postChampion()"
             v-if="status.champion_editable"
           >
-            <option disabled value="">Please select one</option>
+            <option disabled value="def">Select...</option>
             <option v-for="team in status.teams" v-bind:value="team.team_id">{{ team.name }}</option>
           </select>
-          <div v-else>{{ championBet() }}</div>
+          <div v-else>
+            <div v-if="status.user.champion">{{ championBet() }}</div>
+          </div>
         </div>
       </div>
       <h2 class="h3 main__subtitle">Matches</h2>
+      <available-super-bets />
       <ul v-if="scheduledMatches && scheduledMatches.length">
         <li v-for="match in scheduledMatches">
           <bet :match="match" />
@@ -31,7 +34,6 @@
         <div class="blankslate__text">No matches left to bet</div>
       </div>
     </div>
-    <available-super-bets />
   </main>
 </template>
 
@@ -132,6 +134,10 @@
       },
       championBet() {
         return this.loggedInUser.champion.name || "-"
+      },
+      championSelectModel() {
+        if(!status.user.champion || !status.user.champion.team_id) return 'def'
+        return status.user.champion.team_id
       }
     }
   }

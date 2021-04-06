@@ -19,6 +19,7 @@
       </div>
       <div class="home__section" v-if="nextMatch && nextMatch.length">
         <h1 class="h2 main__title">Next match</h1>
+        <available-super-bets />
         <ul>
           <li v-for="match in nextMatch" class="match">
             <bet :match="match" />
@@ -43,6 +44,7 @@ import MatchPreview from '@/components/MatchPreview'
 import RankProgressBar from '@/components/RankProgressBar'
 import Bet from '@/components/Bet'
 import Avatar from '@/components/Avatar'
+import AvailableSuperBets from '@/components/AvailableSuperBets'
 
 export default {
   name: 'home',
@@ -56,7 +58,8 @@ export default {
     MatchPreview,
     RankProgressBar,
     Bet,
-    Avatar
+    Avatar,
+    AvailableSuperBets
   },
   mounted () {
     let self = this

@@ -37,7 +37,7 @@
              "points":0
           }
         ],
-        "supertip":false
+        "superbet":false
       },
       "odds":{
         "1":4.39344,
@@ -89,7 +89,7 @@
                  "points":49.30432
               }
             ],
-            "supertip":false
+            "superbet":false
           }
         }
       ]
@@ -133,7 +133,7 @@
              "points":1.00000
           }
         ],
-        "supertip":false
+        "superbet":false
       },
       "odds":{
         "1":4.39344,
@@ -185,7 +185,7 @@
                  "points":49.30432
               }
             ],
-            "supertip":false
+            "superbet":false
           }
         }
       ]
@@ -227,7 +227,7 @@
              "points":1.00000
           }
         ],
-        "supertip":false
+        "superbet":false
       },
       "odds":{
         "1":4.39344,
@@ -279,7 +279,7 @@
                  "points":49.30432
               }
             ],
-            "supertip":false
+            "superbet":false
           }
         }
       ]
@@ -321,7 +321,7 @@
              "points":1.00000
           }
         ],
-        "supertip":false
+        "superbet":false
       },
       "odds":{
         "1":4.39344,
@@ -373,7 +373,7 @@
                  "points":49.30432
               }
             ],
-            "supertip":false
+            "superbet":false
           }
         }
       ]
@@ -385,7 +385,7 @@
       "match_id":67,
       "private_bet":{
         "outcome":"1",
-        "supertip":false
+        "superbet":false
       },
       "stage":"Group phase",
       "status":"scheduled",

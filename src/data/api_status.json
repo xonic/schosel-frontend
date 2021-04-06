@@ -81,7 +81,7 @@
                    "points":49.30432
                 }
              ],
-             "supertip":false
+             "superbet":false
           },
           "stage":"Group phase",
           "status":"over",
@@ -127,6 +127,6 @@
        }
     ],
     "user_id": 3,
-    "visible_supertips": 8
+    "visible_superbets": 8
   }
 }

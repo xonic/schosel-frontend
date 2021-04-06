@@ -10,14 +10,14 @@
     </div>
 
     <div class="bet__form">
-      <input :id="match.match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet(match.match_id).bet.outcome" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.supertip)">
+      <input :id="match.match_id + '-home'" class="match__input" type="radio" value="1" v-model="ownBet(match.match_id).bet.outcome" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.superbet)">
       <label class="match__label match__label--radio" :for="match.match_id + '-home'">
         <div class="bet__flag">
           <flag :iso="match.team1_iso" :is-bet="ownBet(match.match_id).bet.outcome === '1'" />
         </div>
         <div :class="ownBet(match.match_id).bet.outcome === '1' ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">Home</div>
       </label>
-      <input class="match__input" type="radio" :id="match.match_id + '-draw'" value="X" v-model="ownBet(match.match_id).bet.outcome" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.supertip)">
+      <input class="match__input" type="radio" :id="match.match_id + '-draw'" value="X" v-model="ownBet(match.match_id).bet.outcome" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.superbet)">
       <label class="match__label match__label--radio" :for="match.match_id + '-draw'">
         <div class="bet__flag">
           <flag :iso="'drw'" :is-bet="ownBet(match.match_id).bet.outcome === 'X'" />
@@ -26,7 +26,7 @@
       </label>
 
 
-      <input class="match__input" type="radio" :id="match.match_id + '-away'" value="2" v-model="ownBet(match.match_id).bet.outcome" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.supertip)">
+      <input class="match__input" type="radio" :id="match.match_id + '-away'" value="2" v-model="ownBet(match.match_id).bet.outcome" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.superbet)">
       <label class="match__label match__label--radio" :for="match.match_id + '-away'">
         <div class="bet__flag">
           <flag :iso="match.team2_iso" :is-bet="ownBet(match.match_id).bet.outcome === '2'" />
@@ -34,13 +34,14 @@
         <div :class="ownBet(match.match_id).bet.outcome === '2' ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">Away</div>
       </label>
 
-      <span v-if="maxSupertips || ownBet(match.match_id).bet.supertip">
-        <input class="match__input" type="checkbox" :id="match.match_id + '-supertip'" v-model="ownBet(match.match_id).bet.supertip" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.supertip)">
-        <label class="match__label" :for="match.match_id + '-supertip'">
+      <span v-if="loggedInUser" :class="(maxSuperbets <= loggedInUser.superbets_placed) && !ownBet(match.match_id).bet.superbet ? 'superbet--disabled' : ''">
+        <input class="match__input" type="checkbox" :id="match.match_id + '-superbet'" v-model="ownBet(match.match_id).bet.superbet" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.superbet)"
+        :disabled="(maxSuperbets <= loggedInUser.superbets_placed) && !ownBet(match.match_id).bet.superbet">
+        <label class="match__label" :for="match.match_id + '-superbet'">
           <div class="bet__superbet">
-            <super-bet :correct="ownBet(match.match_id).bet.supertip" />
+            <super-bet :correct="ownBet(match.match_id).bet.superbet" />
           </div>
-          <div :class="ownBet(match.match_id).bet.supertip ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">Superbet</div>
+          <div :class="ownBet(match.match_id).bet.superbet ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">Superbet</div>
         </label>
       </span>
     </div>
@@ -66,7 +67,7 @@ export default {
       betNotLoadedFallback: {
         bet: {
           outcome: null,
-          supertip: null
+          superbet: null
         }
       }
     }
@@ -74,13 +75,13 @@ export default {
   computed: {
     ...mapGetters([
       'iconPaths',
-      'maxSupertips',
+      'maxSuperbets',
       'loggedInUser',
       'status'
     ]),
-    remainingsupertips() {
-      if(!(this.loggedInUser && this.loggedInUser.visible_supertips)) return this.maxSupertips
-      return this.maxSupertips - this.loggedInUser.visible_supertips
+    remainingsuperbets() {
+      if(!(this.loggedInUser && this.loggedInUser.visible_superbets)) return this.maxSuperbets
+      return this.maxSuperbets - this.loggedInUser.visible_superbets
     },
   },
   methods: {
@@ -102,20 +103,20 @@ export default {
       }
       return theDate.toLocaleString('en-GB', dateOptions) + " - " + theDate.toLocaleTimeString('en-GB', timeOptions)
     },
-    postBet(match_id, outcome, supertip) {
+    postBet(match_id, outcome, superbet) {
       if (!match_id || !outcome) {
         return
       }
 
       this.$emit("is-saving")
-        // this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
+      this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
 
       HTTP('/bets/' + match_id, {
           method: "post",
           withCredentials: true,
           data: {
             outcome: outcome,
-            supertip: supertip || false
+            superbet: superbet || false
           }
         })
         .then(response => {

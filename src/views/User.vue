@@ -154,7 +154,7 @@ export default {
       }
     },
     // remainingSuperbets () {
-    //   return 8 - this.user.visible_supertips
+    //   return 8 - this.user.visible_superbets
     // },
     // bets () {
     //   return this.user.bets.map(bet => {
@@ -163,7 +163,7 @@ export default {
     //       match: bet.match.team1_name + " vs. " + bet.match.team2_name,
     //       bet: bet.outcome == 1 ? bet.match.team1_name : bet.outcome == 2 ? bet.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
     //       outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
-    //       superbet: bet.supertip,
+    //       superbet: bet.superbet,
     //       score: bet.points ? bet.points.toFixed(2) : 0
     //     }
     //   })

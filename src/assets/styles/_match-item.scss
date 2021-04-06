@@ -65,7 +65,7 @@
   // color: $green-100;
 }
 
-.failed-supertip {
+.failed-superbet {
   path {
     fill: $gray-25;
     stroke: $gray-100;
@@ -112,15 +112,15 @@
   text-transform: uppercase;
 }
 
-.btn--supertip {
+.btn--superbet {
   transition: transform .2s ease-in-out;
 }
 
-input:not(:checked) + label .btn--supertip {
+input:not(:checked) + label .btn--superbet {
   transform: rotateZ(144deg);
 }
 
-input:not(:checked) + label .btn--supertip path {
+input:not(:checked) + label .btn--superbet path {
   fill: $white;
   stroke: $gray-100;
 }
@@ -181,7 +181,7 @@ $gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.7));
     }
   }
 
-  .match-item__supertip {
+  .match-item__superbet {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -254,7 +254,7 @@ $gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.7));
       margin-left: -1px;
     }
 
-    &[for*='supertip'] {
+    &[for*='superbet'] {
       flex: 0 0 4.4rem;
       background: none;
       border: 0;
@@ -264,7 +264,7 @@ $gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.7));
     }
   }
 
-  .match__input[type='radio']:checked ~ [for*='supertip'] {
+  .match__input[type='radio']:checked ~ [for*='superbet'] {
     opacity: 1;
     pointer-events: auto;
   }

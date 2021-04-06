@@ -38,9 +38,6 @@
           </div>
           <div class="submit">
             <button class="btn btn--primary" type="submit">Login</button>
-            <div class="to-reset">
-              <router-link :to="{ name: 'reset' }">Reset password</router-link>
-            </div>
           </div>
         </form>
       </div>

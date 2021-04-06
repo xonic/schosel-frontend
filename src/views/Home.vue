@@ -8,7 +8,6 @@
             <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
           </li>
         </ul>
-        <!-- <router-link :to="{ name: 'matches' }">View all</router-link> -->
       </div>
       <div class="home__section" v-if="lastMatch && lastMatch.length">
         <h1 class="h2 main__title">Last match</h1>
@@ -25,7 +24,12 @@
             <bet :match="match" />
           </li>
         </ul>
-        <!-- <router-link :to="{ name: 'bets' }">View all</router-link> -->
+      </div>
+      <div v-else class="blankslate">
+        <div class="blankslate__avatar">
+          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+        </div>
+        <div class="blankslate__text">Move on, nothing to see here yet</div>
       </div>
     </div>
   </main>
@@ -38,6 +42,7 @@ import ClipLoader from 'vue-spinner/src/ClipLoader'
 import MatchPreview from '@/components/MatchPreview'
 import RankProgressBar from '@/components/RankProgressBar'
 import Bet from '@/components/Bet'
+import Avatar from '@/components/Avatar'
 
 export default {
   name: 'home',
@@ -50,7 +55,8 @@ export default {
     ClipLoader,
     MatchPreview,
     RankProgressBar,
-    Bet
+    Bet,
+    Avatar
   },
   mounted () {
     let self = this
@@ -66,7 +72,8 @@ export default {
       'nextMatch',
       'loggedInUser',
       'loading',
-      'allUsers'
+      'allUsers',
+      'avatarUrl'
     ]),
     recentlyPlayed () {
       // Sort played matches most recent first

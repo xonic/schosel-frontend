@@ -59,38 +59,6 @@ const router =  new Router({
       }
     },
     {
-      path: '/bets/today',
-      name: 'bets-today',
-      component: BetList,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/bets/tomorrow',
-      name: 'bets-tomorrow',
-      component: Bets,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/bets/this-week',
-      name: 'bets-this-week',
-      component: Bets,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/bets/later',
-      name: 'bets-later',
-      component: Bets,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
       path: '/matches',
       name: 'matches',
       component: Matches,
@@ -111,14 +79,6 @@ const router =  new Router({
       path: '/help',
       name: 'help',
       component: Help,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: Profile,
       meta: {
         requiresAuth: true
       }

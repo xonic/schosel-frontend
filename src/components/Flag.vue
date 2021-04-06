@@ -3,6 +3,7 @@
     :class="isBet ?
       `flag flag--${iso} flag--${size} flag--is-bet` :
       `flag flag--${iso} flag--${size}`">
+  {{ iso === 'drw' ? 'X' : '' }}
   </div>
 </template>
 

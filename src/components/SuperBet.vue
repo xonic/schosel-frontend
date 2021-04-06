@@ -12,10 +12,10 @@
     },
     computed: {
       stroke () {
-        return this.correct ? '#E4D40D' : '#9b9b9b'
+        return this.correct ? '#FFA24D' : '#625964'
       },
       fill () {
-        return this.correct ? '#F8E71C' : '#fff'
+        return this.correct ? '#FFD84D' : '#3A353B'
       },
     }
   }

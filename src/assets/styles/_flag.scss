@@ -25,12 +25,33 @@
   width: $space-125;
 }
 
+.flag--drw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: $bold-font-weight;
+  color: $gray-14;
+  padding-top: .2rem;
+
+  &.flag--is-bet {
+    color: $yellow-100;
+  }
+}
+
 .flag--aut {
-  background-image: url('assets/img/flags/at.svg');
+  background-image: url('assets/img/flags/aut.svg');
 }
 
 .flag--bel {
   background-image: url('assets/img/flags/bel.svg');
+}
+
+.flag--cro {
+  background-image: url('assets/img/flags/cro.svg');
+}
+
+.flag--cze {
+  background-image: url('assets/img/flags/cze.svg');
 }
 
 .flag--den {
@@ -41,12 +62,32 @@
   background-image: url('assets/img/flags/eng.svg');
 }
 
+.flag--fin {
+  background-image: url('assets/img/flags/fin.svg');
+}
+
 .flag--fra {
   background-image: url('assets/img/flags/fra.svg');
 }
 
 .flag--ger {
   background-image: url('assets/img/flags/ger.svg');
+}
+
+.flag--hun {
+  background-image: url('assets/img/flags/hun.svg');
+}
+
+.flag--ita {
+  background-image: url('assets/img/flags/ita.svg');
+}
+
+.flag--mkd {
+  background-image: url('assets/img/flags/mac.svg');
+}
+
+.flag--ned {
+  background-image: url('assets/img/flags/ned.svg');
 }
 
 .flag--pol {
@@ -61,7 +102,15 @@
   background-image: url('assets/img/flags/rus.svg');
 }
 
-.flag--spa {
+.flag--sco {
+  background-image: url('assets/img/flags/sco.svg');
+}
+
+.flag--svk {
+  background-image: url('assets/img/flags/slo.svg');
+}
+
+.flag--esp {
   background-image: url('assets/img/flags/spa.svg');
 }
 
@@ -69,6 +118,18 @@
   background-image: url('assets/img/flags/swe.svg');
 }
 
-.flag--swi {
+.flag--sui {
   background-image: url('assets/img/flags/swi.svg');
+}
+
+.flag--tur {
+  background-image: url('assets/img/flags/tur.svg');
+}
+
+.flag--ukr {
+  background-image: url('assets/img/flags/ukr.svg');
+}
+
+.flag--wal {
+  background-image: url('assets/img/flags/wls.svg');
 }

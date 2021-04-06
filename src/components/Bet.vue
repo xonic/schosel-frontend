@@ -34,7 +34,7 @@
         <div :class="ownBet(match.match_id).bet.outcome === '2' ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">Away</div>
       </label>
 
-      <span v-if="remainingsupertips || ownBet(match.match_id).bet.supertip">
+      <span v-if="maxSupertips || ownBet(match.match_id).bet.supertip">
         <input class="match__input" type="checkbox" :id="match.match_id + '-supertip'" v-model="ownBet(match.match_id).bet.supertip" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.supertip)">
         <label class="match__label" :for="match.match_id + '-supertip'">
           <div class="bet__superbet">

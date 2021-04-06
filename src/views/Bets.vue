@@ -20,7 +20,7 @@
       </div>
       <h2 class="h3 main__subtitle">Matches</h2>
       <ul v-if="scheduledMatches && scheduledMatches.length">
-        <li v-for="match in scheduledMatches" class="bet">
+        <li v-for="match in scheduledMatches">
           <bet :match="match" />
         </li>
       </ul>
@@ -31,6 +31,7 @@
         <div class="blankslate__text">No matches left to bet</div>
       </div>
     </div>
+    <available-super-bets />
   </main>
 </template>
 
@@ -40,6 +41,7 @@
   import { HTTP } from '../http-constants'
   import ClipLoader from 'vue-spinner/src/ClipLoader'
   import SuperBet from '@/components/SuperBet'
+  import AvailableSuperBets from '@/components/AvailableSuperBets'
   import Bet from '@/components/Bet'
   import Flag from '@/components/Flag'
   import Avatar from '@/components/Avatar'
@@ -50,6 +52,7 @@
       ClipLoader,
       Bet,
       SuperBet,
+      AvailableSuperBets,
       Flag,
       Avatar
     },

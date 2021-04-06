@@ -5,7 +5,7 @@
 }
 
 .bet {
-  padding: $space-50 0;
+  padding: $space-75 0;
   border-bottom: 1px solid $gray-12;
 }
 
@@ -14,7 +14,8 @@
 }
 
 .bet__date,
-.bet__outcome {
+.bet__outcome,
+.bet__vs {
   font-size: $textSmallSize;
 }
 
@@ -25,6 +26,10 @@
 .bet__date,
 .bet__vs {
   color: $gray-20;
+}
+
+.bet__vs {
+  margin: 0 $space-25;
 }
 
 .bet__date,

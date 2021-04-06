@@ -35,10 +35,6 @@
         showMorePopover: false,
         userMenuItems: [
           {
-            name: 'Profile',
-            route: 'profile'
-          },
-          {
             name: 'Help',
             route: 'help'
           },

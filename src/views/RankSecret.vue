@@ -1,7 +1,8 @@
 <template>
   <main>
     <div class="wrapper">
-      <h1 class="h2 main__title">Secret</h1>
+      <h1 class="h2 text--center text--orange">Secret</h1>
+      <div class="text--small text--gray-20 main__title">Will be revealed after the tournament</div>
       <rank-grid v-if="secretScore.length" :data="secretScore" />
       <div v-else class="blankslate">
         <div class="blankslate__avatar">

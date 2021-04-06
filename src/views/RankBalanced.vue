@@ -1,7 +1,8 @@
 <template>
   <main>
     <div class="wrapper">
-      <h1 class="h2 main__title">Balanced</h1>
+      <h1 class="h2 text--center text--magenta">Balanced</h1>
+      <div class="text--small text--gray-20 main__title">Most correct bets on draw with odds</div>
       <rank-grid v-if="balancedScore.length" :data="balancedScore" />
       <div v-else class="blankslate">
         <div class="blankslate__avatar">

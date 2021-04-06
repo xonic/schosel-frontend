@@ -8,12 +8,15 @@
         {{ user.name }}
         <span v-if="loggedInUser && user.user_id === loggedInUser.user_id" class="text--small text--gray-20">(You)</span>
       </div>
-      <ul class="user-preview__ranks">
+      <ul v-if="user.paid" class="user-preview__ranks">
         <li v-for="(score, index) in user.scores" :class="parseFloat(getScore(score, index)) === 0 ? 'user-preview__rank user-preview__rank--zero' : 'user-preview__rank'">
           <img :src="getURL(index)" class="user-preview__icon" />
           {{ getScore(score, index) }}
         </li>
       </ul>
+      <div v-else class="text--red">
+        Hasn't paid
+      </div>
     </div>
     <div class="user-preview__chevron">
       <img src="../assets/img/icons/i--chevron-right.svg" />

@@ -21,6 +21,11 @@
           Users
         </router-link>
       </li>
+      <li class="nav__item">
+        <router-link class="nav__link" :to="{ name: 'help' }">
+          Help
+        </router-link>
+      </li>
     </ul>
   </nav>
 </template>

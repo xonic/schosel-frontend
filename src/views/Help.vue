@@ -1,7 +1,9 @@
 <template>
-  <div id="help" class="help">
-    <h1>Help</h1>
-  </div>
+  <main>
+    <div class="wrapper">
+      <h1 class="h2 main__title">Help</h1>
+    </div>
+  </main>
 </template>
 
 <script>

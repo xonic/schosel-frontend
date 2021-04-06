@@ -1,7 +1,8 @@
 <template>
   <main>
     <div class="wrapper">
-      <h1 class="h2 main__title">Schosel</h1>
+      <h1 class="h2 text--center text--cyan">Schosel</h1>
+      <div class="text--small text--gray-20 main__title">Most correct bets with odds</div>
       <rank-grid v-if="kingsScore.length" :data="kingsScore" />
       <div v-else class="blankslate">
         <div class="blankslate__avatar">

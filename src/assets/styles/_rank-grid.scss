@@ -17,6 +17,11 @@
 .rank-grid__td {
   padding: $space-25;
   vertical-align: middle;
+  text-align: left;
+
+  &:last-child {
+    text-align: right;
+  }
 }
 
 .rank-grid__name-col {

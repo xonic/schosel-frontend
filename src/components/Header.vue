@@ -35,10 +35,6 @@
         showMorePopover: false,
         userMenuItems: [
           {
-            name: 'Help',
-            route: 'help'
-          },
-          {
             name: 'Logout',
             route: 'logout'
           }

@@ -4,7 +4,7 @@
     <div class="score-preview__header">
       <img :src="getURL(score.challenge_id - 1)" class="score-preview__icon" />
       <div class="score-preview__title">
-        <div class="score-preview__name">
+        <div class="score-preview__name h3">
           {{ score.name }}
           <div class="score-preview__description">
             {{ score.description }}

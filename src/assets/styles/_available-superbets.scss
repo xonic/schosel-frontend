@@ -1,12 +1,14 @@
 
-
 .available-superbets {
-  display: flex;
-  justify-content: center;
   padding: $space-25 0;
   background: $gray-10;
   top: -1px;
   position: sticky;
+}
+
+.available-superbets__items {
+  display: flex;
+  justify-content: center;
 }
 
 .available-superbets__item + .available-superbets__item {

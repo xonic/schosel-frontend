@@ -1,12 +1,15 @@
 <template>
-  <ul v-if="loggedInUser" class="available-superbets">
-    <li v-for="n in (maxSuperbets - loggedInUser.superbets_placed)" class="available-superbets__item">
-      <super-bet :correct="true" />
-    </li>
-    <li v-for="n in this.loggedInUser.superbets_placed" class="available-superbets__item">
-      <super-bet :correct="false" />
-    </li>
-  </ul>
+  <div class="available-superbets">
+    <div class="text--small text--gray-20 text--center">Available Superbets</div>
+    <ul v-if="loggedInUser" class="available-superbets__items">
+      <li v-for="n in (maxSuperbets - loggedInUser.superbets_placed)" class="available-superbets__item">
+        <super-bet :correct="true" />
+      </li>
+      <li v-for="n in this.loggedInUser.superbets_placed" class="available-superbets__item">
+        <super-bet :correct="false" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>

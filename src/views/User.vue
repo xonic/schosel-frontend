@@ -1,12 +1,12 @@
 <template>
   <main>
     <div class="wrapper">
-      <div class="user__avatar">
+      <div v-if="user && user.avatar" class="user__avatar">
         <avatar :src="user.avatar" size="xlarge" />
       </div>
-      <h1 class="h2 main__title">{{ user.name }}</h1>
+      <h1 v-if="user" class="h2 main__title">{{ user.name }}</h1>
       <apexchart
-        v-if="this.user && this.user.scores"
+        v-if="user && user.scores"
         type="radar"
         :options="chartOptions"
         :series="reversedDatasets">

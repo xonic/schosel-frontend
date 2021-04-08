@@ -268,13 +268,14 @@ export default new Vuex.Store({
 
       if(status.user) {
         status.user['avatar'] = state.avatarUrl + status.user.name
-      }
-
-      if(!status.user.champion || !status.user.champion.team_id) {
-        status.user.champion = {
-          team_id: 'def'
+        
+        if(!status.user.champion || !status.user.champion.team_id) {
+          status.user.champion = {
+            team_id: 'def'
+          }
         }
       }
+
 
       state.status = status
       state.loadInfo.status = false

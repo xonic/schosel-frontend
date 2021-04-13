@@ -17,11 +17,31 @@ import Balanced from './views/RankBalanced.vue'
 import Secret from './views/RankSecret.vue'
 import Scores from './views/Scores.vue'
 import Users from './views/Users.vue'
+import UserAdmin from './views/UserAdmin.vue'
 import User from './views/User.vue'
 import Profile from './views/Profile.vue'
 import store from './store'
 
 Vue.use(Router)
+
+let isAdmin = ((to, from, next) => {
+  console.log(store)
+
+  store.dispatch('LOAD_USERS')
+  .then((response) => {
+    if(!store.state.status.user.admin) {
+
+      console.log("Access denied")
+
+      next({
+        path: '/'
+      })
+    }
+    else {
+      next()
+    }
+  })
+})
 
 const router =  new Router({
   base: "/",
@@ -140,6 +160,16 @@ const router =  new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/user-admin',
+      name: 'user-admin',
+      component: UserAdmin,
+      props: true,
+      meta: {
+        requiresAuth: true
+      },
+      beforeEnter: isAdmin
     },
     {
       path: '/users/:id',

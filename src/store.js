@@ -10,8 +10,8 @@ export default new Vuex.Store({
     MAX_SUPERBETS: 8,
     authenticated: false,
     status: {},
-    user: {},
     users: [],
+    allUsers: [],
     errors: [],
     matches: [],
     nextMatch: [],
@@ -180,10 +180,22 @@ export default new Vuex.Store({
       }, (err) => {
         console.log(err)
       })
+    },
+    async LOAD_ALL_USERS ({ commit }) {
 
-      // let response = await HTTP.get('/users')
-      // commit('SET_USERS', { users: response.data })
+      await HTTP.get('/admin/users').then((response) => {
+        commit('SET_ALL_USERS', { allUsers: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    async CONFIRM_PAYMENT ({ commit }, user_id) {
 
+      await HTTP.post('/admin/confirm_payment/' + user_id).then((response) => {
+        console.log(response)
+      }, (err) => {
+        console.log(err)
+      })
     }
   },
   mutations: {
@@ -268,7 +280,7 @@ export default new Vuex.Store({
 
       if(status.user) {
         status.user['avatar'] = state.avatarUrl + status.user.name
-        
+
         if(!status.user.champion || !status.user.champion.team_id) {
           status.user.champion = {
             team_id: 'def'
@@ -305,6 +317,9 @@ export default new Vuex.Store({
       users.forEach((user) => user.avatar = state.avatarUrl + user.name )
       state.users = users
       state.loadInfo.users = false
+    },
+    SET_ALL_USERS: (state, { allUsers }) => {
+      state.allUsers = allUsers
     }
   },
   getters: {
@@ -333,6 +348,9 @@ export default new Vuex.Store({
     },
     allUsers: state => {
       return state.users
+    },
+    allUsersForAdmin: state => {
+      return state.allUsers
     },
     loggedInUser: state => {
 

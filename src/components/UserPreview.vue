@@ -15,7 +15,7 @@
         </li>
       </ul>
       <div v-else class="text--red text--small">
-        Hasn't paid
+        You haven't paid yet
       </div>
     </div>
     <div class="user-preview__chevron">

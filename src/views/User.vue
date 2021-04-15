@@ -117,7 +117,7 @@ export default {
         },
         xaxis: {
           categories: [
-            `The Schosel - ${this.user.scores.find(score => score.name === 'SCHOSEL').rank}.`,
+            `Schosel - ${this.user.scores.find(score => score.name === 'SCHOSEL').rank}.`,
             `Loser - ${this.user.scores.find(score => score.name === 'LOSER').rank}.`,
             `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
             `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,

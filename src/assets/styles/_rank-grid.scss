@@ -6,6 +6,13 @@
   }
 }
 
+.rank-grid__head {
+  .rank-grid__td {
+    font-size: $textSmallSize;
+    color: $gray-20;
+  }
+}
+
 .rank-grid__row {
   border-bottom: 1px solid $gray-12;
 

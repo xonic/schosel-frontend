@@ -1,19 +1,23 @@
 <template>
   <main>
-    <div id="profile" class="wrapper" v-if="allUsersForAdmin.length">
-      <h1 class="h2 main__title">Users Admin</h1>
-      <table>
-        <thead>
-          <th class="text--left">Name</th>
-          <th class="text--right">Payment</th>
+    <div class="wrapper" v-if="allUsersForAdmin.length">
+      <h1 class="h2 main__title">Payments</h1>
+      <table class="rank-grid text--small admin">
+        <thead class="rank-grid__head">
+          <th class="rank-grid__td">ID</th>
+          <th class="rank-grid__td">Name</th>
+          <th class="rank-grid__td" v-if="allUsersForAdmin[0].email">Email</th>
+          <th class="rank-grid__td">Payment</th>
         </thead>
         <tbody>
-          <tr v-for="user in allUsersForAdmin">
-            <td>{{ user. name }}</td>
-            <td v-if="!user.paid" class="text--right">
-              <button class="btn" @click="confirmPayment(user.user_id)">Confirm payment</button>
+          <tr v-for="user in allUsersForAdmin" class="rank-grid__row">
+            <td class="rank-grid__td">{{ user.user_id }}</td>
+            <td class="rank-grid__td">{{ user.name }}</td>
+            <td class="rank-grid__td" v-if="allUsersForAdmin[0].email">{{ user.email }}</td>
+            <td v-if="!user.paid" class="rank-grid__td">
+              <a href @click="confirmPayment(user.user_id)">Confirm payment</a>
             </td>
-            <td v-else class="text--right">
+            <td v-else class="rank-grid__td">
               Confirmed
             </td>
           </tr>
@@ -28,7 +32,7 @@
   import store from '../store'
 
   export default {
-    name: 'UserAdmin',
+    name: 'Payments',
     data () {
       return {
         users: []

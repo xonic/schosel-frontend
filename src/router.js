@@ -17,7 +17,7 @@ import Balanced from './views/RankBalanced.vue'
 import Secret from './views/RankSecret.vue'
 import Scores from './views/Scores.vue'
 import Users from './views/Users.vue'
-import UserAdmin from './views/UserAdmin.vue'
+import Payments from './views/Payments.vue'
 import User from './views/User.vue'
 import Profile from './views/Profile.vue'
 import store from './store'
@@ -162,9 +162,9 @@ const router =  new Router({
       }
     },
     {
-      path: '/user-admin',
-      name: 'user-admin',
-      component: UserAdmin,
+      path: '/payments',
+      name: 'payments',
+      component: Payments,
       props: true,
       meta: {
         requiresAuth: true

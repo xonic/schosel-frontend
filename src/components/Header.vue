@@ -69,8 +69,8 @@
         if(this.loggedInUser && this.loggedInUser.admin) {
           return [
             {
-              name: 'UserAdmin',
-              route: 'user-admin'
+              name: 'Payments',
+              route: 'payments'
             },
             {
               name: 'Logout',

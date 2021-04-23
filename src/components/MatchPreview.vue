@@ -1,6 +1,11 @@
 <template>
   <router-link class="match-preview" :to="{ path: `/matches/${match.match_id}` }">
-
+    <div class="match-preview__live is-live" v-if="match.status === 'live'">
+      Live
+    </div>
+    <div class="match-preview__over" v-else>
+      {{ matchDate(match.date) }}
+    </div>
     <div class="match-preview__info">
       <div class="match-preview__team">
         <div class="match-preview__flag">
@@ -15,12 +20,6 @@
         </div>
       </div>
       <div class="match-preview__result">
-        <div class="match-preview__live is-live" v-if="match.status === 'live'">
-          Live
-        </div>
-        <div class="match-preview__over" v-else>
-          Over
-        </div>
         <div class="match-preview__goals">
           {{ match.team1_goals }}:{{ match.team2_goals }}
         </div>
@@ -82,6 +81,19 @@
     methods: {
       getURL(index) {
         return require(`../assets/img/icons/${this.iconPaths[index]}`)
+      },
+      matchDate: date => {
+        let theDate = new Date(date)
+        let dateOptions = {
+          weekday: 'short',
+          month: 'numeric',
+          day: 'numeric'
+        }
+        let timeOptions = {
+          hour: '2-digit',
+          minute: '2-digit'
+        }
+        return theDate.toLocaleString('en-GB', dateOptions) + " - " + theDate.toLocaleTimeString('en-GB', timeOptions)
       }
     }
   }

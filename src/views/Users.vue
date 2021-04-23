@@ -2,8 +2,8 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">Users</h1>
-      <ul v-if="allUsers.length">
-        <li v-if="loggedInUser">
+      <ul v-if="allUsers.length && loggedInUser">
+        <li>
           <user-preview :user="loggedInUser" />
         </li>
         <li v-for="user in allUsers">

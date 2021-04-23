@@ -26,6 +26,7 @@
 .match-preview__draw {
   font-size: $textSmallSize;
   color: $gray-20;
+  text-align: center;
 }
 
 .match-preview__live {
@@ -74,11 +75,11 @@
   }
 }
 
-.match-preview__score--KINGS_GAME {
+.match-preview__score--SCHOSEL {
   color: $cyan-100;
 }
 
-.match-preview__score--OLDFASHIONED {
+.match-preview__score--LOSER {
   color: $blue-100;
 }
 

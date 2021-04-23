@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "apexcharts": "^3.24.0",
+    "babel-runtime": "^6.26.0",
     "chart.js": "^2.9.3",
     "vue": "^2.5.13",
     "vue-analytics": "^5.12.2",
     "vue-apexcharts": "^1.6.0",
     "vue-chartjs": "^3.5.0",
+    "vue-markdown": "^2.2.4",
     "vue-router": "^3.0.1",
     "vue-spinner": "^1.0.3",
     "vuex": "^3.0.1"

@@ -4,7 +4,8 @@
       <div v-if="user && user.avatar" class="user__avatar">
         <avatar :src="user.avatar" size="xlarge" />
       </div>
-      <h1 v-if="user" class="h2 main__title">{{ user.name }}</h1>
+      <h1 v-if="user" class="h2 text--center">{{ user.name }}</h1>
+      <h2 v-if="user" class="h3 main__title text--gray-20">{{ user.reward }} &euro;</h2>
       <apexchart
         v-if="user && user.scores"
         type="radar"

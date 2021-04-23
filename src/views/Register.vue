@@ -28,6 +28,7 @@
           </div>
           <div class="input">
             <input type="password" id="password" v-model="password" placeholder="Password">
+            <div class="text--small text--gray-20">Minimum 8 characters</div>
           </div>
           <div class="submit">
             <button class="btn btn--primary" type="submit">Submit</button>

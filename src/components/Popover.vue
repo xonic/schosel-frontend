@@ -1,10 +1,10 @@
 <template>
   <div class="popover">
-    <div class="popover__toggle" @click="show = !show">
+    <div class="popover__toggle" @click.stop="togglePopover">
       <slot></slot>
     </div>
     <transition name="fade">
-      <ul v-if="show" class="popover__list">
+      <ul id="popover" v-if="popoverIsVisible" class="popover__list">
         <li class="popover__item" v-for='item in items' :key='item.id'>
           <router-link class="popover__link":to="{ name: item.route }">{{ item.name }}</router-link>
         </li>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     props: {
       items: Array
@@ -21,6 +23,21 @@
     data () {
       return {
         show: false
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'popoverIsVisible'
+      ])
+    },
+    methods: {
+      togglePopover() {
+        if(this.popoverIsVisible) {
+          this.$store.dispatch('HIDE_POPOVER')
+        }
+        else {
+          this.$store.dispatch('SHOW_POPOVER')
+        }
       }
     }
   }

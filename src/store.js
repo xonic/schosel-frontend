@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     MAX_SUPERBETS: 8,
     authenticated: false,
+    showPopover: false,
     status: {},
     users: [],
     allUsers: [],
@@ -66,7 +67,7 @@ export default new Vuex.Store({
     ]
   },
   actions: {
-    REGISTER: function ({commit, dispatch}, userData) {
+    REGISTER ({commit, dispatch}, userData) {
 
       HTTP.post('/register', {
         firstName: userData.firstName,
@@ -75,26 +76,11 @@ export default new Vuex.Store({
         password: userData.password
       })
         .then(res => {
-
-          console.log(res)
-          // // Load all other stuff
-          // dispatch('LOAD_STATUS')
-          // dispatch('LOAD_MATCHES')
-          // dispatch('LOAD_USERS')
-          //
-          // commit('SET_AUTHENTICATED', { authenticated: true })
-          //
-          // // Remember across page loads
-          // localStorage.setItem('authenticated', true)
-          //
-          // // Redirect to requested URL or default to matches
-          // authData.redirect ? router.push({ path: authData.redirect }) : router.push('matches')
           router.push({ name: 'login', query: { registered: "true" } })
-
         })
         .catch(error => console.log(error))
     },
-    LOGIN: function ({commit, dispatch}, authData) {
+    LOGIN ({commit, dispatch}, authData) {
 
       HTTP.post('/login', {
         email: authData.email,
@@ -120,7 +106,7 @@ export default new Vuex.Store({
           commit('SET_ERRORS', { errors: errors.response.data.errors })
         })
     },
-    TRY_AUTO_LOGIN: function ({commit, dispatch}) {
+    TRY_AUTO_LOGIN ({commit, dispatch}) {
       const auth = localStorage.getItem('authenticated')
 
       if(auth) {
@@ -133,7 +119,7 @@ export default new Vuex.Store({
       }
 
     },
-    LOGOUT: function ({commit}) {
+    LOGOUT ({commit}) {
       HTTP.post('/logout')
         .then(res => {
           commit('SET_STATUS', { status: {} })
@@ -145,35 +131,23 @@ export default new Vuex.Store({
         .catch(error => console.log(error))
     },
     async LOAD_STATUS ({ commit }) {
-      console.log('LOAD_STATUS called')
       await HTTP.get('/status').then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
         commit('SET_STATUS', { status: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     async LOAD_MATCHES ({ commit }) {
-      // console.log('LOAD_MATCHES called')
 
       await HTTP.get('/matches').then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
         commit('SET_MATCHES', { matches: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     async LOAD_USERS ({ commit }) {
-      // console.log('LOAD_USERS called')
 
       await HTTP.get('/users').then((response) => {
-        if(response.headers["content-type"] !== "application/json") {
-          window.location.href = 'https://www.schosel.net/worlds2018/login';
-        }
         commit('SET_USERS', { users: response.data })
         commit('SET_SCORES', { users: response.data })
         commit('SET_SCORE_PREVIEWS')
@@ -196,6 +170,12 @@ export default new Vuex.Store({
       }, (err) => {
         console.log(err)
       })
+    },
+    SHOW_POPOVER ({ commit }) {
+      commit('SET_POPOVER_VISIBILITY', { showPopover: true })
+    },
+    HIDE_POPOVER ({ commit }) {
+      commit('SET_POPOVER_VISIBILITY', { showPopover: false })
     }
   },
   mutations: {
@@ -220,8 +200,12 @@ export default new Vuex.Store({
           }
         )
       }
+      if(state.status.user && state.status.user.admin) console.log('scores', state.scores)
     },
     SET_SCORE_PREVIEWS: (state) => {
+
+    if(!state.scores) return
+    if(!state.status || !state.status.user) return
 
     // Iterate the 5 challenges,
     // get logged in user index in score,
@@ -267,6 +251,7 @@ export default new Vuex.Store({
           }
         }
       }
+        if(state.status.user && state.status.user.admin) console.log('scorePreviews', state.scorePreviews)
     },
     SET_ERRORS: (state, { errors }) => {
       state.errors = errors
@@ -274,9 +259,11 @@ export default new Vuex.Store({
     SET_AUTHENTICATED: (state, { authenticated }) => {
       state.authenticated = authenticated
     },
+    SET_POPOVER_VISIBILITY: (state, { showPopover }) => {
+      state.showPopover = showPopover
+    },
     SET_STATUS: (state, { status }) => {
-
-      console.log('status', status)
+      if(state.status.user && state.status.user.admin) console.log('status', status)
 
       if(status.user) {
         status.user['avatar'] = state.avatarUrl + status.user.name
@@ -293,20 +280,14 @@ export default new Vuex.Store({
       state.loadInfo.status = false
     },
     SET_MATCHES: (state, { matches }) => {
+      if(state.status.user && state.status.user.admin) console.log('matches', matches)
 
       state.loadInfo.matches = false
       state.matches = matches
-      console.log('matches', matches)
-
-      // TODO: remove mock data
-      // state.matches.live = state.matches.over.slice(3,4)
-
-      // TODO: remove mock data
-      // state.matches.scheduled = state.matches.over.slice(2,3)
 
       // Get last match
       if (state.matches.over.length) {
-        state.lastMatch =  state.matches.over.slice(0,1)
+        state.lastMatch =  state.matches.over.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0,1)
       }
       // Get upcoming match
       if (state.matches.scheduled.length) {
@@ -314,6 +295,7 @@ export default new Vuex.Store({
       }
     },
     SET_USERS: (state, { users }) => {
+      if(state.status.user && state.status.user.admin) console.log('users', users)
       users.forEach((user) => user.avatar = state.avatarUrl + user.name )
       state.users = users
       state.loadInfo.users = false
@@ -395,7 +377,8 @@ export default new Vuex.Store({
         return {
           ...user,
           rank: user.scores[0].rank,
-          points: user.scores[0].points
+          points: user.scores[0].points,
+          reward: user.scores[0].reward
         }
       }).sort((a, b) => {
         if(a.scores[0].rank === b.scores[0].rank) {
@@ -413,7 +396,8 @@ export default new Vuex.Store({
         return {
           ...user,
           rank: user.scores[1].rank,
-          points: user.scores[1].points
+          points: user.scores[1].points,
+          reward: user.scores[1].reward
         }
       }).sort((a, b) => {
         if(a.scores[1].rank === b.scores[1].rank) {
@@ -431,7 +415,8 @@ export default new Vuex.Store({
         return {
           ...user,
           rank: user.scores[2].rank,
-          points: user.scores[2].points
+          points: user.scores[2].points,
+          reward: user.scores[2].reward
         }
       }).sort((a, b) => {
         if(a.scores[2].rank === b.scores[2].rank) {
@@ -449,7 +434,8 @@ export default new Vuex.Store({
         return {
           ...user,
           rank: user.scores[3].rank,
-          points: user.scores[3].points
+          points: user.scores[3].points,
+          reward: user.scores[3].reward
         }
       }).sort((a, b) => {
         if(a.scores[3].rank === b.scores[3].rank) {
@@ -467,7 +453,8 @@ export default new Vuex.Store({
         return {
           ...user,
           rank: user.scores[4].rank,
-          points: user.scores[4].points
+          points: user.scores[4].points,
+          reward: user.scores[4].reward
         }
       }).sort((a, b) => {
         if(a.scores[4].rank === b.scores[4].rank) {
@@ -481,6 +468,9 @@ export default new Vuex.Store({
 
     errors: state => {
       return state.errors
+    },
+    popoverIsVisible: state => {
+      return state.showPopover
     }
   }
 })

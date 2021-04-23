@@ -1,8 +1,8 @@
 <template>
-  <router-link :to="{ name: score.challenge_route, params: { id: score.challenge_id + '' } }" :class="'score-preview ' + score.challenge_route">
+  <router-link :to="{ name: score.challenge_route, params: { id: score.challenge_id + '' } }" :class="'score-preview ' + score.challenge_route" v-if="score">
 
     <div class="score-preview__header">
-      <img :src="getURL(score.challenge_id - 1)" class="score-preview__icon" />
+      <img v-if="iconPaths.length":src="getURL(score.challenge_id - 1)" class="score-preview__icon" />
       <div class="score-preview__title">
         <div class="score-preview__name h3">
           {{ score.name }}

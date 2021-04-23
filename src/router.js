@@ -25,9 +25,8 @@ import store from './store'
 Vue.use(Router)
 
 let isAdmin = ((to, from, next) => {
-  console.log(store)
 
-  store.dispatch('LOAD_USERS')
+  store.dispatch('LOAD_STATUS')
   .then((response) => {
     if(!store.state.status.user.admin) {
 
@@ -96,8 +95,8 @@ const router =  new Router({
       }
     },
     {
-      path: '/help',
-      name: 'help',
+      path: '/rules',
+      name: 'rules',
       component: Help,
       meta: {
         requiresAuth: true

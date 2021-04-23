@@ -13,7 +13,7 @@
 }
 
 .user-preview {
-  padding: $space-50 0;
+  padding: $space-25 0;
   border-top: 1px solid $gray-12;
   border-bottom: 0;
 
@@ -30,6 +30,10 @@
 .user-preview__chevron {
   flex: 0 1 auto;
   margin: 0 $space-25;
+
+  img {
+    margin-bottom: $space-25!important;
+  }
 }
 
 .user-preview__body {
@@ -38,11 +42,16 @@
 }
 
 .user-preview__chevron {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: stretch;
   max-width: $space-50;
+}
+
+.user-preview__name {
+  margin-bottom: $space-25;
 }
 
 .user-preview__rank {

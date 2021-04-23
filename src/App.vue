@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div id="app" class="app" @click="clickHandler">
     <message v-if="loggedInUser && !loggedInUser.paid" type="error" position="floating">
       Hey, where's the money?!
     </message>
@@ -37,18 +37,26 @@
       this.$store.dispatch('TRY_AUTO_LOGIN')
     },
     mounted () {
+      let self = this
 
       setInterval( () => {
-        if(!this.$store.authenticated) return
-        this.$store.dispatch('LOAD_MATCHES')
-        this.$store.dispatch('LOAD_USERS')
+        if(!self.authenticated) return
+        self.$store.dispatch('LOAD_STATUS')
+        self.$store.dispatch('LOAD_MATCHES')
+        self.$store.dispatch('LOAD_USERS')
       }, 10000);
     },
     computed: {
       ...mapGetters([
-        'loggedInUser'
+        'loggedInUser',
+        'authenticated'
       ])
     },
+    methods: {
+      clickHandler(e) {
+        this.$store.dispatch('HIDE_POPOVER')
+      }
+    }
   }
 </script>
 

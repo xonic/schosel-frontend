@@ -2,20 +2,17 @@
   <table class="rank-grid">
     <thead class="rank-grid__head">
       <tr>
-        <th @click="sort('rank')" class="rank-grid__td">
+        <th class="rank-grid__td">
           Rank
-          <!-- <span v-if="sortKey === 'rank' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'rank' && sortDirection === 'des'"> &darr;</span> -->
         </th>
-        <th @click="sort('name')" class="rank-grid__td">
+        <th class="rank-grid__td">
           Name
-          <!-- <span v-if="sortKey === 'name' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'name' && sortDirection === 'des'"> &darr;</span> -->
         </th>
-        <th @click="sort('score')" class="rank-grid__td">
+        <th class="rank-grid__td">
+          Reward
+        </th>
+        <th class="rank-grid__td">
           Score
-          <!-- <span v-if="sortKey === 'score' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'score' && sortDirection === 'des'"> &darr;</span> -->
         </th>
       </tr>
     </thead>
@@ -30,6 +27,12 @@
           <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }" :class="`rank-grid__name-col`">
             <avatar :src="user.avatar" class="rank-grid__avatar" />
             <div class="rank-grid__name">{{ user.name }}</div>
+          </router-link>
+        </td>
+        <td class="rank-grid__td">
+          <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }" class="nowrap">
+            <span v-if="user.reward">{{ user.reward.toFixed(2) }} &euro;</span>
+            <span v-else class="text--gray-20">-</span>
           </router-link>
         </td>
         <td class="rank-grid__td">
@@ -98,17 +101,6 @@
             break
           }
         })
-      }
-    },
-    methods: {
-      sort(key) {
-        if(this.sortKey === key) {
-          this.sortDirection === 'asc' ? this.sortDirection = 'des' : this.sortDirection = 'asc'
-        }
-        else {
-          this.sortKey = key
-          this.sortDirection = 'asc'
-        }
       }
     }
   }

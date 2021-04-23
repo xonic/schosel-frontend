@@ -92,9 +92,8 @@ export default {
     matchDate: date => {
       let theDate = new Date(date)
       let dateOptions = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
+        weekday: 'short',
+        month: 'numeric',
         day: 'numeric'
       }
       let timeOptions = {

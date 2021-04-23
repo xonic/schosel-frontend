@@ -22,8 +22,8 @@
         </router-link>
       </li>
       <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'help' }">
-          Help
+        <router-link class="nav__link" :to="{ name: 'rules' }">
+          Rules
         </router-link>
       </li>
     </ul>

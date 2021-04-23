@@ -14,6 +14,11 @@
       </apexchart>
 
       <h2 class="h3 main__title">Bets</h2>
+      <ul v-if="matches.live && matches.live.length">
+        <li v-for="match in matches.over">
+          <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
+        </li>
+      </ul>
       <ul v-if="matches.over && matches.over.length">
         <li v-for="match in matches.over">
           <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />

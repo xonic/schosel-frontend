@@ -14,7 +14,11 @@ export default new Vuex.Store({
     users: [],
     allUsers: [],
     errors: [],
-    matches: [],
+    matches: {
+      live: [],
+      over: [],
+      scheduled: []
+    },
     nextMatch: [],
     lastMatch: [],
     ownBets: undefined,
@@ -150,7 +154,6 @@ export default new Vuex.Store({
       await HTTP.get('/users').then((response) => {
         commit('SET_USERS', { users: response.data })
         commit('SET_SCORES', { users: response.data })
-        commit('SET_SCORE_PREVIEWS')
       }, (err) => {
         console.log(err)
       })
@@ -171,6 +174,16 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    async RESET_AVATAR ({dispatch}) {
+      await HTTP.post('/avatar')
+        .then(res => {
+          // Reload logged in user
+          dispatch('LOAD_STATUS')
+        })
+        .catch(errors => {
+          commit('SET_ERRORS', { errors: errors.response.data.errors })
+        })
+    },
     SHOW_POPOVER ({ commit }) {
       commit('SET_POPOVER_VISIBILITY', { showPopover: true })
     },
@@ -180,6 +193,8 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_SCORES: (state, { users }) => {
+
+      state.scores = []
 
       // Iterate the 5 challenges,
       // sort users by challenge rank ,
@@ -201,16 +216,11 @@ export default new Vuex.Store({
         )
       }
       if(state.status.user && state.status.user.admin) console.log('scores', state.scores)
-    },
-    SET_SCORE_PREVIEWS: (state) => {
 
-    if(!state.scores) return
-    if(!state.status || !state.status.user) return
-
-    // Iterate the 5 challenges,
-    // get logged in user index in score,
-    // add preceeding and succeeding players in rank
-    for(let i=0; i<state.scores.length; i++) {
+      // Iterate the 5 challenges,
+      // get logged in user index in score,
+      // add preceeding and succeeding players in rank
+      for(let i=0; i<state.scores.length; i++) {
 
         let loggedInUserIndex = state.scores[i].users.findIndex(user => user.user_id === state.status.user.user_id)
 
@@ -228,7 +238,7 @@ export default new Vuex.Store({
         }
         // Logged in user is ranked last,
         // add the previous two players in rank
-        else if(loggedInUserIndex === state.scores[i].length - 1) {
+        else if(loggedInUserIndex === state.scores[i].users.length - 1) {
           state.scorePreviews[i] = {
             ...state.scoreMeta[i],
             users: [
@@ -251,7 +261,7 @@ export default new Vuex.Store({
           }
         }
       }
-        if(state.status.user && state.status.user.admin) console.log('scorePreviews', state.scorePreviews)
+      if(state.status.user && state.status.user.admin) console.log('scorePreviews', state.scorePreviews)
     },
     SET_ERRORS: (state, { errors }) => {
       state.errors = errors
@@ -266,7 +276,7 @@ export default new Vuex.Store({
       if(state.status.user && state.status.user.admin) console.log('status', status)
 
       if(status.user) {
-        status.user['avatar'] = state.avatarUrl + status.user.name
+        // status.user['avatar'] = state.avatarUrl + status.user.name
 
         if(!status.user.champion || !status.user.champion.team_id) {
           status.user.champion = {
@@ -280,23 +290,77 @@ export default new Vuex.Store({
       state.loadInfo.status = false
     },
     SET_MATCHES: (state, { matches }) => {
-      if(state.status.user && state.status.user.admin) console.log('matches', matches)
+
+      if(state.status.user && state.status.user.admin) console.log('matches', state.matches)
 
       state.loadInfo.matches = false
       state.matches = matches
 
       // Get last match
       if (state.matches.over.length) {
-        state.lastMatch =  state.matches.over.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0,1)
+        state.lastMatch = state.matches.over.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0,1)
       }
       // Get upcoming match
       if (state.matches.scheduled.length) {
-        state.nextMatch =  state.matches.scheduled.slice(0,1)
+        state.nextMatch = state.matches.scheduled.slice(0,1)
       }
+
+      // TODO: remove this mock data
+      // state.matches.live.push(
+      //   {
+      //     "date": "2021-04-23T11:30:00Z",
+      //     "match_id": 9,
+      //     "odds": {
+      //         "1": 0,
+      //         "2": 3,
+      //         "X": 1.5
+      //     },
+      //     "outcome": "2",
+      //     "private_bet": {
+      //         "outcome": "X",
+      //         "points": [
+      //             {
+      //                 "challenge_id": 1,
+      //                 "name": "SCHOSEL",
+      //                 "points": 0
+      //             },
+      //             {
+      //                 "challenge_id": 2,
+      //                 "name": "LOSER",
+      //                 "points": 3
+      //             },
+      //             {
+      //                 "challenge_id": 3,
+      //                 "name": "UNDERDOG",
+      //                 "points": 0
+      //             },
+      //             {
+      //                 "challenge_id": 4,
+      //                 "name": "BALANCED",
+      //                 "points": 0
+      //             },
+      //             {
+      //                 "challenge_id": 5,
+      //                 "name": "COMEBACK",
+      //                 "points": 0
+      //             }
+      //         ],
+      //         "superbet": true
+      //     },
+      //     "stage": "Regular Season - 30",
+      //     "status": "live",
+      //     "team1_goals": 1,
+      //     "team1_iso": "",
+      //     "team1_name": "FC Zurich",
+      //     "team2_goals": 2,
+      //     "team2_iso": "",
+      //     "team2_name": "BSC Young Boys"
+      //   }
+      // )
     },
     SET_USERS: (state, { users }) => {
       if(state.status.user && state.status.user.admin) console.log('users', users)
-      users.forEach((user) => user.avatar = state.avatarUrl + user.name )
+
       state.users = users
       state.loadInfo.users = false
     },
@@ -323,6 +387,7 @@ export default new Vuex.Store({
       return state.matches.live
     },
     scheduledMatches: state => {
+      if(!state.matches || !state.matches.scheduled) return []
       return state.matches.scheduled
     },
     nextMatch: state => {

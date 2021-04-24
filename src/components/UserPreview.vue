@@ -2,12 +2,12 @@
   <router-link :to="{ name: 'user', params: { id: user.user_id + '' } }" class="user-preview">
     <div class="user-preview__avatar">
       <avatar :src="user.avatar" size="medium" />
-      <div class="user-preview__reward text--small text--gray-20 text--center nowrap">{{ user.reward }} &euro;</div>
     </div>
     <div class="user-preview__body">
       <div class="user-preview__name">
         {{ user.name }}
-        <span v-if="loggedInUser && user.user_id === loggedInUser.user_id" class="text--small text--gray-20">(You)</span>
+        <span class="user-preview__reward text--small text--gray-20 text--center nowrap">&nbsp;{{ user.reward.toFixed(2) }} &euro;</span>
+        <span v-if="loggedInUser && user.user_id === loggedInUser.user_id" class="text--small text--gray-20">&nbsp;(You)</span>
       </div>
       <div v-if="user.paid">
         <ul class="user-preview__ranks">

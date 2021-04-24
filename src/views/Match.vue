@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="page--match">
     <div class="wrapper">
       <h1 class="h2 main__title">Match</h1>
       <match-preview

@@ -2,7 +2,7 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">Scores</h1>
-      <ul v-if="scorePreviews.length">
+      <ul v-if="previews.length">
         <li v-for="(score, index) in scorePreviews">
           <score-preview :score="scorePreviews[index]" :challenge-id="index" />
         </li>
@@ -11,7 +11,7 @@
         <div class="blankslate__avatar">
           <avatar :src="avatarUrl + Math.random()" size="xlarge" />
         </div>
-        <div class="blankslate__text">No one scored anything yet</div>
+        <div class="blankslate__text">Loading...</div>
       </div>
     </div>
   </main>
@@ -27,6 +27,21 @@ export default {
   components: {
     ScorePreview,
     Avatar
+  },
+  data () {
+    return {
+      previews: []
+    }
+  },
+  mounted () {
+
+    if(!this.previews.length) {
+      this.$store
+      .dispatch('LOAD_USERS')
+      .then((response) => {
+        this.previews = this.scorePreviews
+      })
+    }
   },
   computed: {
     ...mapGetters([

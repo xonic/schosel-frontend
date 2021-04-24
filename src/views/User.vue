@@ -1,11 +1,11 @@
 <template>
   <main>
     <div class="wrapper">
-      <div v-if="user && user.avatar" class="user__avatar">
+      <div v-if="user && user.avatar" class="user__avatar" @click="resetAvatar()">
         <avatar :src="user.avatar" size="xlarge" />
       </div>
       <h1 v-if="user" class="h2 text--center">{{ user.name }}</h1>
-      <h2 v-if="user" class="h3 main__title text--gray-20">{{ user.reward }} &euro;</h2>
+      <h2 v-if="user" class="h3 main__title text--gray-20">{{ user.reward.toFixed(2) }} &euro;</h2>
       <apexchart
         v-if="user && user.scores"
         type="radar"
@@ -183,6 +183,15 @@ export default {
         return userBet && userBet.bet ? userBet.bet : null
       }
     },
+    async resetAvatar() {
+      console.log('Dispatching avatar reset')
+      await this.$store.dispatch('RESET_AVATAR').then(res => {
+        this.$store.dispatch('LOAD_USERS')
+        .then((response) => {
+          this.user = this.allUsers.find(user => user.user_id === parseInt(this.id, 10))
+        })
+      })
+    }
   }
 }
 </script>

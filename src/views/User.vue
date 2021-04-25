@@ -248,15 +248,15 @@ export default {
     },
     homeBets() {
       if(!this.user || !this.user.public_bets) return false
-      return this.user.public_bets.filter(bet => bet.outcome === '1').length
+      return this.user.public_bets.filter(bet => bet.bet.outcome === '1').length
     },
     drawBets() {
       if(!this.user || !this.user.public_bets) return false
-      return this.user.public_bets.filter(bet => bet.outcome === 'X').length
+      return this.user.public_bets.filter(bet => bet.bet.outcome === 'X').length
     },
     awayBets() {
       if(!this.user || !this.user.public_bets) return false
-      return this.user.public_bets.filter(bet => bet.outcome === '2').length
+      return this.user.public_bets.filter(bet => bet.bet.outcome === '2').length
     },
     getBetStats() {
       this.betStats[0].data.push(this.homeBets())

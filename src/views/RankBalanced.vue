@@ -1,6 +1,7 @@
 <template>
   <main>
     <div class="wrapper">
+      <div class="text--center"><img v-if="iconPaths.length" :src="getURL(3)" /></div>
       <h1 class="h2 text--center text--magenta">Balanced</h1>
       <div class="text--small text--gray-20 main__title">Most correct bets on draw with odds</div>
       <rank-grid v-if="balancedScore.length" :data="balancedScore" />
@@ -28,8 +29,14 @@
     computed: {
       ...mapGetters([
         'balancedScore',
+        'iconPaths',
         'avatarUrl'
       ])
+    },
+    methods: {
+      getURL(index) {
+        return require(`../assets/img/icons/${this.iconPaths[index]}`)
+      }
     }
   }
 </script>

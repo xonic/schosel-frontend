@@ -1,8 +1,9 @@
 <template>
   <main>
     <div class="wrapper">
-      <h1 class="h2 text--center text--orange">Secret</h1>
-      <div class="text--small text--gray-20 main__title">Will be revealed after the tournament</div>
+      <div class="text--center"><img v-if="iconPaths.length" :src="getURL(4)" /></div>
+      <h1 class="h2 text--center text--orange">Comeback</h1>
+      <div class="text--small text--gray-20 main__title">Bets on teams who were behind but won</div>
       <rank-grid v-if="secretScore.length" :data="secretScore" />
       <div v-else class="blankslate">
         <div class="blankslate__avatar">
@@ -20,7 +21,7 @@
   import Avatar from '@/components/Avatar'
 
   export default {
-    name: 'secret',
+    name: 'comeback',
     components: {
       RankGrid,
       Avatar
@@ -28,8 +29,14 @@
     computed: {
       ...mapGetters([
         'secretScore',
+        'iconPaths',
         'avatarUrl'
       ])
+    },
+    methods: {
+      getURL(index) {
+        return require(`../assets/img/icons/${this.iconPaths[index]}`)
+      }
     }
   }
 </script>

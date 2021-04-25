@@ -65,9 +65,9 @@ export default new Vuex.Store({
       },
       {
         challenge_id: 5,
-        challenge_route: 'secret',
-        description: 'Will be revealed after the tournament',
-        name: "Secret"
+        challenge_route: 'comeback',
+        description: 'Bets on teams who were behind but won',
+        name: "Comeback"
       }
     ]
   },

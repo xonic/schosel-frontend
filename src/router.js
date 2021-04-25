@@ -144,8 +144,8 @@ const router =  new Router({
       }
     },
     {
-      path: '/scores/secret',
-      name: 'secret',
+      path: '/scores/comeback',
+      name: 'comeback',
       component: Secret,
       meta: {
         requiresAuth: true

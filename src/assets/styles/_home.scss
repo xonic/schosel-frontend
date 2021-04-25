@@ -7,4 +7,8 @@
 .last-match-day {
   display: flex;
   justify-content: space-between;
+
+  a {
+    border-color: transparent;
+  }
 }

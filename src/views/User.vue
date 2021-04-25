@@ -17,6 +17,7 @@
       <h2 class="h3 main__title">Bets</h2>
 
       <div class="text--small text--gray-20 text--center">{{ totalBets() }} of {{ totalMatchesPlayed() }} bets placed</div>
+      <div class="text--small text--gray-20 text--center">{{ remainingSuperbets() }} superbets remaining</div>
 
       <apexchart
         v-if="totalBets()"
@@ -216,9 +217,6 @@ export default {
         }
       }
     },
-    // remainingSuperbets () {
-    //   return 8 - this.user.visible_superbets
-    // },
     // bets () {
     //   return this.user.bets.map(bet => {
     //     return {
@@ -264,6 +262,10 @@ export default {
       this.betStats[0].data.push(this.homeBets())
       this.betStats[0].data.push(this.drawBets())
       this.betStats[0].data.push(this.awayBets())
+    },
+    remainingSuperbets () {
+      if(!this.user || !this.user.public_bets) return false
+      return 8 - (this.user.public_bets.filter(bet => bet.bet.superbet).length || 0)
     },
     async resetAvatar() {
       console.log('Dispatching avatar reset')

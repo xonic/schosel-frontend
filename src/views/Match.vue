@@ -8,7 +8,7 @@
         :bet="betForMatch(match)"
       />
       <ul v-if="allUsers.length">
-        <li v-for="user in allUsers">
+        <li v-for="user in usersByPoints">
           <user-preview :user="user" type="score" :match-id="match.match_id" />
         </li>
       </ul>
@@ -67,7 +67,17 @@
         'matches',
         'allUsers',
         'loggedInUser'
-      ])
+      ]),
+      usersByPoints() {
+
+        if(!this.allUsers || !this.id) return
+
+        const self = this
+
+        return self.allUsers.sort((a, b) =>
+        b.public_bets.find(bet => bet.match_id == self.id).bet.totalPoints -
+        a.public_bets.find(bet => bet.match_id == self.id).bet.totalPoints)
+      }
     },
     methods: {
       betForMatch(match) {

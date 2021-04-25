@@ -363,6 +363,19 @@ export default new Vuex.Store({
     SET_USERS: (state, { users }) => {
       if(state.status.user && state.status.user.admin) console.log('users', users)
 
+
+      users.forEach((user, i) => {
+
+          if(!user.public_bets.length) return
+
+          user.public_bets.forEach((bet, i) => {
+            bet.bet['totalPoints'] = 0
+            bet.bet.points.forEach((point, i) => {
+              bet.bet.totalPoints += point.points
+            })
+          })
+      })
+
       state.users = users
       state.loadInfo.users = false
     },

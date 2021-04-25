@@ -2,10 +2,11 @@
   <router-link class="match-preview" :to="{ path: `/matches/${match.match_id}` }">
     <div class="match-preview__body">
       <div class="match-preview__live is-live" v-if="match.status === 'live'">
-        58' played
+        <div v-if="match.api_data">{{ match.api_data.status }}</div>
+        <div v-if="match.api_data">{{ match.api_data.elapsed }}' played</div>
       </div>
       <div class="match-preview__over" v-else>
-        <div>Over</div>
+        <div v-if="match.api_data">{{ match.api_data.status }}</div>
         <div>{{ matchDate(match.date) }}</div>
       </div>
       <div class="match-preview__info">

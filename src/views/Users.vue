@@ -1,11 +1,10 @@
 <template>
-  <main>
+  <main class="users">
     <div class="wrapper">
-      <h1 class="h2 main__title">Users</h1>
+      <h1 class="h2 main__title">You</h1>
+      <user-preview :user="loggedInUser" v-if="loggedInUser" />
+      <h2 class="h3 main__title">Everybody else</h2>
       <ul v-if="allUsers.length && loggedInUser">
-        <li>
-          <user-preview :user="loggedInUser" />
-        </li>
         <li v-for="user in usersByReward">
           <user-preview v-if="user.user_id !== loggedInUser.user_id" :user="user" />
         </li>

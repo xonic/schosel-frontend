@@ -20,6 +20,10 @@
   &:hover {
     background: $gray-12;
   }
+
+  .users > .wrapper > & {
+    margin-bottom: $space-100;
+  }
 }
 
 .user-preview__ranks {

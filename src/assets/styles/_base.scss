@@ -19,6 +19,7 @@
 @import 'avatar';
 @import 'rank-chart';
 @import 'available-superbets';
+@import 'help';
 @import 'admin';
 
 * {
@@ -153,6 +154,7 @@ h3, .h3 {
   position: relative;
   max-width: 36rem;
   margin: 0 auto;
+  padding: 0 $space-25;
 }
 
 .footer {

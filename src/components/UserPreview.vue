@@ -6,9 +6,8 @@
     <div class="user-preview__body">
       <div class="user-preview__name">
         {{ user.name }}
-        <span v-if="(loggedInUser && user.user_id === loggedInUser.user_id) && type !== 'score'" class="text--small text--gray-20">&nbsp;(You)</span>
         <span v-if="type === 'score' && matchId" class="user-preview__reward text--small text--gray-20 text--center nowrap">&nbsp;{{ getUserBetOutcome(matchId) }}</span>
-        <span v-if="type === 'score' && user.public_bets.find(bet => bet.match_id === this.matchId).bet.superbet">
+        <span v-if="type === 'score' && getUserSuperBet()">
           &nbsp;<super-bet :correct="true" />
         </span>
         <span v-if="type !== 'score'" class="user-preview__reward text--small text--gray-20 text--center nowrap">&nbsp;{{ user.reward.toFixed(2) }} &euro;</span>
@@ -80,13 +79,17 @@
         return this.user.public_bets.find(bet => bet.match_id === this.matchId)
       },
       getUserBetOutcome() {
-        if(!this.user || !this.user.public_bets) return
+        if(!this.user || !this.user.public_bets) return false
         let bet = this.user.public_bets.find(bet => bet.match_id === this.matchId)
         let betOutcome = bet.bet.outcome
 
         if(betOutcome === '1') return bet.team1_name
         if(betOutcome === 'X') return 'Draw'
         if(betOutcome === '2') return bet.team2_name
+      },
+      getUserSuperBet() {
+        if((!this.user || !this.user.public_bets) || !this.matchId) return false
+        return this.user.public_bets.find(bet => bet.match_id === this.matchId).bet.superbet
       }
     }
   }

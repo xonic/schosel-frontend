@@ -222,6 +222,8 @@ export default new Vuex.Store({
       // add preceeding and succeeding players in rank
       for(let i=0; i<state.scores.length; i++) {
 
+        if(!state.scores[i].users.length || !state.status.user) return
+
         let loggedInUserIndex = state.scores[i].users.findIndex(user => user.user_id === state.status.user.user_id)
 
         // Logged in user is ranked first,

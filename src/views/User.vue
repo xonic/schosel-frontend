@@ -5,7 +5,7 @@
         <avatar :src="user.avatar" size="xlarge" />
       </div>
       <h1 v-if="user" class="h2 text--center">{{ user.name }}</h1>
-      <h2 v-if="user" class="h3 main__title text--gray-20">{{ user.reward.toFixed(2) }} &euro;</h2>
+      <h2 v-if="user && user.reward >= 0" class="h3 main__title text--gray-20">{{ user.reward.toFixed(2) }} &euro;</h2>
       <apexchart
         v-if="user && user.scores"
         type="radar"

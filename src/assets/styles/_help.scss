@@ -1,0 +1,39 @@
+
+.help {
+
+  .h3 {
+    margin-bottom: $space-50;
+  }
+
+  .btn {
+    display: inline-block;
+  }
+
+  .score-preview__icon {
+    display: inline-block;
+    width: $space-75;
+    height: $space-75;
+    vertical-align: middle;
+  }
+
+  p, ul, ol, .btn {
+    margin-bottom: $space-100;
+  }
+
+  strong {
+    font-weight: $bold-font-weight;
+    color: $green-100;
+  }
+
+  ul, ol {
+    padding-left: $space-50;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+}

@@ -50,11 +50,6 @@ export default {
       'iconPaths',
       'avatarUrl'
     ])
-  },
-  methods: {
-    getURL(index) {
-      return require(`../assets/img/icons/${this.iconPaths[index]}`)
-    }
   }
 }
 </script>

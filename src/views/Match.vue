@@ -51,7 +51,6 @@
             // this.matches.scheduled.find(match => match.match_id === parseInt(this.id, 10)) ||
             this.matches.live.find(match => match.match_id === parseInt(this.id, 10)) ||
             this.matches.over.find(match => match.match_id === parseInt(this.id, 10))
-
         })
       }
       // Else it has already loaded and current match
@@ -77,7 +76,7 @@
 
           return userBet && userBet.bet ? userBet.bet : null
         }
-      },
+      }
     }
   }
 </script>

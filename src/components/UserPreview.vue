@@ -6,8 +6,12 @@
     <div class="user-preview__body">
       <div class="user-preview__name">
         {{ user.name }}
-        <span class="user-preview__reward text--small text--gray-20 text--center nowrap">&nbsp;{{ user.reward.toFixed(2) }} &euro;</span>
-        <span v-if="loggedInUser && user.user_id === loggedInUser.user_id" class="text--small text--gray-20">&nbsp;(You)</span>
+        <span v-if="(loggedInUser && user.user_id === loggedInUser.user_id) && type !== 'score'" class="text--small text--gray-20">&nbsp;(You)</span>
+        <span v-if="type === 'score' && matchId" class="user-preview__reward text--small text--gray-20 text--center nowrap">&nbsp;{{ getUserBetOutcome(matchId) }}</span>
+        <span v-if="type === 'score' && user.public_bets.find(bet => bet.match_id === this.matchId).bet.superbet">
+          &nbsp;<super-bet :correct="true" />
+        </span>
+        <span v-if="type !== 'score'" class="user-preview__reward text--small text--gray-20 text--center nowrap">&nbsp;{{ user.reward.toFixed(2) }} &euro;</span>
       </div>
       <div v-if="user.paid">
         <ul class="user-preview__ranks">
@@ -30,6 +34,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import Avatar from '@/components/Avatar.vue'
+  import SuperBet from '@/components/SuperBet'
 
   export default {
     name: 'user-preview',
@@ -39,7 +44,8 @@
       matchId: Number
     },
     components: {
-      Avatar
+      Avatar,
+      SuperBet
     },
     computed: {
       ...mapGetters([
@@ -52,24 +58,35 @@
         return require(`../assets/img/icons/${this.iconPaths[index]}`)
       },
       getScore (score, id) {
+
+        // This UserPreview is related to a specific matches
+        // hence there is a matchId and it is considered a score user preview
         if (this.matchId) {
-          let userBet = this.user.public_bets.find(bet => bet.match_id === this.matchId)
+
+          let userBet = this.getUserBet()
 
           // console.log('userbet', userBet)
 
           if(userBet && userBet.bet) {
-            return userBet.bet.points[id].points.toFixed(2)
-          }
-          else {
-            return "0.00"
+            return userBet.bet.points[id].points > 0 ? `+${userBet.bet.points[id].points.toFixed(2)}` : '0'
           }
         }
-        if (this.type === 'score') {
-          return score.points.toFixed(2)
-        }
+        // There is no matchId hence this is considered a rank user preview
         else {
           return score.rank + '.'
         }
+      },
+      getUserBet() {
+        return this.user.public_bets.find(bet => bet.match_id === this.matchId)
+      },
+      getUserBetOutcome() {
+        if(!this.user || !this.user.public_bets) return
+        let bet = this.user.public_bets.find(bet => bet.match_id === this.matchId)
+        let betOutcome = bet.bet.outcome
+
+        if(betOutcome === '1') return bet.team1_name
+        if(betOutcome === 'X') return 'Draw'
+        if(betOutcome === '2') return bet.team2_name
       }
     }
   }

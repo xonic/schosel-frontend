@@ -6,7 +6,7 @@
         <li>
           <user-preview :user="loggedInUser" />
         </li>
-        <li v-for="user in allUsers">
+        <li v-for="user in usersByReward">
           <user-preview v-if="user.user_id !== loggedInUser.user_id" :user="user" />
         </li>
       </ul>
@@ -37,7 +37,20 @@ export default {
       'allUsers',
       'loggedInUser',
       'avatarUrl'
-    ])
+    ]),
+    usersByReward() {
+      if(!this.allUsers) return []
+
+      return this.allUsers.sort((a, b) => {
+
+        if(a.reward === b.reward) {
+          return a.name.localeCompare(b.name)
+        }
+        else {
+          return (a.reward > b.reward) ? 1 : -1
+        }
+      })
+    }
   }
 }
 </script>

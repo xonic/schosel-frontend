@@ -239,11 +239,11 @@ export default {
       }
     },
     totalMatchesPlayed() {
-      if(!this.matches) return false
+      if(!this.matches) return 0
       return (this.matches.live.length || 0) + (this.matches.over.length || 0)
     },
     totalBets() {
-      if(!this.user || !this.user.public_bets) return false
+      if(!this.user || !this.user.public_bets) return 0
       return this.user.public_bets.length
     },
     homeBets() {
@@ -264,7 +264,7 @@ export default {
       this.betStats[0].data.push(this.awayBets())
     },
     remainingSuperbets () {
-      if(!this.user || !this.user.public_bets) return false
+      if(!this.user || !this.user.public_bets) return 0
       return 8 - (this.user.public_bets.filter(bet => bet.bet.superbet).length || 0)
     },
     async resetAvatar() {

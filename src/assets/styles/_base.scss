@@ -139,6 +139,13 @@ h3, .h3 {
   }
 }
 
+.icon--zero-points {
+  img {
+    filter: grayscale(1) brightness(1);
+    opacity: .4;
+  }
+}
+
 .main {
   padding: $space-100 0;
   background: $body-bg;

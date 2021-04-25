@@ -1,5 +1,10 @@
 
 
 .home__section {
-  margin-bottom: $space-100;
+  margin-bottom: $space-150;
+}
+
+.last-match-day {
+  display: flex;
+  justify-content: space-between;
 }

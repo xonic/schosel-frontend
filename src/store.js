@@ -20,6 +20,7 @@ export default new Vuex.Store({
       scheduled: []
     },
     nextMatch: [],
+    nextMatchDay: [],
     lastMatch: [],
     ownBets: undefined,
     loadInfo: {
@@ -307,6 +308,22 @@ export default new Vuex.Store({
         state.nextMatch = state.matches.scheduled.slice(0,1)
       }
 
+
+      // Get upcoming match day
+      if (state.nextMatch && state.matches.scheduled.length) {
+
+        let nextMatchDate = new Date(state.nextMatch[0].date)
+
+        state.nextMatchDay = state.matches.scheduled.filter(match => {
+
+          const matchDate = new Date(match.date)
+
+          return (matchDate.getFullYear() === nextMatchDate.getFullYear() &&
+                  matchDate.getMonth() === nextMatchDate.getMonth()) &&
+                  matchDate.getDate() === nextMatchDate.getDate()
+        })
+      }
+
       // TODO: remove this mock data
       // state.matches.live.push(
       //   {
@@ -407,6 +424,9 @@ export default new Vuex.Store({
     },
     nextMatch: state => {
       return state.nextMatch
+    },
+    nextMatchDay: state => {
+      return state.nextMatchDay
     },
     allUsers: state => {
       return state.users

@@ -5,19 +5,23 @@
         58' played
       </div>
       <div class="match-preview__over" v-else>
-        Over - {{ matchDate(match.date) }}
+        <div>Over</div>
+        <div>{{ matchDate(match.date) }}</div>
       </div>
       <div class="match-preview__info">
         <div class="match-preview__team">
           <div class="match-preview__flag">
             <flag :iso="match.team1_iso" :is-bet="bet.outcome === '1'" />
+            <div v-if="bet.superbet && bet.outcome === '1'" class="match-preview__superbet">
+              <super-bet :correct="true" />
+            </div>
           </div>
           <div :class="bet.outcome === '1' ? 'match-preview__name match-preview__name--is-bet' : 'match-preview__name'">
             {{ match.team1_name }}
           </div>
           <div :class="bet.outcome === '1' ? 'match-preview__odds match-preview__odds--is-correct-bet' : 'match-preview__odds'">
             {{ match.odds['1'].toFixed(2) }}
-            <super-bet v-if="match.superbet" />
+            <span v-if="bet.superbet && bet.outcome === '1'"> x 2</span>
           </div>
         </div>
         <div class="match-preview__result">
@@ -25,23 +29,29 @@
             {{ match.team1_goals }}:{{ match.team2_goals }}
           </div>
           <div :class="bet.outcome === 'X' ? `match-preview__draw text--yellow` : 'match-preview__draw'">
-            Draw
+            <span>Draw </span>
+            <span v-if="bet.superbet && bet.outcome === 'X'">
+              <super-bet :correct="true" />
+            </span>
           </div>
           <div :class="bet.outcome === 'X' ? 'match-preview__odds text--yellow' : 'match-preview__odds'">
             {{ match.odds['X'].toFixed(2) }}
-            <super-bet v-if="match.superbet" />
+            <span v-if="bet.superbet && bet.outcome === 'X'"> x 2</span>
           </div>
         </div>
         <div class="match-preview__team">
           <div class="match-preview__flag">
             <flag :iso="match.team2_iso" :is-bet="bet.outcome === '2'" />
+            <div v-if="bet.superbet && bet.outcome === '2'" class="match-preview__superbet">
+              <super-bet :correct="true" />
+            </div>
           </div>
           <div :class="bet.outcome === '2' ? 'match-preview__name match-preview__name--is-bet' : 'match-preview__name'">
             {{ match.team2_name }}
           </div>
           <div :class="bet.outcome === '2' ? 'match-preview__odds match-preview__odds--is-correct-bet' : 'match-preview__odds'">
             {{ match.odds['2'].toFixed(2) }}
-            <super-bet v-if="match.superbet" />
+            <span v-if="bet.superbet && bet.outcome === '2'"> x 2</span>
           </div>
         </div>
       </div>

@@ -48,12 +48,27 @@
 }
 
 .match-preview__flag {
-
+  position: relative;
   margin-bottom: $space-25;
 
   .flag {
     margin: 0 auto;
   }
+}
+
+.match-preview__superbet {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: $space-100;
+  height: $space-100;
+  border: 2px solid $yellow-100;
+  border-radius: 999em;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba($black, .4);
 }
 
 .match-preview__odds {

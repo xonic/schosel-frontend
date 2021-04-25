@@ -3,9 +3,8 @@
     <div class="wrapper" v-if="loggedInUser">
       <div v-if="loggedInUser.admin" class="help">
         <h1 class="h2 main__title">Rules</h1>
-        <h2 class="h3">Community</h2>
         <p>
-          If you have specific questions regarding Schosel or you simply like to be in touch with other Schosel players to chat and discuss the game, feel free to join our <div><a class="btn btn--primary" href="https://bit.ly/3aigIWv">Signal group chat</a></div>
+          First of all you must <strong>join our Signal group chat</strong> for latest news and high quality trash talk!<div><a class="btn btn--primary" href="https://bit.ly/3aigIWv">Join group chat</a></div>
         </p>
         <h2 class="h3">Payment</h2>
         <p>

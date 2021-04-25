@@ -6,14 +6,25 @@
       </div>
       <h1 v-if="user" class="h2 text--center">{{ user.name }}</h1>
       <h2 v-if="user && user.reward >= 0" class="h3 main__title text--gray-20">{{ user.reward.toFixed(2) }} &euro;</h2>
+
       <apexchart
         v-if="user && user.scores"
         type="radar"
-        :options="chartOptions"
+        :options="radarChartOptions"
         :series="reversedDatasets">
       </apexchart>
 
       <h2 class="h3 main__title">Bets</h2>
+
+      <div class="text--small text--gray-20 text--center">{{ totalBets() }} of {{ totalMatchesPlayed() }} bets placed</div>
+
+      <apexchart
+        v-if="totalBets()"
+        type="bar"
+        :options="betChartOptions"
+        :series="betStats">
+      </apexchart>
+
       <ul v-if="matches.live && matches.live.length">
         <li v-for="match in matches.over">
           <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
@@ -46,7 +57,11 @@ export default {
   },
   data () {
     return {
-      user: {}
+      user: {},
+      betStats: [{
+        data: [],
+        name: 'Bets'
+      }]
     }
   },
   props: {
@@ -62,12 +77,14 @@ export default {
       .dispatch('LOAD_USERS')
       .then((response) => {
         this.user = this.allUsers.find(user => user.user_id === parseInt(this.id, 10))
+        this.getBetStats()
       })
     }
     // Else it has already loaded and current user
     // still needs to be found and set
     else {
       this.user = this.allUsers.find(user => user.user_id === parseInt(this.id, 10))
+      this.getBetStats()
     }
   },
   computed: {
@@ -80,10 +97,10 @@ export default {
     reversedDatasets() {
       return [{
         name: 'Points',
-        data: this.chartOptions.datasets[0].data.map(value => this.allUsers.length + 1 - value)
+        data: this.radarChartOptions.datasets[0].data.map(value => this.allUsers.length + 1 - value)
       }]
     },
-    chartOptions () {
+    radarChartOptions () {
       return {
         chart: {
           id: 'rank-chart',
@@ -159,6 +176,46 @@ export default {
         ]
       }
     },
+    betChartOptions () {
+      return {
+        chart: {
+          id: 'betChart',
+          background: 'transparent',
+          toolbar: {
+            show: false
+          }
+        },
+        theme: {
+          mode: 'dark'
+        },
+        dataLabels: {
+          style: {
+            colors: ['#2D292E']
+          }
+        },
+        markers: {
+          colors: ['#2D292E']
+        },
+        fill: {
+          colors: ['#63BEFF']
+        },
+        grid: {
+          show: false
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true
+          }
+        },
+        xaxis: {
+          categories: [ 'Home', 'Draw', 'Away' ]
+        },
+        yaxis: {
+          show: true
+        }
+      }
+    },
     // remainingSuperbets () {
     //   return 8 - this.user.visible_superbets
     // },
@@ -182,6 +239,31 @@ export default {
 
         return userBet && userBet.bet ? userBet.bet : null
       }
+    },
+    totalMatchesPlayed() {
+      if(!this.matches) return false
+      return (this.matches.live.length || 0) + (this.matches.over.length || 0)
+    },
+    totalBets() {
+      if(!this.user || !this.user.public_bets) return false
+      return this.user.public_bets.length
+    },
+    homeBets() {
+      if(!this.user || !this.user.public_bets) return false
+      return this.user.public_bets.filter(bet => bet.outcome === '1').length
+    },
+    drawBets() {
+      if(!this.user || !this.user.public_bets) return false
+      return this.user.public_bets.filter(bet => bet.outcome === 'X').length
+    },
+    awayBets() {
+      if(!this.user || !this.user.public_bets) return false
+      return this.user.public_bets.filter(bet => bet.outcome === '2').length
+    },
+    getBetStats() {
+      this.betStats[0].data.push(this.homeBets())
+      this.betStats[0].data.push(this.drawBets())
+      this.betStats[0].data.push(this.awayBets())
     },
     async resetAvatar() {
       console.log('Dispatching avatar reset')

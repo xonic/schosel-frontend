@@ -1,21 +1,21 @@
 <template>
   <main>
     <div class="wrapper" v-if="loggedInUser">
-      <div v-if="loggedInUser.admin" class="help">
+      <div class="help">
         <h1 class="h2 main__title">Rules</h1>
         <p>
-          First of all you must <strong>join our Signal group chat</strong> for latest news and high quality trash talk!<div><a class="btn btn--primary" href="https://bit.ly/3aigIWv">Join group chat</a></div>
+          First of all <strong>join our Signal group chat</strong> for latest news and high quality trash talk!<div><a class="btn btn--primary" href="https://bit.ly/3aigIWv">Join group chat</a></div>
         </p>
         <h2 class="h3">Payment</h2>
         <p>
-          The participation fee for the whole tournament is <strong>10 EUR / 11 CHF</strong>. After registration you'll get an email from <a href="mailto:info@schosel.net">info@schosel.net</a> containing the bank transfer payment instructions. In case you didn't get the email after registration, please shoot us an email at the mentioned address.
+          The participation fee for the whole tournament is <strong>10 EUR / 11 CHF</strong>. After registration you'll get an email containing the bank transfer and alternative PayPal payment instructions. In case you didn't get the email after registration, please let us know at <a href="mailto:team.schosel@gmail.com">team.schosel@gmail.com</a>.
         </p>
         <p>
-          Every registered player <strong>will be disqualified</strong> if their participation fee is not transferred to the Schosel bank account <strong>before the first match begins</strong>.
+          Every registered player <strong>will be disqualified</strong> if their participation fee is not transferred to the Schosel bank or PayPal account <strong>before the first match begins</strong>.
         </p>
         <h2 class="h3">Price money</h2>
         <p>
-          The pot equals the sum of all players participation fees. It will be fully paid out to the best players. If you bet on the right (or wrong) outcome of matches and the final cup winner you collect points for each of the 4 scores. Each score is worth <strong>20%</strong> of the entire pot. If you make it to the top 3 of the score list in a category you win some cash. Here's what's in for you:
+          The pot equals the sum of all players participation fees. It will be fully paid out to the best players. If you bet on the right (or wrong) outcome of matches and the final cup winner you collect points for each of the 5 scores. Each score is worth <strong>20%</strong> of the entire pot. If you make it to the top 3 of the score list in a category you win some cash. Here's what's in for you:
         </p>
         <ol>
           <li>First place <strong>50%</strong> (<strong>10%</strong> of the whole pot)</li>
@@ -32,11 +32,11 @@
         <ul>
           <li><strong>During the whole tournament</strong> you can place <strong>8 super bets</strong> which double the points you get for your bet</li>
           <li>You can <strong>only place and change your final cup winner bet until the first match begins</strong></li>
-          <li>Bets are made for the final outcome of the game <strong>before a potential penalty shootout</strong></li>
+          <li>Bets are made for the final outcome of the game <strong>before a potential penalty shootout (120 minutes)</strong></li>
         </ul>
         <h2 class="h3">Odds</h2>
         <p>
-          Odds determine the <strong>amount of points you get for each correct bet</strong>. If many players place the same bet they get less points. In case only few players place the same bet they are rewarded with more points. Odds only become visible after the match started and no player can change their bet anymore.
+          Odds determine the <strong>amount of points you get for each bet</strong>. If many players place the same bet they get less points. In case only few players place the same bet they are rewarded with more points. Odds only become visible after the match started and no player can change their bet anymore.
         </p>
         <h2 class="h3">Odd calculation</h2>
         <p>
@@ -73,7 +73,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Switzerland</li>
           <li>Switzerland wins</li>
-          <li>You get +10.00 points</li>
+          <li>You get <strong class="text--cyan">+10.00</strong> points in score <strong class="text--cyan">Schosel</strong></li>
+          <li>You also get <strong class="text--purple">+10.00</strong> points in score <strong class="text--purple">Underdog</strong> because less people bet on Switzerland, hence they're considered the Underdog</li>
         </ul>
         <h2 class="h3 text--blue">
           <img v-if="iconPaths.length" :src="getURL(1)" class="score-preview__icon" /> Loser
@@ -86,8 +87,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Germany</li>
           <li>Switzerland wins</li>
-          <li>You get +1.50 points</li>
-          <li>If you bet on a draw, you would have gotten 2.50 points</li>
+          <li>You get <strong class="text--blue">+1.50</strong> points in score <strong class="text--blue">Loser</strong></li>
+          <li>If you bet on a draw, you would have gotten <strong class="text--blue">+2.50</strong> points in score <strong class="text--blue">Loser</strong></li>
         </ul>
         <h2 class="h3 text--purple">
           <img v-if="iconPaths.length" :src="getURL(2)" class="score-preview__icon" /> Underdog
@@ -100,7 +101,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Switzerland</li>
           <li>Switzerland wins</li>
-          <li>You get +10.00 points</li>
+          <li>You get <strong class="text--purple">+10.00</strong> points in score <strong class="text--purple">Underdog</strong></li>
+          <li>You also get <strong class="text--cyan">+10.00</strong> points in score <strong class="text--cyan">Schosel</strong> since you bet on the correct outcome</li>
         </ul>
         <h2 class="h3 text--magenta">
           <img v-if="iconPaths.length" :src="getURL(3)" class="score-preview__icon" /> Balanced
@@ -113,7 +115,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Draw</li>
           <li>The match ends in a draw</li>
-          <li>You get +2.50 points</li>
+          <li>You get <strong class="text--magenta">+2.50</strong> points in score <strong class="text--magenta">Balanced</strong></li>
+          <li>You also get <strong class="text--cyan">+2.50</strong> points in score <strong class="text--cyan">Schosel</strong> since you bet on the correct outcome</li>
         </ul>
         <h2 class="h3 text--orange">
           <img v-if="iconPaths.length" :src="getURL(4)" class="score-preview__icon" /> Comeback
@@ -128,15 +131,14 @@
           <li>Switzerland scores the first goal</li>
           <li>Germany fights back and scores two goals</li>
           <li>The match ends Germany 2:1 Switzerland</li>
-          <li>You get +1.50 points</li>
+          <li>You get <strong class="text--orange">+1.50</strong> points in score <strong class="text--orange">Comeback</strong></li>
+          <li>You also get <strong class="text--cyan">+1.50</strong> points in score <strong class="text--cyan">Schosel</strong> since you bet on the correct outcome</li>
         </ul>
+        <h2 class="h3">Champion bet outcome</h2>
+        <p>
+          If you bet on the correct cup winner the points based on odds are added <strong>to your total points in each score</strong>
+        </p>
         <strong>Have fun and good luck! :)</strong>
-      </div>
-      <div v-else class="blankslate">
-        <div class="blankslate__avatar">
-          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
-        </div>
-        <div class="blankslate__text">Here be rules soon</div>
       </div>
     </div>
   </main>

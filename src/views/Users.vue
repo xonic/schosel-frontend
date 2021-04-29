@@ -46,7 +46,7 @@ export default {
           return a.name.localeCompare(b.name)
         }
         else {
-          return (a.reward > b.reward) ? 1 : -1
+          return b.reward - a.reward
         }
       })
     }

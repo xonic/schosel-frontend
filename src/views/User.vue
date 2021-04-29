@@ -17,7 +17,7 @@
       <h2 class="h3 main__title">Bets</h2>
 
       <div class="text--small text--gray-20 text--center">{{ totalBets() }} of {{ totalMatchesPlayed() }} bets placed</div>
-      <div class="text--small text--gray-20 text--center">{{ remainingSuperbets() }} superbets remaining</div>
+      <div class="text--small text--gray-20 main__title">{{ remainingSuperbets() }} superbets remaining</div>
 
       <apexchart
         v-if="totalBets()"

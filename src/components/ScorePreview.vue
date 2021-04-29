@@ -5,7 +5,7 @@
       <img v-if="iconPaths.length":src="getURL(score.challenge_id - 1)" class="score-preview__icon" />
       <div class="score-preview__title">
         <div class="score-preview__name h3">
-          {{ score.name }}
+          {{ score.name }} 
           <div class="score-preview__description">
             {{ score.description }}
           </div>
@@ -51,6 +51,7 @@
     computed: {
       ...mapGetters([
         'iconPaths',
+        'allUsers',
         'loggedInUser',
         'liveMatches',
         'overMatches'

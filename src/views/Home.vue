@@ -12,7 +12,8 @@
       <div class="home__section" v-if="lastMatchDayBets && lastMatchDayBets.length">
         <h1 class="h2 main__title">Last match day</h1>
         <h2 class="h3 text--center">{{ matchDate(lastMatchDayBets[0].date) }}</h2>
-        <div class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} matches</div>
+        <div v-if="lastMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} match</div>
+        <div v-else class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} matches</div>
         <ul class="last-match-day text--center text--gray-20">
           <li :class="lastMatchDayPoints[0] > 0 ? 'text--cyan' : 'icon--zero-points'">
             <router-link :to="{ name: 'schosel' }">
@@ -71,7 +72,8 @@
       <div class="home__section" v-if="nextMatchDay && nextMatchDay.length">
         <h1 class="h2 main__title">Next match day</h1>
         <h2 class="h3 text--center">{{ matchDate(nextMatchDay[0].date) }}</h2>
-        <div class="text--small text--gray-20 text--center main__title">{{ nextMatchDay.length }} matches</div>
+        <div v-if="nextMatchDay.length === 1" class="text--small text--gray-20 text--center main__title">{{ nextMatchDay.length }} match</div>
+        <div v-else class="text--small text--gray-20 text--center main__title">{{ nextMatchDay.length }} matches</div>
         <ul>
           <li v-for="match in nextMatchDay" class="match">
             <bet :match="match" />
@@ -127,6 +129,8 @@ export default {
       let currentUser = this.allUsers.find(user => user.user_id === this.loggedInUser.user_id)
       if(!currentUser) return
       let currentUserBets = currentUser.public_bets
+
+      if(!currentUserBets.length) return []
 
       currentUserBets.sort((a, b) => new Date(b.date) - new Date(a.date))
 

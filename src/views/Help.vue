@@ -73,8 +73,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Switzerland</li>
           <li>Switzerland wins</li>
-          <li>You get <strong class="text--cyan">+10.00</strong> points in score <strong class="text--cyan">Schosel</strong></li>
-          <li>You also get <strong class="text--purple">+10.00</strong> points in score <strong class="text--purple">Underdog</strong> because less people bet on Switzerland, hence they're considered the Underdog</li>
+          <li>You get <span class="text--cyan">+10.00</span> points in score <span class="text--cyan">Schosel</span></li>
+          <li>You also get <span class="text--purple">+10.00</span> points in score <span class="text--purple">Underdog</span> because less people bet on Switzerland, hence they're considered the Underdog</li>
         </ul>
         <h2 class="h3 text--blue">
           <img v-if="iconPaths.length" :src="getURL(1)" class="score-preview__icon" /> Loser
@@ -87,8 +87,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Germany</li>
           <li>Switzerland wins</li>
-          <li>You get <strong class="text--blue">+1.50</strong> points in score <strong class="text--blue">Loser</strong></li>
-          <li>If you bet on a draw, you would have gotten <strong class="text--blue">+2.50</strong> points in score <strong class="text--blue">Loser</strong></li>
+          <li>You get <span class="text--blue">+1.50</span> points in score <span class="text--blue">Loser</span></li>
+          <li>If you bet on a draw, you would have gotten <span class="text--blue">+2.50</span> points in score <span class="text--blue">Loser</span></li>
         </ul>
         <h2 class="h3 text--purple">
           <img v-if="iconPaths.length" :src="getURL(2)" class="score-preview__icon" /> Underdog
@@ -101,8 +101,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Switzerland</li>
           <li>Switzerland wins</li>
-          <li>You get <strong class="text--purple">+10.00</strong> points in score <strong class="text--purple">Underdog</strong></li>
-          <li>You also get <strong class="text--cyan">+10.00</strong> points in score <strong class="text--cyan">Schosel</strong> since you bet on the correct outcome</li>
+          <li>You get <span class="text--purple">+10.00</span> points in score <span class="text--purple">Underdog</span></li>
+          <li>You also get <span class="text--cyan">+10.00</span> points in score <span class="text--cyan">Schosel</span> since you bet on the correct outcome</li>
         </ul>
         <h2 class="h3 text--magenta">
           <img v-if="iconPaths.length" :src="getURL(3)" class="score-preview__icon" /> Balanced
@@ -115,8 +115,8 @@
           <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
           <li>You bet on Draw</li>
           <li>The match ends in a draw</li>
-          <li>You get <strong class="text--magenta">+2.50</strong> points in score <strong class="text--magenta">Balanced</strong></li>
-          <li>You also get <strong class="text--cyan">+2.50</strong> points in score <strong class="text--cyan">Schosel</strong> since you bet on the correct outcome</li>
+          <li>You get <span class="text--magenta">+2.50</span> points in score <span class="text--magenta">Balanced</span></li>
+          <li>You also get <span class="text--cyan">+2.50</span> points in score <span class="text--cyan">Schosel</span> since you bet on the correct outcome</li>
         </ul>
         <h2 class="h3 text--orange">
           <img v-if="iconPaths.length" :src="getURL(4)" class="score-preview__icon" /> Comeback
@@ -131,8 +131,8 @@
           <li>Switzerland scores the first goal</li>
           <li>Germany fights back and scores two goals</li>
           <li>The match ends Germany 2:1 Switzerland</li>
-          <li>You get <strong class="text--orange">+1.50</strong> points in score <strong class="text--orange">Comeback</strong></li>
-          <li>You also get <strong class="text--cyan">+1.50</strong> points in score <strong class="text--cyan">Schosel</strong> since you bet on the correct outcome</li>
+          <li>You get <span class="text--orange">+1.50</span> points in score <span class="text--orange">Comeback</span></li>
+          <li>You also get <span class="text--cyan">+1.50</span> points in score <span class="text--cyan">Schosel</span> since you bet on the correct outcome</li>
         </ul>
         <h2 class="h3">Champion bet outcome</h2>
         <p>

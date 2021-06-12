@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="wrapper" v-if="loggedInUser">
+    <div class="wrapper">
       <div class="help">
         <h1 class="h2 main__title">Rules</h1>
         <p>

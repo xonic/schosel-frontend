@@ -74,9 +74,27 @@
 
         const self = this
 
-        return self.allUsers.sort((a, b) =>
-        b.public_bets.find(bet => bet.match_id == self.id).bet.totalPoints -
-        a.public_bets.find(bet => bet.match_id == self.id).bet.totalPoints)
+        return self.allUsers.sort((a, b) => {
+
+          let user1Bet = a.public_bets.find(bet => bet.match_id == self.id)
+          let user2Bet = b.public_bets.find(bet => bet.match_id == self.id)
+
+          // if user a has no bet, init totalpoints to zero
+          if(!user1Bet) {
+            user1Bet = {}
+            user1Bet['bet'] = {}
+            user1Bet.bet['totalPoints'] = 0
+          }
+
+          // if user b has no bet, init totalpoints to zero
+          if(!user2Bet) {
+            user2Bet = {}
+            user2Bet['bet'] = {}
+            user2Bet.bet['totalPoints'] = 0
+          }
+
+          return user2Bet.bet.totalPoints - user1Bet.bet.totalPoints
+        })
       }
     },
     methods: {

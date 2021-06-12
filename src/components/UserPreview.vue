@@ -16,7 +16,7 @@
         <ul class="user-preview__ranks">
           <li v-for="(score, index) in user.scores" :class="parseFloat(getScore(score, index)) === 0 ? 'user-preview__rank user-preview__rank--zero' : 'user-preview__rank'">
             <img :src="getURL(index)" class="user-preview__icon" />
-            {{ getScore(score, index) }}
+            {{ parseFloat(getScore(score, index)) || "0" }}
           </li>
         </ul>
       </div>
@@ -64,7 +64,7 @@
 
           let userBet = this.getUserBet()
 
-          // console.log('userbet', userBet)
+          if(!userBet) return 0
 
           if(userBet && userBet.bet) {
             return userBet.bet.points[id].points > 0 ? `+${userBet.bet.points[id].points.toFixed(2)}` : '0'
@@ -81,6 +81,9 @@
       getUserBetOutcome() {
         if(!this.user || !this.user.public_bets) return false
         let bet = this.user.public_bets.find(bet => bet.match_id === this.matchId)
+
+        if(!bet) return 'No bet'
+
         let betOutcome = bet.bet.outcome
 
         if(betOutcome === '1') return bet.team1_name
@@ -88,7 +91,7 @@
         if(betOutcome === '2') return bet.team2_name
       },
       getUserSuperBet() {
-        if((!this.user || !this.user.public_bets) || !this.matchId) return false
+        if(((!this.user || !this.user.public_bets) || !this.user.public_bets.length) || !this.matchId) return false
         return this.user.public_bets.find(bet => bet.match_id === this.matchId).bet.superbet
       }
     }

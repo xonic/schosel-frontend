@@ -97,10 +97,7 @@ const router =  new Router({
     {
       path: '/rules',
       name: 'rules',
-      component: Help,
-      meta: {
-        requiresAuth: true
-      }
+      component: Help
     },
     {
       path: '/scores',

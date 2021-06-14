@@ -4,10 +4,10 @@
       <h1 class="h2 main__title">
         Login
       </h1>
-      <div class="to-register">
+      <!-- <div class="to-register">
         No account yet?
         <router-link :to="{ name: 'register' }">Register now!</router-link>
-      </div>
+      </div> -->
       <ul v-if="errors" class="errors">
         <li v-for="error in errors">
           <message type="error">

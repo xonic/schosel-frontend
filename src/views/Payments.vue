@@ -7,18 +7,18 @@
           <th class="rank-grid__td">ID</th>
           <th class="rank-grid__td">Name</th>
           <th class="rank-grid__td">Email</th>
-          <th class="rank-grid__td">Payment</th>
+          <th class="rank-grid__td">Paid</th>
+          <th class="rank-grid__td">PWD</th>
         </thead>
         <tbody>
           <tr v-for="user in allUsersForAdmin" class="rank-grid__row">
             <td class="rank-grid__td">{{ user.user_id }}</td>
             <td class="rank-grid__td nowrap">{{ user.name }}</td>
             <td class="rank-grid__td text--tiny">{{ user.email }}</td>
-            <td v-if="!user.paid" class="rank-grid__td text--tiny">
-              <a href @click.prevent="confirmPayment(user.user_id)">Confirm</a>
-            </td>
-            <td v-else class="rank-grid__td">
-              OK
+            <td v-if="!user.paid" class="rank-grid__td text--tiny text--red">No</td>
+            <td v-else class="rank-grid__td text--tiny text--green">Yes</td>
+            <td class="rank-grid__td text--tiny">
+              <a href @click.prevent="resetPwd(user.user_id)">Reset</a>
             </td>
           </tr>
         </tbody>
@@ -48,9 +48,16 @@
       })
     },
     methods: {
-      async confirmPayment(user_id) {
-        await this.$store.dispatch('CONFIRM_PAYMENT', user_id).then((response) => {
-          this.$store.dispatch('LOAD_ALL_USERS')
+      // async confirmPayment(user_id) {
+      //   await this.$store.dispatch('CONFIRM_PAYMENT', user_id).then((response) => {
+      //     this.$store.dispatch('LOAD_ALL_USERS')
+      //   }, (err) => {
+      //     console.log(err)
+      //   })
+      // }
+      async resetPwd(user_id) {
+        await this.$store.dispatch('RESET_PWD', user_id).then((response) => {
+          console.log(response)
         }, (err) => {
           console.log(err)
         })

@@ -44,7 +44,7 @@
         self.$store.dispatch('LOAD_STATUS')
         self.$store.dispatch('LOAD_MATCHES')
         self.$store.dispatch('LOAD_USERS')
-      }, 10000);
+      }, 60000);
     },
     computed: {
       ...mapGetters([

@@ -135,35 +135,60 @@ export default new Vuex.Store({
         })
         .catch(error => console.log(error))
     },
-    async LOAD_STATUS ({ commit }) {
+    async LOAD_STATUS ({ commit, dispatch }) {
       await HTTP.get('/status').then((response) => {
         commit('SET_STATUS', { status: response.data })
       }, (err) => {
         console.log(err)
+        if (err.response.status === 401) {
+         // Session invalid
+         dispatch('LOGOUT')
+        }
       })
     },
-    async LOAD_MATCHES ({ commit }) {
+    async LOAD_MATCHES ({ commit, dispatch }) {
 
       await HTTP.get('/matches').then((response) => {
         commit('SET_MATCHES', { matches: response.data })
       }, (err) => {
         console.log(err)
+        if (err.response.status === 401) {
+         // Session invalid
+         dispatch('LOGOUT')
+        }
       })
     },
-    async LOAD_USERS ({ commit }) {
+    async LOAD_USERS ({ commit, dispatch }) {
 
       await HTTP.get('/users').then((response) => {
         commit('SET_USERS', { users: response.data })
         commit('SET_SCORES', { users: response.data })
       }, (err) => {
         console.log(err)
+        if (err.response.status === 401) {
+         // Session invalid
+         dispatch('LOGOUT')
+        }
       })
     },
-    async LOAD_ALL_USERS ({ commit }) {
+    async LOAD_ALL_USERS ({ commit, dispatch }) {
 
       await HTTP.get('/admin/users').then((response) => {
         commit('SET_ALL_USERS', { allUsers: response.data })
       }, (err) => {
+        console.log(err)
+        if (err.response.status === 401) {
+         // Session invalid
+         dispatch('LOGOUT')
+        }
+      })
+    },
+    async RESET_PWD ({ commit, dispatch }, user_id) {
+
+      await HTTP.post('/admin/trigger_password_reset/' + user_id).then((response) => {
+        alert("Reset link sent")
+      }, (err) => {
+        alert(err)
         console.log(err)
       })
     },
@@ -180,6 +205,19 @@ export default new Vuex.Store({
         .then(res => {
           // Reload logged in user
           dispatch('LOAD_STATUS')
+        })
+        .catch(errors => {
+          commit('SET_ERRORS', { errors: errors.response.data.errors })
+        })
+    },
+    async RESET_PASSWORD ({commit, dispatch}, userData) {
+      await HTTP.post('/reset_password', {
+          user_id: userData.user_id,
+          reset_token: userData.reset_token,
+          new_password: userData.new_password
+        })
+        .then(res => {
+          router.push({ name: 'login', query: { reset: "true" } })
         })
         .catch(errors => {
           commit('SET_ERRORS', { errors: errors.response.data.errors })

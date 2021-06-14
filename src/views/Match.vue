@@ -74,6 +74,9 @@
 
         const self = this
 
+        // let allBetsOfMatch = this.allUsers.forEach(user => user.pub)
+        // sort bets
+
         return self.allUsers.sort((a, b) => {
 
           let user1Bet = a.public_bets.find(bet => bet.match_id == self.id)

@@ -2,24 +2,20 @@
   <main>
     <div id="reset" class="wrapper external-page">
       <h1 class="h2 main__title">
-        Reset password
+        Set new password
       </h1>
-      <div class="to-register">
-        Or
-        <router-link :to="{ name: 'login' }">Login instead!</router-link>
-      </div>
       <div class="login-form">
         <form @submit.prevent="onSubmit">
           <div class="input">
-            <!-- <label for="email">Email</label> -->
             <input
-                    placeholder="Email"
-                    type="email"
-                    id="email"
-                    v-model="email">
+                    placeholder="New password"
+                    type="password"
+                    id="password"
+                    v-model="password">
+            <div class="text--small text--gray-20">Minimum 8 characters</div>
           </div>
           <div class="submit">
-            <button class="btn btn--primary" type="submit">Send reset link</button>
+            <button class="btn btn--primary" type="submit">Set new password</button>
           </div>
         </form>
       </div>
@@ -30,19 +26,19 @@
 <script>
   export default {
     name: 'reset',
+    props: ['id', 'token'],
     data () {
       return {
-        email: ''
+        password: ''
       }
     },
     methods: {
-    //   onSubmit () {
-    //     const formData = {
-    //       email: this.email,
-    //       password: this.password,
-    //     }
-    //     this.$store.dispatch('LOGIN', {email: formData.email, password: formData.password, redirect: this.$route.query.redirect })
-    //   }
+      onSubmit () {
+        const formData = {
+          password: this.password,
+        }
+        this.$store.dispatch('RESET_PASSWORD', { "user_id": parseInt(this.id, 10), "reset_token": this.token, "new_password": formData.password })
+      }
     }
   }
 </script>

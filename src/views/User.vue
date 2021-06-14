@@ -27,7 +27,7 @@
       </apexchart>
 
       <ul v-if="matches.live && matches.live.length">
-        <li v-for="match in matches.over">
+        <li v-for="match in matches.live">
           <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
         </li>
       </ul>
@@ -145,7 +145,7 @@ export default {
             `Loser - ${this.user.scores.find(score => score.name === 'LOSER').rank}.`,
             `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
             `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
-            `Secret - ${this.user.scores.find(score => score.name === 'COMEBACK').rank}.`
+            `Comeback - ${this.user.scores.find(score => score.name === 'COMEBACK').rank}.`
           ],
           labels: {
             trim: true,

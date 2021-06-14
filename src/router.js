@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import ResetPassword from './views/ResetPassword.vue'
+import RequestResetPassword from './views/RequestResetPassword.vue'
 import Logout from './views/Logout.vue'
 import Help from './views/Help.vue'
 import Home from './views/Home.vue'
@@ -61,6 +62,11 @@ const router =  new Router({
       name: 'reset',
       component: ResetPassword,
       props: true
+    },
+    {
+      path: '/reset-password/',
+      name: 'requestReset',
+      component: RequestResetPassword
     },
     {
       path: '/',

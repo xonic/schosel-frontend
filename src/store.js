@@ -183,6 +183,17 @@ export default new Vuex.Store({
         }
       })
     },
+
+    // User trigger reset pwd
+    async REQUEST_RESET_PASSWORD ({ commit, dispatch }, user_email) {
+
+      await HTTP.post('/trigger_password_reset', user_email).then((response) => {
+        router.push({ name: 'login', query: { reset_password: "true" } })
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    // Admin trigger reset password
     async RESET_PWD ({ commit, dispatch }, user_id) {
 
       await HTTP.post('/admin/trigger_password_reset/' + user_id).then((response) => {
@@ -210,6 +221,7 @@ export default new Vuex.Store({
           commit('SET_ERRORS', { errors: errors.response.data.errors })
         })
     },
+    // Reset password
     async RESET_PASSWORD ({commit, dispatch}, userData) {
       await HTTP.post('/reset_password', {
           user_id: userData.user_id,

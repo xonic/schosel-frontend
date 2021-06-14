@@ -9,7 +9,7 @@
       />
       <ul v-if="allUsers.length">
         <li v-for="user in usersByPoints">
-          <user-preview :user="user" type="score" :match-id="match.match_id" />
+          <user-preview v-if="match" :user="user" type="score" :match-id="match.match_id" />
         </li>
       </ul>
     </div>

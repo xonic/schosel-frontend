@@ -8,6 +8,10 @@
         No account yet?
         <router-link :to="{ name: 'register' }">Register now!</router-link>
       </div> -->
+      <div class="to-register">
+        Need a new password?
+        <router-link :to="{ name: 'requestReset' }">Reset password</router-link>
+      </div>
       <ul v-if="errors" class="errors">
         <li v-for="error in errors">
           <message type="error">
@@ -17,6 +21,12 @@
       </ul>
       <message v-if="this.$route.query.registered" type="success">
         Alright, you're registered
+      </message>
+      <message v-if="this.$route.query.reset_password" type="success">
+        OK, just sent you a reset link via email.
+      </message>
+      <message v-if="this.$route.query.reset" type="success">
+        Password updated! You can login now.
       </message>
       <div class="login-form">
         <form @submit.prevent="onSubmit">

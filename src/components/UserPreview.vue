@@ -92,7 +92,10 @@
       },
       getUserSuperBet() {
         if(((!this.user || !this.user.public_bets) || !this.user.public_bets.length) || !this.matchId) return false
-        return this.user.public_bets.find(bet => bet.match_id === this.matchId).bet.superbet
+
+        let userBet = this.user.public_bets.find(bet => bet.match_id === this.matchId)
+
+        return (!userBet || !userBet.bet) ? false : userBet.bet.superbet
       }
     }
   }

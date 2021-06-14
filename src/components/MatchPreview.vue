@@ -1,6 +1,6 @@
 <template>
   <router-link class="match-preview" :to="{ path: `/matches/${match.match_id}` }">
-    <div class="match-preview__body">
+    <div class="match-preview__body" v-if="match">
       <div class="match-preview__live is-live" v-if="match.status === 'live'">
         <div v-if="match.api_data">{{ match.api_data.status }}</div>
         <div v-if="match.api_data">{{ match.api_data.elapsed }}' played</div>
@@ -9,7 +9,7 @@
         <div v-if="match.api_data">{{ match.api_data.status }}</div>
         <div>{{ matchDate(match.date) }}</div>
       </div>
-      <div class="match-preview__info">
+      <div class="match-preview__info" v-if="bet">
         <div class="match-preview__team">
           <div class="match-preview__flag">
             <flag :iso="match.team1_iso" :is-bet="bet.outcome === '1'" />
@@ -57,7 +57,7 @@
         </div>
       </div>
       <ul class="match-preview__scores">
-      <li v-for="score in bet.points"
+      <li v-if="bet" v-for="score in bet.points"
         :class="
           score.points ?
             `match-preview__score match-preview__score--${score.name}` :

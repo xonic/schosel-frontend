@@ -2,7 +2,7 @@
   <main>
     <div class="wrapper">
       <div class="home__section" v-if="liveMatches && liveMatches.length">
-        <h1 class="h2 main__title text--red is-live">Live now</h1>
+        <h1 class="h2 main__title text--red is-live">Now live</h1>
         <ul>
           <li v-for="match in liveMatches" class="match">
             <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />

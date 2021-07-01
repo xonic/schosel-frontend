@@ -54,7 +54,7 @@ export default new Vuex.Store({
       {
         challenge_id: 3,
         challenge_route: 'underdog',
-        description: 'Most correct bets on highest odds',
+        description: 'Most correct bets on team with higher odds',
         name: "Underdog"
       },
       {

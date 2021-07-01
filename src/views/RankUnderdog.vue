@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="text--center"><img v-if="iconPaths.length" :src="getURL(2)" /></div>
       <h1 class="h2 text--center text--purple">Underdog</h1>
-      <div class="text--small text--gray-20 main__title">Most correct bets on highest odds</div>
+      <div class="text--small text--gray-20 main__title">Most correct bets on team with higher odds</div>
       <rank-grid v-if="underdogScore.length" :data="underdogScore" />
       <div v-else class="blankslate">
         <div class="blankslate__avatar">

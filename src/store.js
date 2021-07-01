@@ -355,7 +355,7 @@ export default new Vuex.Store({
       }
       // Get upcoming match
       if (state.matches.scheduled.length) {
-        state.nextMatch = state.matches.scheduled.slice(0,1)
+        state.nextMatch = state.matches.scheduled.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0,1)
       }
 
 

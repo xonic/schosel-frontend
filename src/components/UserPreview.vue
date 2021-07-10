@@ -1,7 +1,10 @@
 <template>
   <router-link :to="{ name: 'user', params: { id: user.user_id + '' } }" class="user-preview">
     <div class="user-preview__avatar">
-      <avatar :src="user.avatar" size="medium" />
+      <!-- <avatar :src="user.avatar" size="medium" /> -->
+      <div v-if="user.champion" class="bet__flag">
+        <flag :iso="user.champion.short_name" />
+      </div>
     </div>
     <div class="user-preview__body">
       <div class="user-preview__name">
@@ -34,6 +37,7 @@
   import { mapGetters } from 'vuex'
   import Avatar from '@/components/Avatar.vue'
   import SuperBet from '@/components/SuperBet'
+  import Flag from '@/components/Flag'
 
   export default {
     name: 'user-preview',
@@ -44,7 +48,8 @@
     },
     components: {
       Avatar,
-      SuperBet
+      SuperBet,
+      Flag
     },
     computed: {
       ...mapGetters([

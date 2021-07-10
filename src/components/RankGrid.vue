@@ -25,7 +25,10 @@
         </td>
         <td class="rank-grid__td">
           <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }" :class="`rank-grid__name-col`">
-            <avatar :src="user.avatar" class="rank-grid__avatar" />
+            <!-- <avatar :src="user.avatar" class="rank-grid__avatar" /> -->
+            <div v-if="user.champion" class="bet__flag">
+              <flag :iso="user.champion.short_name" />
+            </div>
             <div class="rank-grid__name">{{ user.name }}</div>
           </router-link>
         </td>
@@ -47,6 +50,7 @@
 
 <script>
   import Avatar from '@/components/Avatar'
+  import Flag from '@/components/Flag'
 
   export default {
     name: "rank-grid",
@@ -54,7 +58,8 @@
       data: Array
     },
     components: {
-      Avatar
+      Avatar,
+      Flag
     },
     data () {
       return {

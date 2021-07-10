@@ -7,6 +7,9 @@
       <h1 v-if="user" class="h2 text--center">{{ user.name }}</h1>
       <h2 v-if="user && user.reward >= 0" class="h3 main__title text--gray-20">{{ user.reward.toFixed(2) }} &euro;</h2>
 
+      <h3 v-if="(user && user.champion) && user.champion.name" class="text--center">{{ user.champion.name }}</h3>
+      <div v-if="(user && user.champion) && user.champion.name" class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
+
       <apexchart
         v-if="user && user.scores"
         type="radar"

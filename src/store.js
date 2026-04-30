@@ -28,7 +28,7 @@ export default new Vuex.Store({
       matches: true,
       users: true
     },
-    avatarUrl: 'https://schosel.net/adorables/400/',
+    avatarUrl: 'https://api.dicebear.com/9.x/bottts-neutral/svg?seed=',
     iconPaths: [
       "i--1.svg",
       "i--2.svg",

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Register from './views/Register.vue'
+import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import ResetPassword from './views/ResetPassword.vue'
 import RequestResetPassword from './views/RequestResetPassword.vue'
@@ -52,11 +52,11 @@ const router =  new Router({
       name: 'login',
       component: Login
     },
-    // {
-    //   path: '/register',
-    //   name: 'register',
-    //   component: Register
-    // },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
     {
       path: '/reset-password/:id/:token',
       name: 'reset',

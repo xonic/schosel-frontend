@@ -4,10 +4,10 @@
       <h1 class="h2 main__title">
         Login
       </h1>
-      <!-- <div class="to-register">
+      <div class="to-register">
         No account yet?
         <router-link :to="{ name: 'register' }">Register now!</router-link>
-      </div> -->
+      </div>
       <div class="to-register">
         Need a new password?
         <router-link :to="{ name: 'requestReset' }">Reset password</router-link>

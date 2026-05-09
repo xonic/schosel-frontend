@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "NODE_ENV=development vue-cli-service serve --open",
+    "serve": "NODE_ENV=development vue-cli-service serve",
     "buildTest": "NODE_ENV=test vue-cli-service build",
     "buildProd": "NODE_ENV=production vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -35,10 +35,6 @@
     "sass": "^1.69.0",
     "sass-loader": "^10.5.2",
     "vue-template-compiler": "^2.5.13"
-  },
-  "vue": {
-    "lintOnSave": false,
-    "publicPath": "/"
   },
   "babel": {
     "presets": [

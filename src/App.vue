@@ -61,5 +61,5 @@
 </script>
 
 <style lang="scss">
-  @import 'src/assets/styles/base';
+  @import 'assets/styles/base';
 </style>

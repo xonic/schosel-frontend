@@ -19,13 +19,19 @@
       flagClass() {
         // List of valid ISO codes that have corresponding flag files
         const validIsos = [
-          'aut', 'bel', 'cro', 'cze', 'den', 'eng', 'fin', 'fra', 'ger',
-          'hun', 'ita', 'mkd', 'ned', 'pol', 'por', 'rus', 'sco', 'svk',
-          'esp', 'swe', 'sui', 'tur', 'ukr', 'wal', 'drw'
+          'arg', 'aus', 'aut', 'bel', 'bih', 'bra', 'can', 'civ', 'cod', 'col', 'cpv',
+          'cro', 'cuw', 'cze', 'den', 'dza', 'ecu', 'egy', 'eng', 'esp', 'fin', 'fra',
+          'ger', 'gha', 'hai', 'hun', 'irn', 'irq', 'ita', 'jor', 'jpn', 'kor', 'mar',
+          'mex', 'mkd', 'ned', 'nor', 'nzl', 'pan', 'pol', 'por', 'pry', 'qat', 'rus',
+          'sau', 'sco', 'sen', 'sui', 'svk', 'swe', 'tun', 'tur', 'ury', 'usa', 'uzb',
+          'wal', 'zaf', 'drw'
         ]
         
-        // Return the ISO if it's valid, otherwise return 'default'
-        return validIsos.includes(this.iso) ? this.iso : 'default'
+        // Convert ISO to lowercase for comparison
+        const isoLower = this.iso ? this.iso.toLowerCase() : ''
+        
+        // Return the lowercase ISO if it's valid, otherwise return 'default'
+        return validIsos.includes(isoLower) ? isoLower : 'default'
       }
     }
   }

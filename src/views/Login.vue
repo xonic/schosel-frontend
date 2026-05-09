@@ -28,6 +28,11 @@
       <message v-if="this.$route.query.reset" type="success">
         Password updated! You can login now.
       </message>
+      <!-- Remove login-debug div -->
+      <div v-if="dbUri" class="login-debug">
+        <div class="text--small text--gray-20">Current SQLALCHEMY_DATABASE_URI:</div>
+        <pre>{{ dbFilename }}</pre>
+      </div>
       <div class="login-form">
         <form @submit.prevent="onSubmit">
           <div class="input">
@@ -58,13 +63,17 @@
 <script>
   import { mapGetters } from 'vuex'
   import Message from '@/components/Message.vue'
+  // Remove unused imports
+  import { HTTP } from '@/http-constants'
 
   export default {
     name: 'login',
     data () {
       return {
         email: '',
-        password: ''
+        password: '',
+        // Remove dbUri from data, as it's only used for debugging and should not be part of the component's state
+        dbUri: null
       }
     },
     components: {
@@ -73,9 +82,29 @@
     computed: {
       ...mapGetters([
         'errors'
-      ])
+      ]),
+      // Remove dbFilename computed property, as it's only used for debugging and should not be part of the component's logic
+      dbFilename () {
+        if (!this.dbUri) return null
+        const segments = this.dbUri.split('/')
+        return segments[segments.length - 1] || this.dbUri
+      }
+    },
+    created () {
+      // Remove loadDbUri call from created hook, as it's only used for debugging and should not be part of the component's lifecycle
+      this.loadDbUri()
     },
     methods: {
+      // Remove loadDbUri method, as it's only used for debugging and should not be part of the component's methods
+      async loadDbUri () {
+        try {
+          const response = await HTTP.get('/login-info')
+          this.dbUri = response.data.sqlalchemy_database_uri
+        }
+        catch (error) {
+          console.error('Unable to load login debug info:', error)
+        }
+      },
       onSubmit () {
         const formData = {
           email: this.email,

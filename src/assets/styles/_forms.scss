@@ -91,3 +91,16 @@ input {
     outline: 0;
   }
 }
+
+.btn--secondary {
+  margin: 0;
+  padding: $space-10;
+  background: $gray-14;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    background: lighten($gray-14, 5%);
+    outline: 0;
+  }
+}

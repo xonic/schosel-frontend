@@ -8,6 +8,7 @@
           <th class="rank-grid__td">Name</th>
           <th class="rank-grid__td">Email</th>
           <th class="rank-grid__td">Paid</th>
+          <th v-if="!tournamentStarted" class="rank-grid__td"></th>
           <th class="rank-grid__td">PWD</th>
         </thead>
         <tbody>
@@ -17,6 +18,10 @@
             <td class="rank-grid__td text--tiny">{{ user.email }}</td>
             <td v-if="!user.paid" class="rank-grid__td text--tiny text--red">No</td>
             <td v-else class="rank-grid__td text--tiny text--green">Yes</td>
+            <td v-if="!tournamentStarted" class="rank-grid__td text--tiny">
+              <a v-if="!user.paid" @click="confirmPayment(user.user_id)" href>Set paid</a>
+              <span v-else></span>
+            </td>
             <td class="rank-grid__td text--tiny">
               <a href @click.prevent="resetPwd(user.user_id)">Reset</a>
             </td>
@@ -35,8 +40,14 @@
     name: 'Payments',
     computed: {
       ...mapGetters([
-        'allUsersForAdmin'
-      ])
+        'allUsersForAdmin',
+        'liveMatches',
+        'overMatches'
+      ]),
+      tournamentStarted () {
+        return (this.liveMatches && this.liveMatches.length) ||
+               (this.overMatches && this.overMatches.length)
+      }
     },
     mounted () {
 
@@ -48,13 +59,13 @@
       })
     },
     methods: {
-      // async confirmPayment(user_id) {
-      //   await this.$store.dispatch('CONFIRM_PAYMENT', user_id).then((response) => {
-      //     this.$store.dispatch('LOAD_ALL_USERS')
-      //   }, (err) => {
-      //     console.log(err)
-      //   })
-      // }
+      async confirmPayment(user_id) {
+        await this.$store.dispatch('CONFIRM_PAYMENT', user_id).then((response) => {
+          this.$store.dispatch('LOAD_ALL_USERS')
+        }, (err) => {
+          console.log(err)
+        })
+      },
       async resetPwd(user_id) {
         await this.$store.dispatch('RESET_PWD', user_id).then((response) => {
           console.log(response)

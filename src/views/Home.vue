@@ -35,36 +35,7 @@
               </div>
             </router-link>
           </li>
-          <li :class="lastMatchDayPoints[2] > 0 ? 'text--purple' : 'icon--zero-points'">
-            <router-link :to="{ name: 'underdog' }">
-              <img v-if="iconPaths.length" :src="getURL(2)" />
-              <div>
-                <div class="text--small">Underdog</div>
-                <div>+{{ lastMatchDayPoints[2] }}</div>
-                <div v-if="loggedInUser" class="text--small">{{ loggedInUser.scores[2].rank }}.</div>
-              </div>
-            </router-link>
-          </li>
-          <li :class="lastMatchDayPoints[3] > 0 ? 'text--magenta' : 'icon--zero-points'">
-            <router-link :to="{ name: 'balanced' }">
-              <img v-if="iconPaths.length" :src="getURL(3)" />
-              <div>
-                <div class="text--small">Balanced</div>
-                <div>+{{ lastMatchDayPoints[3] }}</div>
-                <div v-if="loggedInUser" class="text--small">{{ loggedInUser.scores[3].rank }}.</div>
-              </div>
-            </router-link>
-          </li>
-          <li :class="lastMatchDayPoints[4] > 0 ? 'text--orange' : 'icon--zero-points'">
-            <router-link :to="{ name: 'comeback' }">
-              <img v-if="iconPaths.length" :src="getURL(4)" />
-              <div>
-                <div class="text--small">Comeback</div>
-                <div>+{{ lastMatchDayPoints[4] }}</div>
-                <div v-if="loggedInUser" class="text--small">{{ loggedInUser.scores[4].rank }}.</div>
-              </div>
-            </router-link>
-          </li>
+
         </ul>
 
       </div>

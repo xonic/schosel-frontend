@@ -32,21 +32,7 @@
           <span v-if="sortKey === 'oldfashioned' && sortDirection === 'asc'"> &uarr;</span>
           <span v-if="sortKey === 'oldfashioned' && sortDirection === 'des'"> &darr;</span>
         </th>
-        <th @click="sort('underdog')">
-          Underdog
-          <span v-if="sortKey === 'underdog' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'underdog' && sortDirection === 'des'"> &darr;</span>
-        </th>
-        <th @click="sort('balanced')">
-          Balanced
-          <span v-if="sortKey === 'balanced' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'balanced' && sortDirection === 'des'"> &darr;</span>
-        </th>
-        <th @click="sort('secret')">
-          Secret
-          <span v-if="sortKey === 'secret' && sortDirection === 'asc'"> &uarr;</span>
-          <span v-if="sortKey === 'secret' && sortDirection === 'des'"> &darr;</span>
-        </th>
+
       </tr>
     </thead>
     <tbody>

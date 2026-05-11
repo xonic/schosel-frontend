@@ -17,7 +17,7 @@
       </div>
       <div v-if="user.paid">
         <ul class="user-preview__ranks">
-          <li v-for="(score, index) in user.scores" :class="parseFloat(getScore(score, index)) === 0 ? 'user-preview__rank user-preview__rank--zero' : 'user-preview__rank'">
+          <li v-for="(score, index) in filteredScores" :class="parseFloat(getScore(score, index)) === 0 ? 'user-preview__rank user-preview__rank--zero' : 'user-preview__rank'">
             <img :src="getURL(index)" class="user-preview__icon" />
             {{ parseFloat(getScore(score, index)) || "0" }}
           </li>
@@ -55,7 +55,10 @@
       ...mapGetters([
         'loggedInUser',
         'iconPaths'
-      ])
+      ]),
+      filteredScores () {
+        return this.user && this.user.scores ? this.user.scores.filter(score => score.challenge_id <= 2) : []
+      }
     },
     methods: {
       getURL(index) {

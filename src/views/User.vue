@@ -146,8 +146,7 @@ export default {
           categories: [
             `Schosel - ${this.user.scores.find(score => score.name === 'SCHOSEL').rank}.`,
             `Loser - ${this.user.scores.find(score => score.name === 'LOSER').rank}.`,
-            `Underdog - ${this.user.scores.find(score => score.name === 'UNDERDOG').rank}.`,
-            `Balanced - ${this.user.scores.find(score => score.name === 'BALANCED').rank}.`,
+
             `Comeback - ${this.user.scores.find(score => score.name === 'COMEBACK').rank}.`
           ],
           labels: {
@@ -172,8 +171,7 @@ export default {
             data: [
               this.user.scores.find(score => score.name === 'SCHOSEL').rank || 0,
               this.user.scores.find(score => score.name === 'LOSER').rank || 0,
-              this.user.scores.find(score => score.name === 'UNDERDOG').rank || 0,
-              this.user.scores.find(score => score.name === 'BALANCED').rank || 0,
+
               this.user.scores.find(score => score.name === 'COMEBACK').rank || 0,
             ],
           }

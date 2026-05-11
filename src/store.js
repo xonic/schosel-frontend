@@ -50,24 +50,6 @@ export default new Vuex.Store({
         challenge_route: 'loser',
         description: 'Most wrong bets with odds',
         name: "Loser"
-      },
-      {
-        challenge_id: 3,
-        challenge_route: 'underdog',
-        description: 'Most correct bets on team with higher odds',
-        name: "Underdog"
-      },
-      {
-        challenge_id: 4,
-        challenge_route: 'balanced',
-        description: 'Most correct bets on draw with odds',
-        name: "Balanced"
-      },
-      {
-        challenge_id: 5,
-        challenge_route: 'comeback',
-        description: 'Bets on teams who were behind but won',
-        name: "Comeback"
       }
     ]
   },
@@ -268,50 +250,15 @@ export default new Vuex.Store({
       }
       if(state.status.user && state.status.user.admin) console.log('scores', state.scores)
 
-      // Iterate the 5 challenges,
-      // get logged in user index in score,
-      // add preceeding and succeeding players in rank
+      // Iterate the challenges,
+      // show the first three players regardless of shared ranks
       for(let i=0; i<state.scores.length; i++) {
 
-        if(!state.scores[i].users.length || !state.status.user) return
+        if(!state.scores[i].users.length) return
 
-        let loggedInUserIndex = state.scores[i].users.findIndex(user => user.user_id === state.status.user.user_id)
-
-        // Logged in user is ranked first,
-        // add the following two players in rank
-        if (loggedInUserIndex === 0) {
-          state.scorePreviews[i] = {
-            ...state.scoreMeta[i],
-            users: [
-              state.status.user,
-              state.scores[i].users[loggedInUserIndex + 1],
-              state.scores[i].users[loggedInUserIndex + 2]
-            ]
-          }
-        }
-        // Logged in user is ranked last,
-        // add the previous two players in rank
-        else if(loggedInUserIndex === state.scores[i].users.length - 1) {
-          state.scorePreviews[i] = {
-            ...state.scoreMeta[i],
-            users: [
-              state.scores[i].users[loggedInUserIndex - 2],
-              state.scores[i].users[loggedInUserIndex - 1],
-              state.status.user
-            ]
-          }
-        }
-        // Logged in user is ranked somewhere in between,
-        // add preceeding and succeding player in rank
-        else {
-          state.scorePreviews[i] = {
-            ...state.scoreMeta[i],
-            users: [
-              state.scores[i].users[loggedInUserIndex - 1],
-              state.status.user,
-              state.scores[i].users[loggedInUserIndex + 1]
-            ]
-          }
+        state.scorePreviews[i] = {
+          ...state.scoreMeta[i],
+          users: state.scores[i].users.slice(0, 3)
         }
       }
       if(state.status.user && state.status.user.admin) console.log('scorePreviews', state.scorePreviews)
@@ -555,63 +502,6 @@ export default new Vuex.Store({
         }
         else {
           return (a.scores[1].rank > b.scores[1].rank) ? 1 : -1
-        }
-      })
-    },
-
-    underdogScore: state => {
-
-      return state.users.map(user => {
-        return {
-          ...user,
-          rank: user.scores[2].rank,
-          points: user.scores[2].points,
-          reward: user.scores[2].reward
-        }
-      }).sort((a, b) => {
-        if(a.scores[2].rank === b.scores[2].rank) {
-          return a.scores[2].name.localeCompare(b.scores[2].name)
-        }
-        else {
-          return (a.scores[2].rank > b.scores[2].rank) ? 1 : -1
-        }
-      })
-    },
-
-    balancedScore: state => {
-
-      return state.users.map(user => {
-        return {
-          ...user,
-          rank: user.scores[3].rank,
-          points: user.scores[3].points,
-          reward: user.scores[3].reward
-        }
-      }).sort((a, b) => {
-        if(a.scores[3].rank === b.scores[3].rank) {
-          return a.scores[3].name.localeCompare(b.scores[3].name)
-        }
-        else {
-          return (a.scores[3].rank > b.scores[3].rank) ? 1 : -1
-        }
-      })
-    },
-
-    secretScore: state => {
-
-      return state.users.map(user => {
-        return {
-          ...user,
-          rank: user.scores[4].rank,
-          points: user.scores[4].points,
-          reward: user.scores[4].reward
-        }
-      }).sort((a, b) => {
-        if(a.scores[4].rank === b.scores[4].rank) {
-          return a.scores[4].name.localeCompare(b.scores[4].name)
-        }
-        else {
-          return (a.scores[4].rank > b.scores[4].rank) ? 1 : -1
         }
       })
     },

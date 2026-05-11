@@ -13,9 +13,7 @@ import Matches from './views/Matches.vue'
 import Match from './views/Match.vue'
 import KingsGame from './views/RankKingsGame.vue'
 import Oldfashioned from './views/RankOldfashioned.vue'
-import Underdog from './views/RankUnderdog.vue'
-import Balanced from './views/RankBalanced.vue'
-import Secret from './views/RankSecret.vue'
+
 import Scores from './views/Scores.vue'
 import Users from './views/Users.vue'
 import Payments from './views/Payments.vue'
@@ -131,30 +129,7 @@ const router =  new Router({
         requiresAuth: true
       }
     },
-    {
-      path: '/scores/underdog',
-      name: 'underdog',
-      component: Underdog,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/scores/balanced',
-      name: 'balanced',
-      component: Balanced,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/scores/comeback',
-      name: 'comeback',
-      component: Secret,
-      meta: {
-        requiresAuth: true
-      }
-    },
+
     {
       path: '/users',
       name: 'users',

@@ -57,7 +57,7 @@
         </div>
       </div>
       <ul class="match-preview__scores">
-      <li v-if="bet" v-for="score in bet.points"
+      <li v-if="bet" v-for="score in filteredPoints"
         :class="
           score.points ?
             `match-preview__score match-preview__score--${score.name}` :
@@ -92,7 +92,10 @@
     computed: {
       ...mapGetters([
         'iconPaths'
-      ])
+      ]),
+      filteredPoints () {
+        return this.bet && this.bet.points ? this.bet.points.filter(point => point.challenge_id <= 2) : []
+      }
     },
     methods: {
       getURL(index) {

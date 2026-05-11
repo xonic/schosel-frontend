@@ -5,7 +5,6 @@
 .user-preview,
 .user-preview__ranks {
   display: flex;
-  align-items: center;
 
   .avatar {
     margin: 0 auto;
@@ -24,10 +23,6 @@
   .users > .wrapper > & {
     margin-bottom: $space-100;
   }
-}
-
-.user-preview__ranks {
-  justify-content: space-between;
 }
 
 .user-preview__avatar,

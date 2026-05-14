@@ -4,30 +4,52 @@
       <div class="help">
         <h1 class="h2 main__title">Rules</h1>
         <p>
-          First of all <strong>join our Signal group chat</strong> for latest news and high quality trash talk!<div><a class="btn btn--primary" href="https://bit.ly/3aigIWv">Join group chat</a></div>
+          First of all <strong>join our WhatsApp group chat</strong> for latest news and high quality trash talk!<div><a class="btn btn--primary" href="https://chat.whatsapp.com/GjwUTS7lsamL9kBN4H4z5y">Join group chat</a></div>
         </p>
         <h2 class="h3">Payment</h2>
         <p>
-          The participation fee for the whole tournament is <strong>10 EUR / 11 CHF</strong>. After registration you'll get an email containing the bank transfer and alternative PayPal payment instructions. In case you didn't get the email after registration, please let us know at <a href="mailto:team.schosel@gmail.com">team.schosel@gmail.com</a>.
+          The participation fee for the whole tournament is <strong>15 EUR / 14 CHF</strong>. After registration you'll get an email containing the bank transfer and alternative PayPal payment instructions. In case you didn't get the email after registration, please let us know at <a href="mailto:team.schosel@gmail.com">team.schosel@gmail.com</a>.
         </p>
         <p>
           Every registered player <strong>will be disqualified</strong> if their participation fee is not transferred to the Schosel bank or PayPal account <strong>before the first match begins</strong>.
         </p>
-        <h2 class="h3">Price money</h2>
+        <h2 class="h3">Prize money</h2>
         <p>
-          The pot equals the sum of all players participation fees. It will be fully paid out to the best players. If you bet on the right (or wrong) outcome of matches and the final cup winner you collect points for each of the 5 scores. Each score is worth <strong>20%</strong> of the entire pot. If you make it to the top 3 of the score list in a category you win some cash. Here's what's in for you:
+          The pot equals the sum of all players’ participation fees. It will be fully paid out to the best players.
+        </p>
+        <ul>
+          <li><strong>Schosel</strong> receives <strong>70%</strong> of the entire pot</li>
+          <li><strong>Loser</strong> receives <strong>30%</strong> of the entire pot</li>
+        </ul>
+        <p>
+          For each score, the prize money is distributed among the top 3 players as follows:
         </p>
         <ol>
-          <li>First place <strong>50%</strong> (<strong>10%</strong> of the whole pot)</li>
-          <li>Second place <strong>35%</strong> (<strong>7%</strong> of the whole pot)</li>
-          <li>Third place <strong>15%</strong> (<strong>3%</strong> of the whole pot)</li>
+          <li>First place <strong>50%</strong> of that score’s prize pool</li>
+          <li>Second place <strong>35%</strong> of that score’s prize pool</li>
+          <li>Third place <strong>15%</strong> of that score’s prize pool</li>
         </ol>
         <p>
-          So if you land on first place in one score and get third in another, you get 13% of the entire pot. Assuming there are 50 players you would get 65 EUR!
+          This means:
+        </p>
+        <h3 class="h4">Schosel (70% of total pot)</h3>
+        <ul>
+          <li>First place: <strong>35% of the whole pot</strong></li>
+          <li>Second place: <strong>24.5% of the whole pot</strong></li>
+          <li>Third place: <strong>10.5% of the whole pot</strong></li>
+        </ul>
+        <h3 class="h4">Loser (30% of total pot)</h3>
+        <ul>
+          <li>First place: <strong>15% of the whole pot</strong></li>
+          <li>Second place: <strong>10.5% of the whole pot</strong></li>
+          <li>Third place: <strong>4.5% of the whole pot</strong></li>
+        </ul>
+        <p>
+          So if you land in first place in Schosel and third place in Loser, you receive <strong>39.5% of the entire pot</strong>. 
         </p>
         <h2 class="h3">Betting</h2>
         <p>
-          You bet on the outcome of <strong>all 51 matches</strong> as well as on the final cup winner. For each correct bet you collect points based on automatically calculated odds.
+          You bet on the outcome of <strong>all 104 matches</strong> as well as on the final cup winner. For each correct bet you collect points based on automatically calculated odds.
         </p>
         <ul>
           <li><strong>During the whole tournament</strong> you can place <strong>8 super bets</strong> which double the points you get for your bet</li>
@@ -89,50 +111,6 @@
           <li>Switzerland wins</li>
           <li>You get <span class="text--blue">+1.50</span> points in score <span class="text--blue">Loser</span></li>
           <li>If you bet on a draw, you would have gotten <span class="text--blue">+2.50</span> points in score <span class="text--blue">Loser</span></li>
-        </ul>
-        <h2 class="h3 text--purple">
-          <img v-if="iconPaths.length" :src="getURL(2)" class="score-preview__icon" /> Underdog
-        </h2>
-        <p>
-          You earn points from correct bets on the team with higher odds. For example:
-        </p>
-        <ul>
-          <li>Germany plays Switzerland</li>
-          <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
-          <li>You bet on Switzerland</li>
-          <li>Switzerland wins</li>
-          <li>You get <span class="text--purple">+10.00</span> points in score <span class="text--purple">Underdog</span></li>
-          <li>You also get <span class="text--cyan">+10.00</span> points in score <span class="text--cyan">Schosel</span> since you bet on the correct outcome</li>
-        </ul>
-        <h2 class="h3 text--magenta">
-          <img v-if="iconPaths.length" :src="getURL(3)" class="score-preview__icon" /> Balanced
-        </h2>
-        <p>
-          You earn points from correct bets on draw. For example:
-        </p>
-        <ul>
-          <li>Germany plays Switzerland</li>
-          <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
-          <li>You bet on Draw</li>
-          <li>The match ends in a draw</li>
-          <li>You get <span class="text--magenta">+2.50</span> points in score <span class="text--magenta">Balanced</span></li>
-          <li>You also get <span class="text--cyan">+2.50</span> points in score <span class="text--cyan">Schosel</span> since you bet on the correct outcome</li>
-        </ul>
-        <h2 class="h3 text--orange">
-          <img v-if="iconPaths.length" :src="getURL(4)" class="score-preview__icon" /> Comeback
-        </h2>
-        <p>
-          You earn points from correct bets on the team that was first behind in score but then won the game. For example:
-        </p>
-        <ul>
-          <li>Germany plays Switzerland</li>
-          <li>Odds result in Germany 1.50, Draw 2.50, Switzerland 10.00</li>
-          <li>You bet on Germany</li>
-          <li>Switzerland scores the first goal</li>
-          <li>Germany fights back and scores two goals</li>
-          <li>The match ends Germany 2:1 Switzerland</li>
-          <li>You get <span class="text--orange">+1.50</span> points in score <span class="text--orange">Comeback</span></li>
-          <li>You also get <span class="text--cyan">+1.50</span> points in score <span class="text--cyan">Schosel</span> since you bet on the correct outcome</li>
         </ul>
         <h2 class="h3">Champion bet outcome</h2>
         <p>

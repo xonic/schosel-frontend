@@ -148,7 +148,7 @@ export default {
       }
 
       this.$emit("is-saving")
-      this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
+      if (this.$ga) this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
 
       HTTP('/bets/' + match_id, {
         method: "post",

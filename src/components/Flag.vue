@@ -20,11 +20,11 @@
         // List of valid ISO codes that have corresponding flag files
         const validIsos = [
           'arg', 'aus', 'aut', 'bel', 'bih', 'bra', 'can', 'civ', 'cod', 'col', 'cpv',
-          'cro', 'cuw', 'cze', 'den', 'dza', 'ecu', 'egy', 'eng', 'esp', 'fin', 'fra',
+          'cro', 'cuw', 'cze', 'den', 'alg', 'ecu', 'egy', 'eng', 'esp', 'fin', 'fra',
           'ger', 'gha', 'hai', 'hun', 'irn', 'irq', 'ita', 'jor', 'jpn', 'kor', 'mar',
-          'mex', 'mkd', 'ned', 'nor', 'nzl', 'pan', 'pol', 'por', 'pry', 'qat', 'rus',
-          'sau', 'sco', 'sen', 'sui', 'svk', 'swe', 'tun', 'tur', 'ury', 'usa', 'uzb',
-          'wal', 'zaf', 'drw'
+          'mex', 'mkd', 'ned', 'nor', 'nzl', 'pan', 'pol', 'por', 'par', 'qat', 'rus',
+          'ksa', 'sco', 'sen', 'sui', 'svk', 'swe', 'tun', 'tur', 'uru', 'usa', 'uzb',
+          'wal', 'rsa', 'drw'
         ]
         
         // Convert ISO to lowercase for comparison

@@ -26,8 +26,8 @@
         </p>
         <ol>
           <li>First place <strong>50%</strong> of that score’s prize pool</li>
-          <li>Second place <strong>35%</strong> of that score’s prize pool</li>
-          <li>Third place <strong>15%</strong> of that score’s prize pool</li>
+          <li>Second place <strong>30%</strong> of that score’s prize pool</li>
+          <li>Third place <strong>20%</strong> of that score’s prize pool</li>
         </ol>
         <p>
           This means:
@@ -35,17 +35,17 @@
         <h3 class="h4">Schosel (70% of total pot)</h3>
         <ul>
           <li>First place: <strong>35% of the whole pot</strong></li>
-          <li>Second place: <strong>24.5% of the whole pot</strong></li>
-          <li>Third place: <strong>10.5% of the whole pot</strong></li>
+          <li>Second place: <strong>21% of the whole pot</strong></li>
+          <li>Third place: <strong>14% of the whole pot</strong></li>
         </ul>
         <h3 class="h4">Loser (30% of total pot)</h3>
         <ul>
           <li>First place: <strong>15% of the whole pot</strong></li>
-          <li>Second place: <strong>10.5% of the whole pot</strong></li>
-          <li>Third place: <strong>4.5% of the whole pot</strong></li>
+          <li>Second place: <strong>9% of the whole pot</strong></li>
+          <li>Third place: <strong>6% of the whole pot</strong></li>
         </ul>
         <p>
-          So if you land in first place in Schosel and third place in Loser, you receive <strong>39.5% of the entire pot</strong>. 
+          So if you land in first place in Schosel and third place in Loser, you receive <strong>41% of the entire pot</strong>. 
         </p>
         <h2 class="h3">Betting</h2>
         <p>

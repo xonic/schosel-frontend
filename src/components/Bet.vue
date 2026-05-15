@@ -15,7 +15,7 @@
         <div class="bet__flag">
           <flag :iso="match.team1_iso" :is-bet="ownBet(match.match_id).bet.outcome === '1'" />
         </div>
-        <div :class="ownBet(match.match_id).bet.outcome === '1' ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">Home</div>
+        <div :class="ownBet(match.match_id).bet.outcome === '1' ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">{{ match.team1_iso.toUpperCase() }}</div>
       </label>
       <input class="match__input" type="radio" :id="match.match_id + '-draw'" value="X" v-model="ownBet(match.match_id).bet.outcome" @change="postBet(match.match_id, ownBet(match.match_id).bet.outcome, ownBet(match.match_id).bet.superbet)">
       <label class="match__label match__label--radio" :for="match.match_id + '-draw'">
@@ -31,7 +31,7 @@
         <div class="bet__flag">
           <flag :iso="match.team2_iso" :is-bet="ownBet(match.match_id).bet.outcome === '2'" />
         </div>
-        <div :class="ownBet(match.match_id).bet.outcome === '2' ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">Away</div>
+        <div :class="ownBet(match.match_id).bet.outcome === '2' ? 'bet__outcome bet__outcome--is-bet' : 'bet__outcome'">{{ match.team2_iso.toUpperCase() }}</div>
       </label>
 
       <span v-if="loggedInUser" :class="(maxSuperbets <= loggedInUser.superbets_placed) && !ownBet(match.match_id).bet.superbet ? 'superbet--disabled' : ''">

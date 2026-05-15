@@ -182,8 +182,9 @@
   background-image: url('assets/img/flags/cuw.svg');
 }
 
-.flag--dza {
-  background-image: url('assets/img/flags/arg.svg');
+.flag--dza,
+.flag--alg {
+  background-image: url('assets/img/flags/alg.svg');
 }
 
 .flag--ecu {
@@ -242,7 +243,8 @@
   background-image: url('assets/img/flags/pan.svg');
 }
 
-.flag--pry {
+.flag--pry,
+.flag--par {
   background-image: url('assets/img/flags/par.svg');
 }
 
@@ -250,7 +252,8 @@
   background-image: url('assets/img/flags/qat.svg');
 }
 
-.flag--sau {
+.flag--sau,
+.flag--ksa {
   background-image: url('assets/img/flags/ksa.svg');
 }
 
@@ -262,7 +265,8 @@
   background-image: url('assets/img/flags/tun.svg');
 }
 
-.flag--ury {
+.flag--ury,
+.flag--uru {
   background-image: url('assets/img/flags/uru.svg');
 }
 
@@ -274,6 +278,7 @@
   background-image: url('assets/img/flags/uzb.svg');
 }
 
-.flag--zaf {
+.flag--zaf,
+.flag--rsa {
   background-image: url('assets/img/flags/rsa.svg');
 }

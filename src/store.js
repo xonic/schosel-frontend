@@ -229,17 +229,17 @@ export default new Vuex.Store({
 
       state.scores = []
 
-      // Iterate the 5 challenges,
-      // sort users by challenge rank ,
-      // push to state.scores array
-      for(let i=0; i<=4; i++) {
+      const scoredUsers = users.filter(u => u.scores)
+
+      // Iterate the challenges, sort users by challenge rank, push to state.scores array
+      for(let i=0; i < state.scoreMeta.length; i++) {
         state.scores.push(
           {
             ...state.scoreMeta[i],
             users:
-            users.slice().sort((a, b) => {
+            scoredUsers.slice().sort((a, b) => {
               if(a.scores[i].rank === b.scores[i].rank) {
-                return a.scores[i].name.localeCompare(b.scores[i].name)
+                return a.name.localeCompare(b.name)
               }
               else {
                 return (a.scores[i].rank > b.scores[i].rank) ? 1 : -1

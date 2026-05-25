@@ -4,7 +4,7 @@
       <span class="text--cyan">S</span>
       <span class="text--blue">c</span>
       <span class="text--purple">h</span>
-      <avatar :src="avatarUrl + Math.random()" class="logo__avatar" />
+      <avatar :src="avatarUrl + getRandomSeed()" class="logo__avatar" />
       <!-- <span v-else class="text--magenta">o</span> -->
       <span class="text--red">s</span>
       <span class="text--orange">e</span>
@@ -17,6 +17,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import Avatar from '@/components/Avatar.vue'
+  import { getRandomSeed } from '@/utils'
 
   export default {
     name: 'logo',
@@ -28,6 +29,9 @@
         'avatarUrl',
         'matches'
       ])
+    },
+    methods: {
+      getRandomSeed
     }
   }
 </script>

@@ -15,7 +15,7 @@
       </div>
       <div v-else class="blankslate">
         <div class="blankslate__avatar">
-          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+          <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
         </div>
         <div class="blankslate__text">No matches played</div>
       </div>
@@ -29,6 +29,7 @@ import { mapGetters } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 import MatchPreview from '@/components/MatchPreview'
 import Avatar from '@/components/Avatar'
+import { getRandomSeed } from '@/utils'
 
 export default {
   name: 'matches',
@@ -46,6 +47,7 @@ export default {
     Avatar
   },
   methods: {
+    getRandomSeed,
     betForMatch(match) {
       if(this.loggedInUser && this.loggedInUser.private_bets) {
         let userBet = this.loggedInUser.private_bets.find((bet) => bet.match_id === match.match_id)

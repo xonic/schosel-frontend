@@ -53,7 +53,7 @@
       </div>
       <div v-else class="blankslate">
         <div class="blankslate__avatar">
-          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+          <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
         </div>
         <div class="blankslate__text">Move on, nothing to see here yet</div>
       </div>
@@ -70,6 +70,7 @@ import RankProgressBar from '@/components/RankProgressBar'
 import Bet from '@/components/Bet'
 import Avatar from '@/components/Avatar'
 import AvailableSuperBets from '@/components/AvailableSuperBets'
+import { getRandomSeed } from '@/utils'
 
 export default {
   name: 'home',
@@ -146,6 +147,7 @@ export default {
     }
   },
   methods: {
+    getRandomSeed,
     betForMatch(match) {
       if(this.loggedInUser && this.loggedInUser.private_bets) {
         let userBet = this.loggedInUser.private_bets.find((bet) => bet.match_id === match.match_id)

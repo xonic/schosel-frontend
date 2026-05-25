@@ -29,7 +29,7 @@
       </ul>
       <div v-else class="blankslate">
         <div class="blankslate__avatar">
-          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+          <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
         </div>
         <div class="blankslate__text">No matches left to bet</div>
       </div>
@@ -47,6 +47,7 @@
   import Bet from '@/components/Bet'
   import Flag from '@/components/Flag'
   import Avatar from '@/components/Avatar'
+  import { getRandomSeed } from '@/utils'
 
   export default {
     name: 'bets',
@@ -77,6 +78,7 @@
     },
     mounted() {},
     methods: {
+      getRandomSeed,
       postChampion() {
         this.isSaving = true
           // this.$ga.event(this.loggedInUser.name, "champion_bet")

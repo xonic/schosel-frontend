@@ -7,7 +7,7 @@
       <rank-grid v-if="kingsScore.length" :data="kingsScore" />
       <div v-else class="blankslate">
         <div class="blankslate__avatar">
-          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+          <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
         </div>
         <div class="blankslate__text">No one scored any points yet</div>
       </div>
@@ -19,6 +19,7 @@
   import { mapGetters } from 'vuex'
   import RankGrid from '@/components/RankGrid'
   import Avatar from '@/components/Avatar'
+  import { getRandomSeed } from '@/utils'
 
   export default {
     name: 'kings-game',
@@ -34,6 +35,7 @@
       ])
     },
     methods: {
+      getRandomSeed,
       getURL(index) {
         return require(`../assets/img/icons/${this.iconPaths[index]}`)
       }

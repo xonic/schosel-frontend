@@ -11,7 +11,7 @@
       </ul>
       <div v-else class="blankslate">
         <div class="blankslate__avatar">
-          <avatar :src="avatarUrl + Math.random()" size="xlarge" />
+          <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
         </div>
         <div class="blankslate__text">No users have paid yet</div>
       </div>
@@ -24,6 +24,7 @@
 import { mapGetters } from 'vuex'
 import Avatar from '@/components/Avatar.vue'
 import UserPreview from '@/components/UserPreview'
+import { getRandomSeed } from '@/utils'
 
 export default {
   name: 'users',
@@ -50,6 +51,9 @@ export default {
         }
       })
     }
+  },
+  methods: {
+    getRandomSeed
   }
 }
 </script>

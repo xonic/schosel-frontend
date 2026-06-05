@@ -14,6 +14,7 @@
 }
 
 .bet__date,
+.bet__venue,
 .bet__outcome,
 .bet__vs {
   font-size: $textSmallSize;
@@ -24,6 +25,7 @@
 }
 
 .bet__date,
+.bet__venue,
 .bet__vs {
   color: $gray-20;
 }
@@ -33,6 +35,7 @@
 }
 
 .bet__date,
+.bet__venue,
 .bet__teams,
 .bet__outcome {
   text-align: center;

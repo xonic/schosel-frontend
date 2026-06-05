@@ -3,6 +3,7 @@
     <div class="bet__date">
       {{ matchDate(match.date) }}
     </div>
+    <div v-if="match.api_data && match.api_data.stadium" class="bet__venue">{{ match.api_data.stadium }}, {{ match.api_data.stadium_city }}</div>
     <div class="bet__teams">
       <span class="bet__home-team">{{ match.team1_name }}</span>
       <span class="bet__vs"> vs </span>

@@ -22,8 +22,8 @@
               <img v-if="iconPaths.length" :src="getURL(score.challenge_id - 1)" class="user-scores__icon" />
               <div>
                 <div class="user-scores__name" :class="challengeColorClass(score.challenge_id)">{{ formatChallengeName(score.name) }}</div>
-                <div class="user-scores__stats text--small">{{ score.points.toFixed(2) }} pts</div>
                 <div class="user-scores__stats text--small">{{ ordinal(score.rank) }}</div>
+                <div class="user-scores__stats text--small">{{ score.points.toFixed(2) }} pts</div>
               </div>
             </router-link>
           </li>

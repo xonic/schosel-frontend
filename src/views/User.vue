@@ -4,11 +4,14 @@
       <div v-if="user && user.avatar" class="user__avatar" @click="resetAvatar()">
         <avatar :src="user.avatar" size="xlarge" />
       </div>
-      <h1 v-if="user" class="h2 text--center">{{ user.name }}</h1>
-      <h2 v-if="user && user.reward >= 0" class="h3 main__title text--gray-20">{{ user.reward.toFixed(2) }} &euro;</h2>
+      <h1 v-if="user" class="h2 text--center user__name">{{ user.name }}</h1>
+      <h2 v-if="user && user.reward >= 0" class="h3 text--center text--gray-20 user__reward">{{ user.reward.toFixed(2) }} &euro;</h2>
 
-      <h3 v-if="(user && user.champion) && user.champion.name" class="text--center">{{ user.champion.name }}</h3>
-      <div v-if="(user && user.champion) && user.champion.name" class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
+      <div v-if="(user && user.champion) && user.champion.name" class="user__champion">
+        <h2 class="h3 text--center user__section-heading">Champion bet</h2>
+        <div class="text--center user__champion-name">{{ user.champion.name }}</div>
+        <div class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
+      </div>
 
       <apexchart
         v-if="user && user.scores"
@@ -17,10 +20,12 @@
         :series="reversedDatasets">
       </apexchart>
 
-      <h2 class="h3 main__title">Bets</h2>
+      <h2 class="h3 text--center user__section-heading">Match bets</h2>
 
-      <div class="text--small text--gray-20 text--center">{{ totalBets() }} of {{ totalMatchesPlayed() }} bets placed</div>
-      <div class="text--small text--gray-20 main__title">{{ remainingSuperbets() }} superbets remaining</div>
+      <div class="user__bet-stats">
+        <div class="text--small text--gray-20">{{ totalBets() }} of {{ totalMatchesPlayed() }} bets placed</div>
+        <div class="text--small text--gray-20">{{ remainingSuperbets() }} superbets remaining</div>
+      </div>
 
       <apexchart
         v-if="totalBets()"

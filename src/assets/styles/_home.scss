@@ -5,10 +5,30 @@
 }
 
 .last-match-day {
-  display: flex;
-  justify-content: space-between;
+  width: fit-content;
+  margin: 0 auto;
 
   a {
     border-color: transparent;
   }
+}
+
+.last-match-day__item {
+  display: flex;
+  align-items: center;
+  gap: $space-75;
+  padding: $space-50 0;
+}
+
+.last-match-day__icon {
+  width: $space-125;
+  flex-shrink: 0;
+}
+
+.last-match-day__name {
+  margin-bottom: $space-10;
+}
+
+.last-match-day__stats {
+  opacity: .75;
 }

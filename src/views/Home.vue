@@ -14,28 +14,29 @@
         <h2 class="h3 text--center">{{ matchDate(lastMatchDayBets[0].date) }}</h2>
         <div v-if="lastMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} match</div>
         <div v-else class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} matches</div>
-        <ul class="last-match-day text--center text--gray-20">
+<ul class="last-match-day">
           <li :class="lastMatchDayPoints[0] > 0 ? 'text--cyan' : 'icon--zero-points'">
-            <router-link :to="{ name: 'schosel' }">
-              <img v-if="iconPaths.length" :src="getURL(0)" />
+            <router-link :to="{ name: 'schosel' }" class="last-match-day__item">
+              <img v-if="iconPaths.length" :src="getURL(0)" class="last-match-day__icon" />
               <div>
-                <div class="text--small">Schosel</div>
-                <div>+{{ lastMatchDayPoints[0] }}</div>
-                <div v-if="loggedInUser" class="text--small">{{ loggedInUser.scores[0].rank }}.</div>
+                <div class="last-match-day__name">Schosel</div>
+                <div class="last-match-day__stats text--small">
+                  +{{ lastMatchDayPoints[0] }} points<span v-if="loggedInUser"> · {{ ordinal(loggedInUser.scores[0].rank) }}</span>
+                </div>
               </div>
             </router-link>
           </li>
           <li :class="lastMatchDayPoints[1] > 0 ? 'text--blue' : 'icon--zero-points'">
-            <router-link :to="{ name: 'loser' }">
-              <img v-if="iconPaths.length" :src="getURL(1)" />
+            <router-link :to="{ name: 'loser' }" class="last-match-day__item">
+              <img v-if="iconPaths.length" :src="getURL(1)" class="last-match-day__icon" />
               <div>
-                <div class="text--small">Loser</div>
-                <div>+{{ lastMatchDayPoints[1] }}</div>
-                <div v-if="loggedInUser" class="text--small">{{ loggedInUser.scores[1].rank }}.</div>
+                <div class="last-match-day__name">Loser</div>
+                <div class="last-match-day__stats text--small">
+                  +{{ lastMatchDayPoints[1] }} points<span v-if="loggedInUser"> · {{ ordinal(loggedInUser.scores[1].rank) }}</span>
+                </div>
               </div>
             </router-link>
           </li>
-
         </ul>
 
       </div>
@@ -148,6 +149,11 @@ export default {
   },
   methods: {
     getRandomSeed,
+    ordinal(n) {
+      const s = ['th', 'st', 'nd', 'rd']
+      const v = n % 100
+      return n + (s[(v - 20) % 10] || s[v] || s[0]) + ' place'
+    },
     betForMatch(match) {
       if(this.loggedInUser && this.loggedInUser.private_bets) {
         let userBet = this.loggedInUser.private_bets.find((bet) => bet.match_id === match.match_id)

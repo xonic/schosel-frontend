@@ -5,7 +5,7 @@
         <h1 class="h2 main__title text--red is-live">Now live</h1>
         <ul>
           <li v-for="match in liveMatches" class="match">
-            <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
+            <match-preview :match="match" :bet="betForMatch(match)" />
           </li>
         </ul>
       </div>
@@ -52,7 +52,7 @@
           </li>
         </ul>
       </div>
-      <div v-else class="blankslate">
+      <div v-if="!(liveMatches && liveMatches.length) && !(lastMatchDayBets && lastMatchDayBets.length) && !(nextMatchDay && nextMatchDay.length)" class="blankslate">
         <div class="blankslate__avatar">
           <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
         </div>

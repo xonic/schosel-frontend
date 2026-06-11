@@ -2,12 +2,11 @@
   <router-link class="match-preview" :to="{ path: `/matches/${match.match_id}` }">
     <div class="match-preview__body" v-if="match">
       <div class="match-preview__live is-live" v-if="match.status === 'live'">
-        <div v-if="match.api_data">{{ match.api_data.status }}</div>
-        <div v-if="match.api_data">{{ match.api_data.elapsed }}' played</div>
+        <div v-if="match.api_data && match.api_data.elapsed">{{ match.api_data.elapsed }}' played</div>
         <div v-if="match.api_data && match.api_data.stadium" class="match-preview__venue">{{ match.api_data.stadium }}, {{ match.api_data.stadium_city }}, {{ match.api_data.stadium_country }}</div>
       </div>
       <div class="match-preview__over" v-else>
-        <div v-if="match.api_data">{{ match.api_data.status }}</div>
+        <div v-if="match.api_data && match.api_data.status === 'completed'">Full time</div>
         <div>{{ matchDate(match.date) }}</div>
         <div v-if="match.api_data && match.api_data.stadium" class="match-preview__venue">{{ match.api_data.stadium }}, {{ match.api_data.stadium_city }}, {{ match.api_data.stadium_country }}</div>
       </div>

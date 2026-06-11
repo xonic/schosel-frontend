@@ -64,6 +64,42 @@ input {
   color: $gray-20;
 }
 
+.select {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto $space-25;
+  padding: $space-50 $space-125 $space-50 $space-75;
+  background-color: $gray-12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23C0BEC1' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $space-50 center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $bold-font-weight;
+  line-height: 1.5;
+  color: $white;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($gray-12, 5%);
+  }
+
+  &:focus {
+    background-color: $gray-14;
+    border-color: $yellow-100;
+    outline: 0;
+  }
+
+  option {
+    background: $gray-10;
+  }
+}
+
 .btn {
   margin-bottom: $space-25;
   padding: $space-35 $space-75;

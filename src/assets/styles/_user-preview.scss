@@ -83,11 +83,6 @@
 
 .user-scores__item {
   flex: 1;
-
-  &.user-scores__item--zero img {
-    filter: grayscale(1);
-    opacity: .4;
-  }
 }
 
 .user-scores__link {

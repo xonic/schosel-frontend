@@ -16,7 +16,10 @@
             <option v-for="team in status.teams" v-bind:value="team.team_id">{{ team.name }}</option>
           </select>
           <div v-else>
-            <div v-if="status.user.champion">{{ championBet() }}</div>
+            <div v-if="status.user.champion" class="champion-bet__display">
+              <flag v-if="status.user.champion.short_name" :iso="status.user.champion.short_name" size="large" />
+              <div>{{ championBet() }}</div>
+            </div>
           </div>
           <div class="bet__status" :class="{ 'bet__status--saved': championSaved, 'bet__status--error': championSaveError }">{{ championStatusText }}</div>
         </div>

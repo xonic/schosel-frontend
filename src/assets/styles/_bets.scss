@@ -4,6 +4,12 @@
   text-align: center;
 }
 
+.champion-bet__display {
+  .flag {
+    margin: 0 auto $space-25;
+  }
+}
+
 .bet {
   padding: $space-75 0;
   border-top: 1px solid $gray-12;

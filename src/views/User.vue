@@ -7,55 +7,67 @@
       <h1 v-if="user" class="h2 text--center user__name">{{ user.name }}</h1>
       <h2 v-if="user && user.reward >= 0" class="h3 text--center text--gray-20 user__reward">{{ user.reward.toFixed(2) }} &euro;</h2>
 
-      <div v-if="(user && user.champion) && user.champion.name" class="user__champion">
-        <h2 class="h3 text--center user__section-heading">Champion bet</h2>
-        <div class="text--center user__champion-name">{{ user.champion.name }}</div>
-        <div class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
-        <div v-if="user.champion_correct" class="user__champion-correct">Correct!</div>
+      <div class="user-tabs">
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'stats' }" @click="setTab('stats')">Stats</button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'bets' }" @click="setTab('bets')">Bets</button>
       </div>
 
-      <div v-if="user && user.scores && user.scores.length" class="user-scores-section">
-        <h2 class="h3 text--center user__section-heading">Scores</h2>
-        <ul class="user-scores">
-          <li v-for="score in user.scores.filter(s => s.challenge_id <= 2)" :key="score.challenge_id" class="user-scores__item" :class="{ 'user-scores__item--zero': !score.points }">
-            <router-link :to="{ name: challengeRoute(score.challenge_id), params: { id: String(score.challenge_id) } }" class="user-scores__link">
-              <img v-if="iconPaths.length" :src="getURL(score.challenge_id - 1)" class="user-scores__icon" />
-              <div>
-                <div class="user-scores__name" :class="challengeColorClass(score.challenge_id)">{{ formatChallengeName(score.name) }}</div>
-                <div class="user-scores__stats text--small">{{ ordinal(score.rank) }}</div>
-                <div class="user-scores__stats text--small">{{ score.points.toFixed(2) }} pts</div>
-              </div>
-            </router-link>
+      <div v-if="activeTab === 'stats'">
+        <div v-if="user && user.scores && user.scores.length" class="user-scores-section">
+          <h2 class="h3 text--center user__section-heading">Scores</h2>
+          <ul class="user-scores">
+            <li v-for="score in user.scores.filter(s => s.challenge_id <= 2)" :key="score.challenge_id" class="user-scores__item" :class="{ 'user-scores__item--zero': !score.points }">
+              <router-link :to="{ name: challengeRoute(score.challenge_id), params: { id: String(score.challenge_id) } }" class="user-scores__link">
+                <img v-if="iconPaths.length" :src="getURL(score.challenge_id - 1)" class="user-scores__icon" />
+                <div>
+                  <div class="user-scores__name" :class="challengeColorClass(score.challenge_id)">{{ formatChallengeName(score.name) }}</div>
+                  <div class="user-scores__stats text--small">{{ ordinal(score.rank) }}</div>
+                  <div class="user-scores__stats text--small">{{ score.points.toFixed(2) }} pts</div>
+                </div>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+
+        <div v-if="(user && user.champion) && user.champion.name" class="user__champion">
+          <h2 class="h3 text--center user__section-heading">Champion bet</h2>
+          <div class="text--center user__champion-flag">
+            <flag v-if="user.champion.short_name" :iso="user.champion.short_name" size="large" />
+          </div>
+          <div class="text--center user__champion-name">{{ user.champion.name }}</div>
+          <div class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
+          <div v-if="user.champion_correct" class="user__champion-correct">Correct!</div>
+        </div>
+      </div>
+
+      <div v-if="activeTab === 'bets'">
+        <h2 class="h3 text--center user__section-heading">Match bets</h2>
+
+        <div class="user__bet-stats">
+          <div class="text--small text--gray-20">{{ totalBets() }} of {{ totalMatchesPlayed() }} bets placed</div>
+          <div class="text--small text--gray-20">{{ remainingSuperbets() }} superbets remaining</div>
+        </div>
+
+        <apexchart
+          v-if="totalBets()"
+          type="bar"
+          :options="betChartOptions"
+          :series="betStats">
+        </apexchart>
+
+        <ul v-if="matches.live && matches.live.length">
+          <li v-for="match in matches.live">
+            <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
           </li>
         </ul>
-      </div>
-
-      <h2 class="h3 text--center user__section-heading">Match bets</h2>
-
-      <div class="user__bet-stats">
-        <div class="text--small text--gray-20">{{ totalBets() }} of {{ totalMatchesPlayed() }} bets placed</div>
-        <div class="text--small text--gray-20">{{ remainingSuperbets() }} superbets remaining</div>
-      </div>
-
-      <apexchart
-        v-if="totalBets()"
-        type="bar"
-        :options="betChartOptions"
-        :series="betStats">
-      </apexchart>
-
-      <ul v-if="matches.live && matches.live.length">
-        <li v-for="match in matches.live">
-          <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
-        </li>
-      </ul>
-      <ul v-if="matches.over && matches.over.length">
-        <li v-for="match in matches.over">
-          <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
-        </li>
-      </ul>
-      <div v-else class="blankslate">
-        <div class="blankslate__text">No public bets available</div>
+        <ul v-if="matches.over && matches.over.length">
+          <li v-for="match in matches.over">
+            <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
+          </li>
+        </ul>
+        <div v-if="!(matches.live && matches.live.length) && !(matches.over && matches.over.length)" class="blankslate">
+          <div class="blankslate__text">No public bets available</div>
+        </div>
       </div>
     </div>
   </main>
@@ -67,15 +79,18 @@ import { HTTP } from '../http-constants'
 import { mapGetters } from 'vuex'
 import Avatar from '@/components/Avatar'
 import MatchPreview from '@/components/MatchPreview'
+import Flag from '@/components/Flag'
 
 export default {
   name: 'user',
   components: {
     MatchPreview,
     Avatar,
+    Flag,
   },
   data () {
     return {
+      activeTab: this.$route.query.tab || 'stats',
       user: {},
       betStats: [{
         data: [],
@@ -154,18 +169,6 @@ export default {
         }
       }
     },
-    // bets () {
-    //   return this.user.bets.map(bet => {
-    //     return {
-    //       id: bet.match.match_id,
-    //       match: bet.match.team1_name + " vs. " + bet.match.team2_name,
-    //       bet: bet.outcome == 1 ? bet.match.team1_name : bet.outcome == 2 ? bet.match.team2_name : bet.outcome == "X" ? "Draw" : "-",
-    //       outcome: bet.match.team1_goals + " : " + bet.match.team2_goals,
-    //       superbet: bet.superbet,
-    //       score: bet.points ? bet.points.toFixed(2) : 0
-    //     }
-    //   })
-    // }
   },
   methods: {
     getURL(index) {
@@ -185,6 +188,10 @@ export default {
     challengeRoute(id) {
       return id === 1 ? 'schosel' : 'loser'
     },
+    setTab(tab) {
+      this.activeTab = tab
+      this.$router.replace({ query: { ...this.$route.query, tab } })
+    },
     betForMatch(match) {
       if(this.user && this.user.public_bets) {
         let userBet = this.user.public_bets.find((bet) => bet.match_id === match.match_id)
@@ -194,7 +201,7 @@ export default {
     },
     totalMatchesPlayed() {
       if(!this.matches) return 0
-      return (this.matches.live.length || 0) + (this.matches.over.length || 0)
+      return (this.matches.live.length || 0) + (this.matches.over.length || 0)
     },
     totalBets() {
       if(!this.user || !this.user.public_bets) return 0

@@ -1,3 +1,4 @@
+@use "sass:color";
 
 .external-page {
   padding: 0 $space-25;
@@ -42,7 +43,7 @@ input {
   color: $white;
 
   &:hover {
-    background: lighten($gray-12, 5%);
+    background: color.adjust($gray-12, $lightness: 5%);
   }
 
   &:focus {
@@ -86,7 +87,7 @@ input {
   cursor: pointer;
 
   &:hover {
-    background-color: lighten($gray-12, 5%);
+    background-color: color.adjust($gray-12, $lightness: 5%);
   }
 
   &:focus {
@@ -136,7 +137,7 @@ input {
 
   &:hover,
   &:focus {
-    background: lighten($gray-14, 5%);
+    background: color.adjust($gray-14, $lightness: 5%);
     outline: 0;
   }
 }

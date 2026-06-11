@@ -15,6 +15,14 @@
   margin-bottom: $space-75;
 }
 
+.user__champion-flag {
+  margin-bottom: $space-25;
+
+  .flag {
+    margin: 0 auto;
+  }
+}
+
 .user__champion-name {
   margin-bottom: $space-10;
 }
@@ -25,6 +33,35 @@
   font-weight: $bold-font-weight;
   color: $green-100;
   text-align: center;
+}
+
+.user-tabs {
+  display: flex;
+  border-bottom: 1px solid $gray-12;
+  margin-bottom: $space-75;
+}
+
+.user-tab {
+  flex: 1;
+  padding: $space-50 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: $gray-20;
+  font-family: inherit;
+  font-size: $base-font-size;
+  font-weight: $bold-font-weight;
+  cursor: pointer;
+
+  &:hover {
+    background: $gray-12;
+  }
+
+  &.user-tab--active {
+    color: $white;
+    border-bottom-color: $yellow-100;
+  }
 }
 
 .user__bet-stats {
@@ -72,6 +109,7 @@
 
 .user-scores__name {
   margin-bottom: $space-10;
+  font-weight: $bold-font-weight;
 }
 
 .user-scores__stats {

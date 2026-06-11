@@ -46,6 +46,7 @@
         </label>
       </span>
     </div>
+    <div class="bet__status" :class="{ 'bet__status--saved': saved, 'bet__status--error': saveError }">{{ statusText }}</div>
   </div>
 </template>
 <script>
@@ -70,7 +71,10 @@ export default {
           outcome: null,
           superbet: null
         }
-      }
+      },
+      saving: false,
+      saved: false,
+      saveError: false
     }
   },
   computed: {
@@ -84,6 +88,12 @@ export default {
       if(!(this.loggedInUser && this.loggedInUser.visible_superbets)) return this.maxSuperbets
       return this.maxSuperbets - this.loggedInUser.visible_superbets
     },
+    statusText() {
+      if (this.saving) return 'Saving…'
+      if (this.saved) return 'Saved'
+      if (this.saveError) return "Couldn’t save, try again"
+      return ' '
+    }
   },
   methods: {
     ownBet(match_id) {
@@ -108,6 +118,10 @@ export default {
         return
       }
 
+      this.saving = true
+      this.saved = false
+      this.saveError = false
+      const saveStart = Date.now()
       this.$emit("is-saving")
       if (this.$ga) this.$ga.event(this.loggedInUser.name, "match_bet", match_id)
 
@@ -120,11 +134,19 @@ export default {
           }
         })
         .then(response => {
-
-          this.$store.dispatch('LOAD_STATUS')
-          this.$emit("stopped-saving")
+          const minDelay = Math.max(0, 1000 - (Date.now() - saveStart))
+          setTimeout(() => {
+            this.saving = false
+            this.saved = true
+            setTimeout(() => { this.saved = false }, 3000)
+            this.$store.dispatch('LOAD_STATUS')
+            this.$emit("stopped-saving")
+          }, minDelay)
         })
         .catch(e => {
+          this.saving = false
+          this.saveError = true
+          setTimeout(() => { this.saveError = false }, 3000)
           this.$store.dispatch('LOAD_STATUS')
           console.log('an error happened')
           this.$emit("is-error")

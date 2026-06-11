@@ -18,6 +18,7 @@
           <div v-else>
             <div v-if="status.user.champion">{{ championBet() }}</div>
           </div>
+          <div class="bet__status" :class="{ 'bet__status--saved': championSaved, 'bet__status--error': championSaveError }">{{ championStatusText }}</div>
         </div>
       </div>
       <h2 class="h3 main__subtitle">Matches</h2>
@@ -61,10 +62,9 @@
     },
     data() {
       return {
-        isSaving: false,
-        isError: false,
-        saveSuccess: false,
-        saveError: false,
+        championSaving: false,
+        championSaved: false,
+        championSaveError: false,
       }
     },
     computed: {
@@ -75,13 +75,21 @@
           'status',
           'avatarUrl'
         ]),
+      championStatusText() {
+        if (this.championSaving) return 'Saving…'
+        if (this.championSaved) return 'Saved'
+        if (this.championSaveError) return "Couldn't save, try again"
+        return ' '
+      }
     },
     mounted() {},
     methods: {
       getRandomSeed,
       postChampion() {
-        this.isSaving = true
-          // this.$ga.event(this.loggedInUser.name, "champion_bet")
+        this.championSaving = true
+        this.championSaved = false
+        this.championSaveError = false
+        const saveStart = Date.now()
 
         HTTP('/champion', {
             method: "post",
@@ -91,48 +99,21 @@
             }
           })
           .then(response => {
-
+            const minDelay = Math.max(0, 1000 - (Date.now() - saveStart))
             setTimeout(() => {
-              this.isSaving -= 1
-            }, 3000)
+              this.championSaving = false
+              this.championSaved = true
+              setTimeout(() => { this.championSaved = false }, 3000)
+            }, minDelay)
           })
           .catch(e => {
-
-            this.isError = true
-
+            const minDelay = Math.max(0, 1000 - (Date.now() - saveStart))
             setTimeout(() => {
-              this.isError = false
-              this.isSaving = false
-            }, 3000)
+              this.championSaving = false
+              this.championSaveError = true
+              setTimeout(() => { this.championSaveError = false }, 3000)
+            }, minDelay)
           })
-      },
-      setSaving() {
-
-        if (!this.saveError) this.isSaving += 1
-        this.saveSuccess = false
-        this.saveError = false
-      },
-      stopSaving() {
-
-        setTimeout(() => {
-          this.saveSuccess = true
-
-          setTimeout(() => {
-            this.isSaving -= 1
-          }, 1000)
-        }, 2000)
-      },
-      stopSavingWithError() {
-
-        setTimeout(() => {
-          this.saveSuccess = false
-          this.saveError = true
-
-          // setTimeout(() => {
-          //   this.isSaving -= 1
-          // }, 5000)
-        }, 2000)
-
       },
       championBet() {
         return this.loggedInUser.champion.name || "-"

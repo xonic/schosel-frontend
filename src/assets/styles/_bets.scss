@@ -60,6 +60,28 @@
   margin: 0 auto;
 }
 
+@keyframes bet-saved-fade {
+  0%   { opacity: 1; }
+  66%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.bet__status {
+  font-size: $textSmallSize;
+  text-align: center;
+  color: $gray-20;
+  margin-top: $space-25;
+}
+
+.bet__status--saved {
+  color: $green-100;
+  animation: bet-saved-fade 3s forwards;
+}
+
+.bet__status--error {
+  color: $red-100;
+}
+
 .bet__superbet {
   display: flex;
   justify-content: center;

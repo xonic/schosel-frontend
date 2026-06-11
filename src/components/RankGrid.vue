@@ -25,9 +25,9 @@
         </td>
         <td class="rank-grid__td">
           <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }" :class="`rank-grid__name-col`">
-            <!-- <avatar :src="user.avatar" class="rank-grid__avatar" /> -->
-            <div v-if="user.champion" class="bet__flag">
-              <flag :iso="user.champion.short_name" />
+            <div class="avatar-champion-wrap">
+              <avatar :src="user.avatar" class="rank-grid__avatar" />
+              <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge" />
             </div>
             <div class="rank-grid__name">{{ user.name }}</div>
           </router-link>

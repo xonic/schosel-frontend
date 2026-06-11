@@ -119,7 +119,7 @@
           })
       },
       championBet() {
-        return this.loggedInUser.champion.name || "-"
+        return this.loggedInUser.champion && this.loggedInUser.champion.name || "-"
       },
       championSelectModel() {
         if(!status.user.champion || !status.user.champion.team_id) return 'def'

@@ -2,7 +2,10 @@
   <main>
     <div class="wrapper">
       <div v-if="user && user.avatar" class="user__avatar" @click="resetAvatar()">
-        <avatar :src="user.avatar" size="xlarge" />
+        <div class="avatar-champion-wrap">
+          <avatar :src="user.avatar" size="xlarge" />
+          <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge avatar-champion-badge--large" />
+        </div>
       </div>
       <h1 v-if="user" class="h2 text--center user__name">{{ user.name }}</h1>
       <h2 v-if="user && user.reward >= 0" class="h3 text--center text--gray-20 user__reward">{{ user.reward.toFixed(2) }} &euro;</h2>

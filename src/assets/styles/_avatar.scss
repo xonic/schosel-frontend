@@ -25,6 +25,26 @@
   width: $space-150;
 }
 
+.avatar-champion-wrap {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.avatar-champion-badge {
+  position: absolute;
+  bottom: 0;
+  right: -$space-10;
+  width: $space-50;
+  height: $space-50;
+  border-color: $gray-10;
+}
+
+.avatar-champion-badge--large {
+  width: $space-75;
+  height: $space-75;
+}
+
 .logo__avatar {
   display: inline;
   width: 2.6rem;

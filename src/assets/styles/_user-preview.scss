@@ -19,6 +19,14 @@
   margin-bottom: $space-10;
 }
 
+.user__champion-correct {
+  margin-top: $space-25;
+  font-size: $textSmallSize;
+  font-weight: $bold-font-weight;
+  color: $green-100;
+  text-align: center;
+}
+
 .user__bet-stats {
   text-align: center;
   margin-bottom: $space-75;

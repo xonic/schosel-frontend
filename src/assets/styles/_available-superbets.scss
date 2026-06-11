@@ -1,9 +1,10 @@
 
 .available-superbets {
-  padding: $space-25 0;
-  background: $gray-10;
-  top: -1px;
   position: sticky;
+  top: calc(-1px - env(safe-area-inset-top, 0px));
+  padding-top: calc(#{$space-25} + env(safe-area-inset-top, 0px));
+  padding-bottom: $space-25;
+  background: $gray-10;
 }
 
 .available-superbets__items {

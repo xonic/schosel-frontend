@@ -11,6 +11,7 @@
         <h2 class="h3 text--center user__section-heading">Champion bet</h2>
         <div class="text--center user__champion-name">{{ user.champion.name }}</div>
         <div class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
+        <div v-if="user.champion_correct" class="user__champion-correct">Correct!</div>
       </div>
 
       <apexchart

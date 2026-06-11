@@ -15,6 +15,7 @@
 
 .bet__date,
 .bet__venue,
+.bet__stage,
 .bet__outcome,
 .bet__vs {
   font-size: $textSmallSize;
@@ -26,6 +27,7 @@
 
 .bet__date,
 .bet__venue,
+.bet__stage,
 .bet__vs {
   color: $gray-20;
 }
@@ -36,12 +38,14 @@
 
 .bet__date,
 .bet__venue,
+.bet__stage,
 .bet__teams,
 .bet__outcome {
   text-align: center;
 }
 
 .bet__teams, {
+  margin-top: $space-50;
   margin-bottom: $space-50;
   font-size: $h3Size;
 }

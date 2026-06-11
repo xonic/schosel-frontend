@@ -19,10 +19,18 @@
   display: none;
 }
 
+.page--match .match-preview {
+  cursor: default;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
 .match-preview__info {
   display: grid;
   grid-template-columns: 1fr max-content 1fr;
-  margin-bottom: $space-35;
+  margin: $space-35 0;
   text-align: center;
 }
 
@@ -32,7 +40,9 @@
 
 .match-preview__live,
 .match-preview__over,
-.match-preview__draw {
+.match-preview__draw,
+.match-preview__venue,
+.match-preview__stage {
   font-size: $textSmallSize;
   color: $gray-20;
   text-align: center;

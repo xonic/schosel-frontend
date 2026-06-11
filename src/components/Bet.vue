@@ -1,5 +1,6 @@
 <template>
   <div class="bet">
+    <div v-if="match.stage" class="bet__stage">{{ match.stage }}</div>
     <div class="bet__date">
       {{ matchDate(match.date) }}
     </div>

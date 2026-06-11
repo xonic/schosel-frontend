@@ -14,6 +14,22 @@
         <div v-if="user.champion_correct" class="user__champion-correct">Correct!</div>
       </div>
 
+      <div v-if="user && user.scores && user.scores.length" class="user-scores-section">
+        <h2 class="h3 text--center user__section-heading">Scores</h2>
+        <ul class="user-scores">
+          <li v-for="score in user.scores.filter(s => s.challenge_id <= 2)" :key="score.challenge_id" class="user-scores__item" :class="{ 'user-scores__item--zero': !score.points }">
+            <router-link :to="{ name: challengeRoute(score.challenge_id), params: { id: String(score.challenge_id) } }" class="user-scores__link">
+              <img v-if="iconPaths.length" :src="getURL(score.challenge_id - 1)" class="user-scores__icon" />
+              <div>
+                <div class="user-scores__name" :class="challengeColorClass(score.challenge_id)">{{ formatChallengeName(score.name) }}</div>
+                <div class="user-scores__stats text--small">{{ score.points.toFixed(2) }} pts</div>
+                <div class="user-scores__stats text--small">{{ ordinal(score.rank) }}</div>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+
       <apexchart
         v-if="user && user.scores"
         type="radar"
@@ -102,7 +118,8 @@ export default {
       'status',
       'allUsers',
       'matches',
-      'avatarUrl'
+      'avatarUrl',
+      'iconPaths'
     ]),
     reversedDatasets() {
       return [{
@@ -238,6 +255,23 @@ export default {
     // }
   },
   methods: {
+    getURL(index) {
+      return require(`../assets/img/icons/${this.iconPaths[index]}`)
+    },
+    ordinal(n) {
+      const s = ['th', 'st', 'nd', 'rd']
+      const v = n % 100
+      return n + (s[(v - 20) % 10] || s[v] || s[0]) + ' place'
+    },
+    challengeColorClass(id) {
+      return ['', 'text--cyan', 'text--blue', 'text--purple', 'text--magenta', 'text--orange'][id] || ''
+    },
+    formatChallengeName(name) {
+      return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+    },
+    challengeRoute(id) {
+      return id === 1 ? 'schosel' : 'loser'
+    },
     betForMatch(match) {
       if(this.user && this.user.public_bets) {
         let userBet = this.user.public_bets.find((bet) => bet.match_id === match.match_id)

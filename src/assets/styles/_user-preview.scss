@@ -32,6 +32,52 @@
   margin-bottom: $space-75;
 }
 
+.user-scores-section {
+  margin-bottom: $space-75;
+}
+
+.user-scores {
+  display: flex;
+  justify-content: center;
+  gap: $space-75;
+  margin-bottom: $space-75;
+}
+
+.user-scores__item {
+  flex: 1;
+
+  &.user-scores__item--zero img {
+    filter: grayscale(1);
+    opacity: .4;
+  }
+}
+
+.user-scores__link {
+  display: flex;
+  align-items: center;
+  gap: $space-50;
+  width: 100%;
+  padding: $space-50;
+  border-bottom: 0;
+
+  &:hover {
+    background: $gray-12;
+  }
+}
+
+.user-scores__icon {
+  width: $space-100;
+  flex-shrink: 0;
+}
+
+.user-scores__name {
+  margin-bottom: $space-10;
+}
+
+.user-scores__stats {
+  opacity: .75;
+}
+
 .user-preview,
 .user-preview__ranks {
   display: flex;

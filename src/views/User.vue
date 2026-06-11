@@ -30,13 +30,6 @@
         </ul>
       </div>
 
-      <apexchart
-        v-if="user && user.scores"
-        type="radar"
-        :options="radarChartOptions"
-        :series="reversedDatasets">
-      </apexchart>
-
       <h2 class="h3 text--center user__section-heading">Match bets</h2>
 
       <div class="user__bet-stats">
@@ -121,86 +114,6 @@ export default {
       'avatarUrl',
       'iconPaths'
     ]),
-    reversedDatasets() {
-      return [{
-        name: 'Points',
-        data: this.radarChartOptions.datasets[0].data.map(value => this.allUsers.length + 1 - value)
-      }]
-    },
-    radarChartOptions () {
-      return {
-        chart: {
-          id: 'rank-chart',
-          background: 'transparent',
-          toolbar: {
-            show: false
-          }
-        },
-        theme: {
-          mode: 'dark'
-        },
-        markers: {
-          colors: [
-            '#FFD84D'
-          ],
-        },
-        fill: {
-          colors: [
-            '#FFD84D'
-          ],
-        },
-        stroke: {
-          colors: [
-            '#FFD84D'
-          ],
-        },
-        plotOptions: {
-          radar: {
-            polygons: {
-              connectorColors: '#3A353B',
-              strokeColors: '#3A353B',
-              fill: {
-                  colors: ['transparent']
-              }
-            }
-          }
-        },
-        xaxis: {
-          categories: [
-            `Schosel - ${this.user.scores.find(score => score.name === 'SCHOSEL').rank}.`,
-            `Loser - ${this.user.scores.find(score => score.name === 'LOSER').rank}.`,
-
-            `Comeback - ${this.user.scores.find(score => score.name === 'COMEBACK').rank}.`
-          ],
-          labels: {
-            trim: true,
-            style: {
-              colors: [
-                '#66FFDB',
-                '#63BEFF',
-                '#CBA6FF',
-                '#FF96CB',
-                '#FFA24D'
-              ],
-              fontSize: '.9rem'
-            }
-          },
-        },
-        yaxis: {
-          show: false
-        },
-        datasets: [
-          {
-            data: [
-              this.user.scores.find(score => score.name === 'SCHOSEL').rank || 0,
-              this.user.scores.find(score => score.name === 'LOSER').rank || 0,
-
-              this.user.scores.find(score => score.name === 'COMEBACK').rank || 0,
-            ],
-          }
-        ]
-      }
-    },
     betChartOptions () {
       return {
         chart: {

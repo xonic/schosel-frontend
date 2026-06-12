@@ -1,6 +1,6 @@
 <template>
   <div class="bet">
-    <div v-if="match.stage" class="bet__stage">{{ match.stage }}</div>
+    <div v-if="match.stage" class="bet__stage">{{ matchGroup(match) }}</div>
     <div class="bet__date">
       {{ matchDate(match.date) }}
     </div>
@@ -97,6 +97,17 @@ export default {
     }
   },
   methods: {
+    matchGroup(match) {
+      const titleCase = s => s.replace(/\b\w/g, c => c.toUpperCase())
+      const teams = this.status && this.status.teams
+      if (!teams) return titleCase(match.stage)
+      const team = teams.find(t => t.short_name === match.team1_iso)
+      if (team && team.group) {
+        const team2 = teams.find(t => t.short_name === match.team2_iso)
+        if (team2 && team2.group === team.group) return 'Group ' + team.group
+      }
+      return titleCase(match.stage)
+    },
     ownBet(match_id) {
       if(!(this.status.user && this.status.user.private_bets)) return this.betNotLoadedFallback
       return this.status.user.private_bets.find(bet => bet.match_id === match_id) || this.betNotLoadedFallback

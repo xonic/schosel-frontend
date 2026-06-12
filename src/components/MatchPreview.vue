@@ -2,12 +2,12 @@
   <router-link class="match-preview" :to="{ path: `/matches/${match.match_id}` }">
     <div class="match-preview__body" v-if="match">
       <div class="match-preview__live is-live" v-if="match.status === 'live'">
-        <div v-if="match.stage" class="match-preview__stage">{{ match.stage }}</div>
+        <div v-if="match.stage" class="match-preview__stage">{{ matchGroup(match) }}</div>
         <div v-if="match.api_data && match.api_data.elapsed">{{ match.api_data.elapsed }}' played</div>
         <div v-if="match.api_data && match.api_data.stadium" class="match-preview__venue">{{ match.api_data.stadium }}, {{ match.api_data.stadium_city }}, {{ match.api_data.stadium_country }}</div>
       </div>
       <div class="match-preview__over" v-else>
-        <div v-if="match.stage" class="match-preview__stage">{{ match.stage }}</div>
+        <div v-if="match.stage" class="match-preview__stage">{{ matchGroup(match) }}</div>
         <div v-if="match.api_data && match.api_data.status === 'completed'">Full time</div>
         <div>{{ matchDate(match.date) }}</div>
         <div v-if="match.api_data && match.api_data.stadium" class="match-preview__venue">{{ match.api_data.stadium }}, {{ match.api_data.stadium_city }}, {{ match.api_data.stadium_country }}</div>
@@ -94,7 +94,8 @@
     },
     computed: {
       ...mapGetters([
-        'iconPaths'
+        'iconPaths',
+        'status'
       ]),
       filteredPoints () {
         return this.bet && this.bet.points ? this.bet.points.filter(point => point.challenge_id <= 2) : []
@@ -103,6 +104,17 @@
     methods: {
       getURL(index) {
         return require(`../assets/img/icons/${this.iconPaths[index]}`)
+      },
+      matchGroup(match) {
+        const titleCase = s => s.replace(/\b\w/g, c => c.toUpperCase())
+        const teams = this.status && this.status.teams
+        if (!teams) return titleCase(match.stage)
+        const team = teams.find(t => t.short_name === match.team1_iso)
+        if (team && team.group) {
+          const team2 = teams.find(t => t.short_name === match.team2_iso)
+          if (team2 && team2.group === team.group) return 'Group ' + team.group
+        }
+        return titleCase(match.stage)
       },
       matchDate: date => {
         let theDate = new Date(date)

@@ -167,7 +167,7 @@ const router =  new Router({
       beforeEnter: isAdmin
     },
     {
-      path: '/users/:id',
+      path: '/users/:id/:tab?',
       name: 'user',
       component: User,
       props: true,

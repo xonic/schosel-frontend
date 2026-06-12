@@ -93,7 +93,7 @@ export default {
   },
   data () {
     return {
-      activeTab: this.$route.query.tab || 'stats',
+      activeTab: this.tab || 'stats',
       user: {},
       betStats: [{
         data: [],
@@ -102,7 +102,8 @@ export default {
     }
   },
   props: {
-    id: String
+    id: String,
+    tab: String
   },
   mounted () {
 
@@ -193,7 +194,7 @@ export default {
     },
     setTab(tab) {
       this.activeTab = tab
-      this.$router.replace({ query: { ...this.$route.query, tab } })
+      this.$router.replace({ name: 'user', params: { id: this.id, tab } })
     },
     betForMatch(match) {
       if(this.user && this.user.public_bets) {

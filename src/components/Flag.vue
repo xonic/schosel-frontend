@@ -13,7 +13,7 @@
     props: {
       iso: String,
       isBet: Boolean,
-      size: String // Accepted: 'tiny', 'small', 'medium', 'large'
+      size: String // Accepted: 'tiny', 'small', 'medium', 'large', 'xlarge'
     },
     computed: {
       flagClass() {

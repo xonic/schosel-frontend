@@ -14,19 +14,28 @@
 }
 
 .flag--tiny {
+  width: $space-35;
   height: $space-35;
 }
 
 .flag--small {
+  width: $space-50;
   height: $space-50;
 }
 
-.avatar--medium {
+.flag--medium {
   width: $space-75;
+  height: $space-75;
 }
 
-.avatar--large {
+.flag--large {
   width: $space-125;
+  height: $space-125;
+}
+
+.flag--xlarge {
+  width: $space-150;
+  height: $space-150;
 }
 
 .flag--drw {

@@ -11,6 +11,11 @@
           Matches
         </router-link>
       </li>
+      <li v-if="isAdmin" class="nav__item">
+        <router-link class="nav__link" :to="{ name: 'teams' }">
+          Teams
+        </router-link>
+      </li>
       <li class="nav__item">
         <router-link class="nav__link" :to="{ name: 'scores' }">
           Scores
@@ -31,7 +36,15 @@
 </template>
 
 <script>
-  export default {
-    name: 'nav-main'
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'nav-main',
+  computed: {
+    ...mapGetters(['loggedInUser']),
+    isAdmin() {
+      return this.loggedInUser && this.loggedInUser.admin
+    }
   }
+}
 </script>

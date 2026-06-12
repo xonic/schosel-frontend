@@ -15,6 +15,8 @@ import KingsGame from './views/RankKingsGame.vue'
 import Oldfashioned from './views/RankOldfashioned.vue'
 
 import Scores from './views/Scores.vue'
+import Teams from './views/Teams.vue'
+import Team from './views/Team.vue'
 import Users from './views/Users.vue'
 import Payments from './views/Payments.vue'
 import User from './views/User.vue'
@@ -103,6 +105,21 @@ const router =  new Router({
       path: '/rules',
       name: 'rules',
       component: Help
+    },
+    {
+      path: '/teams',
+      name: 'teams',
+      component: Teams,
+      meta: { requiresAuth: true },
+      beforeEnter: isAdmin
+    },
+    {
+      path: '/teams/:iso',
+      name: 'team',
+      component: Team,
+      props: true,
+      meta: { requiresAuth: true },
+      beforeEnter: isAdmin
     },
     {
       path: '/scores',

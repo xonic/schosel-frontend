@@ -83,6 +83,10 @@
   }
 }
 
+.teams-table__th {
+  white-space: nowrap;
+}
+
 .teams-table__th,
 .teams-table__td {
   padding: $space-25;

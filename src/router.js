@@ -172,20 +172,20 @@ const router =  new Router({
 // Global navigation guard checks each route if
 // authentication is needed
 router.beforeEach((to, from, next) => {
+  const isAuthenticated = store.state.authenticated || localStorage.getItem('authenticated')
+
+  if (to.name === 'login' || to.name === 'register') {
+    if (isAuthenticated) return next({ path: '/' })
+  }
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.state.authenticated && !localStorage.getItem('authenticated')) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
+    if (!isAuthenticated) {
+      next({ path: '/login', query: { redirect: to.fullPath } })
     } else {
       next()
     }
   } else {
-    next() // make sure to always call next()!
+    next()
   }
 })
 

@@ -107,16 +107,12 @@ export default {
 
       currentUserBets.sort((a, b) => new Date(b.date) - new Date(a.date))
 
-      const lastMatchDate = new Date(currentUserBets[0].date)
-
-      lastMatchDayBets = currentUserBets.filter(bet => {
-
-        const betDate = new Date(bet.date)
-
-        return (betDate.getFullYear() === lastMatchDate.getFullYear() &&
-                betDate.getMonth() === lastMatchDate.getMonth()) &&
-                betDate.getDate() === lastMatchDate.getDate()
-      })
+      lastMatchDayBets = [currentUserBets[0]]
+      for (let i = 1; i < currentUserBets.length; i++) {
+        const gap = new Date(currentUserBets[i - 1].date) - new Date(currentUserBets[i].date)
+        if (gap > 24 * 60 * 60 * 1000) break
+        lastMatchDayBets.push(currentUserBets[i])
+      }
 
       return lastMatchDayBets
     },

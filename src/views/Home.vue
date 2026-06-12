@@ -130,12 +130,12 @@ export default {
       let secretPoints = 0
 
       this.lastMatchDayBets.forEach((bet, i) => {
-        if(!bet.bet || !bet.bet.points || bet.bet.points.length < 5) return
-        schoselPoints += bet.bet.points[0].points
-        loserPoints += bet.bet.points[1].points
-        underdogPoints += bet.bet.points[2].points
-        balancedPoints += bet.bet.points[3].points
-        secretPoints += bet.bet.points[4].points
+        if(!bet.bet || !bet.bet.points) return
+        schoselPoints += (bet.bet.points[0] && bet.bet.points[0].points) || 0
+        loserPoints += (bet.bet.points[1] && bet.bet.points[1].points) || 0
+        underdogPoints += (bet.bet.points[2] && bet.bet.points[2].points) || 0
+        balancedPoints += (bet.bet.points[3] && bet.bet.points[3].points) || 0
+        secretPoints += (bet.bet.points[4] && bet.bet.points[4].points) || 0
       })
 
 

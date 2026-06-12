@@ -21,7 +21,7 @@
               <div>
                 <div class="last-match-day__name">Schosel</div>
                 <div class="last-match-day__stats text--small">
-                  +{{ lastMatchDayPoints[0] }} points<span v-if="loggedInUser"> · {{ ordinal(loggedInUser.scores[0].rank) }}</span>
+                  +{{ lastMatchDayPoints[0] }} points<span v-if="loggedInUser && loggedInUser.scores && loggedInUser.scores.length"> · {{ ordinal(loggedInUser.scores[0].rank) }}</span>
                 </div>
               </div>
             </router-link>
@@ -103,7 +103,7 @@ export default {
       if(!currentUser) return
       let currentUserBets = currentUser.public_bets
 
-      if(!currentUserBets.length) return []
+      if(!currentUserBets || !currentUserBets.length) return []
 
       currentUserBets.sort((a, b) => new Date(b.date) - new Date(a.date))
 
@@ -130,6 +130,7 @@ export default {
       let secretPoints = 0
 
       this.lastMatchDayBets.forEach((bet, i) => {
+        if(!bet.bet || !bet.bet.points) return
         schoselPoints += bet.bet.points[0].points
         loserPoints += bet.bet.points[1].points
         underdogPoints += bet.bet.points[2].points

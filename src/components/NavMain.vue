@@ -1,7 +1,7 @@
 <template>
   <nav class="nav nav--main">
     <ul class="nav__items">
-      <li class="nav__item">
+      <li v-if="!isAdmin" class="nav__item">
         <router-link class="nav__link" :to="{ name: 'bets' }">
           Bets
         </router-link>

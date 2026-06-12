@@ -85,15 +85,16 @@ const router =  new Router({
       }
     },
     {
-      path: '/matches',
+      path: '/matches/:tab(upcoming|played)?',
       name: 'matches',
       component: Matches,
+      props: true,
       meta: {
         requiresAuth: true
       },
     },
     {
-      path: '/matches/:id',
+      path: '/matches/:id(\\d+)',
       name: 'match',
       component: Match,
       props: true,

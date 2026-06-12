@@ -107,9 +107,10 @@ const router =  new Router({
       component: Help
     },
     {
-      path: '/teams',
+      path: '/teams/:tab?',
       name: 'teams',
       component: Teams,
+      props: true,
       meta: { requiresAuth: true },
       beforeEnter: isAdmin
     },

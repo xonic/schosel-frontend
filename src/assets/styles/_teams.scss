@@ -100,6 +100,11 @@
   padding-right: 0;
 }
 
+.teams-table__th--pts,
+.teams-table__td--pts {
+  font-weight: $bold-font-weight;
+}
+
 .teams-table__row {
   border-top: 1px solid $gray-12;
   cursor: pointer;

@@ -3,7 +3,7 @@
     <thead class="rank-grid__head">
       <tr>
         <th class="rank-grid__td">
-          Rank
+          #
         </th>
         <th class="rank-grid__td">
           Name

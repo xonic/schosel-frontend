@@ -7,6 +7,11 @@
 }
 
 .rank-grid__head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: $gray-10;
+
   .rank-grid__td {
     font-size: $textSmallSize;
     color: $gray-20;

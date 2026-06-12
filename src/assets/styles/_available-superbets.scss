@@ -1,7 +1,7 @@
 
 .available-superbets {
   position: sticky;
-  top: calc(-1px - env(safe-area-inset-top, 0px));
+  top: 0;
   padding-top: calc(#{$space-25} + env(safe-area-inset-top, 0px));
   padding-bottom: $space-25;
   background: $gray-10;

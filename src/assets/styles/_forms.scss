@@ -16,8 +16,13 @@
   a {
     color: $yellow-100;
 
-    &:hover,
     &:focus {
+      border-color: $orange-100;
+      color: $orange-100;
+      outline: 0;
+    }
+
+    @include hover {
       border-color: $orange-100;
       color: $orange-100;
       outline: 0;
@@ -42,7 +47,7 @@ input {
   line-height: 1.5;
   color: $white;
 
-  &:hover {
+  @include hover {
     background: color.adjust($gray-12, $lightness: 5%);
   }
 
@@ -86,7 +91,7 @@ input {
   -webkit-appearance: none;
   cursor: pointer;
 
-  &:hover {
+  @include hover {
     background-color: color.adjust($gray-12, $lightness: 5%);
   }
 
@@ -122,8 +127,12 @@ input {
   background: $yellow-100;
   color: $gray-10;
 
-  &:hover,
   &:focus {
+    background: $orange-100;
+    outline: 0;
+  }
+
+  @include hover {
     background: $orange-100;
     outline: 0;
   }
@@ -135,8 +144,12 @@ input {
   background: $gray-14;
   color: $white;
 
-  &:hover,
   &:focus {
+    background: color.adjust($gray-14, $lightness: 5%);
+    outline: 0;
+  }
+
+  @include hover {
     background: color.adjust($gray-14, $lightness: 5%);
     outline: 0;
   }

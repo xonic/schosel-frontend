@@ -1,0 +1,10 @@
+
+// Only applies hover styles on devices with a real pointer (mouse/trackpad).
+// Prevents hover states from sticking after tap on iOS.
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}

@@ -15,7 +15,7 @@
             <div class="text--small text--gray-20">Minimum 8 characters</div>
           </div>
           <div class="submit">
-            <button class="btn btn--primary" type="submit">Set new password</button>
+            <button class="btn btn--primary" type="button" @click="onSubmit">Set new password</button>
           </div>
         </form>
       </div>

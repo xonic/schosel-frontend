@@ -21,7 +21,7 @@
 .rank-grid__row {
   border-bottom: 1px solid $gray-12;
 
-  &:hover {
+  @include hover {
     background: $gray-12;
   }
 }

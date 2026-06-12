@@ -10,7 +10,7 @@
   line-height: $space-100;
   border-color: transparent;
 
-  &:hover {
+  @include hover {
     border-color: $orange-100;
   }
 

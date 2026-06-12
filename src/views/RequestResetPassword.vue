@@ -14,7 +14,7 @@
               v-model="email">
           </div>
           <div class="submit" style="display: flex; align-items:center;">
-            <button class="btn btn--primary" type="submit">Send</button>
+            <button class="btn btn--primary" type="button" @click="onSubmit">Send</button>
             <div class="to-login" style="margin:0 0 0 1.6rem;">
               <router-link :to="{ name: 'login' }">Back to login</router-link>
             </div>

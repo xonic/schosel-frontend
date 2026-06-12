@@ -43,7 +43,7 @@
                     v-model="password">
           </div>
           <div class="submit">
-            <button class="btn btn--primary" type="submit">Login</button>
+            <button class="btn btn--primary" type="button" @click="onSubmit">Login</button>
           </div>
         </form>
       </div>

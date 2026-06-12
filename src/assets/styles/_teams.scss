@@ -21,7 +21,7 @@
   text-decoration: none;
   border-bottom: 0;
 
-  &:hover {
+  @include hover {
     background: $gray-12;
   }
 }
@@ -113,7 +113,7 @@
   border-top: 1px solid $gray-12;
   cursor: pointer;
 
-  &:hover {
+  @include hover {
     background: $gray-12;
   }
 }

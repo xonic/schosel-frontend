@@ -12,9 +12,11 @@
     border-radius: 999em;
   }
 
-  &:hover .avatar {
-    border-color: $orange-100;
-    cursor: pointer;
+  @media (hover: hover) {
+    &:hover .avatar {
+      border-color: $orange-100;
+      cursor: pointer;
+    }
   }
 }
 

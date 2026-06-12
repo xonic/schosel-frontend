@@ -55,7 +55,7 @@
   font-weight: $bold-font-weight;
   cursor: pointer;
 
-  &:hover {
+  @include hover {
     background: $gray-12;
   }
 
@@ -93,7 +93,7 @@
   padding: $space-50;
   border-bottom: 0;
 
-  &:hover {
+  @include hover {
     background: $gray-12;
   }
 }
@@ -126,7 +126,7 @@
   border-top: 1px solid $gray-12;
   border-bottom: 0;
 
-  &:hover {
+  @include hover {
     background: $gray-12;
   }
 

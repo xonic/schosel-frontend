@@ -1,83 +1,58 @@
 <template>
   <main>
     <div class="wrapper">
+      <h1 class="h2 main__title">Matches</h1>
 
-      <!-- Admin tabbed view -->
-      <template v-if="isAdmin">
-        <h1 class="h2 main__title">Matches</h1>
-
-        <div v-if="status && status.user" class="champion-bet-section">
-          <h2 class="h3 main__subtitle">Champion Bet</h2>
-          <div class="champion-bet">
-            <select
-              id="champion-bet"
-              class="select"
-              v-model="status.user.champion.team_id"
-              @change="postChampion()"
-              v-if="status.champion_editable"
-            >
-              <option disabled value="def">Select...</option>
-              <option v-for="team in status.teams" :value="team.team_id">{{ team.name }}</option>
-            </select>
-            <div v-else>
-              <div v-if="status.user.champion" class="champion-bet__display">
-                <flag v-if="status.user.champion.short_name" :iso="status.user.champion.short_name" size="large" />
-                <div>{{ championBet() }}</div>
-              </div>
+      <div v-if="status && status.user" class="champion-bet-section">
+        <h2 class="h3 main__subtitle">Champion Bet</h2>
+        <div class="champion-bet">
+          <select
+            id="champion-bet"
+            class="select"
+            v-model="status.user.champion.team_id"
+            @change="postChampion()"
+            v-if="status.champion_editable"
+          >
+            <option disabled value="def">Select...</option>
+            <option v-for="team in status.teams" :value="team.team_id">{{ team.name }}</option>
+          </select>
+          <div v-else>
+            <div v-if="status.user.champion" class="champion-bet__display">
+              <flag v-if="status.user.champion.short_name" :iso="status.user.champion.short_name" size="large" />
+              <div>{{ championBet() }}</div>
             </div>
-            <div class="bet__status" :class="{ 'bet__status--saved': championSaved, 'bet__status--error': championSaveError }">{{ championStatusText }}</div>
           </div>
+          <div class="bet__status" :class="{ 'bet__status--saved': championSaved, 'bet__status--error': championSaveError }">{{ championStatusText }}</div>
         </div>
+      </div>
 
-        <div class="user-tabs">
-          <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'upcoming' }" @click="setTab('upcoming')">Upcoming</button>
-          <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'played' }" @click="setTab('played')">Played</button>
-        </div>
+      <div class="user-tabs">
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'upcoming' }" @click="setTab('upcoming')">Upcoming</button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'played' }" @click="setTab('played')">Played</button>
+      </div>
 
-        <div v-if="activeTab === 'upcoming'">
-          <available-super-bets />
-          <ul v-if="scheduledMatches && scheduledMatches.length">
-            <li v-for="match in scheduledMatches" :key="match.match_id">
-              <bet :match="match" />
-            </li>
-          </ul>
-          <div v-else class="blankslate">
-            <div class="blankslate__avatar">
-              <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
-            </div>
-            <div class="blankslate__text">No matches left to bet</div>
+      <div v-if="activeTab === 'upcoming'">
+        <available-super-bets />
+        <ul v-if="scheduledMatches && scheduledMatches.length">
+          <li v-for="match in scheduledMatches" :key="match.match_id">
+            <bet :match="match" />
+          </li>
+        </ul>
+        <div v-else class="blankslate">
+          <div class="blankslate__avatar">
+            <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
           </div>
+          <div class="blankslate__text">No matches left to bet</div>
         </div>
+      </div>
 
-        <div v-if="activeTab === 'played'">
-          <div v-if="(liveMatches && liveMatches.length) || (overMatches && overMatches.length)">
-            <ul>
-              <li v-for="match in liveMatches" :key="match.match_id">
-                <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
-              </li>
-              <li v-for="match in overMatches" :key="match.match_id">
-                <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
-              </li>
-            </ul>
-          </div>
-          <div v-else class="blankslate">
-            <div class="blankslate__avatar">
-              <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
-            </div>
-            <div class="blankslate__text">No matches played</div>
-          </div>
-        </div>
-      </template>
-
-      <!-- Regular user view (unchanged) -->
-      <template v-else>
-        <h1 class="h2 main__title">Matches</h1>
+      <div v-if="activeTab === 'played'">
         <div v-if="(liveMatches && liveMatches.length) || (overMatches && overMatches.length)">
           <ul>
-            <li v-if="liveMatches" v-for="match in liveMatches">
+            <li v-for="match in liveMatches" :key="match.match_id">
               <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
             </li>
-            <li v-if="overMatches" v-for="match in overMatches">
+            <li v-for="match in overMatches" :key="match.match_id">
               <match-preview v-if="betForMatch(match)" :match="match" :bet="betForMatch(match)" />
             </li>
           </ul>
@@ -88,8 +63,7 @@
           </div>
           <div class="blankslate__text">No matches played</div>
         </div>
-      </template>
-
+      </div>
     </div>
   </main>
 </template>
@@ -137,9 +111,6 @@ export default {
       'status',
       'avatarUrl'
     ]),
-    isAdmin() {
-      return this.loggedInUser && this.loggedInUser.admin
-    },
     championStatusText() {
       if (this.championSaving) return 'Saving…'
       if (this.championSaved) return 'Saved'

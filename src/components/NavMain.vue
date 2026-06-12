@@ -1,17 +1,12 @@
 <template>
   <nav class="nav nav--main">
     <ul class="nav__items">
-      <li v-if="!isAdmin" class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'bets' }">
-          Bets
-        </router-link>
-      </li>
       <li class="nav__item">
         <router-link class="nav__link" :to="{ name: 'matches' }">
           Matches
         </router-link>
       </li>
-      <li v-if="isAdmin" class="nav__item">
+      <li class="nav__item">
         <router-link class="nav__link" :to="{ name: 'teams' }">
           Teams
         </router-link>
@@ -36,15 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  name: 'nav-main',
-  computed: {
-    ...mapGetters(['loggedInUser']),
-    isAdmin() {
-      return this.loggedInUser && this.loggedInUser.admin
-    }
-  }
+  name: 'nav-main'
 }
 </script>

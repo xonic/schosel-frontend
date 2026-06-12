@@ -112,16 +112,14 @@ const router =  new Router({
       name: 'teams',
       component: Teams,
       props: true,
-      meta: { requiresAuth: true },
-      beforeEnter: isAdmin
+      meta: { requiresAuth: true }
     },
     {
       path: '/teams/:iso',
       name: 'team',
       component: Team,
       props: true,
-      meta: { requiresAuth: true },
-      beforeEnter: isAdmin
+      meta: { requiresAuth: true }
     },
     {
       path: '/scores',

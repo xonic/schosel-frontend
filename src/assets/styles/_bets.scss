@@ -10,6 +10,20 @@
   }
 }
 
+.champion-bet__team-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  border-bottom: none;
+  border-radius: $space-25;
+  padding: $space-50 $space-75;
+
+  @include hover {
+    background: $gray-12;
+  }
+}
+
 .bet {
   padding: $space-75 0;
   border-top: 1px solid $gray-12;

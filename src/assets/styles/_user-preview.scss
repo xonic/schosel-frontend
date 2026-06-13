@@ -14,6 +14,21 @@
 
 .user__champion {
   margin-bottom: $space-75;
+  text-align: center;
+}
+
+.user__champion-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  border-bottom: none;
+  border-radius: $space-25;
+  padding: $space-50 $space-75;
+
+  @include hover {
+    background: $gray-12;
+  }
 }
 
 .user__champion-flag {
@@ -26,6 +41,7 @@
 
 .user__champion-name {
   margin-bottom: $space-10;
+  text-align: center;
 }
 
 .user__champion-correct {

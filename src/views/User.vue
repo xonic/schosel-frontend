@@ -34,10 +34,15 @@
 
         <div v-if="(user && user.champion) && user.champion.name" class="user__champion">
           <h2 class="h3 text--center user__section-heading">Champion bet</h2>
-          <div class="text--center user__champion-flag">
-            <flag v-if="user.champion.short_name" :iso="user.champion.short_name" size="large" />
-          </div>
-          <div class="text--center user__champion-name">{{ user.champion.name }}</div>
+          <router-link v-if="user.champion.short_name" :to="{ name: 'team', params: { iso: user.champion.short_name } }" class="user__champion-link">
+            <div class="user__champion-flag">
+              <flag :iso="user.champion.short_name" size="large" />
+            </div>
+            <div class="user__champion-name">{{ user.champion.name }}</div>
+          </router-link>
+          <template v-else>
+            <div class="text--center user__champion-name">{{ user.champion.name }}</div>
+          </template>
           <div class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
           <div v-if="user.champion_correct" class="user__champion-correct">Correct!</div>
         </div>

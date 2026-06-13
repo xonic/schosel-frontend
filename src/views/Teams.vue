@@ -122,7 +122,7 @@ export default {
       if (!teams) return []
       return teams
         .filter(t => this.championCounts[t.team_id] > 0)
-        .sort((a, b) => this.championCounts[a.team_id] - this.championCounts[b.team_id])
+        .sort((a, b) => this.championCounts[b.team_id] - this.championCounts[a.team_id])
     }
   },
   methods: {

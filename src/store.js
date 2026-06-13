@@ -306,19 +306,16 @@ export default new Vuex.Store({
       }
 
 
-      // Get upcoming match day
+      // Get upcoming match day (24h gap grouping)
       if (state.nextMatch && state.matches.scheduled.length) {
-
-        let nextMatchDate = new Date(state.nextMatch[0].date)
-
-        state.nextMatchDay = state.matches.scheduled.filter(match => {
-
-          const matchDate = new Date(match.date)
-
-          return (matchDate.getFullYear() === nextMatchDate.getFullYear() &&
-                  matchDate.getMonth() === nextMatchDate.getMonth()) &&
-                  matchDate.getDate() === nextMatchDate.getDate()
-        })
+        const sorted = state.matches.scheduled.slice().sort((a, b) => new Date(a.date) - new Date(b.date))
+        const day = [sorted[0]]
+        for (let i = 1; i < sorted.length; i++) {
+          const gap = new Date(sorted[i].date) - new Date(sorted[i - 1].date)
+          if (gap > 24 * 60 * 60 * 1000) break
+          day.push(sorted[i])
+        }
+        state.nextMatchDay = day
       }
 
       // TODO: remove this mock data

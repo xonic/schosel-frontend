@@ -108,16 +108,16 @@ const router =  new Router({
       component: Help
     },
     {
-      path: '/teams/:tab?',
-      name: 'teams',
-      component: Teams,
+      path: '/teams/:iso([a-z]{3})/:tab?',
+      name: 'team',
+      component: Team,
       props: true,
       meta: { requiresAuth: true }
     },
     {
-      path: '/teams/:iso',
-      name: 'team',
-      component: Team,
+      path: '/teams/:tab?',
+      name: 'teams',
+      component: Teams,
       props: true,
       meta: { requiresAuth: true }
     },

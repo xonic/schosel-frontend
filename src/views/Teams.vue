@@ -4,8 +4,8 @@
       <h1 class="h2 main__title text--left">Teams</h1>
 
       <div class="user-tabs">
-        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'odds' }" @click="setTab('odds')">Odds</button>
         <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'standings' }" @click="setTab('standings')">Standings</button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'odds' }" @click="setTab('odds')">Champion Odds</button>
       </div>
 
       <div v-if="activeTab === 'standings'" key="standings">
@@ -48,39 +48,36 @@
       </div>
 
       <div v-if="activeTab === 'odds'" key="odds">
-        <div v-for="group in groups" :key="group" class="teams-group">
-          <h2 class="h3 text--center teams-group__heading">Group {{ group }}</h2>
-          <table class="teams-table">
-            <thead class="teams-table__head">
-              <tr>
-                <th class="teams-table__th"></th>
-                <th class="teams-table__th">Team</th>
-                <th class="teams-table__th teams-table__th--right">Odds</th>
-                <th class="teams-table__th teams-table__th--right">Champion bets</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="row in groupStandings(group)"
-                :key="row.team.team_id"
-                class="teams-table__row"
-                @click="$router.push({ name: 'team', params: { iso: row.team.short_name } })"
-              >
-                <td class="teams-table__td teams-table__td--flag">
-                  <flag :iso="row.team.short_name" />
-                </td>
-                <td class="teams-table__td">{{ row.team.name }}</td>
-                <td class="teams-table__td teams-table__td--right">
-                  <span v-if="row.team.odds">{{ row.team.odds.toFixed(2) }}</span>
-                  <span v-else class="text--gray-20">-</span>
-                </td>
-                <td class="teams-table__td teams-table__td--right">
-                  <span v-if="tournamentStarted && championCount(row.team.team_id)">{{ championCount(row.team.team_id) }}</span>
-                  <span v-else class="text--gray-20">-</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <table v-if="championOddsTeams.length" class="teams-table">
+          <thead class="teams-table__head">
+            <tr>
+              <th class="teams-table__th"></th>
+              <th class="teams-table__th">Team</th>
+              <th class="teams-table__th teams-table__th--right">Odds</th>
+              <th class="teams-table__th teams-table__th--right">Champion bets</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="team in championOddsTeams"
+              :key="team.team_id"
+              class="teams-table__row"
+              @click="$router.push({ name: 'team', params: { iso: team.short_name } })"
+            >
+              <td class="teams-table__td teams-table__td--flag">
+                <flag :iso="team.short_name" />
+              </td>
+              <td class="teams-table__td">{{ team.name }}</td>
+              <td class="teams-table__td teams-table__td--right">
+                <span v-if="team.odds">{{ team.odds.toFixed(2) }}</span>
+                <span v-else class="text--gray-20">-</span>
+              </td>
+              <td class="teams-table__td teams-table__td--right teams-table__td--pts">{{ championCount(team.team_id) }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div v-else class="blankslate">
+          <div class="blankslate__text">No champion bets placed yet</div>
         </div>
       </div>
     </div>
@@ -99,7 +96,7 @@ export default {
   },
   data() {
     return {
-      activeTab: this.tab || 'odds'
+      activeTab: this.tab || 'standings'
     }
   },
   computed: {
@@ -119,6 +116,13 @@ export default {
         }
       })
       return counts
+    },
+    championOddsTeams() {
+      const teams = this.status && this.status.teams
+      if (!teams) return []
+      return teams
+        .filter(t => this.championCounts[t.team_id] > 0)
+        .sort((a, b) => this.championCounts[a.team_id] - this.championCounts[b.team_id])
     }
   },
   methods: {

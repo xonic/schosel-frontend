@@ -64,6 +64,34 @@
   margin-top: $space-100;
 }
 
+.team-champion-odds {
+  margin-bottom: $space-75;
+  text-align: center;
+}
+
+.team-champion-bettors {
+  list-style: none;
+}
+
+.team-champion-bettor {
+  display: flex;
+  align-items: center;
+  gap: $space-50;
+  padding: $space-35 0;
+  border-top: 1px solid $gray-12;
+  border-bottom: 0;
+  text-decoration: none;
+
+  @include hover {
+    background: $gray-12;
+  }
+}
+
+.team-champion-bettor__avatar {
+  width: $space-75;
+  flex-shrink: 0;
+}
+
 .teams-group {
   margin-bottom: $space-100;
 }

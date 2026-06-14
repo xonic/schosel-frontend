@@ -76,30 +76,25 @@
     computed: {
       ...mapGetters([
         'loggedInUser',
-        'authenticated'
+        'authenticated',
+        'adminMode'
       ]),
       userMenuItems () {
-
-        if(this.loggedInUser && this.loggedInUser.admin) {
-          return [
-            {
-              name: 'Payments',
-              route: 'payments'
-            },
-            {
-              name: 'Logout',
-              route: 'logout'
-            }
-          ]
+        if (this.loggedInUser && this.loggedInUser.admin) {
+          const items = []
+          if (!this.adminMode) {
+            items.push({
+              name: 'Admin',
+              action: () => {
+                this.$store.commit('SET_ADMIN_MODE', true)
+                this.$router.push({ name: 'admin-results' })
+              }
+            })
+          }
+          items.push({ name: 'Logout', route: 'logout' })
+          return items
         }
-        else {
-          return [
-            {
-              name: 'Logout',
-              route: 'logout'
-            }
-          ]
-        }
+        return [{ name: 'Logout', route: 'logout' }]
       }
     }
   }

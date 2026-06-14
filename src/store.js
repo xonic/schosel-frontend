@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     MAX_SUPERBETS: 8,
     authenticated: false,
+    adminMode: false,
     showPopover: false,
     status: {},
     users: [],
@@ -269,6 +270,9 @@ export default new Vuex.Store({
     SET_AUTHENTICATED: (state, { authenticated }) => {
       state.authenticated = authenticated
     },
+    SET_ADMIN_MODE: (state, val) => {
+      state.adminMode = val
+    },
     SET_POPOVER_VISIBILITY: (state, { showPopover }) => {
       state.showPopover = showPopover
     },
@@ -444,6 +448,7 @@ export default new Vuex.Store({
     authenticated: state => {
       return state.authenticated
     },
+    adminMode: state => state.adminMode,
     avatarUrl: state => {
       return state.avatarUrl
     },

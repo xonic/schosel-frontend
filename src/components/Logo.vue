@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'home' }" class="logo">
+  <router-link :to="{ name: 'home' }" class="logo" @click.native="exitAdmin">
     <h1 class="logo__name">
       <span class="text--cyan">S</span>
       <span class="text--blue">c</span>
@@ -27,11 +27,15 @@
     computed: {
       ...mapGetters([
         'avatarUrl',
-        'matches'
+        'matches',
+        'adminMode'
       ])
     },
     methods: {
-      getRandomSeed
+      getRandomSeed,
+      exitAdmin() {
+        if (this.adminMode) this.$store.commit('SET_ADMIN_MODE', false)
+      }
     }
   }
 </script>

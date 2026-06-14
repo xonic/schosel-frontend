@@ -1,37 +1,42 @@
 <template>
   <nav class="nav nav--main">
     <ul class="nav__items">
-      <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'matches' }">
-          Matches
-        </router-link>
-      </li>
-      <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'teams' }">
-          Teams
-        </router-link>
-      </li>
-      <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'scores' }">
-          Scores
-        </router-link>
-      </li>
-      <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'users' }">
-          Users
-        </router-link>
-      </li>
-      <li class="nav__item">
-        <router-link class="nav__link" :to="{ name: 'rules' }">
-          Rules
-        </router-link>
-      </li>
+      <template v-if="adminMode && loggedInUser && loggedInUser.admin">
+        <li class="nav__item">
+          <router-link class="nav__link" :to="{ name: 'admin-results' }">Results</router-link>
+        </li>
+        <li class="nav__item">
+          <router-link class="nav__link" :to="{ name: 'payments' }">Payments</router-link>
+        </li>
+      </template>
+      <template v-else>
+        <li class="nav__item">
+          <router-link class="nav__link" :to="{ name: 'matches' }">Matches</router-link>
+        </li>
+        <li class="nav__item">
+          <router-link class="nav__link" :to="{ name: 'teams' }">Teams</router-link>
+        </li>
+        <li class="nav__item">
+          <router-link class="nav__link" :to="{ name: 'scores' }">Scores</router-link>
+        </li>
+        <li class="nav__item">
+          <router-link class="nav__link" :to="{ name: 'users' }">Users</router-link>
+        </li>
+        <li class="nav__item">
+          <router-link class="nav__link" :to="{ name: 'rules' }">Rules</router-link>
+        </li>
+      </template>
     </ul>
   </nav>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'nav-main'
+  name: 'nav-main',
+  computed: {
+    ...mapGetters(['loggedInUser', 'adminMode'])
+  }
 }
 </script>

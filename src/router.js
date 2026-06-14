@@ -17,6 +17,7 @@ import Oldfashioned from './views/RankOldfashioned.vue'
 import Scores from './views/Scores.vue'
 import Teams from './views/Teams.vue'
 import Team from './views/Team.vue'
+import AdminResults from './views/AdminResults.vue'
 import Users from './views/Users.vue'
 import Payments from './views/Payments.vue'
 import User from './views/User.vue'
@@ -155,6 +156,13 @@ const router =  new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/admin/results',
+      name: 'admin-results',
+      component: AdminResults,
+      meta: { requiresAuth: true },
+      beforeEnter: isAdmin
     },
     {
       path: '/payments',

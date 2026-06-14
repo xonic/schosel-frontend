@@ -5,8 +5,9 @@
     </div>
     <transition name="fade">
       <ul id="popover" v-if="popoverIsVisible" class="popover__list">
-        <li class="popover__item" v-for='item in items' :key='item.id'>
-          <router-link class="popover__link":to="{ name: item.route }">{{ item.name }}</router-link>
+        <li class="popover__item" v-for="item in items" :key="item.name">
+          <button v-if="item.action" class="popover__link popover__link--action" @click="runAction(item.action)">{{ item.name }}</button>
+          <router-link v-else class="popover__link" :to="{ name: item.route }">{{ item.name }}</router-link>
         </li>
       </ul>
     </transition>
@@ -38,6 +39,10 @@
         else {
           this.$store.dispatch('SHOW_POPOVER')
         }
+      },
+      runAction(fn) {
+        this.$store.dispatch('HIDE_POPOVER')
+        fn()
       }
     }
   }
@@ -63,6 +68,15 @@
     padding: 12px 24px;
     border-bottom: 0;
     color: black;
+  }
+
+  .popover__link--action {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
   }
 
   .fade-enter {

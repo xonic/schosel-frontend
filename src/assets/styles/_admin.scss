@@ -8,3 +8,125 @@
     padding: $space-25 $space-10;
   }
 }
+
+.admin-results__section {
+  margin-bottom: $space-100;
+}
+
+.admin-results__heading {
+  margin-bottom: $space-50;
+}
+
+.admin-result {
+  padding: $space-50 0;
+  border-top: 1px solid $gray-12;
+}
+
+.admin-result__row {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  align-items: center;
+  gap: $space-50;
+  margin-bottom: $space-35;
+}
+
+.admin-result__team {
+  display: flex;
+  align-items: center;
+  gap: $space-35;
+
+  &.admin-result__team--right {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+}
+
+.admin-result__name {
+  font-size: $textSmallSize;
+}
+
+.admin-result__inputs {
+  display: flex;
+  align-items: center;
+  gap: $space-25;
+  justify-content: center;
+}
+
+.admin-result__input {
+  width: $space-100;
+  text-align: center;
+  padding: $space-25;
+  margin-bottom: 0;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  -moz-appearance: textfield;
+}
+
+.admin-result__sep {
+  font-weight: $bold-font-weight;
+}
+
+.admin-result__footer {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-result__over-label {
+  display: flex;
+  align-items: center;
+  gap: $space-25;
+  font-size: $textSmallSize;
+  color: $gray-20;
+  cursor: pointer;
+}
+
+.admin-result .bet__status {
+  visibility: hidden;
+
+  &.bet__status--saving {
+    visibility: visible;
+    color: $gray-20;
+  }
+
+  &.bet__status--saved,
+  &.bet__status--error {
+    visibility: visible;
+  }
+}
+
+.admin-result__checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  margin: 0;
+  border: 2px solid $gray-20;
+  border-radius: $space-10;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color .15s, background-color .15s;
+
+  &:checked {
+    background-color: $orange-100;
+    border-color: $orange-100;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: .3rem;
+      height: .55rem;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: translate(-50%, -60%) rotate(45deg);
+    }
+  }
+}

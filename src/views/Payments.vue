@@ -38,6 +38,9 @@
 
   export default {
     name: 'Payments',
+    created () {
+      this.$store.commit('SET_ADMIN_MODE', true)
+    },
     computed: {
       ...mapGetters([
         'allUsersForAdmin',

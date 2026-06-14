@@ -96,6 +96,9 @@ export default {
         .slice().sort((a, b) => new Date(b.date) - new Date(a.date))
     }
   },
+  created() {
+    this.$store.commit('SET_ADMIN_MODE', true)
+  },
   watch: {
     matches: {
       immediate: true,

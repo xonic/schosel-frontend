@@ -165,7 +165,7 @@ const router =  new Router({
       beforeEnter: isAdmin
     },
     {
-      path: '/payments',
+      path: '/admin/payments',
       name: 'payments',
       component: Payments,
       props: true,

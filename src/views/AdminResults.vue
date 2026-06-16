@@ -102,8 +102,12 @@ export default {
   watch: {
     matches: {
       immediate: true,
-      handler() {
-        if (!this.initialized) this.initResults()
+      handler(newMatches) {
+        if (this.initialized) return
+        const hasData = (newMatches.live && newMatches.live.length) ||
+          (newMatches.scheduled && newMatches.scheduled.length) ||
+          (newMatches.over && newMatches.over.length)
+        if (hasData) this.initResults()
       }
     }
   },
@@ -151,7 +155,10 @@ export default {
         setTimeout(() => {
           this.$set(this.saving, matchId, false)
           this.$set(this.saved, matchId, true)
-          setTimeout(() => this.$set(this.saved, matchId, false), 3000)
+          setTimeout(() => {
+            this.$set(this.saved, matchId, false)
+            this.$store.dispatch('LOAD_MATCHES')
+          }, 3000)
         }, delay)
       }).catch(() => {
         this.$set(this.saving, matchId, false)

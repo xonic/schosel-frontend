@@ -84,14 +84,21 @@ export default new Vuex.Store({
 
           commit('SET_AUTHENTICATED', { authenticated: true })
 
-          // Remember across page loads
-          localStorage.setItem('authenticated', true)
+          // Remember across page loads (can throw in Safari private mode)
+          try {
+            localStorage.setItem('authenticated', true)
+          } catch (e) {
+            console.log(e)
+          }
 
           // Redirect to requested URL or default to matches
           authData.redirect ? router.push({ path: authData.redirect }) : router.push('/')
         })
         .catch(errors => {
-          commit('SET_ERRORS', { errors: errors.response.data.errors })
+          const messages = errors.response && errors.response.data
+            ? errors.response.data.errors
+            : ['Something went wrong, please try again.']
+          commit('SET_ERRORS', { errors: messages })
         })
     },
     TRY_AUTO_LOGIN ({commit, dispatch}) {
@@ -113,7 +120,11 @@ export default new Vuex.Store({
           commit('SET_STATUS', { status: {} })
           commit('SET_USERS', { users: [] })
           commit('SET_AUTHENTICATED', { authenticated: false })
-          localStorage.removeItem('authenticated')
+          try {
+            localStorage.removeItem('authenticated')
+          } catch (e) {
+            console.log(e)
+          }
           router.push('login')
         })
         .catch(error => console.log(error))

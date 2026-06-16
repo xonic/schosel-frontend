@@ -17,6 +17,7 @@
           <span class="text--yellow">l</span>
         </div>
         <div class="footer__slogan">Nice to win. OK to lose.</div>
+        <div class="footer__version text--tiny">v{{ version }}</div>
       </div>
     </footer>
   </div>
@@ -50,7 +51,10 @@
       ...mapGetters([
         'loggedInUser',
         'authenticated'
-      ])
+      ]),
+      version () {
+        return process.env.VUE_APP_VERSION
+      }
     },
     methods: {
       clickHandler(e) {

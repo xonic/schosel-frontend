@@ -94,10 +94,19 @@ export default new Vuex.Store({
           // Redirect to requested URL or default to matches
           authData.redirect ? router.push({ path: authData.redirect }) : router.push('/')
         })
-        .catch(errors => {
-          const messages = errors.response && errors.response.data
-            ? errors.response.data.errors
-            : ['Something went wrong, please try again.']
+        .catch(error => {
+          let messages
+          if (error.response) {
+            // Server responded with an error status
+            const data = error.response.data
+            messages = (data && data.errors) || [`Server error ${error.response.status}: ${JSON.stringify(data)}`]
+          } else if (error.request) {
+            // Request was sent but no response came back (network/CORS/timeout)
+            messages = [`Could not reach the server (${error.message}). Check your connection and try again.`]
+          } else {
+            // Something failed client-side before/while handling the request
+            messages = [`Unexpected error: ${error.message}`]
+          }
           commit('SET_ERRORS', { errors: messages })
         })
     },

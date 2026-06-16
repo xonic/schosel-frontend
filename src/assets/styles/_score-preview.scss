@@ -1,3 +1,5 @@
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .scores__pot {
   margin-bottom: $space-75;

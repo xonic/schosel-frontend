@@ -1,3 +1,5 @@
+@use 'variables' as *;
+@use 'mixins' as *;
 .user__avatar {
   margin-bottom: $space-75;
   text-align: center;

@@ -29,17 +29,24 @@
 }
 
 .rank-grid__td {
-  padding: $space-25;
+  padding: 0;
   vertical-align: middle;
   text-align: left;
 
   &:last-child {
     text-align: right;
   }
+
+  > a {
+    display: block;
+    height: 100%;
+    padding: $space-25;
+  }
 }
 
-.rank-grid__name-col {
+.rank-grid__td > a.rank-grid__name-col {
   display: flex;
+  height: 100%;
   align-items: center;
 
   .avatar-champion-wrap {

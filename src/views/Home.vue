@@ -9,12 +9,40 @@
           </li>
         </ul>
       </div>
+
+      <div class="home__section" v-if="currentMatchDayBets && currentMatchDayBets.length">
+        <h1 class="h2 main__title">Current match day</h1>
+        <h2 class="h3 text--center">{{ matchDate(currentMatchDayBets[0].date) }}</h2>
+        <div v-if="currentMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ currentMatchDayBets.length }} match</div>
+        <div v-else class="text--small text--gray-20 text--center main__title">{{ currentMatchDayBets.length }} matches</div>
+        <ul class="last-match-day">
+          <li :class="currentMatchDayPoints[0] > 0 ? 'text--cyan' : 'icon--zero-points'">
+            <router-link :to="{ name: 'schosel' }" class="last-match-day__item">
+              <img v-if="iconPaths.length" :src="getURL(0)" class="last-match-day__icon" />
+              <div>
+                <div class="last-match-day__name">Schosel</div>
+                <div class="last-match-day__stats text--small">+{{ currentMatchDayPoints[0] }} points</div>
+              </div>
+            </router-link>
+          </li>
+          <li :class="currentMatchDayPoints[1] > 0 ? 'text--blue' : 'icon--zero-points'">
+            <router-link :to="{ name: 'loser' }" class="last-match-day__item">
+              <img v-if="iconPaths.length" :src="getURL(1)" class="last-match-day__icon" />
+              <div>
+                <div class="last-match-day__name">Loser</div>
+                <div class="last-match-day__stats text--small">+{{ currentMatchDayPoints[1] }} points</div>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+
       <div class="home__section" v-if="lastMatchDayBets && lastMatchDayBets.length">
         <h1 class="h2 main__title">Last match day</h1>
         <h2 class="h3 text--center">{{ matchDate(lastMatchDayBets[0].date) }}</h2>
         <div v-if="lastMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} match</div>
         <div v-else class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} matches</div>
-<ul class="last-match-day">
+        <ul class="last-match-day">
           <li :class="lastMatchDayPoints[0] > 0 ? 'text--cyan' : 'icon--zero-points'">
             <router-link :to="{ name: 'schosel' }" class="last-match-day__item">
               <img v-if="iconPaths.length" :src="getURL(0)" class="last-match-day__icon" />
@@ -38,7 +66,6 @@
             </router-link>
           </li>
         </ul>
-
       </div>
 
       <div class="home__section" v-if="nextMatchDay && nextMatchDay.length">
@@ -73,6 +100,15 @@ import Avatar from '@/components/Avatar'
 import AvailableSuperBets from '@/components/AvailableSuperBets'
 import { getRandomSeed, berlinMatchDay } from '@/utils'
 
+function sumPoints(bets) {
+  let s = [0, 0, 0, 0, 0]
+  bets.forEach(bet => {
+    if (!bet.bet || !bet.bet.points) return
+    s = s.map((v, i) => v + ((bet.bet.points[i] && bet.bet.points[i].points) || 0))
+  })
+  return s.map(v => v.toFixed(2))
+}
+
 export default {
   name: 'home',
   components: {
@@ -95,49 +131,32 @@ export default {
       'iconPaths',
       'avatarUrl'
     ]),
+    _currentUserBets() {
+      if (!this.allUsers || !this.loggedInUser) return []
+      const user = this.allUsers.find(u => u.user_id === this.loggedInUser.user_id)
+      return (user && user.public_bets) || []
+    },
+    currentMatchDayBets() {
+      const today = berlinMatchDay(new Date())
+      const todayBets = this._currentUserBets.filter(b => berlinMatchDay(b.date) === today)
+      const hasStarted = todayBets.some(b => b.status === 'live' || b.status === 'over')
+      const isComplete = todayBets.length > 0 && todayBets.every(b => b.status === 'over')
+      return (hasStarted && !isComplete) ? todayBets : []
+    },
+    currentMatchDayPoints() {
+      return sumPoints(this.currentMatchDayBets)
+    },
     lastMatchDayBets() {
-      if(!this.allUsers || !this.loggedInUser) return
-
-      let lastMatchDayBets = []
-      let currentUser = this.allUsers.find(user => user.user_id === this.loggedInUser.user_id)
-      if(!currentUser) return
-      let currentUserBets = currentUser.public_bets
-
-      if(!currentUserBets || !currentUserBets.length) return []
-
-      currentUserBets.sort((a, b) => new Date(b.date) - new Date(a.date))
-
-      const lastDay = berlinMatchDay(currentUserBets[0].date)
-      lastMatchDayBets = currentUserBets.filter(bet => berlinMatchDay(bet.date) === lastDay)
-
-      return lastMatchDayBets
+      const sorted = this._currentUserBets.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
+      const days = [...new Set(sorted.map(b => berlinMatchDay(b.date)))]
+      for (const day of days) {
+        const dayBets = sorted.filter(b => berlinMatchDay(b.date) === day)
+        if (dayBets.every(b => b.status === 'over')) return dayBets
+      }
+      return []
     },
     lastMatchDayPoints() {
-      if(!this.lastMatchDayBets || !this.lastMatchDayBets.length) return
-
-      let schoselPoints = 0
-      let loserPoints = 0
-      let underdogPoints = 0
-      let balancedPoints = 0
-      let secretPoints = 0
-
-      this.lastMatchDayBets.forEach((bet, i) => {
-        if(!bet.bet || !bet.bet.points) return
-        schoselPoints += (bet.bet.points[0] && bet.bet.points[0].points) || 0
-        loserPoints += (bet.bet.points[1] && bet.bet.points[1].points) || 0
-        underdogPoints += (bet.bet.points[2] && bet.bet.points[2].points) || 0
-        balancedPoints += (bet.bet.points[3] && bet.bet.points[3].points) || 0
-        secretPoints += (bet.bet.points[4] && bet.bet.points[4].points) || 0
-      })
-
-
-      return [
-        schoselPoints.toFixed(2),
-        loserPoints.toFixed(2),
-        underdogPoints.toFixed(2),
-        balancedPoints.toFixed(2),
-        secretPoints.toFixed(2)
-      ]
+      return sumPoints(this.lastMatchDayBets)
     }
   },
   methods: {

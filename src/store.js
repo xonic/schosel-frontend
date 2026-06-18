@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { HTTP } from './http-constants'
 import router from './router'
+import { berlinMatchDay } from './utils'
 
 Vue.use(Vuex)
 
@@ -330,11 +331,12 @@ export default new Vuex.Store({
       }
 
 
-      // Get upcoming match day (all matches within 24h of the first scheduled match)
+      // Get upcoming match day (Berlin noon boundary: groups overnight matches with
+      // the preceding evening instead of the next calendar day)
       if (state.nextMatch && state.matches.scheduled.length) {
         const sorted = state.matches.scheduled.slice().sort((a, b) => new Date(a.date) - new Date(b.date))
-        const anchor = new Date(sorted[0].date).getTime()
-        state.nextMatchDay = sorted.filter(m => new Date(m.date).getTime() - anchor <= 24 * 60 * 60 * 1000)
+        const firstDay = berlinMatchDay(sorted[0].date)
+        state.nextMatchDay = sorted.filter(m => berlinMatchDay(m.date) === firstDay)
       }
 
       // TODO: remove this mock data

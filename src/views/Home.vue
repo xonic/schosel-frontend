@@ -71,7 +71,7 @@ import RankProgressBar from '@/components/RankProgressBar'
 import Bet from '@/components/Bet'
 import Avatar from '@/components/Avatar'
 import AvailableSuperBets from '@/components/AvailableSuperBets'
-import { getRandomSeed } from '@/utils'
+import { getRandomSeed, berlinMatchDay } from '@/utils'
 
 export default {
   name: 'home',
@@ -107,12 +107,8 @@ export default {
 
       currentUserBets.sort((a, b) => new Date(b.date) - new Date(a.date))
 
-      lastMatchDayBets = [currentUserBets[0]]
-      for (let i = 1; i < currentUserBets.length; i++) {
-        const gap = new Date(currentUserBets[i - 1].date) - new Date(currentUserBets[i].date)
-        if (gap > 24 * 60 * 60 * 1000) break
-        lastMatchDayBets.push(currentUserBets[i])
-      }
+      const lastDay = berlinMatchDay(currentUserBets[0].date)
+      lastMatchDayBets = currentUserBets.filter(bet => berlinMatchDay(bet.date) === lastDay)
 
       return lastMatchDayBets
     },

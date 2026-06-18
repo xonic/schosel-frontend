@@ -12,7 +12,7 @@
 
       <div class="home__section" v-if="currentMatchDayBets && currentMatchDayBets.length">
         <h1 class="h2 main__title">Current match day</h1>
-        <h2 class="h3 text--center">{{ matchDate(currentMatchDayBets[0].date) }}</h2>
+        <h2 class="h3 text--center">{{ matchDate(berlinMatchDay(currentMatchDayBets[0].date)) }}</h2>
         <div v-if="currentMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ currentMatchDayBets.length }} match</div>
         <div v-else class="text--small text--gray-20 text--center main__title">{{ currentMatchDayBets.length }} matches</div>
         <ul class="last-match-day">
@@ -39,7 +39,7 @@
 
       <div class="home__section" v-if="lastMatchDayBets && lastMatchDayBets.length">
         <h1 class="h2 main__title">Last match day</h1>
-        <h2 class="h3 text--center">{{ matchDate(lastMatchDayBets[0].date) }}</h2>
+        <h2 class="h3 text--center">{{ matchDate(berlinMatchDay(lastMatchDayBets[0].date)) }}</h2>
         <div v-if="lastMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} match</div>
         <div v-else class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} matches</div>
         <ul class="last-match-day">
@@ -161,6 +161,7 @@ export default {
   },
   methods: {
     getRandomSeed,
+    berlinMatchDay,
     ordinal(n) {
       const s = ['th', 'st', 'nd', 'rd']
       const v = n % 100

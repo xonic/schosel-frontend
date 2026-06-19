@@ -37,7 +37,7 @@
   // home + away cols share remaining space equally; pts cols are fixed-width
   col.match-day-table__col--team { width: auto; }
   col.match-day-table__col--score { width: 3rem; }
-  col.match-day-table__col--pts { width: 5.5rem; }
+  col.match-day-table__col--pts { width: 4.8rem; }
 }
 
 .match-day-table__team {
@@ -65,7 +65,8 @@
 }
 
 .match-day-table__mode-icon {
-  width: $space-100;
+  width: $space-50;
+  height: $space-50;
   display: block;
   margin: 0 auto;
 }

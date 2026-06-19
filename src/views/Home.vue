@@ -11,8 +11,6 @@
       </div>
 
       <div class="home__section" v-if="currentMatchDayBets && currentMatchDayBets.length">
-        <h1 class="h2 main__title">Current match day</h1>
-        <h2 class="h3 text--center">{{ matchDate(berlinMatchDay(currentMatchDayBets[0].date)) }}</h2>
         <table class="match-day-table">
           <colgroup>
             <col class="match-day-table__col--team" />
@@ -23,9 +21,9 @@
           </colgroup>
           <thead>
             <tr>
-              <th colspan="3"></th>
-              <th class="match-day-table__pts text--small text--cyan">Schosel</th>
-              <th class="match-day-table__pts text--small text--blue">Loser</th>
+              <th class="match-day-table__day" colspan="3">Current match day</th>
+              <th class="match-day-table__pts"><img :src="icons[0]" class="match-day-table__mode-icon" /></th>
+              <th class="match-day-table__pts"><img :src="icons[1]" class="match-day-table__mode-icon" /></th>
             </tr>
           </thead>
           <tbody>
@@ -68,8 +66,6 @@
       </div>
 
       <div class="home__section" v-if="lastMatchDayBets && lastMatchDayBets.length">
-        <h1 class="h2 main__title">Last match day</h1>
-        <h2 class="h3 text--center">{{ matchDate(berlinMatchDay(lastMatchDayBets[0].date)) }}</h2>
         <table class="match-day-table">
           <colgroup>
             <col class="match-day-table__col--team" />
@@ -80,9 +76,9 @@
           </colgroup>
           <thead>
             <tr>
-              <th colspan="3"></th>
-              <th class="match-day-table__pts text--small text--cyan">Schosel</th>
-              <th class="match-day-table__pts text--small text--blue">Loser</th>
+              <th class="match-day-table__day" colspan="3">Last match day</th>
+              <th class="match-day-table__pts"><img :src="icons[0]" class="match-day-table__mode-icon" /></th>
+              <th class="match-day-table__pts"><img :src="icons[1]" class="match-day-table__mode-icon" /></th>
             </tr>
           </thead>
           <tbody>
@@ -115,11 +111,11 @@
               <td colspan="3"></td>
               <td class="match-day-table__pts" :class="lastMatchDayPoints[0] > 0 ? 'text--cyan' : 'text--gray-14'">
                 <div class="text--small"><strong>{{ lastMatchDayPoints[0] > 0 ? '+' + lastMatchDayPoints[0] : '-' }}</strong></div>
-                <div v-if="loggedInUser && loggedInUser.scores && loggedInUser.scores.length" class="text--small match-day-table__rank">{{ ordinal(loggedInUser.scores[0].rank) }}</div>
+                <div v-if="loggedInUser && loggedInUser.scores && loggedInUser.scores.length" class="text--small match-day-table__rank text--cyan">{{ ordinal(loggedInUser.scores[0].rank) }}</div>
               </td>
               <td class="match-day-table__pts" :class="lastMatchDayPoints[1] > 0 ? 'text--blue' : 'text--gray-14'">
                 <div class="text--small"><strong>{{ lastMatchDayPoints[1] > 0 ? '+' + lastMatchDayPoints[1] : '-' }}</strong></div>
-                <div v-if="loggedInUser && loggedInUser.scores" class="text--small match-day-table__rank">{{ ordinal(loggedInUser.scores[1].rank) }}</div>
+                <div v-if="loggedInUser && loggedInUser.scores" class="text--small match-day-table__rank text--blue">{{ ordinal(loggedInUser.scores[1].rank) }}</div>
               </td>
             </tr>
           </tfoot>
@@ -170,6 +166,14 @@ function sumPoints(bets) {
 
 export default {
   name: 'home',
+  data () {
+    return {
+      icons: [
+        require('@/assets/img/icons/i--1.svg'),
+        require('@/assets/img/icons/i--2.svg')
+      ]
+    }
+  },
   components: {
     ClipLoader,
     MatchPreview,

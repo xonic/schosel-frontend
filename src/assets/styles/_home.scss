@@ -52,6 +52,22 @@
   &--away {
     justify-content: flex-end;
   }
+
+  .flag {
+    flex-shrink: 0;
+  }
+}
+
+.match-day-table__day {
+  text-align: left;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.match-day-table__mode-icon {
+  width: $space-100;
+  display: block;
+  margin: 0 auto;
 }
 
 .match-day-table__score {

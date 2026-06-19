@@ -5,6 +5,78 @@
   margin-bottom: $space-150;
 }
 
+.match-day-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  th, td {
+    padding: $space-10 $space-10;
+    vertical-align: middle;
+  }
+
+  th {
+    font-weight: normal;
+    opacity: .75;
+    padding-bottom: $space-25;
+  }
+
+  thead th {
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+  }
+
+  tbody tr + tr td {
+    border-top: 1px solid rgba(255, 255, 255, .06);
+  }
+
+  tfoot td {
+    border-top: 1px solid rgba(255, 255, 255, .15);
+    padding-top: $space-35;
+  }
+
+  // home + away cols share remaining space equally; pts cols are fixed-width
+  col.match-day-table__col--team { width: auto; }
+  col.match-day-table__col--score { width: 3rem; }
+  col.match-day-table__col--pts { width: 5.5rem; }
+}
+
+.match-day-table__team {
+  display: flex;
+  align-items: center;
+  gap: $space-10;
+
+  &--home {
+    justify-content: flex-start;
+  }
+
+  &--away {
+    justify-content: flex-end;
+  }
+}
+
+.match-day-table__score {
+  text-align: center;
+  white-space: nowrap;
+  opacity: .75;
+}
+
+.match-day-table__pts {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.match-day-table__rank {
+  opacity: .65;
+}
+
+// Show full names on wider screens, ISO codes on narrow ones
+.match-day-table__iso { display: none; }
+
+@media (max-width: 28rem) {
+  .match-day-table__name { display: none; }
+  .match-day-table__iso { display: inline; }
+}
+
 .last-match-day {
   width: fit-content;
   margin: 0 auto;

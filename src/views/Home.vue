@@ -13,59 +13,117 @@
       <div class="home__section" v-if="currentMatchDayBets && currentMatchDayBets.length">
         <h1 class="h2 main__title">Current match day</h1>
         <h2 class="h3 text--center">{{ matchDate(berlinMatchDay(currentMatchDayBets[0].date)) }}</h2>
-        <div v-if="currentMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ currentMatchDayBets.length }} match</div>
-        <div v-else class="text--small text--gray-20 text--center main__title">{{ currentMatchDayBets.length }} matches</div>
-        <ul class="last-match-day">
-          <li :class="currentMatchDayPoints[0] > 0 ? 'text--cyan' : 'icon--zero-points'">
-            <router-link :to="{ name: 'schosel' }" class="last-match-day__item">
-              <img v-if="iconPaths.length" :src="getURL(0)" class="last-match-day__icon" />
-              <div>
-                <div class="last-match-day__name">Schosel</div>
-                <div class="last-match-day__stats text--small">+{{ currentMatchDayPoints[0] }} points</div>
-              </div>
-            </router-link>
-          </li>
-          <li :class="currentMatchDayPoints[1] > 0 ? 'text--blue' : 'icon--zero-points'">
-            <router-link :to="{ name: 'loser' }" class="last-match-day__item">
-              <img v-if="iconPaths.length" :src="getURL(1)" class="last-match-day__icon" />
-              <div>
-                <div class="last-match-day__name">Loser</div>
-                <div class="last-match-day__stats text--small">+{{ currentMatchDayPoints[1] }} points</div>
-              </div>
-            </router-link>
-          </li>
-        </ul>
+        <table class="match-day-table">
+          <colgroup>
+            <col class="match-day-table__col--team" />
+            <col class="match-day-table__col--score" />
+            <col class="match-day-table__col--team" />
+            <col class="match-day-table__col--pts" />
+            <col class="match-day-table__col--pts" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th colspan="3"></th>
+              <th class="match-day-table__pts text--small text--cyan">Schosel</th>
+              <th class="match-day-table__pts text--small text--blue">Loser</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="bet in currentMatchDayBets" :key="bet.match_id">
+              <td>
+                <div class="match-day-table__team match-day-table__team--home">
+                  <flag :iso="bet.team1_iso" size="small" />
+                  <span class="text--small match-day-table__name">{{ bet.team1_name }}</span>
+                  <span class="text--small match-day-table__iso">{{ bet.team1_iso.toUpperCase() }}</span>
+                </div>
+              </td>
+              <td class="match-day-table__score text--small">{{ bet.team1_goals !== null ? bet.team1_goals + ':' + bet.team2_goals : '–:–' }}</td>
+              <td>
+                <div class="match-day-table__team match-day-table__team--away">
+                  <span class="text--small match-day-table__name">{{ bet.team2_name }}</span>
+                  <span class="text--small match-day-table__iso">{{ bet.team2_iso.toUpperCase() }}</span>
+                  <flag :iso="bet.team2_iso" size="small" />
+                </div>
+              </td>
+              <td class="match-day-table__pts" :class="betPoints(bet, 0) > 0 ? 'text--cyan' : 'text--gray-14'">
+                <span class="text--small">{{ betPoints(bet, 0) > 0 ? '+' + betPoints(bet, 0).toFixed(2) : '-' }}</span>
+              </td>
+              <td class="match-day-table__pts" :class="betPoints(bet, 1) > 0 ? 'text--blue' : 'text--gray-14'">
+                <span class="text--small">{{ betPoints(bet, 1) > 0 ? '+' + betPoints(bet, 1).toFixed(2) : '-' }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3"></td>
+              <td class="match-day-table__pts" :class="currentMatchDayPoints[0] > 0 ? 'text--cyan' : 'text--gray-14'">
+                <div class="text--small"><strong>{{ currentMatchDayPoints[0] > 0 ? '+' + currentMatchDayPoints[0] : '-' }}</strong></div>
+              </td>
+              <td class="match-day-table__pts" :class="currentMatchDayPoints[1] > 0 ? 'text--blue' : 'text--gray-14'">
+                <div class="text--small"><strong>{{ currentMatchDayPoints[1] > 0 ? '+' + currentMatchDayPoints[1] : '-' }}</strong></div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
 
       <div class="home__section" v-if="lastMatchDayBets && lastMatchDayBets.length">
         <h1 class="h2 main__title">Last match day</h1>
         <h2 class="h3 text--center">{{ matchDate(berlinMatchDay(lastMatchDayBets[0].date)) }}</h2>
-        <div v-if="lastMatchDayBets.length === 1" class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} match</div>
-        <div v-else class="text--small text--gray-20 text--center main__title">{{ lastMatchDayBets.length }} matches</div>
-        <ul class="last-match-day">
-          <li :class="lastMatchDayPoints[0] > 0 ? 'text--cyan' : 'icon--zero-points'">
-            <router-link :to="{ name: 'schosel' }" class="last-match-day__item">
-              <img v-if="iconPaths.length" :src="getURL(0)" class="last-match-day__icon" />
-              <div>
-                <div class="last-match-day__name">Schosel</div>
-                <div class="last-match-day__stats text--small">
-                  +{{ lastMatchDayPoints[0] }} points<span v-if="loggedInUser && loggedInUser.scores && loggedInUser.scores.length"> · {{ ordinal(loggedInUser.scores[0].rank) }}</span>
+        <table class="match-day-table">
+          <colgroup>
+            <col class="match-day-table__col--team" />
+            <col class="match-day-table__col--score" />
+            <col class="match-day-table__col--team" />
+            <col class="match-day-table__col--pts" />
+            <col class="match-day-table__col--pts" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th colspan="3"></th>
+              <th class="match-day-table__pts text--small text--cyan">Schosel</th>
+              <th class="match-day-table__pts text--small text--blue">Loser</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="bet in lastMatchDayBets" :key="bet.match_id">
+              <td>
+                <div class="match-day-table__team match-day-table__team--home">
+                  <flag :iso="bet.team1_iso" size="small" />
+                  <span class="text--small match-day-table__name">{{ bet.team1_name }}</span>
+                  <span class="text--small match-day-table__iso">{{ bet.team1_iso.toUpperCase() }}</span>
                 </div>
-              </div>
-            </router-link>
-          </li>
-          <li :class="lastMatchDayPoints[1] > 0 ? 'text--blue' : 'icon--zero-points'">
-            <router-link :to="{ name: 'loser' }" class="last-match-day__item">
-              <img v-if="iconPaths.length" :src="getURL(1)" class="last-match-day__icon" />
-              <div>
-                <div class="last-match-day__name">Loser</div>
-                <div class="last-match-day__stats text--small">
-                  +{{ lastMatchDayPoints[1] }} points<span v-if="loggedInUser"> · {{ ordinal(loggedInUser.scores[1].rank) }}</span>
+              </td>
+              <td class="match-day-table__score text--small">{{ bet.team1_goals }}:{{ bet.team2_goals }}</td>
+              <td>
+                <div class="match-day-table__team match-day-table__team--away">
+                  <span class="text--small match-day-table__name">{{ bet.team2_name }}</span>
+                  <span class="text--small match-day-table__iso">{{ bet.team2_iso.toUpperCase() }}</span>
+                  <flag :iso="bet.team2_iso" size="small" />
                 </div>
-              </div>
-            </router-link>
-          </li>
-        </ul>
+              </td>
+              <td class="match-day-table__pts" :class="betPoints(bet, 0) > 0 ? 'text--cyan' : 'text--gray-14'">
+                <span class="text--small">{{ betPoints(bet, 0) > 0 ? '+' + betPoints(bet, 0).toFixed(2) : '-' }}</span>
+              </td>
+              <td class="match-day-table__pts" :class="betPoints(bet, 1) > 0 ? 'text--blue' : 'text--gray-14'">
+                <span class="text--small">{{ betPoints(bet, 1) > 0 ? '+' + betPoints(bet, 1).toFixed(2) : '-' }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3"></td>
+              <td class="match-day-table__pts" :class="lastMatchDayPoints[0] > 0 ? 'text--cyan' : 'text--gray-14'">
+                <div class="text--small"><strong>{{ lastMatchDayPoints[0] > 0 ? '+' + lastMatchDayPoints[0] : '-' }}</strong></div>
+                <div v-if="loggedInUser && loggedInUser.scores && loggedInUser.scores.length" class="text--small match-day-table__rank">{{ ordinal(loggedInUser.scores[0].rank) }}</div>
+              </td>
+              <td class="match-day-table__pts" :class="lastMatchDayPoints[1] > 0 ? 'text--blue' : 'text--gray-14'">
+                <div class="text--small"><strong>{{ lastMatchDayPoints[1] > 0 ? '+' + lastMatchDayPoints[1] : '-' }}</strong></div>
+                <div v-if="loggedInUser && loggedInUser.scores" class="text--small match-day-table__rank">{{ ordinal(loggedInUser.scores[1].rank) }}</div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
 
       <div class="home__section" v-if="nextMatchDay && nextMatchDay.length">
@@ -98,6 +156,7 @@ import RankProgressBar from '@/components/RankProgressBar'
 import Bet from '@/components/Bet'
 import Avatar from '@/components/Avatar'
 import AvailableSuperBets from '@/components/AvailableSuperBets'
+import Flag from '@/components/Flag'
 import { getRandomSeed, berlinMatchDay } from '@/utils'
 
 function sumPoints(bets) {
@@ -117,7 +176,8 @@ export default {
     RankProgressBar,
     Bet,
     Avatar,
-    AvailableSuperBets
+    AvailableSuperBets,
+    Flag
   },
   computed: {
     ...mapGetters([
@@ -128,7 +188,6 @@ export default {
       'loggedInUser',
       'loading',
       'allUsers',
-      'iconPaths',
       'avatarUrl'
     ]),
     _currentUserBets() {
@@ -165,7 +224,10 @@ export default {
     ordinal(n) {
       const s = ['th', 'st', 'nd', 'rd']
       const v = n % 100
-      return n + (s[(v - 20) % 10] || s[v] || s[0]) + ' place'
+      return n + (s[(v - 20) % 10] || s[v] || s[0])
+    },
+    betPoints(bet, index) {
+      return (bet.bet && bet.bet.points && bet.bet.points[index] && bet.bet.points[index].points) || 0
     },
     betForMatch(match) {
       if(this.loggedInUser && this.loggedInUser.private_bets) {
@@ -183,9 +245,6 @@ export default {
       }
       return theDate.toLocaleString('en-GB', dateOptions)
     },
-    getURL(index) {
-      return require(`../assets/img/icons/${this.iconPaths[index]}`)
-    }
   }
 }
 </script>

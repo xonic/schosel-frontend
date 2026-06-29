@@ -20,3 +20,13 @@
     border-color: $yellow-100;
   }
 }
+
+.nav__badge {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $yellow-100;
+  vertical-align: super;
+  margin-left: 3px;
+}

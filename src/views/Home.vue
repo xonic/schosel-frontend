@@ -133,6 +133,14 @@
           </li>
         </ul>
       </div>
+      <div class="home__section" v-if="futureUnbetMatches && futureUnbetMatches.length">
+        <router-link :to="{ name: 'matches', params: { tab: 'upcoming' } }" class="upcoming-callout">
+          <span class="upcoming-callout__count text--yellow">{{ futureUnbetMatches.length }}</span>
+          <span class="upcoming-callout__label">upcoming match{{ futureUnbetMatches.length !== 1 ? 'es' : '' }} still need{{ futureUnbetMatches.length === 1 ? 's' : '' }} your bet</span>
+          <span class="upcoming-callout__arrow">→</span>
+        </router-link>
+      </div>
+
       <div v-if="!(liveMatches && liveMatches.length) && !(lastMatchDayBets && lastMatchDayBets.length) && !(nextMatchDay && nextMatchDay.length)" class="blankslate">
         <div class="blankslate__avatar">
           <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
@@ -189,6 +197,7 @@ export default {
       'liveMatches',
       'nextMatch',
       'nextMatchDay',
+      'futureUnbetMatches',
       'loggedInUser',
       'loading',
       'allUsers',

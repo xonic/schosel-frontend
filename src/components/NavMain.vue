@@ -11,7 +11,7 @@
       </template>
       <template v-else>
         <li class="nav__item">
-          <router-link class="nav__link" :to="{ name: 'matches' }">Matches</router-link>
+          <router-link class="nav__link" :to="{ name: 'matches' }">Matches<span v-if="futureUnbetMatches && futureUnbetMatches.length" class="nav__badge"></span></router-link>
         </li>
         <li class="nav__item">
           <router-link class="nav__link" :to="{ name: 'teams' }">Teams</router-link>
@@ -36,7 +36,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'nav-main',
   computed: {
-    ...mapGetters(['loggedInUser', 'adminMode'])
+    ...mapGetters(['loggedInUser', 'adminMode', 'futureUnbetMatches'])
   }
 }
 </script>

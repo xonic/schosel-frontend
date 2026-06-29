@@ -1,7 +1,7 @@
 <template>
-  <div :class="`msg msg--${type} msg--${position}`">
+  <component :is="to ? 'router-link' : 'div'" :to="to" :class="['msg', `msg--${type}`, position && `msg--${position}`, to && 'msg--link']">
     <slot></slot>
-  </div>
+  </component>
 </template>
 
 <script>
@@ -9,7 +9,8 @@
     name: 'message',
     props: {
       type: String,
-      position: String
+      position: String,
+      to: [String, Object]
     }
   }
 </script>

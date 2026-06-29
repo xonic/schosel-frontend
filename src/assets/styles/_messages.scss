@@ -30,6 +30,16 @@
   color: $red-100;
 }
 
+.msg--link {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.15);
+  }
+}
+
 .msg--floating {
   position: fixed;
   right: $space-100;

@@ -30,7 +30,7 @@
       </div>
 
       <div class="user-tabs">
-        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'upcoming' }" @click="setTab('upcoming')">Upcoming</button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'upcoming' }" @click="setTab('upcoming')">Upcoming<span v-if="futureUnbetMatches && futureUnbetMatches.length" class="nav__badge"></span></button>
         <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'played' }" @click="setTab('played')">Played</button>
       </div>
 
@@ -110,6 +110,7 @@ export default {
       'liveMatches',
       'overMatches',
       'scheduledMatches',
+      'futureUnbetMatches',
       'loggedInUser',
       'status',
       'avatarUrl'

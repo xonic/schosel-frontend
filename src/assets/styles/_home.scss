@@ -94,31 +94,6 @@
   .match-day-table__iso { display: inline; }
 }
 
-.upcoming-callout {
-  display: flex;
-  align-items: center;
-  gap: $space-35;
-  padding: $space-50 $space-75;
-  border: 1px solid $yellow-100;
-  border-radius: 4px;
-  text-decoration: none;
-  color: $gray-20;
-
-  &:hover {
-    border-color: $cyan-100;
-  }
-
-  &__count {
-    font-weight: bold;
-    flex-shrink: 0;
-  }
-
-  &__arrow {
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-}
-
 .last-match-day {
   width: fit-content;
   margin: 0 auto;

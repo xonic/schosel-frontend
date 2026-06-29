@@ -1,6 +1,12 @@
 <template>
   <main>
     <div class="wrapper">
+      <div class="home__section" v-if="futureUnbetMatches && futureUnbetMatches.length">
+        <message type="warning" :to="{ name: 'matches', params: { tab: 'upcoming' } }">
+          {{ futureUnbetMatches.length }} upcoming match{{ futureUnbetMatches.length !== 1 ? 'es' : '' }} still need{{ futureUnbetMatches.length === 1 ? 's' : '' }} your bet →
+        </message>
+      </div>
+
       <div class="home__section" v-if="liveMatches && liveMatches.length">
         <h1 class="h2 main__title text--red is-live">Now live</h1>
         <ul>
@@ -133,14 +139,6 @@
           </li>
         </ul>
       </div>
-      <div class="home__section" v-if="futureUnbetMatches && futureUnbetMatches.length">
-        <router-link :to="{ name: 'matches', params: { tab: 'upcoming' } }" class="upcoming-callout">
-          <span class="upcoming-callout__count text--yellow">{{ futureUnbetMatches.length }}</span>
-          <span class="upcoming-callout__label">upcoming match{{ futureUnbetMatches.length !== 1 ? 'es' : '' }} still need{{ futureUnbetMatches.length === 1 ? 's' : '' }} your bet</span>
-          <span class="upcoming-callout__arrow">→</span>
-        </router-link>
-      </div>
-
       <div v-if="!(liveMatches && liveMatches.length) && !(lastMatchDayBets && lastMatchDayBets.length) && !(nextMatchDay && nextMatchDay.length)" class="blankslate">
         <div class="blankslate__avatar">
           <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
@@ -161,6 +159,7 @@ import Bet from '@/components/Bet'
 import Avatar from '@/components/Avatar'
 import AvailableSuperBets from '@/components/AvailableSuperBets'
 import Flag from '@/components/Flag'
+import Message from '@/components/Message'
 import { getRandomSeed, berlinMatchDay } from '@/utils'
 
 function sumPoints(bets) {
@@ -189,7 +188,8 @@ export default {
     Bet,
     Avatar,
     AvailableSuperBets,
-    Flag
+    Flag,
+    Message
   },
   computed: {
     ...mapGetters([

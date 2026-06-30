@@ -16,24 +16,23 @@
       </div>
 
       <div v-if="activeTab === 'stats'">
-        <div v-if="user && user.scores && user.scores.length" class="user-scores-section">
-          <h2 class="h3 text--center user__section-heading">Scores</h2>
-          <ul class="user-scores">
-            <li v-for="score in user.scores.filter(s => s.challenge_id <= 2)" :key="score.challenge_id" class="user-scores__item" :class="{ 'user-scores__item--zero': !score.points }">
-              <router-link :to="{ name: challengeRoute(score.challenge_id), params: { id: String(score.challenge_id) } }" class="user-scores__link">
-                <img v-if="iconPaths.length" :src="getURL(score.challenge_id - 1)" class="user-scores__icon" />
-                <div>
-                  <div class="user-scores__name" :class="challengeColorClass(score.challenge_id)">{{ formatChallengeName(score.name) }}</div>
-                  <div class="user-scores__stats text--small">{{ ordinal(score.rank) }}</div>
-                  <div class="user-scores__stats text--small">{{ score.points.toFixed(2) }} pts</div>
-                </div>
-              </router-link>
-            </li>
-          </ul>
-        </div>
+        <div class="user-stat-cards">
+          <router-link
+            v-for="score in (user && user.scores ? user.scores.filter(s => s.challenge_id <= 2) : [])"
+            :key="score.challenge_id"
+            :to="{ name: challengeRoute(score.challenge_id) }"
+            class="champion-bet-card"
+          >
+            <img v-if="iconPaths.length" :src="getURL(score.challenge_id - 1)" class="user-score-card__icon" />
+            <div class="champion-bet-card__info">
+              <div class="champion-bet-card__label" :class="challengeColorClass(score.challenge_id)">{{ formatChallengeName(score.name) }}</div>
+              <div class="champion-bet-card__name">{{ ordinal(score.rank) }}<span class="champion-bet-card__pts"> {{ score.points.toFixed(2) }} pts</span></div>
+            </div>
+            <div class="champion-bet-card__chevron"><img src="../assets/img/icons/i--chevron-right.svg" /></div>
+          </router-link>
 
-        <div v-if="(user && user.champion) && user.champion.name" class="user__champion">
           <champion-bet-card
+            v-if="(user && user.champion) && user.champion.name"
             :champion="user.champion"
             :to="user.champion.short_name ? { name: 'team', params: { iso: user.champion.short_name } } : null"
             :correct="user.champion_correct"

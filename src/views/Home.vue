@@ -1,10 +1,6 @@
 <template>
   <main>
     <div class="wrapper">
-      <div style="color:red;font-size:10px;word-break:break-all">
-        DBG sched_ids={{ scheduledMatches && scheduledMatches.map(m => m.match_id) }}
-        | bet_ids={{ loggedInUser && loggedInUser.private_bets && loggedInUser.private_bets.map(b => b.match_id) }}
-      </div>
       <div class="home__section" v-if="futureUnbetMatches && futureUnbetMatches.length">
         <message type="warning" :to="{ name: 'matches', params: { tab: 'upcoming' } }" class="msg--banner">
           <span>{{ futureUnbetMatches.length }} upcoming match{{ futureUnbetMatches.length !== 1 ? 'es' : '' }} need{{ futureUnbetMatches.length === 1 ? 's' : '' }} your bet</span>
@@ -209,14 +205,9 @@ export default {
       'avatarUrl'
     ]),
     futureUnbetMatches() {
-      console.log('[banner] loggedInUser:', !!this.loggedInUser, 'scheduled:', (this.scheduledMatches || []).length)
       if (!this.loggedInUser) return []
-      const privateBets = this.loggedInUser.private_bets || []
-      const betIds = new Set(privateBets.map(b => b.match_id))
-      const scheduled = this.scheduledMatches || []
-      const result = scheduled.filter(m => !betIds.has(m.match_id))
-      console.log('[banner] betIds:', [...betIds], 'scheduled ids:', scheduled.map(m => m.match_id), 'unbet:', result.map(m => m.match_id))
-      return result
+      const betIds = new Set((this.loggedInUser.private_bets || []).map(b => b.match_id))
+      return (this.scheduledMatches || []).filter(m => !betIds.has(m.match_id))
     },
     _currentUserBets() {
       if (!this.allUsers || !this.loggedInUser) return []

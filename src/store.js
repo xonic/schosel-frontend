@@ -445,7 +445,7 @@ export default new Vuex.Store({
     },
     futureUnbetMatches: state => {
       const betIds = new Set(((state.status && state.status.user && state.status.user.private_bets) || []).map(b => b.match_id))
-      return (state.matches.scheduled || []).filter(m => !m.private_bet && !betIds.has(m.match_id))
+      return (state.matches.scheduled || []).filter(m => !betIds.has(m.match_id))
     },
     allUsers: state => {
       return state.users

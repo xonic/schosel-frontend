@@ -2,8 +2,9 @@
   <main>
     <div class="wrapper">
       <div class="home__section" v-if="futureUnbetMatches && futureUnbetMatches.length">
-        <message type="warning" :to="{ name: 'matches', params: { tab: 'upcoming' } }">
-          {{ futureUnbetMatches.length }} upcoming match{{ futureUnbetMatches.length !== 1 ? 'es' : '' }} still need{{ futureUnbetMatches.length === 1 ? 's' : '' }} your bet →
+        <message type="warning" :to="{ name: 'matches', params: { tab: 'upcoming' } }" class="msg--banner">
+          <span>{{ futureUnbetMatches.length }} upcoming match{{ futureUnbetMatches.length !== 1 ? 'es' : '' }} need{{ futureUnbetMatches.length === 1 ? 's' : '' }} your bet</span>
+          <img src="@/assets/img/icons/i--chevron-right.svg" class="msg__chevron" />
         </message>
       </div>
 

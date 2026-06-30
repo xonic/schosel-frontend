@@ -40,6 +40,16 @@
   }
 }
 
+.msg--banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.msg__chevron {
+  flex-shrink: 0;
+}
+
 .msg--floating {
   position: fixed;
   right: $space-100;

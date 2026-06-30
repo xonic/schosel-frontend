@@ -31,7 +31,7 @@
 
       <div class="user-tabs">
         <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'upcoming' }" @click="setTab('upcoming')">Upcoming<span v-if="futureUnbetMatches && futureUnbetMatches.length" class="nav__badge"></span></button>
-        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'played' }" @click="setTab('played')">Played</button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'played' }" @click="setTab('played')">Played <span class="user-tab__count">{{ overMatches ? overMatches.length : 0 }}/104</span></button>
       </div>
 
       <div v-if="activeTab === 'upcoming'">

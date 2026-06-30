@@ -83,6 +83,12 @@
   }
 }
 
+.user-tab__count {
+  font-size: $textSmallSize;
+  font-weight: $base-font-weight;
+  opacity: .6;
+}
+
 .user__bet-stats {
   text-align: center;
   margin-bottom: $space-75;

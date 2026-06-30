@@ -1,7 +1,10 @@
 <template>
   <main>
     <div class="wrapper">
-      <div style="color:red;font-size:12px">DBG scheduled={{ scheduledMatches && scheduledMatches.length }} loggedIn={{ !!loggedInUser }} unbet={{ futureUnbetMatches && futureUnbetMatches.length }}</div>
+      <div style="color:red;font-size:10px;word-break:break-all">
+        DBG sched_ids={{ scheduledMatches && scheduledMatches.map(m => m.match_id) }}
+        | bet_ids={{ loggedInUser && loggedInUser.private_bets && loggedInUser.private_bets.map(b => b.match_id) }}
+      </div>
       <div class="home__section" v-if="futureUnbetMatches && futureUnbetMatches.length">
         <message type="warning" :to="{ name: 'matches', params: { tab: 'upcoming' } }" class="msg--banner">
           <span>{{ futureUnbetMatches.length }} upcoming match{{ futureUnbetMatches.length !== 1 ? 'es' : '' }} need{{ futureUnbetMatches.length === 1 ? 's' : '' }} your bet</span>

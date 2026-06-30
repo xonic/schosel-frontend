@@ -11,8 +11,8 @@
       <h2 v-if="user && user.reward >= 0" class="h3 text--center text--gray-20 user__reward">{{ user.reward.toFixed(2) }} &euro;</h2>
 
       <div class="user-tabs">
-        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'stats' }" @click="setTab('stats')">Stats</button>
-        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'bets' }" @click="setTab('bets')">Bets</button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'stats' }" @click="setTab('stats')">Overview</button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'bets' }" @click="setTab('bets')">Match bets</button>
       </div>
 
       <div v-if="activeTab === 'stats'">

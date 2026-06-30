@@ -2,7 +2,6 @@
   <main>
     <div class="wrapper">
       <h1 class="h2 main__title">Bets</h1>
-      <h2 class="h3 main__subtitle">Champion</h2>
       <div v-if="status && status.user">
         <div class="champion-bet">
           <select
@@ -16,10 +15,11 @@
             <option v-for="team in status.teams" v-bind:value="team.team_id">{{ team.name }}</option>
           </select>
           <div v-else>
-            <div v-if="status.user.champion" class="champion-bet__display">
-              <flag v-if="status.user.champion.short_name" :iso="status.user.champion.short_name" size="large" />
-              <div>{{ championBet() }}</div>
-            </div>
+            <champion-bet-card
+              v-if="status.user.champion && status.user.champion.short_name"
+              :champion="status.user.champion"
+              :to="{ name: 'team', params: { iso: status.user.champion.short_name } }"
+            />
           </div>
           <div class="bet__status" :class="{ 'bet__status--saved': championSaved, 'bet__status--error': championSaveError }">{{ championStatusText }}</div>
         </div>
@@ -51,6 +51,7 @@
   import Bet from '@/components/Bet'
   import Flag from '@/components/Flag'
   import Avatar from '@/components/Avatar'
+  import ChampionBetCard from '@/components/ChampionBetCard'
   import { getRandomSeed } from '@/utils'
 
   export default {
@@ -61,7 +62,8 @@
       SuperBet,
       AvailableSuperBets,
       Flag,
-      Avatar
+      Avatar,
+      ChampionBetCard
     },
     data() {
       return {

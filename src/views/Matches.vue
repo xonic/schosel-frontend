@@ -4,7 +4,6 @@
       <h1 class="h2 main__title">Matches</h1>
 
       <div v-if="status && status.user" class="champion-bet-section">
-        <h2 class="h3 main__subtitle">Champion Bet</h2>
         <div class="champion-bet">
           <select
             id="champion-bet"
@@ -17,13 +16,11 @@
             <option v-for="team in status.teams" :value="team.team_id">{{ team.name }}</option>
           </select>
           <div v-else>
-            <div v-if="status.user.champion" class="champion-bet__display">
-              <router-link v-if="status.user.champion.short_name" :to="{ name: 'team', params: { iso: status.user.champion.short_name } }" class="champion-bet__team-link">
-                <flag :iso="status.user.champion.short_name" size="large" />
-                <div>{{ championBet() }}</div>
-              </router-link>
-              <div v-else>{{ championBet() }}</div>
-            </div>
+            <champion-bet-card
+              v-if="status.user.champion && status.user.champion.short_name"
+              :champion="status.user.champion"
+              :to="{ name: 'team', params: { iso: status.user.champion.short_name } }"
+            />
           </div>
           <div class="bet__status" :class="{ 'bet__status--saved': championSaved, 'bet__status--error': championSaveError }">{{ championStatusText }}</div>
         </div>
@@ -81,6 +78,7 @@ import Flag from '@/components/Flag'
 import SuperBet from '@/components/SuperBet'
 import AvailableSuperBets from '@/components/AvailableSuperBets'
 import Avatar from '@/components/Avatar'
+import ChampionBetCard from '@/components/ChampionBetCard'
 import { getRandomSeed } from '@/utils'
 
 export default {
@@ -92,7 +90,8 @@ export default {
     Flag,
     SuperBet,
     AvailableSuperBets,
-    Avatar
+    Avatar,
+    ChampionBetCard
   },
   props: {
     tab: String

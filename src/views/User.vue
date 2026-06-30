@@ -33,18 +33,11 @@
         </div>
 
         <div v-if="(user && user.champion) && user.champion.name" class="user__champion">
-          <h2 class="h3 text--center user__section-heading">Champion bet</h2>
-          <router-link v-if="user.champion.short_name" :to="{ name: 'team', params: { iso: user.champion.short_name } }" class="user__champion-link">
-            <div class="user__champion-flag">
-              <flag :iso="user.champion.short_name" size="large" />
-            </div>
-            <div class="user__champion-name">{{ user.champion.name }}</div>
-          </router-link>
-          <template v-else>
-            <div class="text--center user__champion-name">{{ user.champion.name }}</div>
-          </template>
-          <div class="text--small text--gray-20 text--center">Odds: {{ user.champion.odds.toFixed(2) }}</div>
-          <div v-if="user.champion_correct" class="user__champion-correct">Correct!</div>
+          <champion-bet-card
+            :champion="user.champion"
+            :to="user.champion.short_name ? { name: 'team', params: { iso: user.champion.short_name } } : null"
+            :correct="user.champion_correct"
+          />
         </div>
       </div>
 
@@ -88,6 +81,7 @@ import { mapGetters } from 'vuex'
 import Avatar from '@/components/Avatar'
 import MatchPreview from '@/components/MatchPreview'
 import Flag from '@/components/Flag'
+import ChampionBetCard from '@/components/ChampionBetCard'
 
 export default {
   name: 'user',
@@ -95,6 +89,7 @@ export default {
     MatchPreview,
     Avatar,
     Flag,
+    ChampionBetCard,
   },
   data () {
     return {

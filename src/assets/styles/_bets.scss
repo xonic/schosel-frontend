@@ -26,6 +26,54 @@
   }
 }
 
+.champion-bet-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid $gray-14;
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  text-align: left;
+
+  @include hover {
+    border-color: $gray-20;
+  }
+}
+
+.champion-bet-card__info {
+  flex: 1;
+}
+
+.champion-bet-card__label {
+  font-size: $textTinySize;
+  color: $gray-20;
+}
+
+.champion-bet-card__name {
+  font-size: $base-font-size;
+  font-weight: $base-font-weight;
+}
+
+.champion-bet-card__pts {
+  font-size: $textTinySize;
+  font-weight: $base-font-weight;
+  color: $gray-20;
+}
+
+.champion-bet-card__correct {
+  font-size: $textTinySize;
+  font-weight: $base-font-weight;
+  color: $green-100;
+}
+
+.champion-bet-card__chevron {
+  img {
+    display: block;
+  }
+}
+
 .bet {
   padding: $space-75 0;
   border-top: 1px solid $gray-12;

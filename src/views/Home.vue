@@ -205,8 +205,8 @@ export default {
       'avatarUrl'
     ]),
     futureUnbetMatches() {
-      if (!this.loggedInUser || !this.loggedInUser.private_bets) return []
-      const betIds = new Set(this.loggedInUser.private_bets.map(b => b.match_id))
+      if (!this.loggedInUser) return []
+      const betIds = new Set((this.loggedInUser.private_bets || []).map(b => b.match_id))
       return (this.scheduledMatches || []).filter(m => !betIds.has(m.match_id))
     },
     _currentUserBets() {

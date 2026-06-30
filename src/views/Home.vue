@@ -139,6 +139,13 @@
           </li>
         </ul>
       </div>
+      <div class="home__section champion-bet" v-if="status && status.user && status.user.champion && status.user.champion.short_name">
+        <champion-bet-card
+          :champion="status.user.champion"
+          :to="{ name: 'team', params: { iso: status.user.champion.short_name } }"
+        />
+      </div>
+
       <div v-if="!(liveMatches && liveMatches.length) && !(lastMatchDayBets && lastMatchDayBets.length) && !(nextMatchDay && nextMatchDay.length)" class="blankslate">
         <div class="blankslate__avatar">
           <avatar :src="avatarUrl + getRandomSeed()" size="xlarge" />
@@ -160,6 +167,7 @@ import Avatar from '@/components/Avatar'
 import AvailableSuperBets from '@/components/AvailableSuperBets'
 import Flag from '@/components/Flag'
 import Message from '@/components/Message'
+import ChampionBetCard from '@/components/ChampionBetCard'
 import { getRandomSeed, berlinMatchDay } from '@/utils'
 
 function sumPoints(bets) {
@@ -189,7 +197,8 @@ export default {
     Avatar,
     AvailableSuperBets,
     Flag,
-    Message
+    Message,
+    ChampionBetCard
   },
   computed: {
     ...mapGetters([
@@ -201,7 +210,8 @@ export default {
       'loggedInUser',
       'loading',
       'allUsers',
-      'avatarUrl'
+      'avatarUrl',
+      'status'
     ]),
     _currentUserBets() {
       if (!this.allUsers || !this.loggedInUser) return []

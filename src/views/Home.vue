@@ -198,12 +198,17 @@ export default {
       'liveMatches',
       'nextMatch',
       'nextMatchDay',
-      'futureUnbetMatches',
+      'scheduledMatches',
       'loggedInUser',
       'loading',
       'allUsers',
       'avatarUrl'
     ]),
+    futureUnbetMatches() {
+      if (!this.loggedInUser || !this.loggedInUser.private_bets) return []
+      const betIds = new Set(this.loggedInUser.private_bets.map(b => b.match_id))
+      return (this.scheduledMatches || []).filter(m => !betIds.has(m.match_id))
+    },
     _currentUserBets() {
       if (!this.allUsers || !this.loggedInUser) return []
       const user = this.allUsers.find(u => u.user_id === this.loggedInUser.user_id)

@@ -205,12 +205,13 @@ export default {
       'avatarUrl'
     ]),
     futureUnbetMatches() {
+      console.log('[banner] loggedInUser:', !!this.loggedInUser, 'scheduled:', (this.scheduledMatches || []).length)
       if (!this.loggedInUser) return []
       const privateBets = this.loggedInUser.private_bets || []
       const betIds = new Set(privateBets.map(b => b.match_id))
       const scheduled = this.scheduledMatches || []
       const result = scheduled.filter(m => !betIds.has(m.match_id))
-      console.log('[banner] scheduled:', scheduled.length, 'betIds:', [...betIds].length, 'unbet:', result.length, result.map(m => m.match_id))
+      console.log('[banner] betIds:', [...betIds], 'scheduled ids:', scheduled.map(m => m.match_id), 'unbet:', result.map(m => m.match_id))
       return result
     },
     _currentUserBets() {

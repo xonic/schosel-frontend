@@ -206,8 +206,12 @@ export default {
     ]),
     futureUnbetMatches() {
       if (!this.loggedInUser) return []
-      const betIds = new Set((this.loggedInUser.private_bets || []).map(b => b.match_id))
-      return (this.scheduledMatches || []).filter(m => !betIds.has(m.match_id))
+      const privateBets = this.loggedInUser.private_bets || []
+      const betIds = new Set(privateBets.map(b => b.match_id))
+      const scheduled = this.scheduledMatches || []
+      const result = scheduled.filter(m => !betIds.has(m.match_id))
+      console.log('[banner] scheduled:', scheduled.length, 'betIds:', [...betIds].length, 'unbet:', result.length, result.map(m => m.match_id))
+      return result
     },
     _currentUserBets() {
       if (!this.allUsers || !this.loggedInUser) return []

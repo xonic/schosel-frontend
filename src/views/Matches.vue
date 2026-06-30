@@ -1,11 +1,13 @@
 <template>
   <main>
     <div class="wrapper">
-      <h1 class="h2 main__title">Matches</h1>
+      <h1 class="h2 main__title" style="margin-bottom: 0">Matches</h1>
+      <div class="text--small text--gray-20 text--center">Total: 104</div>
+      <div v-if="currentStage" class="text--small text--gray-20 text--center matches__total">Current stage: {{ currentStage }}</div>
 
       <div class="user-tabs">
-        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'upcoming' }" @click="setTab('upcoming')">Upcoming<span v-if="futureUnbetMatches && futureUnbetMatches.length" class="nav__badge"></span></button>
-        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'played' }" @click="setTab('played')">Played <span class="user-tab__count">{{ overMatches ? overMatches.length : 0 }}/104</span></button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'upcoming' }" @click="setTab('upcoming')">Upcoming<span v-if="futureUnbetMatches && futureUnbetMatches.length" class="nav__badge"></span> <span class="user-tab__count">{{ scheduledMatches ? scheduledMatches.length : 0 }}</span></button>
+        <button class="user-tab" :class="{ 'user-tab--active': activeTab === 'played' }" @click="setTab('played')">Played <span class="user-tab__count">{{ overMatches ? overMatches.length : 0 }}</span></button>
       </div>
 
       <div v-if="activeTab === 'upcoming'">
@@ -83,7 +85,17 @@ export default {
       'futureUnbetMatches',
       'loggedInUser',
       'avatarUrl'
-    ])
+    ]),
+    currentStage() {
+      const fmt = s => s === 'group' ? 'Group Stage' : s
+      if (this.liveMatches && this.liveMatches.length)
+        return fmt(this.liveMatches[0].stage)
+      if (this.scheduledMatches && this.scheduledMatches.length)
+        return fmt([...this.scheduledMatches].sort((a, b) => new Date(a.date) - new Date(b.date))[0].stage)
+      if (this.overMatches && this.overMatches.length)
+        return fmt([...this.overMatches].sort((a, b) => new Date(b.date) - new Date(a.date))[0].stage)
+      return null
+    }
   },
   methods: {
     getRandomSeed,

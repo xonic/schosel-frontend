@@ -1,9 +1,9 @@
 <template>
   <router-link class="match-preview" :to="{ path: `/matches/${match.match_id}` }">
     <div class="match-preview__body" v-if="match">
-      <div class="match-preview__live is-live" v-if="match.status === 'live'">
+      <div class="match-preview__live" v-if="match.status === 'live'">
         <div v-if="match.stage" class="match-preview__stage">{{ matchGroup(match) }}</div>
-        <div v-if="match.api_data && match.api_data.elapsed">{{ match.api_data.elapsed }}' played</div>
+        <div class="match-preview__date">{{ matchDate(match.date) }}<span v-if="match.api_data && match.api_data.phase" class="match-preview__phase is-live"> · {{ phaseLabel(match.api_data.phase) }}</span></div>
         <div v-if="match.api_data && match.api_data.stadium" class="match-preview__venue">{{ match.api_data.stadium }}, {{ match.api_data.stadium_city }}, {{ match.api_data.stadium_country }}</div>
       </div>
       <div class="match-preview__over" v-else>
@@ -115,6 +115,10 @@
           if (team2 && team2.group === team.group) return 'Group ' + team.group
         }
         return titleCase(match.stage)
+      },
+      phaseLabel(phase) {
+        const labels = { '1H': '1st half', 'HT': 'Half time', '2H': '2nd half', 'ET': 'Extra time', 'PEN': 'Penalties', 'FT': 'Full time' }
+        return labels[phase] || phase
       },
       matchDate: date => {
         let theDate = new Date(date)

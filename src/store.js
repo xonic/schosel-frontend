@@ -443,6 +443,14 @@ export default new Vuex.Store({
     nextMatchDay: state => {
       return state.nextMatchDay
     },
+    activeTeamIsos: state => {
+      const isos = new Set()
+      ;[...(state.matches.scheduled || []), ...(state.matches.live || [])].forEach(m => {
+        if (m.team1_iso) isos.add(m.team1_iso.toLowerCase())
+        if (m.team2_iso) isos.add(m.team2_iso.toLowerCase())
+      })
+      return isos
+    },
     futureUnbetMatches: (state, getters) => {
       if (!getters.loggedInUser) return []
       const betIds = new Set((getters.loggedInUser.private_bets || []).filter(b => b.bet && b.bet.outcome).map(b => b.match_id))

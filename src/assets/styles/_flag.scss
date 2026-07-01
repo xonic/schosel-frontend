@@ -14,6 +14,10 @@
   border-color: $yellow-100;
 }
 
+.flag--eliminated {
+  filter: grayscale(1);
+}
+
 .flag--tiny {
   width: $space-35;
   height: $space-35;

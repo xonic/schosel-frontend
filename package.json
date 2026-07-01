@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "private": true,
   "scripts": {
     "serve": "NODE_ENV=development vue-cli-service serve",

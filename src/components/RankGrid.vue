@@ -27,7 +27,7 @@
           <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }" :class="`rank-grid__name-col`">
             <div class="avatar-champion-wrap">
               <avatar :src="user.avatar" class="rank-grid__avatar" />
-              <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge" />
+              <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge" :class="{ 'flag--eliminated': isChampionEliminated(user) }" />
             </div>
             <div class="rank-grid__name">{{ user.name }}</div>
           </router-link>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import Avatar from '@/components/Avatar'
   import Flag from '@/components/Flag'
 
@@ -68,6 +69,7 @@
       }
     },
     computed: {
+      ...mapGetters(['activeTeamIsos']),
       sortedData() {
         return this.data.sort((a, b) => {
           // Check what key to sort by
@@ -106,6 +108,13 @@
             break
           }
         })
+      }
+    },
+    methods: {
+      isChampionEliminated(user) {
+        if (!user.champion || !user.champion.short_name) return false
+        if (!this.activeTeamIsos || !this.activeTeamIsos.size) return false
+        return !this.activeTeamIsos.has(user.champion.short_name.toLowerCase())
       }
     }
   }

@@ -1,8 +1,6 @@
 <template>
   <div
-    :class="isBet ?
-      `flag flag--${flagClass} flag--${size} flag--is-bet` :
-      `flag flag--${flagClass} flag--${size}`">
+    :class="[`flag`, `flag--${flagClass}`, size && `flag--${size}`, isBet && `flag--is-bet`, eliminated && `flag--eliminated`]">
   {{ iso === 'drw' ? 'X' : '' }}
   </div>
 </template>
@@ -13,6 +11,7 @@
     props: {
       iso: String,
       isBet: Boolean,
+      eliminated: Boolean,
       size: String // Accepted: 'tiny', 'small', 'medium', 'large', 'xlarge'
     },
     computed: {

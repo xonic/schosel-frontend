@@ -29,10 +29,11 @@
                 v-for="row in groupStandings(group)"
                 :key="row.team.team_id"
                 class="teams-table__row"
+                :class="{ 'teams-table__row--eliminated': isTeamEliminated(row.team) }"
                 @click="$router.push({ name: 'team', params: { iso: row.team.short_name } })"
               >
                 <td class="teams-table__td teams-table__td--flag">
-                  <flag :iso="row.team.short_name" />
+                  <flag :iso="row.team.short_name" :class="{ 'flag--eliminated': isTeamEliminated(row.team) }" />
                 </td>
                 <td class="teams-table__td">{{ row.team.name }}</td>
                 <td class="teams-table__td teams-table__td--right">{{ row.p }}</td>
@@ -62,10 +63,11 @@
               v-for="team in championOddsTeams"
               :key="team.team_id"
               class="teams-table__row"
+              :class="{ 'teams-table__row--eliminated': isTeamEliminated(team) }"
               @click="$router.push({ name: 'team', params: { iso: team.short_name } })"
             >
               <td class="teams-table__td teams-table__td--flag">
-                <flag :iso="team.short_name" />
+                <flag :iso="team.short_name" :class="{ 'flag--eliminated': isTeamEliminated(team) }" />
               </td>
               <td class="teams-table__td">{{ team.name }}</td>
               <td class="teams-table__td teams-table__td--right">
@@ -100,7 +102,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['status', 'allUsers', 'matches']),
+    ...mapGetters(['status', 'allUsers', 'matches', 'activeTeamIsos']),
     groups() {
       return this.status && this.status.groups ? this.status.groups : []
     },
@@ -131,6 +133,11 @@ export default {
       return this.status.teams
         .filter(t => t.group === group)
         .sort((a, b) => a.name.localeCompare(b.name))
+    },
+    isTeamEliminated(team) {
+      if (!team || !team.short_name) return false
+      if (!this.activeTeamIsos || !this.activeTeamIsos.size) return false
+      return !this.activeTeamIsos.has(team.short_name.toLowerCase())
     },
     championCount(teamId) {
       return this.championCounts[teamId] || 0

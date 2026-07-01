@@ -3,7 +3,7 @@
     <div class="user-preview__avatar">
       <div class="avatar-champion-wrap">
         <avatar :src="user.avatar" size="medium" />
-        <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge" />
+        <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge" :class="{ 'flag--eliminated': isChampionEliminated }" />
       </div>
     </div>
     <div class="user-preview__body">
@@ -54,8 +54,14 @@
     computed: {
       ...mapGetters([
         'loggedInUser',
-        'iconPaths'
+        'iconPaths',
+        'activeTeamIsos'
       ]),
+      isChampionEliminated() {
+        if (!this.user || !this.user.champion || !this.user.champion.short_name) return false
+        if (!this.activeTeamIsos || !this.activeTeamIsos.size) return false
+        return !this.activeTeamIsos.has(this.user.champion.short_name.toLowerCase())
+      },
       filteredScores () {
         return this.user && this.user.scores ? this.user.scores.filter(score => score.challenge_id <= 2) : []
       }

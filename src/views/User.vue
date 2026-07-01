@@ -4,7 +4,7 @@
       <div v-if="user && user.avatar" class="user__avatar" @click="resetAvatar()">
         <div class="avatar-champion-wrap">
           <avatar :src="user.avatar" size="xlarge" />
-          <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge avatar-champion-badge--large" />
+          <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge avatar-champion-badge--large" :class="{ 'flag--eliminated': isChampionEliminated }" />
         </div>
       </div>
       <h1 v-if="user" class="h2 text--center user__name">{{ user.name }}</h1>
@@ -130,8 +130,14 @@ export default {
       'allUsers',
       'matches',
       'avatarUrl',
-      'iconPaths'
+      'iconPaths',
+      'activeTeamIsos'
     ]),
+    isChampionEliminated() {
+      if (!this.user || !this.user.champion || !this.user.champion.short_name) return false
+      if (!this.activeTeamIsos || !this.activeTeamIsos.size) return false
+      return !this.activeTeamIsos.has(this.user.champion.short_name.toLowerCase())
+    },
     betChartOptions () {
       return {
         chart: {

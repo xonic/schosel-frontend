@@ -2,9 +2,10 @@
   <main>
     <div class="wrapper">
       <div v-if="team" class="team-header">
-        <flag :iso="team.short_name" size="xlarge" class="team-header__flag" />
+        <flag :iso="team.short_name" size="xlarge" class="team-header__flag" :class="{ 'flag--eliminated': isEliminated }" />
         <h1 class="h2 text--center team-header__name">{{ team.name }}</h1>
         <div class="text--small text--gray-20 text--center">Group {{ team.group }}</div>
+        <div v-if="isEliminated" class="text--small text--red text--center">Eliminated</div>
       </div>
 
       <div class="user-tabs">
@@ -80,7 +81,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['status', 'matches', 'allUsers', 'avatarUrl']),
+    ...mapGetters(['status', 'matches', 'allUsers', 'avatarUrl', 'activeTeamIsos']),
     team() {
       if (!this.status || !this.status.teams) return null
       return this.status.teams.find(t => t.short_name === this.iso)
@@ -93,6 +94,11 @@ export default {
     },
     overTeamMatches() {
       return this.filterMatches(this.matches && this.matches.over)
+    },
+    isEliminated() {
+      if (!this.team || !this.team.short_name) return false
+      if (!this.activeTeamIsos || !this.activeTeamIsos.size) return false
+      return !this.activeTeamIsos.has(this.team.short_name.toLowerCase())
     },
     championBettors() {
       if (!this.team || !this.allUsers) return []

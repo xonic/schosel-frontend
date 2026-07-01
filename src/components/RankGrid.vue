@@ -27,7 +27,7 @@
           <router-link :to="{ name: 'user', params: { id: `${user.user_id}` } }" :class="`rank-grid__name-col`">
             <div class="avatar-champion-wrap">
               <avatar :src="user.avatar" class="rank-grid__avatar" />
-              <flag v-if="user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge" :class="{ 'flag--eliminated': isChampionEliminated(user) }" />
+              <flag v-if="showChampion && user.champion && user.champion.short_name" :iso="user.champion.short_name" class="avatar-champion-badge" :class="{ 'flag--eliminated': isChampionEliminated(user) }" />
             </div>
             <div class="rank-grid__name">{{ user.name }}</div>
           </router-link>
@@ -56,7 +56,8 @@
   export default {
     name: "rank-grid",
     props: {
-      data: Array
+      data: Array,
+      showChampion: { type: Boolean, default: true }
     },
     components: {
       Avatar,
